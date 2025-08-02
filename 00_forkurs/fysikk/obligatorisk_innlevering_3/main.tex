@@ -1,0 +1,191 @@
+\documentclass{report}%\documentclass[11pt,a4paper,norsk]{report}
+
+\title{REAL111-1 24H - Fysikk\\Obligatorisk innlevering 3}
+\author{Casper Eide Özdemir-Børretzen}
+\date{}
+
+\makeatletter
+\newcommand{\institle}{\@title}
+\newcommand{\insauthor}{\@author}
+\newcommand{\insdate}{\@date}
+\makeatother
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{pdfpages}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{babel}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\hypersetup{urlcolor=blue,pdftitle={\institle},pdfauthor={\insauthor}}
+\urlstyle{sf}
+
+\newcommand{\opg}[1]{\subsection*{Oppgave #1}}
+\newcommand{\opgd}[1]{\item}
+
+\begin{document}
+\includepdf[pages={1}]{real111-forside.pdf}
+
+\opg{1}
+\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=2em,label=\alph*)]
+\opgd{a}
+$V = 200\ 000\ m^3$\\
+$\rho_{luft} = 1,200243\ kg/m^3$\\
+$\rho_{H_2} = 0,083484\ kg/m^3$\\
+
+$\rho_{luft} \cdot V - \rho_{H_2} \cdot V = 223\ 351,8\ kg$\\
+
+\uuline{Ved $101\ kPa$ og $20^\circ C$ kunne luftskipet Hindenberg løfte 223 tonn.}
+
+\opgd{b}
+Løfteevnen er summen av forskjellen i vekt på volumet av hydrogen og vekten av luften rundt luftskipet som ville fylt det samme volumet. Hvis lufttrykket rundt luftskipet økes gir det høyere løfteevne.
+\end{enumerate}
+
+%\vspace{2cm}
+\newpage
+\opg{2}
+\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=2em,label=\alph*)]
+\item[]
+\begin{tabular}{ c|c|c|c }
+  & $p/kPa$ & $V/m^3$ & $T/K$  \\
+1 & $300$   & $0,15$  & $293$ \\
+2 & $300$   & $?$     & $323$ \\
+\end{tabular}
+
+\opgd{a}
+Her kan tilstandslikningen $pV=nRT$ brukes.\\
+Der $p$ er trykk ($Pa$), $V$ er volum ($m^3$), $n$ er antall molekyler ($mol$), $R$ er den universelle gasskonstanten og $T$ er temperatur ($K$).
+%$$pV = nRT$$
+$$n=\frac{pV}{RT} = \frac{p_1V_1}{RT_1} = \frac{300 \cdot 10^3 Pa \cdot 0,15 m^3}{8,31\ J/(mol \cdot K) \cdot 293K} = 18,48178\ mol$$
+
+$1\ mol$ er $6,02 \cdot 10^{23}$ og siden heliumgass er enatomig er antall atomer lik antall molekyler.\\
+$$18,48178 \cdot 6.02 \cdot 10^{23} = 1,11260 \cdot 10^{25}$$
+
+For å finne massen kan llikningen $m=Mn$ brukes.\\
+Der $m$ er massen ($g$), $M$ er molar massen ($g/mol$) og $n$ er antall molekyler ($mol$).\\
+Molar massen til helium $M_{He} = 4,003\ g/mol$.
+$$m=M_{He}n=4,003\ g/mol \cdot 18,48178\ mol = 73,98257g$$
+\begin{center}\uuline{Massen til gassen er $74g$.}\end{center}
+
+\opgd{b}
+Varme er tilført gassen, den har utvidet seg og gjort et arbeid på omgivelsene, men det er ikke gjort noe arbeid på gassen.
+
+\opgd{c}
+Varmen $Q$ tilført gasseen er lik arbeidet gassen har utført på omgivelsene.\\
+Dette er en isobar prosess og arbeidet kan regnes ut med likningen $W = p \Delta V$.\\
+Likningen krever at volumet etter temperaturøkningen er kjent.\\
+For å finne volumet $V_ 2$ kan tilstandslikningen $pV = nRT$ brukes.
+$$V_2 = \frac{nRT_2}{p_2} = \frac{18,48178\ mol \cdot 8,31\ J/(mol \cdot K) \cdot 323K}{300 \cdot 10^3\ Pa} = 0,16536m^3$$
+
+$$Q = p \Delta V = p(V_2 - V_1) = 300 \cdot 10^3\ Pa \cdot 0,01536 m^3 = 4608J$$
+%\begin{center}\uuline{Gassen har gjort et arbeid på 4.6kJ.}\end{center}
+\begin{center}\uuline{Gassen ble tilført $4,6\ kJ$ varme.}\end{center}
+%$$\Delta U = \frac{3}{2} nR \Delta T = \frac{3}{2} \cdot 18.48178\ mol \cdot 8.31 J/(mol \cdot K) \cdot (323K - 293K) = 6911.261631J$$
+%\begin{center}\uuline{Den indre energien økte med 6.9kJ.}\end{center}
+%$$W = -p \Delta V = - 300 \cdot 10^3 Pa \cdot (0.16536m^3 - 0.15m^3) = -4608J$$
+Termofysikkens 1. lov sier at endring i den indre energien $\Delta U$ er lik summen av den tilførte varmen $Q$ og arbeidet $W$ som er utført på gassen. Siden det ikke er utført noe arbeid på gassen tilsvarer dette kun den tilførte varmen i dette tilfellet.
+
+$$\uuline{\Delta U = Q + W = 4,6\ kJ}$$
+\end{enumerate}
+
+%\vspace{2cm}
+\newpage
+\opg{3}
+\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=2em,label=\alph*)]
+\item[]
+$m_V &=\ ?$\\
+$m_J &= 100g = 0,100kg$\\
+$T_V &= 0^\circ C = 273 K$$\\
+$T_J &= 1250^\circ C = 1523 K$\\
+$T &= 20^\circ C = 293 K$\\
+$c_V &= 4180\ J/(kg \cdot K)$\\
+$c_J &= 449\ J/(kg \cdot K)$
+
+\opgd{a}
+Her kan likningen $Q = cm \Delta T$ brukes.\\
+Den indre energien som må gjøres til varme for å endre temperaturen til jernklumpen er $c_J m_J \Delta T$.\\
+Varmen som må tilføres for å endre temperaturen til vannet er $c_V m_V \Delta T$.\\
+Der $c$ er varmekapasiteten til stoffet ($J/(kg \cdot K)$), $m$ er massen ($kg$) og $\Delta T$ er endring i temperatur ($K$).
+
+$$c_J m_J (T_J - T) = c_V m_V (T - T_V)$$
+
+$$m_V = \frac{c_J m_J (T_J - T)}{c_V (T - T_V)} = \frac{449\ J/(kg \cdot K) \cdot 0,100\ kg \cdot 1230\ K}{4180\ J/(kg \cdot K) \cdot 20\ K} = \frac{55227\ J}{83600\ J/kg} = 0,66061\ kg$$
+
+\begin{center}\uuline{Det trengs $0,66\ L$ flytende vann med temperaturen $0^\circ C$ for å kjøle ned jernklumpen til $20^\circ C$.}\end{center}
+
+\opgd{b}
+Smeltevarmen for vann $l_V = 334 \cdot 10^3\ J/kg$.\\
+Varmen som må tilføres for å smelte vannet er $l_V m_V$.\\
+Dette kan legges til på høyre side av ligningen for å finne en ny verdi for $m_V$.
+
+$$c_J m_J (T_J - T) = c_V m_V (T - T_V) + l_V m_V$$
+
+$$c_J m_J (T_J - T) = m_V( c_V (T - T_V) + l_V)$$
+
+$$m_V = \frac{c_J m_J (T_J - T)}{c_V (T - T_V) + l_V} = \frac{449\ J/(kg \cdot K) \cdot 0,100\ kg \cdot 1230\ K}{4180\ J/(kg \cdot K) \cdot 20\ K + 334 \cdot 10^3\ J/kg} = \frac{55227}{417600\ kg} = 0.13225\ kg$$
+
+\begin{center}\uuline{Hvis is brukes i stedet trengs det $0,13\ L$.}\end{center}
+\end{enumerate}
+
+\newpage
+\opg{4}
+\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=2em,label=\alph*)]
+\opgd{a}
+$p(y) = p_0 e^{-ky}$\\
+$p_0 = 1,01 \cdot 10^5\ Pa$\\
+$k = 1,19 \cdot 10^{-4}\ m^{-1}$\\
+$y_1 = 2469\ m$\\
+$y_2 = 8848\ m$
+
+$$p(y_1) = p_0 e^{-k y_1} = 1,01 \cdot 10^5\ Pa \cdot e^{-1,19\ \cdot\ 10^{-4}\ m^{-1}\ \cdot\ 2469\ m} = 75287,15\ Pa$$
+$$p(y_2) = p_0 e^{-k y_2} = 1,01 \cdot 10^5\ Pa \cdot e^{-1,19\ \cdot\ 10^{-4}\ m^{-1}\ \cdot\ 8848\ m} = 35240,94\ Pa$$
+
+\uuline{Lufttrykket på toppen av Galdhøpiggen er ca. $75\ kPa$, og ca. $35\ kPa$ på toppen av Mount Everest.}
+
+\opgd{b}
+
+$\gamma = 1,40$\\
+$n =\ ?$\\
+
+\begin{tabular}{ c|c|c|c }
+  & $p/kPa$ & $V/m^3$ & $T/K$  \\
+1 & $101$   & $1$     & $293$ \\
+2 & $75$    & $?$     & $?$    \\
+\end{tabular}
+
+\vspace{0.2cm}
+
+\begin{align*}
+p_2 V_2^{\gamma} &= p_1 V_1^{\gamma} &&|\ \div p_2\\\\
+V_2^{\gamma} &= \frac{p_1}{p_2} \cdot V_1^{\gamma} &&|\ ^{\frac{1}{\gamma}}\\\\
+V_2 &= \left( \frac{p_1}{p_2} \right) ^{\frac{1}{\gamma}} \cdot V_1 = \left( \frac{101 \cdot \cancel{10^3\ Pa}}{75 \cdot \cancel{10^3\ Pa}} \right)^{\frac{1}{1,40}} \cdot 1\ m^3 = 1,23688\ m^3\\\\\\
+p_1 V_1 &= nRT_1\\\\
+n &= \frac{p_1 V_1}{R T_1} = \frac{101 \cdot 10^3\ Pa \cdot 1\ m^3}{8,31\ J/(mol \cdot K) \cdot 293\ K} = 41,48134\ mol\\\\\\
+p_2 V_2 &= nRT_2\\\\
+T_2 &= \frac{p_2 V_2}{nR} = \frac{75 \cdot 10^3\ Pa \cdot 1,23699\ m^3}{41,48134\ mol \cdot 8,31\ J/(mol \cdot K)} = 269,11322\ K
+\end{align*}
+
+Når $1\ m^3$ luft ved havnivå med temperatur $20^\circ C$ og trykk $101\ kPa$ stiger til $2469\ m$ høyde utvider volumet seg til $1,2\ m^3$, trykket synker til $75\ kPa$ \uuline{og temperaturen synker til $-4^\circ C$.}
+
+\end{enumerate}
+
+\newpage
+\opg{5}
+\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=2em,label=\alph*)]
+\opgd{a} Denne påstanden er riktig. Kompressoren i kjøleskapet vil jobbe kontinuerlig dersom døren står åpen. Dette vil varme opp rommet litt.
+\opgd{b} Denne påstanden er feil. Effektfaktoren til en varmepumpe er gitt med $f = \frac{P}{P_e}$. Der $P_e$ er den tilførte elektriske effekten og $P$ er den avgitte varmeeffekten, som vil variere avhengig av temperaturen ute og inne.
+\opgd{c} Denne påstanden er riktig. Om natten mottar bakken ingen termisk stråling fra solen, men bakken sender fortsatt ut termisk stråling, som kan føre til at bakken får lavere temperatur enn luften over den.
+
+\end{enumerate}
+
+\end{document}

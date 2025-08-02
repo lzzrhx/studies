@@ -1,0 +1,155 @@
+////////////////////////////////////////////////////////////////////////////////
+// UKEPLAN 2025
+////////////////////////////////////////////////////////////////////////////////
+
+  FORELESNINGER:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  Tirsdag 10:15 - 12:00, Fysikk
+  Tirsdag 13:15 - 15:00, Matematikk
+  Torsdag 10:00 - 12:00, Teknologi og samfunn
+  Torsdag 12:30 - 14:45, Engelsk
+  Fredag  08:15 - 12:00, Norsk
+
+
+  MATEMATIKK:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  X  35  Tallregning, brøk, bokstavregning
+  X  36  Rasjonale uttrykk, potensregning og tall på standardform
+  X  37  Likninger, lineære likningssett, formler og lineære uligheter
+  X  38  Mengdelære, doble ulikheter og rette linjer
+  X  39  Rette linjer, grafisk tegning, funksjonsbegrepet og andregradsfunksjoner
+  X  40  Kvadratsetningene, faktorisering og andregradsformelen
+  X  42  Andregradslikninger, ikke-lineære likningssett, nullpunktsfaktorisering
+  X  43  Rasjonale uttrykk, andregradsulikheter
+  X  44  Polynomfunksjoner, polynomdivisjon, faktorisering
+  X  45  Likninger, ulikheter
+  X  46  Grenseverdi, kontinuitet, asymptoter
+  X  47  Vekstfart, tangenter
+  X  48  Derivasjon, fart og akselerasjon
+  X  49  Funksjonsdrøfting, krumning
+  X  50  Optimering, potensfunksjoner
+  X  2   Derivasjon og logaritmer
+  X  3   Logaritme - og eksponential funksjoner og likninger
+  X  4   Trigonometri
+  X  5   Geometri og trigonometri
+  X  6   Trigonometri
+  X  7   Trigonometri
+  X  8   Vektorer
+  X  9   Vektorer
+  X  10  Vektorer i rommet
+  X  11  Følger og rekker
+  X  12  Følger og rekker
+  X  13  Integrasjon
+  X  14  Integrasjon
+  X  15  Integrasjon
+
+
+  FYSIKK:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  X  36  Rettlinjet bevegelse
+  X  37  Rettlinjet bevegelse med konstant akselerasjon
+  X  38  Krefter og bevegelse
+  X  40  Krefter og bevegelse
+  X  42  Energi
+  X  43  Bevegelsesmengde
+  X  45  Fysikk i væsker og gasser
+  X  46  Termofysikk
+  X  47  Termofysikk
+  X  48  Termofysikk
+  X  2   Elekstrisitet
+  X  3   Elekstrisitet
+  X  6   Atom- og kjernefysikk
+  X  7   Atom- og kjernefysikk
+  X  9   Bevegelse i to dimensjoner
+  X  10  Bevegelse i to dimensjoner
+  X  11  Kraft og bevegelse i to dimensjoner
+  X  12  Vitenskapelig metode og måleusikkerhet + Laboratorieøvinger
+  X  13  Kraft og bevegelse i to dimensjoner
+  X  14  Statikk
+  X  15  Statikk
+
+
+  TIDLIGERE EKSAMEN:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  X  2023  Matematikk
+  X  2023  Fysikk
+  X  2023  Norsk
+  X  2023  Engelsk
+  X  2023  Teknologi og samfunn
+  X  2022  Matematikk
+  X  2022  Fysikk
+  X  2022  Norsk
+  X  2022  Engelsk
+  X  2022  Teknologi og samfunn
+  X  2021  Matematikk
+  X  2021  Fysikk
+  X  2021  Norsk
+  X  2021  Engelsk
+  X  2021  Teknologi og samfunn
+  X  2020  Matematikk
+  X  2020  Fysikk
+  X  2020  Norsk
+  X  2020  Engelsk
+  X  2020  Teknologi og samfunn
+
+
+  06 | 03.02 - 09.02
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  06.02 | TOR: Fysikk innlevering 4
+
+
+  07 | 10.02 - 16.02
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  13.02 | TOR: Matematikk innlevering 4
+
+
+  10 | 03.03 - 09.03
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  06.03 | TOR: Fysikk innlevering 5
+  09.03 | SØN: Engelsk innlevering 2
+
+
+  11 | 10.03 - 16.03
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  13.03 | TOR: Matematikk innlevering 5
+  14.03 | FRE: Teknologi og samfunn innlevering 2
+
+
+  12 | 17.03 - 23.03
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  18.03 | TIR: 10:15 | Labøving, Elektrolyse av vann
+  19.03 | ONS: 08:15 | Labøving, Elektrisitet
+  21.03 | FRE: Norsk innlevering 3
+
+
+  14 | 31.03 - 06.04
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  03.04 | TOR: 12:30 - 15:30 | Engelsk prøveeksamen
+  04.04 | FRE: 08:20 - 12:00 | Norsk prøveeksamen
+
+
+  15 | 07.04 - 13.04
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  10.04 | TOR: Matematikk innlevering 6 & Fysikk labrapport innlevering
+
+
+  17 | 21.04 - 27.04
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  24.04 | TOR: Teknologi og samfunn prøveeksamen
+
+
+  20 | 12.05 - 18.05
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  15.05 | TOR: Fysikk eksamen!
+
+
+  21 | 19.05 - 25.05
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  20.05 | TIR: Teknologi og samfunn eksamen!
+  23.05 | FRE: Engelsk eksamen!
+
+
+  22 | 26.05 - 01.06
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  26.05 | MAN: Matematikk eksamen!
+  28.05 | ONS: Norsk eksamen!
