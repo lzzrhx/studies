@@ -1,0 +1,1 @@
+https://www.hvl.no/en/studies-at-hvl/study-programmes/courses/DAT253
