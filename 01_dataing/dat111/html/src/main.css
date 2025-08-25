@@ -1,0 +1,303 @@
+/*////////////////////////////////////////////////////////////////////////////*/
+/* Variabler */
+/* Fargepalett fra: https://github.com/romainl/Apprentice */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+:root {
+  --colorFg: #BCBCBC;
+  --colorBg: #262626;
+  --color0:  #1C1C1C;
+  --color1:  #AF5F5F;
+  --color2:  #5F875F;
+  --color3:  #87875F;
+  --color4:  #5F87AF;
+  --color5:  #5F5F87;
+  --color6:  #5F8787;
+  --color7:  #6C6C6C;
+  --color8:  #444444;
+  --color9:  #FF8700;
+  --color10: #87AF87;
+  --color11: #FFFFAF;
+  --color12: #87AFD7;
+  --color13: #8787AF;
+  --color14: #5FAFAF;
+  --color15: #FFFFFF;
+  --themeBg: var(--color15);
+  --themeFg: var(--colorBg);
+  --themeBorder: var(--color7);
+  --footerHeight: 120px;
+  --navWidth: 180px;
+  --sectionMargin: 5rem;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/* Fonts */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+@font-face {
+  font-family: "NEC APC3 8x16";
+  src: url('./font/Px437_NEC_APC3_8x16.ttf');
+}
+
+@font-face {
+  font-family: "ToshibaSat 8x16";
+  src: url('./font/PxPlus_ToshibaSat_8x16.ttf');
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url('./font/SourceSans3-Medium.ttf');
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/* Main containers */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+body {
+  margin: 0;
+  color: var(--themeFg);
+  font-family: "Source Sans 3";
+  letter-spacing: 0.1px;
+  background: var(--themeBg);
+  /*
+  background-image: radial-gradient(#fbfbfb 1px, transparent 0);
+  background-size: 8px 8px;
+  background-position: -3px -3px;
+  */
+}
+
+*,:after,:before {
+  box-sizing:border-box;
+  /*background-color:inherit;*/
+  color:inherit;
+  margin:0;
+  padding:0;
+}
+
+p {
+  padding: 0.5rem 0;
+}
+
+a {
+  color: var(--color1);
+  text-decoration-skip-ink: auto;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color9);
+}
+
+img {
+  max-width:100%;
+}
+
+hr {
+  border:0;
+  border-bottom: 1px dotted var(--themeBorder);
+  width: 40%;
+  margin: 0 auto var(--sectionMargin) auto;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+code {
+  font-family: "ToshibaSat 8x16";
+}
+
+h1,h2,h3,h4,h5 {
+  line-height: 1;
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+
+h2 {
+  color: var(--color6);
+}
+
+#outer-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  background-image: url(./img/banner.png);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 1800px 360px;
+  
+}
+
+#left-wrapper {
+align-self: flex-start;
+  flex: 1;
+  max-width: var(--navWidth);
+  position: sticky;
+  top: 0;
+}
+
+#right-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+  max-width: min(calc(100% - var(--navWidth)), 800px);
+}
+
+nav {
+  font-family: "NEC APC3 8x16";
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+nav ul {
+  border-right: 1px dotted var(--themeBorder);
+  list-style: none;
+}
+
+nav ul li:not(:last-child) {
+    margin-bottom: 3px;
+}
+
+section {
+  padding-bottom: var(--sectionMargin);
+}
+
+nav {
+  padding: 0.5rem 1rem 0.5rem 2rem;
+}
+
+header {
+  padding-top: var(--navWidth);
+}
+
+main {
+  min-height: calc(100% - var(--footerHeight));
+  padding-top: 2.5rem;
+  padding-top: calc(var(--navWidth) * 1.75);
+}
+
+footer {
+  height: var(--footerHeight);
+  text-align:center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+main, footer {
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/* Other containers */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+.kontakt div, .produkter div, .grafer div, .graf div, img.bg, .kontakt img, pre.bg {
+  border: 1px dotted var(--themeBorder);
+}
+
+.kontakt div, .grafer div, .graf div {
+  text-align: center;
+}
+
+.kontakt div, .produkter div, .grafer div, .graf div, img.bg, pre.bg {
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  background: var(--themeBg);
+  background-image: radial-gradient(#f2f2f2 1px, transparent 0);
+  background-size: 8px 8px;
+  background-position: -3px -3px;
+}
+
+.produkter div {
+  padding-top: 0;
+  padding-right:0;
+  padding-left:0;
+  width:350px;
+}
+
+.kontakt, .produkter, .grafer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.graf, pre.bg {
+  margin: 2rem 0;
+}
+
+.kontakt p, .grafer p, .graf p {
+  padding-top: 0;
+  padding-bottom: 0.25rem;
+}
+
+.produkter p {
+  padding: 0.35rem 1rem 0.25rem 1rem;
+}
+
+.kontakt p, .grafer p, .graf p {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.kontakt div, .produkter div, .grafer div, .graf div, img.bg, pre.bg {
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.produkter div, .kontakt div, .grafer div, .graf div {
+  color: var(--themeBorder);
+  font-size: 0.825rem;
+}
+
+.grafer div, .graf div {
+  font-weight: bold;
+}
+
+.grafer span, .graf span, .kontakt span, .produkter span {
+  font-weight: bold;
+}
+
+.kontakt span, .produkter span {
+  color: var(--color8);
+}
+
+.produkter span {
+  font-size: 1.15rem;
+}
+
+.produkter span.pris {
+  font-size: 1.30rem;
+}
+
+.kontakt span {
+  font-size: 0.9rem;
+}
+
+.kontakt img {
+  background: var(--themeBg);
+  padding: 0.5rem;
+  max-height: 160px;
+  max-width: 160px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+/*
+.grafer span, .graf span {
+  text-decoration: var(--color4) underline dotted;
+  text-underline-offset: 2px;
+}
+.produkter hr {
+  width: 100%;
+  margin: 0 auto 0.65rem 0;
+}
+*/
