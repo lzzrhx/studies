@@ -17,7 +17,7 @@ public class OppgaveB6 {
 
             // TODO:Håndtering av innlesing av feil datatype (annet enn heltall)
 
-            // Skriv ut feilmelding hvis verdien er utenfor verdiområdet
+            // Skriv ut feilmelding hvis verdien er ugyldig
             if (brutto < 0) {
                 ugyldig = true;
                 System.out.println("ERR! Ugyldig verdi.");
