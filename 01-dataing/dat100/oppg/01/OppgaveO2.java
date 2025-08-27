@@ -13,7 +13,7 @@ public class OppgaveO2 {
             boolean ugyldig;
             do {
 
-                // Nullstill ugyldig variabelen og les inn innputt fra brukeren
+                // Nullstill ugyldig variabelen og les innputt fra brukeren
                 ugyldig = false;
                 System.out.print("(" + i + ") Skriv inn oppnådd poengsum (heltall, 0 - 100): ");
                 String innString = inn.nextLine();
@@ -29,6 +29,7 @@ public class OppgaveO2 {
                         ugyldig = true;
                         System.out.println("ERR! Ugyldig verdi.");
                     }
+
                     // Skriv ut karakter som tilsvarer poengsum
                     else {
                         String karakter;

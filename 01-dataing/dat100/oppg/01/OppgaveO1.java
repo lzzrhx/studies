@@ -11,7 +11,7 @@ public class OppgaveO1 {
         boolean ugyldig;
         do {
 
-            // Nullstill ugyldig variabelen og les inn innputt fra brukeren
+            // Nullstill ugyldig variabelen og les innputt fra bruker
             ugyldig = false;
             System.out.print("Skriv inn bruttolønn i kroner (heltall): ");
             String innString = inn.nextLine();
