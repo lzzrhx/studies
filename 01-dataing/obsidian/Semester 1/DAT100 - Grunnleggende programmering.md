@@ -11,17 +11,17 @@
 >- [x] Uke 34 - JP1
 >- [x] Uke 35 - Lese kapittel 4
 >- [x] Uke 35 - JP2
->- [ ] Uke 36 - **Levere oppgave 1**
+>- [x] Uke 36 - **Levere oppgave 1**
 >- [x] Uke 36 - Lese kapittel 5
->- [ ] Uke 36 - JP3
+>- [x] Uke 36 - JP3
 >- [x] Uke 38 - Lese kapittel 6
 >- [ ] Uke 38 - JP4
 >- [ ] Uke 39 - JP5
 >- [ ] Uke 40 - JP6
 >- [ ] Uke 41 - **Levere oppgave 2**
->- [ ] Uke 41 - Lese kapittel 7
+>- [x] Uke 41 - Lese kapittel 7
 >- [ ] Uke 42 - **Levere prosjekt**
->- [ ] Uke 42 - Lese kapittel 9
+>- [x] Uke 42 - Lese kapittel 9
 >- [ ] Uke 43 - JP7
 >- [ ] Uke 44 - **Levere oppgave 3**
 >- [ ] Uke 44 - JP8
@@ -66,11 +66,10 @@
 
 
 
-## Notater:
+## Notater fra "Forstå programmering med Java":
 - - -
-
 **Kapittel 1 - Forstå program:**
-
+ 
 En *variabeldeklarasjon* innfører en ny variabel og tildeler den datatype.
 `int x;`
 `double y;`
@@ -337,15 +336,173 @@ Oppramstypen *enum* kan sammenlignes med `.equals` metoden. Ordningsnummer kan h
 
 **Kapittel 7 - Filer og unntak**
 
-- - -
+Et `PrintWriter` objekt fra `java.io` kan brukes for å skrive tekststrenger til fil.
+Et `Scanner` objekt fra `java.util` i kombinasjon med et `File` objekt (med filnavn som parameter i konstruktøren) fra `java.io` kan brukes for å lese tekst, linje for linje, fra filer.
 
-**Kapittel 8 - Grafisk brukergrensesnitt**
+Tekstfiler blir lagret i et bestemt *tegnsett*. F.eks. *ASCII* eller *Unicode*.
+
+Et `FileReader` objekt kan brukes for å lese data fra en fil. `FileReader` kan gjerne mates inn i et `BufferedReader` objekt for å håndtere "buffering" av data fra den innleste filen.
+
+Scanner-klassen har en rekke bruksområder. Her er utvalg av de mest sentrale:
+- Endre skilletegn
+		`scannerObjekt.useDelimiter("(\\.|,|\\?|!| ");
+		`scannerObjekt.useDelimiter("\\Z"); // Slutten på filen`
+- Fra fil til datastruktur
+- Lese typede data
+		`scannerObjekt.hasNextInt()`
+		`scannerObjekt.nextInt()`
+- Strukturerte data (eks. JSON, XML)
+
+I alle Java-program har vi tilgang til tre standard datastrømmer, som leser fra tastaturet og skriver til konsollvinduet.
+- *Standard innputt*: `System.in` - Lese fra tastaturet
+- *Standard utputt*: `System.out` - Konsollutskrift
+- *Standard feilstrøm*: `System.err` - Feilmeldinger
+
+Utdata strømmen kan *omdirigeres* til en fil: `java Ekko > fil.txt`
+Inndata kan også omdirigeres slik at det kommer fra en fil: `java Ekko < original.txt > kopi.txt`
+
+Tanken med *produksjonslinjer* er å kjede sammen inn- og utdata fra flere programmer. Eksempel: `java List katalog | java Filter txt | java Sorter > sortert.txt`
+
+`URL` og `URLConnection` objekter kan brukes for å lese innholdet på en nettside.
+
+Bruk av filer kan ofte føre til feil. Feil som referering til et filnavn som ikke eksisterer eller en skadet fil fører til *unntak*. Untak må *fanges* og *håndteres* eller *videresendes*.
+
+Når en feil oppstår kan vi kaste et unntak. Dette unntaket kan fanges og håndteres et annet sted i programmet.
+
+Unntak fanges med en try-catch-setning. Try-catch-setning kan også avsluttes med en finally-grein som alltid utføres.
+
+```
+try {
+	// Gjennomfør risikable setninger her og kast et unntak hvis noe går galt.
+}
+catch (Unntaksklasse e) {
+	// Her kan unntaket fanges
+}
+finally {
+	// Utføres alltid
+}
+```
+
+Unntak deles opp i to typer. *Sjekkede* unntak som må fanges eller eksplisitt videresendes og *usjekkede* unntak som kan forbigås i stillhet.
+
+*Strømmer av objekter* kan lagrer på fil som *binærdata* ved *serialisering*. Klasser som skal serialiseres må ha en såkalt implements-klausul.
+`public class EksempelKlasse implements Serializable {}`
+Objektmetoden `writeObjekt` kan så brukes for å lagre et objekt i binær form.
+Og metoden `readObject` brukes for å lese objekter lagret på binær form.
+
+Når store mengder strukturert data skal lagres på fil kan det være greit å bruke et databasesystem med spørrespråket *SQL* for lagring og henting av data. Verktøyet *SQLite* og klassebiblioteket *JDBC* (Java DataBase Connectivity) kan brukes når man skal jobbe med databaser i Java.
 
 - - -
 
 **Kapittel 9 - Objektorientert programmering**
 
+*Objektsamling* er det generelle begrepet som ofte blir brukt om en datastruktur der man har en samling objekter og gjerne gjennomfører operasjoner som:
+- Sette inn nytt / slette eksisterende objekt
+- Søke frem et objekt i samlingen. F.eks. med sekvensielt søk, eller binært søk hvis elementene er sortert. Et søk som returnerer flere resultater gir gjerne en objektsamling som resultat.
+- Sortere objektene i samlingen
+Innsetting i en objektsamling kan gjøres ved å sette inn nytt objekt på slutten av den logiske tabellen. Sletting kan gjøres ved å bytte om pekeren til det siste objektet i tabellen med pekeren til objektet som skal slettes, for så å minske størrelsen på den logiske tabellen med en.
 
+En *subklasse* kan brukes for å lage nye varienter av en klasse. Klassen som subklassen baserer seg på kalles *superklassen* til subklassen. En subklasse arver objektvariabler og metoder fra superklassen, og kan i tillegg inneholde deklarasjon av ekstra objektvariabler, metoder og konstruktører, subklassen kan også overstyre metoder som er arvet fra superklassen.
+
+Det er mulig å lage subklasser av subklasser.
+
+Java har *enkel arv* og en subklasse kan bare arve fra én annen klasse.
+
+Hvis man utelater extends velger Java superklassen automatisk og bruker klassen `Object` som står øverst i arvehierarkiet og er den eneste klassen uten superklasse.*Objektsamling* er det generelle begrepet som ofte blir brukt om en datastruktur der man har en samling objekter og gjerne gjennomfører operasjoner som:
+- Sette inn nytt / slette eksisterende objekt
+- Søke frem et objekt i samlingen. F.eks. med sekvensielt søk, eller binært søk hvis elementene er sortert. Et søk som returnerer flere resultater gir gjerne en objektsamling som resultat.
+- Sortere objektene i samlingen
+Innsetting i en objektsamling kan gjøres ved å sette inn nytt objekt på slutten av den logiske tabellen. Sletting kan gjøres ved å bytte om pekeren til det siste objektet i tabellen med pekeren til objektet som skal slettes, for så å minske størrelsen på den logiske tabellen med en.
+
+En *subklasse* kan brukes for å lage nye varienter av en klasse. Klassen som subklassen baserer seg på kalles *superklassen* til subklassen. En subklasse arver objektvariabler og metoder fra superklassen, og kan i tillegg inneholde deklarasjon av ekstra objektvariabler, metoder og konstruktører, subklassen kan også overstyre metoder som er arvet fra superklassen.
+
+`public class SubklasseEksempel extends SuperklasseEksempel { ... }'
+
+Det er mulig å lage subklasser av subklasser.
+
+`public class SubSubklasseEksempel extends SubklasseEksempel { ... }'
+
+Java har *enkel arv* og en subklasse kan bare arve fra én annen klasse.
+
+Hvis man utelater extends velger Java superklassen automatisk og bruker klassen `Object` som står øverst i arvehierarkiet og er den eneste klassen uten superklasse.
+
+`public class SubklasseEksempel extends Object { ... }'
+
+En *abstrakt klasse* er en klasse man ikke kan lage objekter av, som regel vil den inneholde flere *abstrakte metoder*, dvs. metoder uten metodekropp. Det reserverte order *abstract* brukes både på klasse- og metodenivå. Man kan ikke opprette nye objekter av en *abstrakt* klasse, men den kan brukes som superklasse. Den kan inneholde metodedeklarasjoner uten kode, som tilsier at alle subklasser *skal ha* sin egen implementasjon av metoden.
+
+```
+public abstract class AbstraktklasseEksempel {
+	public abstract void eksempelMetode();
+}
+```
+
+Abstrakte klasser åpner for en elegant måte å behandle et antall objekt av forskjellige typer.
+
+*Polymorfi* betyr "å anta mange former" og begrepet brukes i programmering om kode som virker på flere datatyper. En *polymorf metode* er en metode som kan kalles med parametre av ulike datatyper.
+
+Operatoren *instanceof* kombinert med typetvang kan brukes for å oppnå polymorfi.
+
+Et Java *interface* eller *grensesnitt* er en klasse uten kode og fungerer som måte å beskrive *krav* til en foreløpig ukjent klasse.
+`public interface EksempelInterface { ... }
+`public class EksempelKlasse implements EksempelInterface { ... }`
+
+Grensesnitt kan brukes f.eks. til å gruppere en rekke forskjellige objekttyper i en samling, så lenge alle objektene har felles grensesnitt.
+
+Java-biblioteket inneholder en rekke ferdige klasser av typen Collection-klasse i pakken java.util. Disse har forskjellige bruksområder og skilles fra hverandre utifra hvilke metoder de tilbyr, hvordan elementene blir organisert internt og hvilke krav som stilles til elementene. Standard Collection-klasser bruker såkalte *generiske datatyper*.
+- Array-aktige samlinger: ingen krav til elmentene, ikke mulig å sette inn det samme objektet flere ganger. Elementer settes inn og taes ut basert på indeksposisjon.
+		Eksempel: `ArrayList`
+		`ArrayList<String> liste = new ArrayList<String>();`
+		`liste.add("Her er en streng");`
+- Mengdeaktige samlinger: Kun en forekomst av et objekt. Rekkefølge spiller ingen rolle.
+		Eksempel: `HashSet`
+		For å kunne avgjøre likhet er det et krav at elementer i HashSet har implementert metoden `equals()` og helst også `hashCode()`
+- Sorterte samlinger: Et krav er at det må være mulig å avgjøre om et element er mindre/større enn et annet. Objektsamlingen er til en enhver tid sortert. 
+		Eksempel: `TreeSet`
+		For elementer i TreeSet er det et krav at grensesnittet `Comparable` brukes og at metoden `compareTo()` er implementert.
+		`int obj1.compareTo(obj2)` returnerer et negativt tall hvis obj1 er mindre enn obj2. 0 hvis obj1 er lik obj2. og positivt tall hvis obj1 er større enn obj2.
+```
+class EksempelKlasse implements Comparable<EksempelKlasse> {
+	private int id;
+	public int compareTo(EksempelKlasse a) {
+		return this.id - a.id;
+	}
+}
+TreeSet<EksempelKlasse> sortertListe = new TreeSet<EksempelKlasse>;
+sortertListe.add(new EksempelKlasse);
+```
+
+Et grensesnitt som inneholder kun én eneste abstrakt metode kalles for et *funksjonelt grensesnitt*.
+
+*Lambdauttrykk* er en forkortet skrivemåte for grensesnitt.
+
+Et *brukergrensesnitt (GUI)* er kontaktflaten mellom et program og den som bruker programmet.
+
+En *API* er kontaktflaten mellom dem har utviklet et bibliotek og dem som skal bruke biblioteket.
+
+En *rekursiv metode* er en metode som inneholder kall på seg selv. Ved hjelp av rekursjon kan man oppnå mye av det samme som med løkker, ofte på en mer elegant måte.
+```
+public int fakultet(int n) {
+	if (n<2) {
+		return 1;
+	} else {
+		return n * fakultet(n-1);
+	}
+}
+```
+
+Programkoden i større applikasjoner bygges ofte i flere *lag*. Vanligvis delt inn i tre lag:
+- Brukergrensesnitt
+- Forretningslogikk
+- Datalagring
+
+Programmering er bare ett av flere steg på veien fra et påtenkt til et ferdig system. Hele prosessen kalles for *systemutvikling*, og kan innbefatte både analyse, design, implementasjon (programmering), installasjon og testing.
+
+De fleste universiteter og høyskoler underviser en serie med emner som bygger på hverandre:
+- Introduksjon til programmering
+- Objektorientert programmering: Der man lærer å bygge større program med subklasser og grensesnitt.
+- Algoritmer og datastrukturer: Der man lærer om *dynamiske datastrukturer* som lister, trær og grafer. Og viktige algoritmer for å behandle slike datastrukturer. I tillegg er rekursjon og betraktninger rundt effektivitet av forskjellige algoritmer viktige tema.
+- Spesialiserte emner: Nettverksprogrammering, systemprogrammering, web-programmering, databaseprogrammering og utvikling av apper er eksempler på mer spesialiserte emner.
+- Andre programmeringsparadigmer: Funksjonell programmering og logisk programmering er to eksempler.
 
 ## Om Java:
 
@@ -454,12 +611,12 @@ Standardverdi: 0
 
 int
 Type: 32-bit signed two's complement integer
-Verdi: Fra -2^31 til -2^31 - 1
+Verdi: Fra -2^31 til 2^31 - 1
 Standardverdi: 0
 
 long
 Type: 64-bit signed two's complement integer
-Verdi: Fra -2^63 til -2^63 - 1
+Verdi: Fra -2^63 til 2^63 - 1
 Standardverdi: 0L
 
 float

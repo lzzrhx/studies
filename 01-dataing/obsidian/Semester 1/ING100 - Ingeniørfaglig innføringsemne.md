@@ -4,11 +4,365 @@
 > **Vurdering:** Gruppebasert oppgave
 
 >[!todo]
->- [ ] ...
+>- [x] Se videoforelesninger - [ING100](https://www.youtube.com/playlist?list=PLPtOcIJ3WKju_c3x5c7gVZlzHdJCx-wJw)
+>- [x] Se videoforelesninger - [Prosjektteori](https://hvl.instructure.com/courses/31657/pages/prosjektteori)
+>- [x] Se videoforelesninger - [Akademisk skriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
+>- [ ] Se videoforelesninger - [Rapportskriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
+>- [ ] Semesteroppgave (4000 tegn)
 
-**Andre linker:**
-- ...
+**Idéer til tema for semesteroppgave:**
+- Fantasy consoles og PICO-8 - Flott undervisningsverktøy for introduksjon til programmering med LUA
+- Arkadekabinett - Med fokus på tidlige 3D spill på 90-tallet
+- Playstation 1 - Om Ken Kutaragi, hardware- og utviklingshistorie
+- GPU historie - 90-tallet -> nå
+- Historie av Raspberry Pi og single-board computer (SBC)
 
 ## Notater:
 - - -
-...
+- Semesteroppgave: Essay 4000 tegn typ kronikk om en type teknologi
+- ITMRD-struktur for vitenskapelige artikler:
+	- Introduksjon
+	- Teori
+	- Metode og materiale
+	- Resultater
+	- Diskusjon
+- BISON overblikk
+	- B. Bilder og bildetekster
+	- I. Ingress (innledning)
+	- S. Siste avsnitt
+	- O. Overskrifter
+	- N. Notabene! Ord som skiller seg ut
+- Cornell system for å ta notater under forelesning
+- Andre metoder: REAP / PQRST
+
+**Dokumentasjon og rapportskriving:**
+- Pensum: Å skrive fag av Åse Høyvoll Kallestad - Kap. 1, 2, 3, 4 og 8
+- Søk og Skriv: https://www.sokogskriv.no/
+- Kildekompasset: https://www.kildekompasset.no/
+- Hva er en akademisk tekst?
+	- Den akademiske teksten er en måte å formidle forskningsresultatene på. Dete er forskeren sin fremste verktøy for å nå frem til andre forskere og et allment publikum med forskningsresultatene sine.
+	- Den akademiske teksten må få fram:
+		- Hvilken problemstilling har forskeren undersøkt
+			- Hva er nytt
+		- Hva visste man fra før (hva er det teksten bygger på)
+		- Hvordan har man kommet frem til det nye
+		- Grundig og god argumentasjon for at det forskeren har funnet ut, faktisk stemmer
+	- En akademisk tekst, for studenter (ikke basert på egne data, men på allerede eksisterende data)
+		- Ikke nye oppdagelser innenfor et fagfelt, men egne drøftinger og refleksjoner med støtte fra fagstoffet - Formidle tydelige resonnement med rot i fagkilder
+		- Ikke bare reprodusere kunnskap, men svare på en problemstilling som en drøfter selvstendig ved hjelp fra lærebøker og andre kilder - Bruke kilder, referere
+		- Skrive for å lære: Utforsk idéer, undersøk ulike spørsmål, finne ut hva forskning som finst og hva det har å si - Gå i dialog med kildene, kommentere og bruk egne tanker
+- Resonnement og akademisk språk:
+	- Hva er et resonnement?
+		- "å trekke slutninger og se sammenhenger mellom ulike synspunkt"
+		- Vise tankerekke / tankegang / sammenheng og å kommet frem til nye tanker / poeng ved å drøfte hva kildene har å si
+		- Eksempel på struktur:
+			- Introduksjon -> Fagkilde -> Kommentar til fagkilde -> Ny fagkilde (som forteller mer) -> Moment (eget poeng eller synspunkt man vil ha fram i fagteksten)
+		- Sammenhengen studenten har sett kan fås frem med metakommentarer (kommentarer til leseren)
+	- Akademisk språkbruk:
+		- "Akademisk språk er klart, entydig, nøkternt og objektivt"
+		- Klart = Tydelig og sikker bruk av (fag)omgrep
+		- Nøkternt = Påstår ikke, men argumenterer for et standpunkt
+		- Entydig = Fremstillingen spriker ikke
+		- Objektivt = Viser hva man bygger standpunktene på
+- Kildebruk:
+	- Hvorfor referere?
+		- Det må være klart for leseren hvor du har hentet informasjon eller lånt ord fra
+		- Leseren skal alltid kunne gå til kildene man har brukt fro å finne mer informasjon eller sjekke om kildemateriale er riktig forstått i teksten
+		- Man skal aldri la andre sine tanker og ord bli presentert som sine egne
+	- Hva skal refereres i teksten?
+		- "Alle faglige argumenter som ikke bygger på eget materiale, egne resonnement og meninger, skal refereres i teksten og henvises til i referanselisten. Dette kan for eksempel være andres meninger og vurderinger, tallmateriale, modeller, resultater og konklusjoner."
+		- Hver gang du låner noe inn i teksten din, må du referere
+		- Ikke bare i slutten av et avsnitt, men bak direkte sitat eller en parafrasering
+	- Hvordan skal man referere?
+		- Direkte sitat:
+			- Ordrett kopi av det noen andre har skrevet
+			- Man må skrive *akkurat* det som står i teksten man låner fra
+			- Man må bruke siteringstegn
+		- Indirekte sitat / parafrasering:
+			- Omformulering av det noen andre har skrevet
+			- Man bytter om på rekkefølgen og ord, men beholder meningsinnholdet
+			- Man bruker ikke siteringstegn
+		- I løpende tekst:
+			- I parantes etter det man har sitert eller parafrasert fra en kilde
+			- Bare etternavn/organisasjon, årstall og ev. sidetall
+		- I litteraturlisten:
+			- Helt til slutt i teksten
+			- Alfabetisk ordnet
+			- I tråd med akademisk refereringspraksis, f.eks. APA
+			- I samsvar med fagteksten: Alt man har i løpende tekst, må kunne finnes i litteraturlisten
+- Hvordan skrive en akademisk tekst:
+	- Akademisk språk og stil: https://www.sokogskriv.no/skriving/akademisk-sprak-og-stil.html
+	- Problemstilling:
+		- Avgrense hva du skal finne svar på
+		- Åpne spørsmål: Hvordan, på hvilken måte, (hva / hvorfor)
+		- Ikke alltid et krav å formulere en selv, men et godt hjelpemiddel for skrivingen
+	- Samle moment:
+		- Moment = Poeng eller synspunkt du vil ha med i fagteksten
+		- Hva moment trenger du for å svare på problemstillingen?
+		- Tenk stort: Hva nevner faglitteraturen? Hva synes du er interessant?
+	- Lage disposisjon:
+		- Systematisering av momentene
+		- Innledning, hoveddel, avslutting: Hva må komme hvor?
+	- Under skriving - Tenkeskriving og skriverammer
+	- Etter skriving
+		- Metaperspektiv på egen tekst: Se på teksten utenfra
+		- "Det kan være lurt å innta et slik metaperspektiv i flere omganger når du skriver en akademisk fagtekst. [...] Stopp opp etter å ha skrevet noen avsnitt, reflekter over det du har skrevet, og bearbeid teksten i tråd med disposisjon og problemstilling."
+		- Ryddeskriving: Skriv med tanke på leseren.
+			- Er sammenhengen god?
+			- Er resonnementene klare og greie å forstå?
+			- Er det skrivefeil du må rette opp?
+			- Er kildene i orden?
+
+**Prosjektarbeid:**
+- Bok: Prosjektveilederen av Anne Live Vaagaasar og Torgeir Skyttermoen
+- Prosedyrene og metodeverket for prosjektarbeid vokste frem cirka rundt 1950 i USA
+- I de fleste virksomheter i dag er det prosjektarbeidet i en aller annen form som er rådende arbeidsform
+- Noen kjennetegn ved et prosjekt
+	- Engangsoppgave
+	- Et definert mål
+	- Tidsavgrenset
+	- Ofte kompleks og tverrfaglig
+	- En midlertidig organisasjon
+	- Ressurskrevende
+- Det meste ingeniører driver med er prosjektarbeid
+- En teknolog/ingeniør sin jobbsituasjon: Tre delsystem
+	- Det tekniske systemet
+	- Det sosiale systemet
+	- Det økonomiske systemet
+- Begrep og komponenter i et prosjekt:
+	- Prosjektorganisasjon
+	- Prosjektleder
+	- Basisorganisasjon
+	- Prosjekteier / Oppdragsgiver
+	- Interessenter
+	- Leveranse / Resultat
+- Fra oppdragsbeskrivelse og frem til leveranse går prosjektet gjennom flere faser:
+	- Behovsklargjøring
+	- Planlegging / utforming
+	- Gjennomføring / tilpasning
+	- Avslutning
+	- Effektrealisering
+- Jerntriangelet:
+	- Egenskaper / Kvalitet
+	- Tid / Fremdrift
+	- Ressurser / Økonomi
+- Typer prosjekt:
+	- Måter å kategorisere prosjekt på:
+		- Basert på om fokus er på produkt eller prosess - Eks. fysisk produkt eller tjeneste
+		- Basert på innhold i leveranse - Eks. bygg og anlegg, systemutvikling, produktutvikling eller arrangement
+		- Basert på graden av usikkerhet - FAU-prosjekt -> Utviklingsprosjekt -> Byggeprosjekt -> Ordrestyrt produksjon
+	- Prosjekttyper og karaktertrekk:
+		- Utviklingsprosjekt
+		- Endringsprosjekt
+		- Leveranseprosjekt
+		- Arrangementprosjekt
+- Mennesker i prosjekt organiseres i grupper/team
+	-  4 faktorer nå et team skal settes sammen:
+		- Tverrfaglighet
+		- (spesial)kompetanse
+		- Legitimitet
+		- Tilgjengelig kapasitet og motivasjon
+	- Forskning viser at 4-12 medlemmer per team er ideelt
+	- Roller i et prosjektteam:
+		- Funksjonsrolle - Eks. prosjektmedlem, leder, arkitekt
+		- Teamrolle - Eks. Analytiker, kordinator, ideskaper, lagspiller
+	- Tillit og psykologisk trygghet er grunnleggende og vesentlig for et prosjektteam sin suksess
+	- Gruppedynamikk - Stadier i teamdannelsen:
+			- Forming -> Storming -> Norming -> Performing -> Adjourning
+- Prosjektmål:
+	- Defineres av en målformulering
+		- Danne grunnlag for utarbeidelse av planer
+		- Gi mulighet for måling oppfølging og styring
+		- Felles referanse for oppgaver som skal gjennomfører
+		- Gi retning, skape motivasjon og begeistring for de som tar del i prosjektet
+		- Informere omgivelsene
+	- Perspektiver:
+		- Prosjektperspektiv - Resultatmål
+		- Brukerperspektiv - Effektmål
+		- Samfunnsperspektiv - Samfunnsmål
+	- S.M.A.R.T. mål:
+		- Spesifikt
+		- Målbart
+		- Akseptert
+		- Realistisk
+		- Tidsavgrenset
+- Behovskartlegging:
+	- Problem / behovsbeskrivselse (vision):
+		- Hva problemet / behovet er
+		- Hvem dette problemet berører
+		- Hvorfor dette må oppfattes som et problem / behov, hva konsekvensene er
+		- Fordelene med (visjonen for) en vellykket løsning
+	- En teknikk for å analysere og beskrive behov er brukerhistorier:
+		- Krav og behovsbeskrivelse sett fra brukernes perspektiv
+		- Inneholder:
+			- Hvem brukerne er
+			- Hvilke behov de har
+			- Hvorfor de har dette behovet
+		- En samling brukerhistorier kan betraktes som en funkjsjonalitetsbeskrivelse
+		- Fremgangsmåte:
+			- Identifiser brukere
+			- Definere hva...
+			- Skrive brukerhistorier
+- Nyskapingsprosesser
+	- Teknikker for idéskaping:
+		- Brainstorming
+			- Oppsett -> Problemidentifikasjon -> Idégenerering -> Evaluering
+		- Disneys tre rom
+			- Dreamer / Realist / Critic
+		- Morfologisk Analyse (Styrt Assosiasjon)
+	- Fremmere og hemmere for Idèskaping
+	- Design Thinking:
+		- Empatisere -> Definere -> Idéskape -> Prototype -> Teste
+	- Prototyping
+		- Ulike grader av kompleksitet:
+			- Lav oppløsning - Enkle, eks. papirskisser og pappmodeller
+				- Paper protyping
+			- Høy oppløsning - Detaljerte og mer kompliserte
+		- To typer utvikling:
+			- Kast prototyping - kastes etter bruk
+			- Evolusjonær prototyping - utvikles videre underveis
+		- Hvordan prototype ulike typer av idéer:
+			- Håndfaste produkter
+				- tegninger, papp, byggeklosser, 3d-printede objekter, arduino
+			- Tjenester
+				- tegninger, papp, byggeklosser, modeller, rollespill, storyboards
+			- Digitale løsninger
+				- skisser på papir, figma
+				- "Wireframing"
+					- kast prototyping
+					- representasjon av et fremtidig brukergrensesnitt for en digital løsning
+					- enkle og ikke detaljerte (lav oppløsning)
+					- illustrere layout, innhold, navigasjonstruktur, funksjonalitet og brukeropplevelse
+- Gjennomføringsstrategier
+	- Graden av usikkerhet i prosjektet vil som oftest sette føring for hvilke gjennomføringsstrategi som bør benyttes. Usikkerhet til Hva som skap gjøres/levers (Mål), og hvordan vi vil gjøre det (Metode).
+	- Gjennomføringsstrategier kan kombineres
+	- Fasebasert - To varianter:
+		- Vann / Fossefallmodellen (Ingeiørmetoden) - Sekvensiell og lineær, fullfører en i sin helhet før en går over i neste. Går aldri tilbake.
+			- Kravspesifikasjon -> Analyse og design -> Utvikling -> Utprøving -> Implementering
+			- Egner seg godt der usikkerheten er lav og forutsigbarheten er høy
+		- Milpælsmodellen - Mer fleksibel, fokus på milepæler ikke faser
+			- Egner seg godt der usikkerheten er moderat
+	- Smidige gjennomføringsstrategier:
+		- Brukes mye innenfor programvareutvikling
+		- Egner seg godt der usikkerheten er høy
+		- Fokus på brukermedvirkning og verdiskapning fremfor faser og/eller milepæler
+		- Scrum:
+			- Utviklingsrammeverk basert på smidige/agile prinsipp for utvikling av komplekse produkt og miljø.
+			- Mest av alt brukt innen programvareutvikling
+			- Men også brukt til en viss grad innen forskning markedsføring og salg
+			- Struktur:
+				- Iterativ og inkrementell:
+					- Timebox / sprint
+				- Flere små team med flat struktur
+				- 3 Roller:
+					- Product Owner
+					- Scrum Naster
+					- Team
+				- 4 Sermonier:
+					- Sprint planning
+					- Daily scrum
+					- Sprint review
+					- Sprint retrospective
+		- Kanban:
+			- Smidig metode hentet fra bilindustrien
+			- Kan kombineres med Scrum
+			- Hensikten er å optimalisere arbeidsflyt
+			- Balanserer behov og kapasitet
+			- Køsystem med sperringen som tvinger teamet til å prioritere
+			- 6 byggesteiner i Kanban:
+				- Visualisering av oppgaver - Kanbantavle
+				- Begrenset mengde pågående aktiviteter
+				- Styring av arbeidsflyt gjennom å måle samlet tidsforbruk 1 oppgave trenger fra start til slutt
+				- Tydelige regler for hva en gjør når oppgave blokkeres
+				- Hyppige tilbakemeldinger
+				- Forbedring gjennom samarbeid, utvikling gjennom eksperimenter
+		- Andre aktuelle metoder:
+			- Lean
+				- 4 prinsipper:
+					- Fokus på brukerverdi
+					- Sett produktutviklingsprosessen i fokus og utfor alternative løsninger
+					- Skap flyt i prosessen
+					- Nyttigjør streng standardisering, for redusert variasjon og forutsigbare resultat
+- Prosjektplanlegging
+	- Målformulering -> Milepælplan -> Oppgave strukturering -> Estimering -> Lage aktivitetsplan -> Lage ressursplan -> Lage budsjett
+	- En milepæl er et målepunkt som forteller oss hvor langt vi har kommet i prosjektet
+	- Milepælsplanlegging
+	- Work Breakdown Structure (WBS)
+		- Funksjonorientert eller aktivitetsorientert prosjektnedbrytning - Hierarkisk og inkrementell dekomponering av prosjektet i delprosjekter, faser, arbeidspakker, aktiviteter og leveranser
+		- Prosjektet deles opp i aktiviteter - En aktivitet bør ikke overskrive mer en uke i kalendertid for å utføre
+		- Begrep i aktivitetsplanlegging: Aktivitet / Avhengighet / Start / Slutt / Varighet / Milepæl / Fase (gruppe av aktiviteter) / Leveranse
+		- Aktivitetene brukes til å etablere en fremdriftsplan. Her brukes ofte det som kalles et GANTT-skjema:
+			- Gantt-diagrammet ble utviklet av Henry L. Gantt ca. 1900
+			- Brukes for å visualisere arbeid / aktivitet i en tidsperiode
+			- Enkel å forstå / Svak på å synliggjøre avhengighet mellom aktivteter
+		- En annen planleggingform er Nettverksplanlegging:
+			- Mer fokus på synliggjøring av avhengighet mellom aktiviteter
+			- Synliggjør hvile aktiviteter som kan utføres i parallell og i sekvens
+			- Critical Path Method (CPM) kan brukes for å beregne hvilke aktiviteter som er på kritisk linje
+				- Varighet (V) / Tidligste start (TS) / Tidligste avslutning (TA) / Seneste start (SS) / Seneste avslutning (SA) / Slakk: SA - TA
+				- Kritisk linje der slakk = 0
+	- Ressursplanlegging Og Budsjett
+		- Estimere ressursbehov. Typer av ressurser: Personell / maskiner / kontor / utstyr og lisenser
+		- Etter å ha estimert omfanget av oppgavene -> Lage bemanningsplan, balansere under- / overbelastning
+		- Estimer oppgavevarighet for oppgavene
+			- Her kan PERT estimeringsmodellen brukes
+				- Mest sannsynlig tid: MST / Mest optimistisk tid: OT / Mest pessimistisk tid: PT / Estimert varighet: EST
+				- EST = (OT + 4xMST + PT) / 6
+		- Sammenlign kostnader med planen / budsjett underveis
+		- To typer kostnader: Faste / Variable
+		- Kostnad = produksjon + transaksjon
+			- Produksjonskostnad - Kostnader som medgår til å gjennomføre prosjektet
+			- Transaksjonskostnad - Kostnader som medgår til å gjennomføre overganger mellom produksjonsjobbene
+	- Organisasjonsstruktur er et sosialt system konstruert for å nå bestemte mål - Dette er en formell organisasjon - Offisielle hierarki og målsettinger
+		- Uformelle organisasjoner eksisterer innenfor formelle organisasjoner - Sosial praksis
+		- Organisasjonsdesign, en formell definisjon av:
+			- Ledelse- og stillingstruktur
+			- Beslutning og informasjonsystem
+			- Planlegging, kontroll/rapporteringssystem
+			- Arbeidsmåte, regler og prosedyrer
+		- Prosjektorganisering: Basisorganisasjonen -> Prosjektet
+		- Måter å organisere basisorganisasjonen:
+			- Linje / linje og stab organisasjon
+			- Strukturtyper innen linjeorganisasjon:
+				- Funksjonell organisasjonsstruktur - eks. innkjøp / produksjon / salg
+				- Divisjonalisert organisasjonsstruktur - eks. divisjon for vitenskap / divisjon for energi, ressurser og miljø / divisjon for innovasjon
+	- 5 typer prosjektorganisering basert ut fra basisorganisasjonen:
+		- Internt prosjekt
+		- Matrise prosjekt
+		- Eksternt / Autonomt prosjekt
+		- Prosjektnettverk
+		- Virtuell prosjektorganisasjon
+	- Prosjektets interne organisering
+		- Oppdragsgiver -> Styringsgruppe (SG) -> Prosjektleder (PL) -> Arbeidsgrupper
+		- Kan også inkludere referansegruppe
+- Risikohåndtering
+	- Usikkerhet
+	- Typer av risikoer: Produktansvar / Forretningsmessig / Teknologisk / Personell / Psykologisk / Naturbestemt / Gjennomføring
+	- Håndtering av risiko:
+		- Identifisering av risikokilder og mulig hendelse
+		- Analyse og vurdere sannsynlighet for at det inntreffer og anslår konsekvens
+		- Planlegge tiltak for å eliminere eller redusere risiko
+		- Følge opp ved milepæler
+	- Risikoanalyse:
+		- Hendelse
+		- Årsak
+		- Sannsynlighet
+		- Konsekvens
+		- Risikoprodukt
+		- Tiltak
+	- Oppfølging av usikkerhet / risiko underveis i prosjektet
+- Prosjektstyring
+	- Prosjektoppfølging: Måling av fremdrift / måling av ressursbruk og kostnad / måling av kvalitet / oppfølging av prosjektgruppe
+	- Kostnadsoppfølging
+	- Kvalitetsoppfølging: kvalitetsgjennomgang / kvalitetsrevisjon
+- Prosjektledelse
+	- Forskjellige lederstiler: Autoritær / Demokratisk / Delegerende
+	- Roller: Produsenten / Administratoren / Entreprenøren / Integratoren
+	- Den moderne prosjektlederen: Lede ved å gjøre andre god
+	- Prosjektlederen må:
+		- Se oppover (forhold til oppdragsgivere / sponsorer)
+		- Se utover (forhold til brukere)
+		- Se Fremover (planlegge arbeidet)
+		- Se nedover (lede prosjektgruppen)
+		- Se innover (vurdere egen innsats)
+		- Se bakover (måle prestasjon)
