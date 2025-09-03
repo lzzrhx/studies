@@ -1,5 +1,5 @@
-\documentclass[norsk,11pt,a4paper]{report}
-\usepackage[margin=1cm,tmargin=1cm,bmargin=1cm,rmargin=1in,lmargin=1in,footskip=.2in]{geometry}
+\documentclass[norsk,8pt,a4paper]{report}
+\usepackage[margin=1.5cm,tmargin=1.0cm,bmargin=1.0cm,rmargin=1.5cm,lmargin=1.5cm,footskip=0.2cm]{geometry}
 \title{MAT101 - Innlevering 1 (Gruppe 16)}
 \author{}
 \date{}
@@ -16,15 +16,16 @@
 \usepackage{amssymb}             % ...
 \usepackage{pdfpages}            % Insert pdf pages
 \usepackage{enumitem}            % Lists
-\usepackage{titlesec}            % ...
+\usepackage{colortbl}            % Colored tables
+\usepackage[compact]{titlesec}   % ...
 \usepackage[T1]{fontenc}         % ...
 \usepackage[utf8]{inputenc}      % ...
 \usepackage[fleqn]{amsmath}      % ...
 \usepackage[makeroom]{cancel}    % ...
 %\usepackage{empheq}              % ...
-\setstretch{1.5}
+%\setstretch{1.5}
 \setlength{\parindent}{0pt}
-\titlespacing*{\subsection}{0cm}{2cm}{0.5cm}
+\titlespacing*{\subsection}{0cm}{1.5cm}{0.5cm}
 \lstset{
 aboveskip=0cm,
 belowskip=0cm,
@@ -48,7 +49,7 @@ literate      =        % Support additional characters
 {Â}{{\^A}}1  {Ê}{{\^E}}1  {Î}{{\^I}}1 {Ô}{{\^O}}1  {Û}{{\^U}}1
 {œ}{{\oe}}1  {Œ}{{\OE}}1  {æ}{{\ae}}1 {Æ}{{\AE}}1  {ß}{{\ss}}1
 {ẞ}{{\SS}}1  {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ø}{{\o}}1  {Ø}{{\O}}1
-{å}{{\aa}}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
+{å}{{\aa\ }}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
 {Õ}{{\~O}}1  {ñ}{{\~n}}1  {Ñ}{{\~N}}1  {¿}{{?`}}1  {¡}{{!`}}1
 {„}{\quotedblbase}1 {“}{\textquotedblleft}1 {–}{$-$}1
 {°}{{\textdegree}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
@@ -70,48 +71,57 @@ literate      =        % Support additional characters
 {ź}{{\'z}}1    {Ż}{{\.Z}}1    {ż}{{\.z}}1    {Ž}{{\v{Z}}}1  {ž}{{\v{z}}}1
 }
 
+\newlength{\myeqskip}  \setlength{\myeqskip}{2pt}
+\AtBeginDocument{%
+    \setlength\abovedisplayskip{\myeqskip}%
+    \setlength\belowdisplayskip{\myeqskip}%
+    \setlength\abovedisplayshortskip{\myeqskip-\baselineskip}%
+    \setlength\belowdisplayshortskip{\myeqskip}}
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
-\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
 \newcommand{\oppgaveDel}[1]{\item[#1)]}
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{document}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \oppgave{1}
-\oppgaveDelStart
-
-\begin{align*}
+\begin{align*}{}
 &A = \{x \in \mathbb{Z} | (2x - 1)(2x + 1) = 0\}\\
-&B = \{x \in \mathbb{R} | (2x - 1)(2x + 1) = 0\}\\
-&\text{Given\ } (2x-1)(2x+1) = 0 \Leftrightarrow 2x - 1 = 0 \Rightarrow x = \frac{1}{2} \text{\ or\ } 2x + 1 = 0 \Rightarrow x = -\frac{1}{2}\\
+&B = \{x \in \mathbb{R} | (2x - 1)(2x + 1) = 0\}\\\\
+&\text{Gitt at\ } (2x-1)(2x+1) = 0\\
+&\text{da må\ } 2x - 1 = 0 \Rightarrow x = \nicefrac{1}{2}\\
+&\text{eller\ } 2x + 1 = 0 \Rightarrow x = -\nicefrac{1}{2}\\
 \end{align*}
+\oppgaveDelStart
 
 \oppgaveDel{a}
 \begin{align*}
 &A = \emptyset\\
-&\text{Since $x = \frac{1}{2}$ and $-\frac{1}{2}$ are not integers}
+&\text{Siden $\nicefrac{1}{2}$\ og\ $-\nicefrac{1}{2}$ ikke er elementer i mengden $\mathbb{Z}$.}
 \end{align*}
 
 \oppgaveDel{b}
 \begin{align*}
-&B = \{-\frac{1}{2},\frac{1}{2}\}
+&B = \{-\nicefrac{1}{2},\nicefrac{1}{2}\}
 \end{align*}
+
 \oppgaveDelSlutt
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \oppgave{2}
-\oppgaveDelStart
-
 \begin{align*}
 &p \star q = \sim p \land \sim q\\
 &p \circ q = \sim p \lor \sim q\\
 \end{align*}
+\oppgaveDelStart
 
 \oppgaveDel{a}
 \begin{tabular}{ |c|c|c|c|c|c| } 
@@ -127,35 +137,46 @@ literate      =        % Support additional characters
 
 \oppgaveDel{b}
 \begin{lstlisting}
+-- Nøstet liste der det første elementet representerer 
+-- sannhetsvariabelen p og det andre elementet representerer q
 pq_tabell = [[True,True],[True,False],[False,True],[False,False]]
 
+-- Hent første og andre elment fra den gitte listen,
+-- gjennomført negasjon på elementene og returner boolsk verdi 
+-- etter gjennomført AND binær operasjon
 star :: [Bool] -> Bool
 star pq = (not.head)(pq) && (not.last)(pq) 
 
+-- Hent første og andre elment fra den gitte listen,
+-- gjennomført negasjon på elementene og returner boolsk verdi 
+-- etter gjennomført OR binær operasjon
 circ :: [Bool] -> Bool
 circ pq = (not.head)(pq) || (not.last)(pq) 
 
+-- main funksjon for å kjøre koden
 main :: IO()
 main = do
     putStrLn "p ⋆ q: "
+    -- Skriv ut star funksjonen med pq_tabellen som parameter
     print(map star pq_tabell)
     putStrLn "p ∘ q: "
+    -- Skriv ut circ funksjonen med pq_tabellen som parameter
     print(map circ pq_tabell)
+
+-- Utputt ved kjørt program:
+-- p ⋆ q:
+-- [False,False,False,True]
+-- p ∘ q:
+-- [False,True,True,True]
 \end{lstlisting}
 
-Dette gir resultatet:
-\begin{lstlisting}
-p ⋆ q:
-[False,False,False,True]
-p ∘ q:
-[False,True,True,True]
-\end{lstlisting}
+\newpage
 
 \oppgaveDel{c}
 \begin{align*}
 &\sim p\ \circ \sim q = \sim ( \sim p ) \lor \sim ( \sim q) = p \lor q
 \end{align*}
-\begin{tabular}{ |c|c|c|c|c|c|c| } 
+\begin{tabular}{ |c|c|c|c|c|>{\columncolor[gray]{0.9}}c|>{\columncolor[gray]{0.9}}c| } 
  \hline
  $p$ & $q$ & $\sim p$ & $\sim q$ & $p \star q$ & $\sim (p \star q)$ & $\sim p\ \circ \sim q$ \\ 
  \hline
@@ -166,8 +187,22 @@ p ∘ q:
  \hline
 \end{tabular}
 \begin{align*}
-&\text{The two columns are logically equivilent.}\\
-&\text{Hence\ } \sim (p \star q) \equiv \sim p\ \circ \sim q\\
+&\text{De to kolonnene har samme verdier og logisk ekvivalens er bevist.}\\
+&\text{Dette kan uttrykkes symbolsk ved\ } \sim (p \star q) \equiv \sim p\ \circ \sim q\\
+\end{align*}
+
+\oppgaveDel{d}
+\begin{align*}
+\sim (p \star q) &\equiv p \lor q\\
+\sim (\sim p \land \sim q) &\equiv \text{Fra definisjonen av\ }p \star q\\
+\sim (\sim p) \lor \sim (\sim q) &\equiv \text{De Morgans lov}\\
+p \lor q &\equiv \text{Dobbel negasjons lov}\\
+\end{align*}
+
+\begin{align*}
+\sim p\ \circ \sim q &\equiv p \lor q\\
+\sim (\sim p) \land \sim (\sim q) &\equiv \text{Fra definisjonen av\ }p \circ q\\
+p \lor q &\equiv \text{Dobbel negasjons lov}\\
 \end{align*}
 
 \oppgaveDelSlutt
@@ -178,7 +213,7 @@ p ∘ q:
 \oppgaveDelStart
 
 \oppgaveDel{a}
-\begin{tabular}{ |c|c|c|c|c|c|c| } 
+\begin{tabular}{ |c|c|c|>{\columncolor[gray]{0.9}}c|c|c|>{\columncolor[gray]{0.9}}c| } 
  \hline
  $p$ & $q$ & $\sim p$ & $\sim q$ & $(p \lor \sim q)$ & $(q \rightarrow \sim p)$ & $(p \lor \sim q) \land (q \rightarrow \sim p)$ \\
  \hline
@@ -186,16 +221,182 @@ p ∘ q:
  T & F & F & T & T & T & T\\
  F & T & T & F & F & T & F\\
  F & F & T & T & T & T & T\\
- \hlinea
+ \hline
 \end{tabular}
 
 \oppgaveDel{b}
 \begin{align*}
-&(p \lor \sim q) \land (q \rightarrow \sim p) \equiv \sim q\\
-&(p \lor \sim q) \land (\sim q \lor \sim p) \equiv \text{Definisjonen av implikasjon}\\
-&\sim q \lor (p \land \sim p) \equiv \text{Distribusjons lov}\\
-&\text{Utsagnet $(p \land \sim p)$ er en selvmotsigelse}\\
-&\sim q \equiv \text{Identitetslov}\\
+(p \lor \sim q) \land (q \rightarrow \sim p) &\equiv \sim q\\
+(p \lor \sim q) \land (\sim q \lor \sim p) &\equiv \text{Definisjonen av implikasjon}\\
+\sim q \lor (p \land \sim p) &\equiv \text{Distributiv lov}\\
+\text{Utsagnet $(p \land \sim p)$}&\text{\ er en selvmotsigelse}\\
+\sim q &\equiv \text{Identitetslov}\\
+\end{align*}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{4}
+\begin{align*}
+&A = \{1,2,...,10\}\\
+&R = \{(x,y)\ |\ x + y \le 3\}, x \in A, y \in A
+\end{align*}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+\begin{align*}
+&X = \{1,2\}\\
+&Y = \{1,2\}
+\end{align*}
+
+\oppgaveDel{b}
+\begin{align*}
+&X \times Y = \{(1,1),(1,2),(2,1),(2,2)\}
+\end{align*}
+
+\oppgaveDel{c}
+\begin{align*}
+&R = \{(1,1),(1,2),(2,2)\}
+\end{align*}
+
+\oppgaveDel{d}
+\begin{lstlisting}
+-- Importer Data.List for å kunne bruke nub funksjonen
+import Data.List
+
+-- Definer mengden A
+a = [1..10]
+
+-- Definer mengden R
+r = [[x,y]| x <- a, y <- a, x + y <= 3]
+
+-- Definer mengden X som første elementet fra 
+-- den nøstede listen i mengden R og fjern duplikater (nub)
+x = (nub)(map head r)
+
+-- Et alternativ til nub, for å unngå duplikater i mengden X
+-- kunne vært å ta i bruk Haskells innebygde Set datastruktur ved:
+-- import qualified Data.Set as Set
+-- x = (Set.fromList)(map head r)
+
+-- main funksjon for å kjøre koden
+main :: IO()
+main = do
+    putStrLn "Mengden X: "
+    print(x)
+
+-- Utputt ved kjørt program:
+-- Mengden X:
+-- [1,2]
+\end{lstlisting}
+
+\oppgaveDel{e}
+\begin{align*}
+&B = \{1,2,...,20\}\\
+&S = \{(x,y)\ |\ 2x + y = 7, x \in B, y \in B\}\\
+&S = \{(1,5),(2,3),(3,1)\}
+\end{align*}
+
+\oppgaveDel{f}
+\begin{lstlisting}
+-- Definer mengden B
+b = [1..20]
+
+-- Definer mengden S
+s = [[x,y]| x <- b, y <- b, 2 * x + y == 7]
+
+-- main funksjon for å kjøre koden
+main :: IO()
+main = do
+    putStrLn "Mengden S: "
+    print(s)
+
+-- Utputt ved kjørt program:
+-- Mengden S:
+-- [[1,5],[2,3],[3,1]]
+\end{lstlisting}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{5}
+\begin{lstlisting}
+
+-- t1 er de naturlige tallene fra 1 til 10
+t1 = [1..10]
+
+-- t2 er de naturlige tallene fra 11 til 20
+t2 = [11..20]
+
+-- tupler er mengden av tupler med det første elementet fra t1 og det andre fra t2
+-- det første elementet x kommer fra iterasjon over "mengden" (listen) t1
+-- det andre elementet hentes fra t2 med (x-1) som indeks
+tupler = [(x,t2!!(x-1)) | x <- t1]
+
+-- main funksjon for å kjøre koden
+main :: IO()
+main = do
+    putStrLn "Resultat: "
+    print(tupler)
+
+-- Utputt ved kjørt program:
+-- Resultat:
+-- [(1,11),(2,12),(3,13),(4,14),(5,15),(6,16),(7,17),(8,18),(9,19),(10,20)]
+\end{lstlisting}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\oppgave{6}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+Det eksisterer noe som, hvis det er god kaffi, da er det cappuccino.
+
+\oppgaveDel{b}
+Hvis noe ikke er godt, da er det kaffi og det er cappuccino.
+
+\oppgaveDel{c}
+\begin{align*}
+&\forall x: \Big( \sim R(x) \rightarrow P(x) \land Q(x) \Big)
+\end{align*}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{7}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+\begin{align*}
+&\forall x \in \mathbb{Z},\ \exists k \in \mathbb{Z},\ x \cdot k < 0
+\end{align*}
+
+\oppgaveDel{b}
+\begin{align*}
+&\text{La $E(x)$ bety ''$x$ er et partall''}\\
+&\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z}, \Big( E(x) \rightarrow E(x \cdot y)\Big)
+\end{align*}
+
+\begin{align*}
+&\text{Alternativ løsning:}\\
+&\forall x \in \mathbb{Z}, \forall y \in \mathbb{Z}, \Big( \exists m \in \mathbb{Z}, x = 2m\Big) \rightarrow \Big( \exists n \in \mathbb{Z}, x \cdot y = 2n \Big)
+\end{align*}
+
+
+\oppgaveDel{c}
+\begin{align*}
+&\exists x \in \mathbb{Z}, \sqrt{x} > 2
+\end{align*}
+
+\oppgaveDel{d}
+\begin{align*}
+&\exists n \in \mathbb{R}, \exists m \in \mathbb{R}, n^2 = 4 \land m^2 = 4\\
 \end{align*}
 
 \oppgaveDelSlutt
