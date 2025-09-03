@@ -141,15 +141,15 @@ literate      =        % Support additional characters
 -- sannhetsvariabelen p og det andre elementet representerer q
 pq_tabell = [[True,True],[True,False],[False,True],[False,False]]
 
--- Hent første og andre elment fra den gitte listen,
--- gjennomført negasjon på elementene og returner boolsk verdi 
--- etter gjennomført AND binær operasjon
+-- Hent første og andre element fra den gitte listen,
+-- gjennomfør negasjon på elementene og returner boolsk verdi 
+-- etter gjennomført "AND" binær operasjon
 star :: [Bool] -> Bool
 star pq = (not.head)(pq) && (not.last)(pq) 
 
--- Hent første og andre elment fra den gitte listen,
--- gjennomført negasjon på elementene og returner boolsk verdi 
--- etter gjennomført OR binær operasjon
+-- Hent første og andre element fra den gitte listen,
+-- gjennomfør negasjon på elementene og returner boolsk verdi 
+-- etter gjennomført "OR" binær operasjon
 circ :: [Bool] -> Bool
 circ pq = (not.head)(pq) || (not.last)(pq) 
 
@@ -361,7 +361,7 @@ Hvis noe ikke er godt, da er det kaffi og det er cappuccino.
 
 \oppgaveDel{c}
 \begin{align*}
-&\forall x: \Big( \sim R(x) \rightarrow P(x) \land Q(x) \Big)
+&\forall x: \Big( R(x) \rightarrow P(x) \land Q(x) \Big)
 \end{align*}
 
 \oppgaveDelSlutt
