@@ -1,3 +1,6 @@
+-- List
+import Data.List
+
 --------------------------------------------------------------------------------
 -- Øvelse 1
 --------------------------------------------------------------------------------
@@ -23,8 +26,26 @@ q11P = [1..100]
 --q11r2 = [???]
 
 
+
+a = [1..10]
+r = [[x,y]| x <- a, y <- a, x + y <= 3]
+--x = [ [x, y]|x
+--x = map head nub r 
+
+pq_tabell = [[True,True],[True,False],[False,True],[False,False]]
+
+star :: [Bool] -> Bool
+star pq = (not.head)(pq) && (not.last)(pq) 
+
+circ :: [Bool] -> Bool
+circ pq = (not.head)(pq) || (not.last)(pq) 
+
+
 main :: IO()
 main = do
     putStrLn "Resultat: "
-    print("...")
+    putStrLn "p ⋆ q: "
+    print(map star pq_tabell)
+    putStrLn "p ∘ q: "
+    print(map circ pq_tabell)
 
