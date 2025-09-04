@@ -16,10 +16,10 @@ nTest = [0,1..100]
 
 -- Mengdebygger (list comprehension)
 -- x tar verdi fra listen t, x er mindre enn 20, x er større enn 10
-nTest1 = [x | x <- t, x < 20, x > 10]
+nTest1 = [x | x <- nTest, x < 20, x > 10]
 
 -- ...
-nTest2 = [(y+3)/2 | y <- t1]
+nTest2 = [(y+3)/2 | y <- nTest1]
 
 -- General functions
 increment x = x + 1
