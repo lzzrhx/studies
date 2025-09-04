@@ -1,6 +1,4 @@
 build:
-	javac kap*/*.java
-build-utf8:
-	javac -encoding utf8 *.java
+	javac -encoding utf8 kap*/*.java
 clean:
 	rm kap*/*.class
