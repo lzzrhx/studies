@@ -1,10 +1,7 @@
-
-// Dette programmet krever "jaylib-5.5.0-2.jar" fra https://github.com/electronstudio/jaylib/releases/tag/v5.5.0-2
-
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
-import static com.raylib.Helpers.newRectangle;
 
+// Main class for execution of the program
 public class Program {
     private static int screenWidth = 800;
     private static int screenHeight = 600;
@@ -12,9 +9,11 @@ public class Program {
     private static Matrix cameraMatrix = MatrixIdentity();
     private static Vector2 cameraRotation = new Vector2();
     private static Vector3 cameraPosition = new Vector3();
-
+    
+    // TODO: legg til metoder for disse to:
     //private static float cameraDistanceMultiplier { get { return Smoothstep.QuarticPolynomial(cameraDistance / 100f); } }
     //private static float cameraSpeedMultiplier { get { return 0.2f + cameraDistanceMultiplier * 0.8f; } }
+
     private static float cameraDistanceMultiplier = 1f;
     private static float cameraSpeedMultiplier = 1f;
 
@@ -65,7 +64,6 @@ public class Program {
         float deltaTime = GetFrameTime();
         updateCamera(deltaTime);
         circPos.y((float)Math.sin(GetTime()));
-        //cameraRotation.x(cameraRotation.x() + 0.01f);
     }
 
     private static void inputCamera() {

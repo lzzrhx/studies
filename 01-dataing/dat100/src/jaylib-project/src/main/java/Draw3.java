@@ -1,8 +1,10 @@
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
+// Draw custom 3D meshes
 public class Draw3 {
 
+    // Grid
     public static void grid(int size, Matrix matrix, Color color)
     {
         for (int i = -size; i <= size; i++)
@@ -12,6 +14,7 @@ public class Draw3 {
         }
     }
 
+    // XYZ Axes
     public static void axes(float size, Matrix matrix)
     {
         DrawLine3D(Vector3Transform(new Vector3().x(-size).y(0f).z(0f), matrix), Vector3Transform(new Vector3().x(size).y(0f).z(0f), matrix), RED);
@@ -19,6 +22,7 @@ public class Draw3 {
         DrawLine3D(Vector3Transform(new Vector3().x(0f).y(0f).z(-size), matrix), Vector3Transform(new Vector3().x(0f).y(0f).z(size), matrix), GREEN);
     }
     
+    // Flat Circle
     public static void circle(float radius, Matrix matrix, Color color)
     {
         int points = 20 + (int)(radius * 4f);
@@ -36,6 +40,7 @@ public class Draw3 {
         }
     }
     
+    // Box
     public static void box(float size, Matrix matrix, Color color)
     {
         Vector3[] points = new Vector3[8];
