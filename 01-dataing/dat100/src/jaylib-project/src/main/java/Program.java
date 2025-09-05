@@ -126,9 +126,9 @@ public class Program {
         boxMatrix = MatrixTranslate(boxPos.x(), boxPos.y(), boxPos.z());
 
         //circMatrix = MatrixScale(0.5f,0.5f,0.5f);
-        Draw3.circle(4f, circMatrix, BLUE);
-        Draw3.grid(100, MatrixIdentity(), RED);
-        Draw3.box(1f, boxMatrix, GREEN);
+        Draw3.circle(4f, circMatrix, PURPLE);
+        Draw3.grid(100, MatrixIdentity(), WHITE);
+        Draw3.box(1f, boxMatrix, YELLOW);
         Draw3.axes(1f, circMatrix);
         Draw3.axes(1f, boxMatrix);
 

@@ -2,6 +2,22 @@ import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
 public class Draw3 {
+
+    public static void grid(int size, Matrix matrix, Color color)
+    {
+        for (int i = -size; i <= size; i++)
+        {
+            DrawLine3D(Vector3Transform(new Vector3().x(-(float)size).y(0f).z((float)i), matrix), Vector3Transform(new Vector3().x((float)size).y(0f).z((float)i), matrix), color);
+            DrawLine3D(Vector3Transform(new Vector3().x((float)i).y(0f).z(-(float)size), matrix), Vector3Transform(new Vector3().x((float)i).y(0f).z((float)size), matrix), color);
+        }
+    }
+
+    public static void axes(float size, Matrix matrix)
+    {
+        DrawLine3D(Vector3Transform(new Vector3().x(-size).y(0f).z(0f), matrix), Vector3Transform(new Vector3().x(size).y(0f).z(0f), matrix), RED);
+        DrawLine3D(Vector3Transform(new Vector3().x(0f).y(-size).z(0f), matrix), Vector3Transform(new Vector3().x(0f).y(size).z(0f), matrix), BLUE);
+        DrawLine3D(Vector3Transform(new Vector3().x(0f).y(0f).z(-size), matrix), Vector3Transform(new Vector3().x(0f).y(0f).z(size), matrix), GREEN);
+    }
     
     public static void circle(float radius, Matrix matrix, Color color)
     {
@@ -19,23 +35,6 @@ public class Draw3 {
             DrawLine3D(Vector3Transform(circlePoints[i], matrix), Vector3Transform(circlePoints[(i + 1) % points], matrix), color);
         }
     }
-
-    public static void grid(int size, Matrix matrix, Color color)
-    {
-        for (int i = -size; i <= size; i++)
-        {
-            DrawLine3D(Vector3Transform(new Vector3().x(-(float)size).y(0f).z((float)i), matrix), Vector3Transform(new Vector3().x((float)size).y(0f).z((float)i), matrix), color);
-            DrawLine3D(Vector3Transform(new Vector3().x((float)i).y(0f).z(-(float)size), matrix), Vector3Transform(new Vector3().x((float)i).y(0f).z((float)size), matrix), color);
-        }
-    }
-
-    public static void axes(float size, Matrix matrix)
-    {
-        DrawLine3D(Vector3Transform(new Vector3().x(-size).y(0f).z(0f), matrix), Vector3Transform(new Vector3().x(size).y(0f).z(0f), matrix), RED);
-        DrawLine3D(Vector3Transform(new Vector3().x(0f).y(-size).z(0f), matrix), Vector3Transform(new Vector3().x(0f).y(size).z(0f), matrix), BLUE);
-        DrawLine3D(Vector3Transform(new Vector3().x(0f).y(0f).z(-size), matrix), Vector3Transform(new Vector3().x(0f).y(0f).z(size), matrix), GREEN);
-    }
-
     
     public static void box(float size, Matrix matrix, Color color)
     {
