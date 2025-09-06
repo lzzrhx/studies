@@ -6,7 +6,6 @@ public class Camera {
     private static final float CAMERA_SPEED_PAN = 0.05f;
     private static final float CAMERA_SPEED_DISTANCE = 0.1f;
     private Camera3D camera;
-    private Matrix matrix = MatrixIdentity();
     private Vector2 rotation = new Vector2();
     private Vector3 pos = new Vector3();
     private Entity target;
@@ -60,7 +59,7 @@ public class Camera {
         pos.x((float)Math.sin(rotation.x()) * (float)Math.cos(rotation.y()));
         pos.y((float)Math.sin(rotation.y()));
         pos.z((float)Math.cos(rotation.x()) * (float)Math.cos(rotation.y()));
-        camera._position(Vector3Transform(Vector3Scale(pos, (float)CAMERA_MIN_DIST + distanceMultiplier() * ((float)CAMERA_MAX_DIST - (float)CAMERA_MIN_DIST)), matrix));
+        camera._position(Vector3Transform(Vector3Scale(pos, (float)CAMERA_MIN_DIST + distanceMultiplier() * ((float)CAMERA_MAX_DIST - (float)CAMERA_MIN_DIST)), target.matrix()));
     }
 
 }
