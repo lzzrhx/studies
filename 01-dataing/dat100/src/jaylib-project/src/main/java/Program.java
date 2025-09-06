@@ -4,30 +4,18 @@ import static com.raylib.Raylib.*;
 // Hovedklasse for kjøring av programmet
 public class Program {
 
-    // Instillingsvariabler
-    private static int screenWidth = 800;
-    private static int screenHeight = 600;
-    // Kameravariabler
-    private static Camera3D camera;
-    private static Matrix cameraMatrix = MatrixIdentity();
-    private static Vector2 cameraRotation = new Vector2();
-    private static Vector3 cameraPosition = new Vector3();
-    private static int cameraTargetDistance = 10;
-    private static float cameraDistance = 10f;
+    // Variabler for programinstillinger
+    private static int screenWidth = 1200;
+    private static int screenHeight = 900;
+    
+    // Entity variabler
+    private static Entity cube;
+    private static Entity circle;
 
-    private static float cameraDistanceMultiplier() { return Smoothstep.quarticPolynomial(cameraDistance / 100f); }
-    private static float cameraSpeedMultiplier() { return 0.2f + cameraDistanceMultiplier * 0.8f; }
-    private static float cameraSpeedPan = 0.05f;
-    private static float cameraSpeedDistance = 0.1f;
-
-    private static float cameraDistanceMultiplier = 1f;
-    private static float cameraSpeedMultiplier = 1f;
-
-    // Objektvariabler
-    private static Vector3 circPos = new Vector3();
-    private static Vector3 boxPos = new Vector3().y(1f);
-
-    // "Entry point" for programkjøring
+    // Kamera
+    private static Camera camera;
+    
+    // Entry point for programkjøring
     public static void main(String args[]) {
         init();
         run();
@@ -39,12 +27,11 @@ public class Program {
         Logger.log("Initializing program");
         InitWindow(screenWidth, screenHeight, "jaylib");
         SetTargetFPS(30);
-        camera = new Camera3D();
-        camera._position(new Vector3().x(0f).y(5f).z(-10f));
-        camera.target(new Vector3().x(0f).y(0f).z(0f));
-        camera.up(new Vector3().x(0f).y(1f).z(0f));
-        camera.fovy(45);
-        camera.projection(CAMERA_PERSPECTIVE);
+        // Entity set up
+        cube = new Entity(Entity.EntityType.CUBE, 1f, new Vector3().y(0.5f), GREEN);
+        circle = new Entity(Entity.EntityType.CIRCLE, 5f, new Vector3(), BLUE);
+        // Kamera set up
+        camera = new Camera(cube);
     }
 
     // Avslutting av programmet
@@ -63,19 +50,18 @@ public class Program {
 
     // Motta innputt fra bruker
     private static void input() {
-        inputCamera();
+        camera.input();
     }
 
     // Hovedløkke for oppdatering
     private static void update() {
         float deltaTime = GetFrameTime();
-        updateCamera(deltaTime);
-        circPos.y((float)Math.sin(GetTime()));
+        circle.pos(circle.pos().y(0.5f + (float)Math.sin(GetTime()) * 0.5f));
+        camera.update(deltaTime);
     }
 
     // Grafikk
     private static void render() {
-        //UpdateCamera(camera, CAMERA_ORBITAL);
         BeginDrawing();
         ClearBackground(DARKGRAY);
         render3();
@@ -85,69 +71,17 @@ public class Program {
 
     // 3D grafikk
     private static void render3() {
-        BeginMode3D(camera);
-        //DrawGrid(1000, 1f);
-        //DrawPlane(new Vector3(),new Vector2().x(1f).y(1f),RED);
-        //Vector3 circPos = new Vector3();
-        
-        Matrix circMatrix = MatrixIdentity();
-        circMatrix = MatrixTranslate(circPos.x(), circPos.y(), circPos.z());
-        
-        Matrix boxMatrix = MatrixIdentity();
-        boxMatrix = MatrixTranslate(boxPos.x(), boxPos.y(), boxPos.z());
-
-        //circMatrix = MatrixScale(0.5f,0.5f,0.5f);
-        Draw3.circle(4f, circMatrix, PURPLE);
-        Draw3.grid(100, MatrixIdentity(), WHITE);
-        Draw3.box(1f, boxMatrix, YELLOW);
-        Draw3.axes(1f, circMatrix);
-        Draw3.axes(1f, boxMatrix);
-
+        BeginMode3D(camera.camera());
+        Draw3.grid(100, MatrixIdentity(), GRAY);
+        Entity.renderAll();
         EndMode3D();
     }
     
     // 2D grafikk
     private static void render2() {
-        //DrawText("jaylib", 190, 200, 20, VIOLET);
-        //GuiLabel(new Rectangle().x(120f).y(120f).width(100f).height(32f), "Hello world");
+        //DrawText(Float.toString(cameraRotation.y()), 10, 10, 10, WHITE);
+        //GuiLabel(new Rectangle().x(120f).y(120f).width(100f).height(32f), "Hello");
         DrawFPS(20, 20);
-    }
-    
-    // Innputt for kamerakontroll
-    private static void inputCamera() {
-        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-        {
-            //cameraSpeedInactive = 0f;
-            Vector2 mouseDelta = Vector2Scale(GetMouseDelta(), 0.005f * cameraSpeedMultiplier * cameraSpeedMultiplier);
-            cameraRotation.x(cameraRotation.x() - mouseDelta.x());
-            cameraRotation.y(cameraRotation.y() + mouseDelta.y());
-        }
-        
-        //if (GetCharPressed() == 45 && cameraTargetDistance < 100) { cameraTargetDistance++; }
-        //if (GetCharPressed() == 43 && cameraTargetDistance > 0) { cameraTargetDistance--; }
-        //if (IsKeyDown(KEY_UP)) { cameraRotation.y += cameraSpeedPan * cameraSpeedMultiplier; }
-        //if (IsKeyDown(KEY_DOWN)) { cameraRotation.y -= cameraSpeedPan * cameraSpeedMultiplier; }
-        //if (IsKeyDown(KEY_LEFT)) { cameraRotation.x += -cameraSpeedPan * cameraSpeedMultiplier; }
-        //if (IsKeyDown(KEY_RIGHT)) { cameraRotation.X += cameraSpeedPan * cameraSpeedMultiplier; }
-        if (GetMouseWheelMove() > 0f && cameraTargetDistance >= 5) { cameraTargetDistance -= 5; }
-        if (GetMouseWheelMove() < 0f && cameraTargetDistance <= 95) { cameraTargetDistance += 5; }
-
-    }
-
-    // Oppdatering av kameraet
-    private static void updateCamera(float deltaTime) {
-        //cameraRotation.x(cameraRotation.x() % (float)Math.PI * 2);
-        //cameraRotation.y(cameraRotation.y() % (float)Math.PI * 2);
-        cameraPosition.x((float)Math.sin(cameraRotation.x()) * (float)Math.cos(cameraRotation.y()));
-        cameraPosition.y((float)Math.sin(cameraRotation.y()));
-        cameraPosition.z((float)Math.cos(cameraRotation.x()) * (float)Math.cos(cameraRotation.y()));
-        //cameraUp.x((float)Math.sin(cameraRotation.x()) * (float)Math.cos(cameraRotation.y() + 0.1f));
-        //cameraUp.y((float)Math.sin(cameraRotation.y() + 0.1f));
-        //cameraUp.z((float)Math.cos(cameraRotation.c()) * (float)Math.cos(cameraRotation.y() + 0.1f));
-        
-        camera._position(Vector3Transform(Vector3Scale(cameraPosition, 1.5f + cameraDistanceMultiplier * 5f), cameraMatrix));
-        //camera._position(Vector3Transform(cameraPosition, cameraMatrix));
-        //* (1.5f + cameraDistanceMultiplier * 5f), planetarySystem.planetMatrix);
     }
 
 }

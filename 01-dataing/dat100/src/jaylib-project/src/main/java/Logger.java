@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-// Class for logging messages and errors
+// Logging av meldinger og feilmeldinger
 public class Logger {
 
     private static ArrayList <String> entries = new ArrayList<String>();
 
-    // Add message to the log
+    // Legg til ny melding i loggen
     public static void log(String message) {
         entries.add(message);
         System.out.println(message);

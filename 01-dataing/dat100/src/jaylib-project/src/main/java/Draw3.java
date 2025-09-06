@@ -1,7 +1,7 @@
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
-// Draw custom 3D meshes
+// Tegning av 3D geometriske figurer
 public class Draw3 {
 
     // Grid
@@ -14,17 +14,19 @@ public class Draw3 {
         }
     }
 
-    // XYZ Axes
+    // XYZ akser
     public static void axes(float size, Matrix matrix)
     {
+        size *= 0.5f;
         DrawLine3D(Vector3Transform(new Vector3().x(-size).y(0f).z(0f), matrix), Vector3Transform(new Vector3().x(size).y(0f).z(0f), matrix), RED);
         DrawLine3D(Vector3Transform(new Vector3().x(0f).y(-size).z(0f), matrix), Vector3Transform(new Vector3().x(0f).y(size).z(0f), matrix), BLUE);
         DrawLine3D(Vector3Transform(new Vector3().x(0f).y(0f).z(-size), matrix), Vector3Transform(new Vector3().x(0f).y(0f).z(size), matrix), GREEN);
     }
     
-    // Flat Circle
+    // Flat sirkel
     public static void circle(float radius, Matrix matrix, Color color)
     {
+        radius *= 0.5f;
         int points = 20 + (int)(radius * 4f);
         Vector3[] circlePoints = new Vector3[points];
         for (int i = 0; i < points; i++)
@@ -40,9 +42,10 @@ public class Draw3 {
         }
     }
     
-    // Box
-    public static void box(float size, Matrix matrix, Color color)
+    // Kube
+    public static void cube(float size, Matrix matrix, Color color)
     {
+        size *= 0.5f;
         Vector3[] points = new Vector3[8];
         points[0] = Vector3Transform(new Vector3().x(-size).y( size).z(-size), matrix);
         points[1] = Vector3Transform(new Vector3().x( size).y( size).z(-size), matrix);
