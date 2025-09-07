@@ -12,11 +12,8 @@ public class Entity {
         EMPTY,
         SHIP,
         CUBE,
-        // TODO: SPHERE,
-        // TODO: PLANE,
+        PLANE,
         TRIANGLE,
-        // TODO: PYRAMID,
-        // TODO: CYLINDER,
         CIRCLE;
     }
 
@@ -35,7 +32,7 @@ public class Entity {
     private boolean renderAxes = true;
 
     // Komponenter
-    private ArrayList<Component> componentList = new ArrayList<Component>();
+    private ArrayList<Component> components = new ArrayList<Component>();
     public Physics physics;
 
     // Konstruktør uten parametre
@@ -51,7 +48,7 @@ public class Entity {
         this.color = color;
         pos(pos);
         physics = new Physics(this, mass);
-        componentList.add(physics);
+        components.add(physics);
     }
 
     // Getter for entities
@@ -98,27 +95,33 @@ public class Entity {
 
     // Oppdatering av enkelt Entity objekt
     private void update(float dt) {
-        componentList.forEach( component -> {
+        components.forEach( component -> {
             component.update(dt);
         });
         matrix = MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(rot)), MatrixTranslate(pos.x(), pos.y(), pos.z()));
     }
 
     // Tegning av alle Entity objekter
-    public static void renderAll() {
+    public static void render3All() {
         entities.forEach( entity -> {
-            entity.render();
+            entity.render3();
         });
     }
 
     // Tegning av enkelt Entity objekt
-    private void render() {
+    private void render3() {
+        components.forEach( component -> {
+            component.render3();
+        });
         switch (shape) {
             case CUBE:
                 Draw3.cube(size, matrix, color);
                 break;
             case SHIP:
                 Draw3.ship(size, matrix, color);
+                break;
+            case PLANE:
+                Draw3.plane(size, matrix, color);
                 break;
             case TRIANGLE:
                 Draw3.triangle(size, matrix, color);
@@ -129,4 +132,5 @@ public class Entity {
         }
         if (renderAxes) { Draw3.axes(1f, matrix); }
     }
+    
 }

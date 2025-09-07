@@ -99,15 +99,16 @@ public class Program {
     private static void render3() {
         BeginMode3D(camera.camera());
         Draw3.grid(100, MatrixIdentity(), GRAY);
-        Entity.renderAll();
+        Entity.render3All();
         EndMode3D();
     }
     
     // 2D grafikk
     private static void render2() {
-        // DrawText(Float.toString(player.f()), 10, 10, 10, WHITE);
-        //GuiLabel(new Rectangle().x(120f).y(120f).width(100f).height(32f), "Hello");
-        DrawFPS(20, 20);
+        DrawFPS(2, 2);
+        DrawText(("pos x: " + Float.toString(player.pos().x()) + "   y: " + Float.toString(player.pos().y()) + "   z: " + Float.toString(player.pos().z())).toUpperCase(), 2, 20, 10, WHITE);
+        DrawText(("vel x: " + Float.toString(player.physics.velLocal().x()) + "   y: " + Float.toString(player.physics.velLocal().y()) + "   z: " + Float.toString(player.physics.velLocal().z())).toUpperCase(), 2, 30, 10, WHITE);
+        DrawText(("ang vel x: " + Float.toString(player.physics.angVel().x()) + "   y: " + Float.toString(player.physics.angVel().y()) + "   z: " + Float.toString(player.physics.angVel().z())).toUpperCase(), 2, 40, 10, WHITE);
     }
 
 }
