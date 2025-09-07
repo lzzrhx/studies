@@ -17,6 +17,8 @@ public class Physics implements Component {
     private Vector3 torque = new Vector3();
     private Vector3 angAcc = new Vector3();
     private Vector3 angVel = new Vector3();
+    private float restitution = 1f;
+    private float friction = 0.5f;
 
     // Konstruktør
     public Physics(Entity parent, float mass) {
@@ -81,10 +83,10 @@ public class Physics implements Component {
         a.pos(Vector3Subtract(a.pos(), Vector3Scale(normal, da)));
         b.pos(Vector3Add(b.pos(), Vector3Scale(normal, db)));
     }
-
-    // Løs "collision contraint"
-    private void resolveCollision(Entity a, Entity b, Vector3 normal) {
-        float e = 1f;
+    
+    // Løs "collision constraint"
+    private void resolveCollisionSimple(Entity a, Entity b, Vector3 normal) {
+        float e = Math.min(a.physics.restitution, b.physics.restitution);
         Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
         float vRelDotNormal = Vector3DotProduct(vRel, normal);
         Vector3 impulseDir = normal;
@@ -93,6 +95,24 @@ public class Physics implements Component {
         a.physics.applyImpulseLinear(jn);
         b.physics.applyImpulseLinear(Vector3Negate(jn));
     }
+
+    // Løs "collision constraint" med rotasjon
+    /*
+    private void resolveCollision(Entity a, Entity b, Vector3 normal, Vector3 aPoint, Vector3 bPoint) {
+        float e = Math.min(a.physics.restitution, b.physics.restitution);
+        float f = Math.min(a.physics.friction, b.physics.friction);
+        Vector3 ra = Vector3Subtract(bPoint, a.pos());
+        Vector3 rb = Vector3Subtract(aPoint, b.pos());
+        Vector3 va = Vector3Add(a.physics.vel, new Vector3().x(a.physics.angVel.z() * ra.z()).y(a.physics.angVel.y() * ra.y()).z(a.physics.angVel.x() * ra.x()));
+        Vector3 vb = Vector3Add(b.physics.vel, new Vector3().x(b.physics.angVel.z() * rb.z()).y(b.physics.angVel.y() * rb.y()).z(b.physics.angVel.x() * rb.x()));
+        Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
+        float vRelDotNormal = Vector3DotProduct(vRel, normal);
+        float impulseMag = -(1f + e) * vRelDotNormal / ((a.physics.invM + b.physics.invM) + Vector3CrossProduct(ra, normal) * Vector3CrossProduct(ra, normal) * a.invM + Vector3CrossProduct(rb, normal) * Vector3CrossProduct(rb, normal) * b.invM);
+        Vector3 jn = Vector3Scale(normal, impulseMag);
+        a.physics.applyImpulseLinear(jn);
+        b.physics.applyImpulseLinear(Vector3Negate(jn));
+    }
+    */
 
     // Sjekk kollisjon
     private void checkCollision() {
@@ -112,9 +132,9 @@ public class Physics implements Component {
                     Vector3 bPoint = Vector3Add(a.pos(), Vector3Scale(normal, aRadius));
                     float depth = Vector3Length(Vector3Subtract(bPoint, aPoint));
                     
-                    // Løs "contraints"
+                    // Løs "constraints"
                     resolvePenetration(a, b, normal, depth);
-                    resolveCollision(a, b, normal);
+                    resolveCollisionSimple(a, b, normal);
                 }
             }
         });
