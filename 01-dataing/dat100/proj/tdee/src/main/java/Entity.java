@@ -18,7 +18,7 @@ public class Entity {
     }
 
     // Statiske variabler
-    private static ArrayList<Entity> entityList = new ArrayList<Entity>();
+    private static ArrayList<Entity> entities = new ArrayList<Entity>();
 
     // Objektvariabler
     private Vector3 pos;
@@ -28,35 +28,37 @@ public class Entity {
     private Shape shape;
     private float size;
 
-    // flags
-    private boolean flagAxes = true;
-    private boolean flagPhysics = true;
+    // Flagg
+    private boolean renderAxes = true;
 
-    // Fysikkvariabler
-    private Vector3 force = new Vector3();
-    private Vector3 acc = new Vector3();
-    private Vector3 vel = new Vector3();
-    private float invM;
-    //private float drag = 5f;
-    private float torque;
+    // Komponenter
+    private ArrayList<Component> componentList = new ArrayList<Component>();
+    public Physics physics;
 
     // Konstruktør uten parametre
     public Entity() {
         this(Shape.EMPTY, 1f, 0f, new Vector3(), WHITE);
     }
 
-    // Konstruktør
+    // Konstruktør med fysikk
     public Entity(Shape shape, float size, float mass, Vector3 pos, Color color) {
-        entityList.add(this);
+        entities.add(this);
         this.shape = shape;
         this.size = size;
         this.color = color;
         pos(pos);
-        mass(mass);
+        physics = new Physics(this, mass);
+        componentList.add(physics);
     }
 
-    private void mass(float mass) {
-        this.invM = 1f / mass;
+    // Getter for entities
+    public static ArrayList<Entity> entities() {
+        return entities;
+    }
+
+    // Getter for størrelse
+    public float size() {
+        return size;
     }
 
     // Getter for posisjon
@@ -73,8 +75,8 @@ public class Entity {
     public Vector3 rot() {
         return rot;
     }
-
-    // Setter for rotatasjon
+    
+    // Setter for rotasjon
     public void rot(Vector3 rot) {
         this.rot = rot;
     }
@@ -84,37 +86,24 @@ public class Entity {
         return matrix;
     }
 
-    // Setter for f
-    public void addForce(Vector3 force) {
-        this.force = Vector3Add(this.force, force);
-    }
-
     // Oppdatering av alle Entity objekter
     public static void updateAll(float dt) {
-        entityList.forEach( entity -> {
+        entities.forEach( entity -> {
             entity.update(dt);
         });
     }
 
     // Oppdatering av enkelt Entity objekt
     private void update(float dt) {
-        if (flagPhysics) {
-            //if (drag > 0.01f && Vector3Length(vel) > 0.1f) { force = Vector3Add(force, Vector3Scale(Vector3Normalize(vel), -drag)); }
-            // Akselerasjon er lik krefter delt på masse (F = ma  ->  a = F / m  ->  a = F * (1 / m))
-            acc = Vector3Scale(force, invM);
-            // Integrer akselerasjon over tid for å finne endring i fart fart (v = at)
-            vel = Vector3Add(vel, Vector3Scale(acc, dt));
-            // Integrer fart over tid for å finne endring i posisjon (t = vt)
-            pos = Vector3Add(pos, Vector3Scale(vel, dt));
-            // Nullstill krefter som virker på legemet
-            force = Vector3Zero();
-        }
+        componentList.forEach( component -> {
+            component.update(dt);
+        });
         matrix = MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(rot)), MatrixTranslate(pos.x(), pos.y(), pos.z()));
     }
 
     // Tegning av alle Entity objekter
     public static void renderAll() {
-        entityList.forEach( entity -> {
+        entities.forEach( entity -> {
             entity.render();
         });
     }
@@ -138,6 +127,6 @@ public class Entity {
                 Draw3.circle(size, matrix, color);
                 break;
         }
-        if (flagAxes) { Draw3.axes(1f, matrix); }
+        if (renderAxes) { Draw3.axes(1f, matrix); }
     }
 }

@@ -6,8 +6,9 @@ public class Camera {
     private static final float CAMERA_SPEED_PAN = 0.05f;
     private static final float CAMERA_SPEED_DISTANCE = 0.1f;
     private Camera3D camera;
-    private Vector2 rotation = new Vector2();
+    private Vector2 rot = new Vector2();
     private Vector3 pos = new Vector3();
+    private Vector3 up = new Vector3().y(1f);
     private Entity target;
     private int targetDistance = 50;
     private float distance = 50f;
@@ -17,7 +18,7 @@ public class Camera {
     // Konstruktør
     public Camera(Entity target) {
         camera = new Camera3D();
-        camera.up(new Vector3().x(0f).y(1f).z(0f));
+        camera.up(up);
         camera.fovy(45);
         camera.projection(CAMERA_PERSPECTIVE);
         this.target = target;
@@ -33,14 +34,14 @@ public class Camera {
         // Musekontroll for rotering av kamera
         if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
             Vector2 mouseDelta = Vector2Scale(GetMouseDelta(), 0.004f * speedMultiplier());
-            rotation.x(rotation.x() - mouseDelta.x());
-            rotation.y(rotation.y() + mouseDelta.y());
+            rot.x(rot.x() - mouseDelta.x());
+            rot.y(rot.y() + mouseDelta.y());
         }
         // Tastaturkontroll for rotering av kamera
-        if (IsKeyDown(KEY_UP)) { rotation.y(rotation.y() + CAMERA_SPEED_PAN * speedMultiplier()); }
-        if (IsKeyDown(KEY_DOWN)) { rotation.y(rotation.y() - CAMERA_SPEED_PAN * speedMultiplier()); }
-        if (IsKeyDown(KEY_LEFT)) { rotation.x(rotation.x() - CAMERA_SPEED_PAN * speedMultiplier()); }
-        if (IsKeyDown(KEY_RIGHT)) { rotation.x(rotation.x() + CAMERA_SPEED_PAN * speedMultiplier()); }
+        if (IsKeyDown(KEY_UP)) { rot.y(rot.y() + CAMERA_SPEED_PAN * speedMultiplier()); }
+        if (IsKeyDown(KEY_DOWN)) { rot.y(rot.y() - CAMERA_SPEED_PAN * speedMultiplier()); }
+        if (IsKeyDown(KEY_LEFT)) { rot.x(rot.x() - CAMERA_SPEED_PAN * speedMultiplier()); }
+        if (IsKeyDown(KEY_RIGHT)) { rot.x(rot.x() + CAMERA_SPEED_PAN * speedMultiplier()); }
         // Musekontroll for zoom av kamera
         if (GetMouseWheelMove() > 0f && targetDistance >= 5) { targetDistance -= 5; }
         if (GetMouseWheelMove() < 0f && targetDistance <= 95) { targetDistance += 5; }
@@ -54,11 +55,15 @@ public class Camera {
         camera.target(target.pos());
         float targetDifference = (float)Math.abs(distance - (float)targetDistance);
         if (targetDifference > 0.01f) { distance += (distance < (float)targetDistance ? CAMERA_SPEED_DISTANCE : -CAMERA_SPEED_DISTANCE ) * targetDifference; }
-        rotation.x(rotation.x() % ((float)Math.PI * 2f));
-        rotation.y(Utils.clampF(rotation.y(), (float)Math.PI * -0.5f, (float)Math.PI * 0.5f));
-        pos.x((float)Math.sin(rotation.x()) * (float)Math.cos(rotation.y()));
-        pos.y((float)Math.sin(rotation.y()));
-        pos.z((float)Math.cos(rotation.x()) * (float)Math.cos(rotation.y()));
+        rot.x(rot.x() % ((float)Math.PI * 2f));
+        rot.y(Utils.clampF(rot.y(), (float)Math.PI * -0.5f, (float)Math.PI * 0.5f));
+        pos.x((float)Math.sin(rot.x()) * (float)Math.cos(rot.y()));
+        pos.y((float)Math.sin(rot.y()));
+        pos.z((float)Math.cos(rot.x()) * (float)Math.cos(rot.y()));
+        up.x((float)Math.sin(rot.x()) * (float)Math.cos(rot.y() + 0.1f));
+        up.y((float)Math.sin(rot.y() + 0.1f));
+        up.z((float)Math.cos(rot.x()) * (float)Math.cos(rot.y() + 0.1f));
+        camera.up(Vector3Transform(up, MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(target.rot()))));
         camera._position(Vector3Transform(Vector3Scale(pos, (float)CAMERA_MIN_DIST + distanceMultiplier() * ((float)CAMERA_MAX_DIST - (float)CAMERA_MIN_DIST)), target.matrix()));
     }
 
