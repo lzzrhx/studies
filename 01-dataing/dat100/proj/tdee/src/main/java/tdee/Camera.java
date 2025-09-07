@@ -1,3 +1,5 @@
+package tdee;
+
 import static com.raylib.Raylib.*;
 
 public class Camera {

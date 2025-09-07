@@ -1,3 +1,5 @@
+package tdee;
+
 public class Utils{
 
     // Clamp float verdi innenfor en gitt minimum og maksimum verdi

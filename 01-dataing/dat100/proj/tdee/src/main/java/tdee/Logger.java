@@ -1,3 +1,5 @@
+package tdee;
+
 import java.util.ArrayList;
 
 // Logging av meldinger og feilmeldinger

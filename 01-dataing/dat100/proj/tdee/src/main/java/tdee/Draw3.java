@@ -1,3 +1,5 @@
+package tdee;
+
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
@@ -86,7 +88,7 @@ public class Draw3 {
         DrawLine3D(points[3], points[7], color);
     }
     
-    // Kube
+    // Skip placeholder
     public static void ship(float size, Matrix matrix, Color color) {
         size *= 0.5f;
         Vector3[] points = new Vector3[8];

@@ -1,3 +1,5 @@
+package tdee;
+
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 

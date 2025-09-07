@@ -1,3 +1,6 @@
+package tdee;
+import tdee.components.*;
+
 import java.util.ArrayList;
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
@@ -9,7 +12,7 @@ public class Entity {
         EMPTY,
         SHIP,
         CUBE,
-        SPHERE,
+        // TODO: SPHERE,
         // TODO: PLANE,
         TRIANGLE,
         // TODO: PYRAMID,
@@ -113,9 +116,6 @@ public class Entity {
         switch (shape) {
             case CUBE:
                 Draw3.cube(size, matrix, color);
-                break;
-            case SPHERE:
-                Draw3.sphere(size, matrix, color);
                 break;
             case SHIP:
                 Draw3.ship(size, matrix, color);
