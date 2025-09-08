@@ -1,5 +1,7 @@
 package tdee;
 
+import tdee.components.Physics;
+
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
@@ -30,9 +32,9 @@ public class Program {
         InitWindow(screenWidth, screenHeight, "tdee");
         SetTargetFPS(30);
         // Entity set up
-        player = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f), GREEN);
-        Entity box = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f).z(-2f), RED);
-        Entity ground = new Entity(Entity.Shape.CUBE, 20f, 0f, new Vector3().y(-10f), RED);
+        player = new Entity(new Vector3().y(0.5f), Physics.Shape.CUBE, 1f, 1f);
+        new Entity(new Vector3().y(0.5f).z(-2f), Physics.Shape.CUBE, 1f, 1f);
+        new Entity(new Vector3().y(-10f), Physics.Shape.CUBE, 20f, 0f);
         // Kamera set up
         camera = new Camera(player);
     }
@@ -64,8 +66,8 @@ public class Program {
         float rightTrigger = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_TRIGGER);
         if (rightTrigger > -0.9f) { rightTrigger = (rightTrigger + 1f) * 0.5f; }
         else if (leftTrigger > -0.9f) { leftTrigger = (leftTrigger + 1f) * 0.5f; }
-        //if (rightTrigger > 0.01f) { player.physics.addForceRel(new Vector3().z(-1.5f * rightTrigger)); }
-        //else if (leftTrigger > 0.01f) { player.physics.addForceRel(new Vector3().z(1f * leftTrigger)); }
+        //if (rightTrigger > 0.01f) { player.physics.addTorqueRel(new Vector3().y(-0.5f * rightTrigger)); }
+        //else if (leftTrigger > 0.01f) { player.physics.addTorqueRel(new Vector3().y(0.5f * leftTrigger)); }
         if (Math.abs(leftStickX) > 0.1f) { player.physics.addForceRel(new Vector3().x(0.75f * leftStickX)); }
         if (Math.abs(leftStickY) > 0.1f) { player.physics.addForceRel(new Vector3().z(0.75f * leftStickY)); }
         //if (Math.abs(rightStickY) > 0.1f) { player.physics.addForceRel(new Vector3().y(-12f * rightStickY)); }
@@ -78,6 +80,7 @@ public class Program {
         else if (IsKeyDown(KEY_S)) { player.physics.addForceRel(new Vector3().z(0.75f)); }
         if (IsKeyDown(KEY_A)) { player.physics.addForceRel(new Vector3().x(-0.75f)); }
         else if (IsKeyDown(KEY_D)) { player.physics.addForceRel(new Vector3().x(0.75f)); }
+        if (IsKeyDown(KEY_SPACE)) { player.physics.addForceRel(new Vector3().y(12f)); }
         //if (IsKeyDown(KEY_Q)) { player.physics.addTorqueRel(new Vector3().y(0.2f)); }
         //else if (IsKeyDown(KEY_E)) { player.physics.addTorqueRel(new Vector3().y(-0.2f)); }
     }

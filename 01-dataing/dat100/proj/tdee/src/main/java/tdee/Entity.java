@@ -2,21 +2,9 @@ package tdee;
 import tdee.components.*;
 
 import java.util.ArrayList;
-import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
 public class Entity {
-
-    // Entity typer
-    public enum Shape {
-        EMPTY,
-        SHIP,
-        CUBE,
-        SPHERE,
-        PLANE,
-        TRIANGLE,
-        CIRCLE;
-    }
 
     // Statiske variabler
     private static ArrayList<Entity> entities = new ArrayList<Entity>();
@@ -27,9 +15,6 @@ public class Entity {
     private Vector3 pos;
     private Vector3 rot = new Vector3();
     private Matrix matrix = MatrixIdentity();
-    private Color color;
-    private Shape shape;
-    private float size;
 
     // Flagg
     private boolean renderAxes = true;
@@ -38,21 +23,21 @@ public class Entity {
     private ArrayList<Component> components = new ArrayList<Component>();
     public Physics physics;
 
-    // Konstruktør uten parametre
-    public Entity() {
-        this(Shape.EMPTY, 1f, 0f, new Vector3(), WHITE);
-    }
-
     // Konstruktør med fysikk
-    public Entity(Shape shape, float size, float mass, Vector3 pos, Color color) {
+    public Entity(Vector3 pos) {
         this.num++;
         this.id = this.num;
         entities.add(this);
-        this.shape = shape;
-        this.size = size;
-        this.color = color;
         pos(pos);
-        physics = new Physics(this, mass);
+    }
+
+    public Entity(Vector3 pos, Physics.Shape shape, float size, float mass) {
+        this(pos);
+        addPhysics(shape, size, mass);
+    }
+
+    public void addPhysics(Physics.Shape shape, float size, float mass) {
+        physics = new Physics(this, shape, size, mass);
         components.add(physics);
     }
 
@@ -68,16 +53,6 @@ public class Entity {
     // Getter for id
     public int id() {
         return id;
-    }
-
-    // Getter for shape
-    public Shape shape() {
-        return shape;
-    }
-
-    // Getter for størrelse
-    public float size() {
-        return size;
     }
 
     // Getter for posisjon
@@ -137,26 +112,6 @@ public class Entity {
         components.forEach( component -> {
             component.render3();
         });
-        switch (shape) {
-            case CUBE:
-                Draw3.cube(size, matrix, color);
-                break;
-            case SPHERE:
-                Draw3.sphere(size, matrix, color);
-                break;
-            case SHIP:
-                Draw3.ship(size, matrix, color);
-                break;
-            case PLANE:
-                Draw3.plane(size, matrix, color);
-                break;
-            case TRIANGLE:
-                Draw3.triangle(size, matrix, color);
-                break;
-            case CIRCLE:
-                Draw3.circle(size, matrix, color);
-                break;
-        }
         if (renderAxes) { Draw3.axes(1f, matrix); }
     }
     

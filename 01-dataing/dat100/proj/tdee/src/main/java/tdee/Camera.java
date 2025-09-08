@@ -53,8 +53,8 @@ public class Camera {
         // Joystick-kontroll for rotering av kamera
         float rightStickX = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_X);
         float rightStickY = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_Y);
-        if (Math.abs(rightStickX) > 0.1f) { rot.x(rot.x() + CAMERA_SPEED_PAN * speedMultiplier() * -rightStickX); }
-        if (Math.abs(rightStickY) > 0.1f) { rot.y(rot.y() + CAMERA_SPEED_PAN * speedMultiplier() * -rightStickY); }
+        if (Math.abs(rightStickX) > 0.1f) { rot.x(rot.x() + CAMERA_SPEED_PAN * speedMultiplier() * -rightStickX * 1.5f); }
+        if (Math.abs(rightStickY) > 0.1f) { rot.y(rot.y() + CAMERA_SPEED_PAN * speedMultiplier() * rightStickY * 1.5f); }
     }
 
     // Oppdatering av kameraet
