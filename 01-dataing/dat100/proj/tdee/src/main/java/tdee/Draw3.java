@@ -26,14 +26,14 @@ public class Draw3 {
     public static void plane(float size, Matrix matrix, Color color) {
         size *= 0.5f;
         Vector3[] points = new Vector3[4];
-        points[0] = Vector3Transform(new Vector3().x(-size).y( size).z(-size), matrix);
-        points[1] = Vector3Transform(new Vector3().x( size).y( size).z(-size), matrix);
-        points[2] = Vector3Transform(new Vector3().x(-size).y(-size).z(-size), matrix);
-        points[3] = Vector3Transform(new Vector3().x( size).y(-size).z(-size), matrix);
+        points[0] = Vector3Transform(new Vector3().x(-size).z( size), matrix);
+        points[1] = Vector3Transform(new Vector3().x( size).z( size), matrix);
+        points[2] = Vector3Transform(new Vector3().x(-size).z(-size), matrix);
+        points[3] = Vector3Transform(new Vector3().x( size).z(-size), matrix);
         DrawLine3D(points[0], points[1], color);
-        DrawLine3D(points[1], points[2], color);
+        DrawLine3D(points[0], points[2], color);
         DrawLine3D(points[2], points[3], color);
-        DrawLine3D(points[3], points[0], color);
+        DrawLine3D(points[3], points[1], color);
     }
 
     // Flat sirkel

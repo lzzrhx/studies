@@ -30,7 +30,7 @@ public class Program {
         InitWindow(screenWidth, screenHeight, "tdee");
         SetTargetFPS(30);
         // Entity set up
-        player = new Entity(Entity.Shape.SHIP, 1f, 1f, new Vector3().y(0.5f), GREEN);
+        player = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f), GREEN);
         Entity box = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f).z(-5f), RED);
         // Kamera set up
         camera = new Camera(player);

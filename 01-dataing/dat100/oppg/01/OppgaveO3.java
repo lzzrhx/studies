@@ -36,7 +36,7 @@ public class OppgaveO3 {
         if (n < 2) {
             return 1;
         } else {
-            return n * fakultet(n - 1);
+            return n * fakultetRekursiv(n - 1);
         }
     }
 }

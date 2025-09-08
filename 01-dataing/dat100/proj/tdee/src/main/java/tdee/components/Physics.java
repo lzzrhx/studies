@@ -107,7 +107,7 @@ public class Physics implements Component {
     }
     
     // Løs "collision constraint"
-    private void resolveCollisionSimple(Entity a, Entity b, Vector3 normal) {
+    private void resolveCollision(Entity a, Entity b, Vector3 normal) {
         float e = Math.min(a.physics.restitution, b.physics.restitution);
         Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
         float vRelDotNormal = Vector3DotProduct(vRel, normal);
@@ -119,6 +119,7 @@ public class Physics implements Component {
     }
     
     // Løs "collision constraint" enkel variant med rotasjon
+    /*
     private void resolveCollisionAtPoint(Entity a, Entity b, Vector3 normal, Vector3 pointA, Vector3 pointB) {
         float e = Math.min(a.physics.restitution, b.physics.restitution);
         Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
@@ -129,6 +130,7 @@ public class Physics implements Component {
         a.physics.applyImpulseAtPoint(jn, pointA);
         b.physics.applyImpulseAtPoint(Vector3Negate(jn), pointB);
     }
+    */
 
     // Sjekk kollisjon
     private void checkCollision() {
@@ -146,11 +148,11 @@ public class Physics implements Component {
                     normal = Vector3Normalize(normal);
                     Vector3 aPoint = Vector3Subtract(b.pos(), Vector3Scale(normal, bRadius));
                     Vector3 bPoint = Vector3Add(a.pos(), Vector3Scale(normal, aRadius));
-                    float depth = Vector3Length(Vector3Subtract(bPoint, bPoint));
+                    float depth = Vector3Length(Vector3Subtract(bPoint, aPoint));
                     
                     // Løs "constraints"
                     resolvePenetration(a, b, normal, depth);
-                    resolveCollisionAtPoint(a, b, normal, aPoint, bPoint);
+                    resolveCollision(a, b, normal);
                 }
             }
         });

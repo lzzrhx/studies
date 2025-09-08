@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class OppgaveO1 {
     public static void main(String args[]) {
@@ -13,50 +14,58 @@ public class OppgaveO1 {
 
             // Nullstill ugyldig variabelen og les innputt fra bruker
             ugyldig = false;
-            System.out.print("Skriv inn bruttolønn i kroner (heltall): ");
+            System.out.print(" Skriv inn bruttolønn i kroner (heltall): ");
             String innString = inn.nextLine();
             
             // Prøv å lese innputt fra bruker som heltall, kast unntak hvis det ikke er et heltall 
             try {
                 
                 // Formater innputt, fjern mellomrom, komma og punktum "123.000" -> "123000"
-                long brutto = Long.parseLong(innString.replaceAll("[\\s\\.,]", ""));
+                int brutto = Integer.parseInt(innString.replaceAll("[\\s\\.,]", ""));
 
                 // Skriv ut feilmelding hvis verdien er ugyldig (negativ)
                 if (brutto < 0) {
                     ugyldig = true;
-                    System.out.println("ERR! Ugyldig verdi.");
+                    System.out.println(" ERR! Ugyldig verdi.");
                 }
 
-                // Finn trinnskattprosent som tilsvarer bruttolønn
+                // Beregn skatt for den gitte bruttolønnen
                 else {
-                    double skattProsent;
-                    if (brutto > 1_410_750) {
-                        skattProsent = 17.7;
-                    } else if (brutto > 942_400) {
-                        skattProsent = 16.7;
-                    } else if (brutto > 697_150) {
-                        skattProsent = 13.7;
-                    } else if (brutto > 306_050) {
-                        skattProsent = 4.0;
-                    } else if (brutto > 217_400) {
-                        skattProsent = 1.7;
-                    } else {
-                        skattProsent = 0.0;
+                    
+                    // Oppsett av formatering for tall
+                    DecimalFormat df = new DecimalFormat("###,###,###,##0.00");
+                    DecimalFormatSymbols dfSymbol = new DecimalFormatSymbols();
+                    dfSymbol.setGroupingSeparator(' ');
+                    dfSymbol.setDecimalSeparator(',');
+                    df.setDecimalFormatSymbols(dfSymbol);
+
+                    // Oppsett av trinnverdier
+                    double[] prosent = {1.7, 4.0, 13.7, 16.7, 17.7 };
+                    int[] trinn = { 217_400, 306_050, 697_150, 942_400, 1_410_750 };
+                    
+                    // Start løkke med beregning for alle trinn
+                    double skatt = 0.0;
+                    for (int i = 0; i < trinn.length; i++) {
+                        if (brutto > trinn[i]) {
+                            int bruttotrinn = (i < trinn.length - 1) ? (int)Math.min(trinn[i+1] - trinn[i], brutto - trinn[i]) : brutto - trinn[i];
+                            double trinnskatt = (double)bruttotrinn * prosent[i] * 0.01f;
+                            skatt += trinnskatt;
+                            System.out.println(" - - - - - - - - - - - - - -");
+                            System.out.println("  Beregning for trinn " + (i+1) + " (" + prosent[i] + "%):");
+                            System.out.println("   Brutto: " + df.format(bruttotrinn) + " kr");
+                            System.out.println("   Trinnskatt: " + df.format(trinnskatt) + " kr");
+                        }
                     }
 
-                    // Beregn trinnskatt
-                    double trinnskatt = (double)brutto * (skattProsent * 0.01);
-
-                    // Skriv ut formatert resultat
-                    DecimalFormat df = new DecimalFormat("###,###,###,###");
-                    System.out.println("En bruttolønn på " + df.format(brutto) + " kr gir trinnskatt " + df.format(Math.round(trinnskatt)) + " kr (" + skattProsent + "%).");        
+                    // Skriv ut resultat
+                    System.out.println(" - - - - - - - - - - - - - -");
+                    System.out.println(" En bruttolønn på " + df.format(brutto) + " kr gir trinnskatt " + df.format(skatt) + " kr.");        
                 }
 
             // Fang unntak og gi feilmelding hvis inntastet verdi ikke er heltall
             } catch (NumberFormatException e) {
                 ugyldig = true;
-                System.out.println("ERR! Ugyldig datatype.");
+                System.out.println(" ERR! Ugyldig datatype.");
             }
 
         // Gjenta innlesing hvis verdi er ugyldig

@@ -5,7 +5,9 @@
 # *.eps
 # *.pdf
 
-# Compiled class file
+*.classpath
+*.project
+*.log
 *.class
 
 # Log file
