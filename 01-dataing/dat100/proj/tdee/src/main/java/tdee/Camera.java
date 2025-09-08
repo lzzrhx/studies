@@ -8,7 +8,7 @@ public class Camera {
     private static final float CAMERA_SPEED_PAN = 0.05f;
     private static final float CAMERA_SPEED_DISTANCE = 0.1f;
     private Camera3D camera;
-    private Vector2 rot = new Vector2();
+    private Vector2 rot = new Vector2().y((float)Math.PI * 0.25f);
     private Vector3 pos = new Vector3();
     private Vector3 up = new Vector3().y(1f);
     private Entity target;
@@ -50,6 +50,11 @@ public class Camera {
         // Tastaturkontroll for zoom av kamera
         if (GetCharPressed() == 45 && targetDistance < 100) { targetDistance++; }
         if (GetCharPressed() == 43 && targetDistance > 0) { targetDistance--; }
+        // Joystick-kontroll for rotering av kamera
+        float rightStickX = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_X);
+        float rightStickY = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_Y);
+        if (Math.abs(rightStickX) > 0.1f) { rot.x(rot.x() + CAMERA_SPEED_PAN * speedMultiplier() * -rightStickX); }
+        if (Math.abs(rightStickY) > 0.1f) { rot.y(rot.y() + CAMERA_SPEED_PAN * speedMultiplier() * -rightStickY); }
     }
 
     // Oppdatering av kameraet

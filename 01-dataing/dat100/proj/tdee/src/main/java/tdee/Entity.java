@@ -12,6 +12,7 @@ public class Entity {
         EMPTY,
         SHIP,
         CUBE,
+        SPHERE,
         PLANE,
         TRIANGLE,
         CIRCLE;
@@ -19,8 +20,10 @@ public class Entity {
 
     // Statiske variabler
     private static ArrayList<Entity> entities = new ArrayList<Entity>();
+    private static int num = 0;
 
     // Objektvariabler
+    private int id;
     private Vector3 pos;
     private Vector3 rot = new Vector3();
     private Matrix matrix = MatrixIdentity();
@@ -42,6 +45,8 @@ public class Entity {
 
     // Konstruktør med fysikk
     public Entity(Shape shape, float size, float mass, Vector3 pos, Color color) {
+        this.num++;
+        this.id = this.num;
         entities.add(this);
         this.shape = shape;
         this.size = size;
@@ -51,9 +56,23 @@ public class Entity {
         components.add(physics);
     }
 
-    // Getter for entities
+    // Statisk getter for entities
     public static ArrayList<Entity> entities() {
         return entities;
+    }
+
+    public Vector3 localToWorld(Vector3 pos) {
+        return Vector3Transform(pos, matrix);
+    }
+
+    // Getter for id
+    public int id() {
+        return id;
+    }
+
+    // Getter for shape
+    public Shape shape() {
+        return shape;
     }
 
     // Getter for størrelse
@@ -66,9 +85,14 @@ public class Entity {
         return this.pos;
     }
 
+    private void updateMatrix() {
+        matrix = MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(rot)), MatrixTranslate(pos.x(), pos.y(), pos.z()));
+    }
+
     // Setter for posisjon
     public void pos(Vector3 pos) {
         this.pos = pos;
+        updateMatrix();
     }
 
     // Getter for rotasjon
@@ -79,6 +103,7 @@ public class Entity {
     // Setter for rotasjon
     public void rot(Vector3 rot) {
         this.rot = rot;
+        updateMatrix();
     }
 
     // Getter for matrix
@@ -98,7 +123,6 @@ public class Entity {
         components.forEach( component -> {
             component.update(dt);
         });
-        matrix = MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(rot)), MatrixTranslate(pos.x(), pos.y(), pos.z()));
     }
 
     // Tegning av alle Entity objekter
@@ -116,6 +140,9 @@ public class Entity {
         switch (shape) {
             case CUBE:
                 Draw3.cube(size, matrix, color);
+                break;
+            case SPHERE:
+                Draw3.sphere(size, matrix, color);
                 break;
             case SHIP:
                 Draw3.ship(size, matrix, color);

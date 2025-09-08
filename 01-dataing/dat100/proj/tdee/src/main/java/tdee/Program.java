@@ -31,7 +31,8 @@ public class Program {
         SetTargetFPS(30);
         // Entity set up
         player = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f), GREEN);
-        Entity box = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f).z(-5f), RED);
+        Entity box = new Entity(Entity.Shape.CUBE, 1f, 1f, new Vector3().y(0.5f).z(-2f), RED);
+        Entity ground = new Entity(Entity.Shape.CUBE, 20f, 0f, new Vector3().y(-10f), RED);
         // Kamera set up
         camera = new Camera(player);
     }
@@ -53,6 +54,7 @@ public class Program {
     // Motta innputt fra bruker
     private static void input() {
         camera.input();
+
         // Joystick
         float leftStickX = GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X);
         float leftStickY = GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y);
@@ -62,21 +64,22 @@ public class Program {
         float rightTrigger = GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_TRIGGER);
         if (rightTrigger > -0.9f) { rightTrigger = (rightTrigger + 1f) * 0.5f; }
         else if (leftTrigger > -0.9f) { leftTrigger = (leftTrigger + 1f) * 0.5f; }
-        if (rightTrigger > 0.01f) { player.physics.addForce(new Vector3().z(-1.5f * rightTrigger)); }
-        else if (leftTrigger > 0.01f) { player.physics.addForce(new Vector3().z(1f * leftTrigger)); }
-        if (Math.abs(rightStickX) > 0.1f) { player.physics.addForce(new Vector3().x(0.75f * rightStickX)); }
-        if (Math.abs(rightStickY) > 0.1f) { player.physics.addForce(new Vector3().y(-0.75f * rightStickY)); }
-        if (Math.abs(leftStickX) > 0.1f) { player.physics.addTorque(new Vector3().y(-0.20f * leftStickX)); }
-        if (Math.abs(leftStickY) > 0.1f) { player.physics.addTorque(new Vector3().x(-0.15f * leftStickY)); }
-        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_TRIGGER_1)) { player.physics.addTorque(new Vector3().z(0.15f)); }
-        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_TRIGGER_1)) { player.physics.addTorque(new Vector3().z(-0.15f)); }
+        //if (rightTrigger > 0.01f) { player.physics.addForceRel(new Vector3().z(-1.5f * rightTrigger)); }
+        //else if (leftTrigger > 0.01f) { player.physics.addForceRel(new Vector3().z(1f * leftTrigger)); }
+        if (Math.abs(leftStickX) > 0.1f) { player.physics.addForceRel(new Vector3().x(0.75f * leftStickX)); }
+        if (Math.abs(leftStickY) > 0.1f) { player.physics.addForceRel(new Vector3().z(0.75f * leftStickY)); }
+        //if (Math.abs(rightStickY) > 0.1f) { player.physics.addForceRel(new Vector3().y(-12f * rightStickY)); }
+        //if (Math.abs(leftStickX) > 0.1f) { player.physics.addTorqueRel(new Vector3().y(-0.20f * leftStickX)); }
+        //if (Math.abs(leftStickY) > 0.1f) { player.physics.addTorqueRel(new Vector3().x(-0.15f * leftStickY)); }
+        //if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_TRIGGER_1)) { player.physics.addTorqueRel(new Vector3().z(0.15f)); }
+        //if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_TRIGGER_1)) { player.physics.addTorqueRel(new Vector3().z(-0.15f)); }
         // Tastatur
-        if (IsKeyDown(KEY_W)) { player.physics.addForce(new Vector3().z(-1.5f)); }
-        else if (IsKeyDown(KEY_S)) { player.physics.addForce(new Vector3().z(1f)); }
-        if (IsKeyDown(KEY_A)) { player.physics.addForce(new Vector3().x(-0.75f)); }
-        else if (IsKeyDown(KEY_D)) { player.physics.addForce(new Vector3().x(0.75f)); }
-        if (IsKeyDown(KEY_Q)) { player.physics.addTorque(new Vector3().y(0.2f)); }
-        else if (IsKeyDown(KEY_E)) { player.physics.addTorque(new Vector3().y(-0.2f)); }
+        if (IsKeyDown(KEY_W)) { player.physics.addForceRel(new Vector3().z(-0.75f)); }
+        else if (IsKeyDown(KEY_S)) { player.physics.addForceRel(new Vector3().z(0.75f)); }
+        if (IsKeyDown(KEY_A)) { player.physics.addForceRel(new Vector3().x(-0.75f)); }
+        else if (IsKeyDown(KEY_D)) { player.physics.addForceRel(new Vector3().x(0.75f)); }
+        //if (IsKeyDown(KEY_Q)) { player.physics.addTorqueRel(new Vector3().y(0.2f)); }
+        //else if (IsKeyDown(KEY_E)) { player.physics.addTorqueRel(new Vector3().y(-0.2f)); }
     }
 
     // Hovedløkke for oppdatering
