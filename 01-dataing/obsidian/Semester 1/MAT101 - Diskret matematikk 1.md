@@ -5,13 +5,15 @@
 > **Vurdering:** Skoleeksamen, 03.12.2025 kl. 09:00
 
 >[!todo]
->- [ ] Se video - Haskell Programming Full Course
->- [ ] Uke 33 - Kap. 1.2, 1.3
->- [ ] Uke 34 - Øvelse 1
->- [ ] Uke 34 - Kap. 2.1, 2.2, 2.3, 2.4
+>- [x] Se video - Haskell Programming Full Course
+>- [x] Se videospilleliste - Discrete Math (Full Course)
+>- [x] Uke 33 - Kap. 1.2, 1.3
+>- [x] Uke 34 - Øvelse 1
+>- [x] Uke 34 - Kap. 2.1, 2.2, 2.3, 2.4
 >- [ ] Uke 35 - Kap. 3.1, 3.2, 3.3, 3.4
->- [ ] Uke 35 - Øvelse 2
->- [ ] Obligatorisk oppgave 1
+>- [x] Uke 35 - Øvelse 2
+>- [x] Uke 36 - Øvelse 3
+>- [ ] ==**Frist 12. September - Obligatorisk oppgave 1**==
 >- [ ] Uke 37 - Kap. 6.1, 6.2, 6.3
 >- [ ] Obligatorisk oppgave 2
 >- [ ] Uke 38 - Kap. 8.1, 8.2, 8.3
@@ -47,7 +49,7 @@
 **Andre linker:**
 - [List of logic symbols](https://www.wikiwand.com/en/articles/List_of_logic_symbols)
 - [Haskel installasjon](https://www.haskell.org/ghcup/)
-- [GHCi dokumentasjon](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html)
+- [GHCi Documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html)
 - [Haskell Documentation](https://www.haskell.org/documentation/)
 - [(YouTube spilleliste) Trefor Bazett - Discrete Math (Full Course)](https://www.youtube.com/playlist?list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS)
 - [(Video) Haskell Programming Full Course 2024](https://youtu.be/TklkNLihQ_A)
@@ -65,7 +67,7 @@ Start a new Haskell project in the current directory:
 Kompilere *.hs fil:
 `ghc <filnavn>.hs -o <navn>`
 
-**ghci kommandoer:**
+ghci kommandoer:
 `:quit`
 
 ```
@@ -169,6 +171,401 @@ F    F                 usann
 ∴    \therefore       gyldig argument
 
 ```
+
+
+## Notater fra "Discrete mathematics with applications":
+- - -
+### Chapter 1 - Speaking Mathematically:
+
+#### 1.1: Variables:
+
+**Universal Conditional Statements:**
+Universal statements contain some variation of the words "for every" and conditional statements contain versions of the words "if-then". A universal conditional statement is a statement that is both universal and conditional.
+"For every animal $a$, if $a$ is a dog, then $a$ is a mammal.
+
+**Universal Existential Statements:**
+Universal because the first part says that certain property is true for all objects of a given type, and existential because the second part asserts the existence of something.
+"Every real number has an additive inverse."
+
+**Existential Universal Statements:**
+First part asserts that a certain object exists and second part says that the object satisfies a certain property for all things of a certain kind.
+"There is a positive integer that is less than or equal to every positive integer."
+
+
+#### 1.2 - The Language of Sets:
+
+The word set was introduced in 1879 by Georg Cantor. A set is a collection of objects. A set is completely determined by what its elements are - not the order in which they might be listed or the fact that some elements might be listen more than once.
+
+**Set-Roster Notation:**
+$S = \{1..100\}$
+$x = 10$
+$y = 200$
+$x \in S$ - $x$ is an element of the set $S$
+$y \not\in S$ - $y$ is not an element of the set $S$
+
+**Frequently used sets:**
+$\mathbb{R}$ - The set of all real numbers
+$\mathbb{Z}$ - The set of all integers
+$\mathbb{Q}$ - The set of all rational numbers, quotients of integers
+
+Addition of a superscript + or - or the letters nonneg indicates only positive or negative or nonnegative elements of the set.
+Ex.: $\mathbb{Z}^+$ is the set of all positive integers
+
+**Set-Builder Notation:**
+Let $S$ denote a set and let $P(x)$ be a property that that elements of $S$ may or may not satisfy.
+$\{x \in S | P(x)\}$
+
+**Subsets:**
+If $A$ and $B$ are sets, then $A$ is called a subset of $B$, written $A \subseteq B$, if and only if, every element of $A$ is also an element of $B$. All sets are subsets of themselves. $A$ is a proper subset of $B$ if, and only if, very element of $A$ is in $B$ but there is at least one element of $B$ that is not in $A$. $A \not\subseteq B$ means that there is at least one element $x$ such that $x \in A$ and $x \notin B$.
+
+**Ordered Pairs:**
+Given elements $a$ and $b$, the symbol $(a, b)$ denotes the ordered pair consisting of $a$ and $b$ together with the specification that $a$ is the first element of the pair and $b$ is the second element. Two ordered pairs $(a,b)$ and $(c,d)$ are equal if, and only if, $a = c$ and $b = d$.
+
+**Ordered n-tuples:**
+Similar to ordered pairs, but with more elements.
+Ex.: An ordered 3-tuple: $(a, b, c)$
+
+**Cartesian Product:**
+Given sets $A = \{a, b, c\}$ and $B = \{1, 2, 3\}$ the Cartesian product (also called the Cross-product) $A \times B$ is the set of all ordered 2-tuples $(a,b)$ where $a \in A$ and $b \in B$. $A \times B = \{(a,1),(a,2),(a,3),(b,1),(b,2),(b,3),(c,1),(c,2),(c,3)\}$
+Symbolically: $A_1 \times A_2 \times \dots \times A_n = \{ ( a_1, a_2,\dots, a_n ) | a_1 \in A_1, a_2 \in A_2, \dots, a_n \in A_n$\}.
+
+
+#### 1.3 - The Language of Relations and Functions:
+
+**Relations:**
+Let $A$ and $B$ be sets. A relation $R$ from $A$ to $B$ is a subset of $A \times B$. Given an ordered pair $(x,y)$ in $A \times B$, $x$ is related to $y$ by $R$, written $x\ R\ y$, if and only if, $(x,y)$ is in $R$. The set $A$ is called the domain of $R$ and the set $B$ is called its co-domain.
+The notation for a relation $R$ may be written symbolically as follows:
+$x\ R\ y$ means that $(x, y) \in R$.
+The notation $x\ \not R\ y$ means that $x$ is not related to $y$ by $R$:
+$x\ \not R\ y$ means that $(x,y) \notin R$.
+
+**Arrow Diagram of a Relation:**
+Suppose $R$ is a relation from a set $A$ to a set $B$. Draw an arrow from $x$ to $y$ 
+if, and only if, $x\ R\ y$
+if, and only if, $(x,y) \in R$
+Let $A = {1,2,3}$ and $B = {1,3,5}$ and relations $S$ and $T$ are defined as follows:
+For every $(x, y) \in A \times B$,
+$(x,y) \in S$ means that $x < y$ ($S$ is a "less than" relation)
+$T = \{(2,1),(2,5)\}$.
+Arrow diagrams of the relations $S$ and $T$:
+![[screenshot_2025-09-01-193431.png]]
+These example relations illustrate that is is possible to have several arrows coming out of the same element of $A$ pointing in different directions. Also, it is possible to have an element of $A$ that does not have an arrow coming out of it at all.
+
+**Functions:**
+A function $F$ from a set $A$ to a set $B$ is a relation with domain $A$ and co-domain $B$ that satisfies the following properties:
+	1\. For every element $x$ in $A$, there is an element $y$ such that $(x,y) \in F$.
+	2\. For all elements $x$ in $A$ and $y$ and $z$ in $B$, if $(x,y) \in F$ and $(x,z) \in F$, then $y = z$.
+A less formal phrasing of the properties:
+	1\. Every element of $A$ is the first element of an ordered pair of $F$.
+	2\. No two distinct ordered pairs in $F$ have the same first element.
+If $A$ and $B$ are sets and $F$ is a function from $A$ to $B$, then given any element $x$ in $A$, the unique element in $B$ that is related to $x$ by $F$ is denoted $F(x)$, which is read "$F$ of $x$."
+Given the function $f$ and the function $g$ with the domain $A$, $f = g$, if, and only if, $f(x) = g(x)$ for all $x$ in $A$.
+
+**Summary of definitions so far:**
+- Ordered pairs can be defined in terms of sets.
+- Cartesian products can be defined in terms of ordered pairs.
+- Relations can be defined as subsets of Cartesian products.
+- Functions can be defined as relations.
+
+- - -
+
+### Chapter 2 - The Logic of Compound Statements:
+
+#### 2.1: Logical Form and Logical Equivalence:
+
+**Statement:**
+A statement (or proposition) is a sentence that is true or false but not both.
+
+**Compound statements:**
+Symbols used to build more complicated logical expressions:
+$\sim$ denotes not. $\lnot$ can also be used.
+$\land$ denotes and. $\lor$ denotes or.
+The order of operations: First $\sim$, then $\land$ / $\lor$.
+Translating from English to symbols:
+$p$ but $q$ means $p$ and $q$.
+neither $p$ nor $q$ means $\sim p$ and $\sim q$.
+
+**Negation:**
+If $p$ is a statement variable, the negation of $p$ is "not $p$" or "It is not the case that $p$" and is denoted $\sim p$. It has opposite truth value from $p$: if $p$ is true, $\sim p$ is false; if $p$ is false, $\sim p$ is true.
+
+**Conjunction:**
+If $p$ and $q$ are statement variables, the conjunction of $p$ and $q$ is "$p$ and $q$," denoted $p \land q$. It is true when, and only when, both $p$ and $q$ are true. If either $p$ or $q$ is false, or if both are false, $p \land q$ is false.
+
+**Disjunction:**
+if $p$ and $q$ are statement variables, the disjunction of $p$ and $q$ is "$p$ or $q$", denoted $p \lor q$. It is true when either $p$ is true, or $q$ is true, or both $p$ and $q$ are true; it is false only when both $p$ and $q$ are false.
+
+**Statement forms:**
+A statement form (or propositional form) is an expression made up of statement variables (such as $p$, $q$, and $r$) and logical connectives (such as $\sim$, $\land$, and $\lor$) that becomes a statement when actual statements are substituted for the component statement variables. The truth table for a given statement form displays the truth values that correspond to all possible combinations of truth values for its component statement variables.
+
+**Exclusive or:**
+When or is used in its exclusive sense, the statement "$p$ or $q$" means "$p$ or $q$ but not both", which translates into symbols as $(p \lor q) \land \sim (p \land q)$.
+Exclusive or can be written with the symbol $\oplus$.
+
+**Exclusive or truth table example:**
+
+| $p$ | $q$ | $p \lor q$ | $p \land q$ | $\sim (p \land q)$ | $(p \lor q) \land \sim (p \land q)$ |
+| --- | --- | ---------- | ----------- | ------------------ | ----------------------------------- |
+| T   | T   | T          | T           | F                  | F                                   |
+| T   | F   | T          | F           | T                  | T                                   |
+| F   | T   | T          | F           | T                  | T                                   |
+| F   | F   | F          | F           | T                  | F                                   |
+The customary order to write truth tables involving two statements: TT, TF, FT, FF.
+
+**Logical Equivalence:**
+Two statement forms are called logically equivalent if, and only if, they have identical truth values for each possible substitution of statements for their statement variables. The logical equivalence of statement forms $P$ and $Q$ is denoted by writing $P \equiv Q$. To test whether two statement forms are logically equivalent a truth table can be used. If in each row the truth value of the two truth statements are the same, then they are logically equivalent.
+Two statements are logically equivalent if, and only if, they have logically equivalent forms when identical component statement variables are used to replace identical component statements.
+
+**Double negative property:**
+$\sim (\sim p) \equiv p$
+
+**Negations of And and Or: De Morgan's Laws:**
+The negation of an and statement is logically equivalent to the or statement in which each component is negated.
+Symbolically: $\sim (p \land q) \equiv \sim p\ \lor \sim q$
+The negation of an or statement is logically equivalent to the and statement in which each component is negated.
+Symbolically: $\sim (p \lor q) \equiv \sim p\ \land \sim q$
+
+**Tautologies:**
+Ex.: $p\ \lor \sim p$.
+A tautology is a statement form that is always true regardless of the truth values of the individual statements substituted for its statement variables. A statement whose form is a tautology is a tautological statement. If $t$ is a tautology then $p \land t \equiv p$ and $p \lor t \equiv t$.
+
+**Contradictions:**
+Ex.: $p\ \land \sim p$.
+A contradiction is a statement form that is always false regardless of the truth values of the individual statements substituted for its statement variables. A statement whose form is a contradiction is a contradictory statement. If $c$ is a tautology then $p \land c \equiv c$ and $p \lor c \equiv p$.
+
+**Summary of logical Equivalences:**
+![[screenshot_2025-09-02-184606.png]]
+
+
+#### 2.2: Conditional Statements:
+
+**Conditional Statements:**
+If $p$ and $q$ are statement variables, the conditional of $q$ by $p$ is "If $p$ then $q$" or "$p$ implies $q$" and is denoted $p \rightarrow q$. It is false when $p$ is true and $q$ is false; otherwise it is true. $p \rightarrow q \equiv \sim p \lor q$. We call $p$ the hypothesis (or antecedent) of the conditional and $q$ the conclusion (or consequent). A conditional statement with a false hypothesis is considered true. In expressions that include $\rightarrow$ as well as other logical operators such as $\land$, $\lor$, and $\sim$, the order of operations is that $\rightarrow$ is performed last.
+
+**The Negation of a Conditional Statement:**
+The negation of "if $p$ then $q$" is logically equivalent to "$p$ and not $q$."
+Symbolically: $\sim ( p \rightarrow q ) \equiv p\ \land \sim q$
+
+**The Contrapositive of a Conditional Statement:**
+One of the most fundamental laws of logic is the equivalence between a conditional statement and its contrapositive. The contrapositive of a conditional statement of the form "If $p$ then $q$" is "If $\sim q$ then $\sim p$.
+Symbolically: The contrapositive of $p \rightarrow q$ is $\sim q \rightarrow \sim p$.
+$p \rightarrow q \equiv \sim q \rightarrow \sim p$
+
+**The Converse and Inverse of a Conditional Statement:**
+These two variants of conditional statements are not logically equivalent to the statement. Suppose a conditional statement of the form "If $p$ then $q$" is given. The converse is "If $q$ then $p$." The inverse is "If $\sim p$ then $q$." The converse and the inverse of a conditional statement are logically equivalent to each other.
+Symbolically:
+The converse of $p \rightarrow q$ is $q \rightarrow p$,
+and the inverse of $p \rightarrow q$ is $\sim p \rightarrow \sim q$,
+they are logically equivalent: $q \rightarrow p \equiv \sim p \rightarrow \sim q$.
+
+**Biconditional Statements:**
+Given statement variables $p$ and $q$, the biconditional of $p$ and $q$ is "$p$ if, and only if, $q$" and is denoted $p \leftrightarrow q$. It is true if both $p$ and $q$ have the same truth values and is false if $p$ and $q$ have opposite truth values.
+Symbolically: $p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p) \equiv (\sim p \lor q) \land (\sim q \lor p)$.
+
+**Necessary and Sufficient Conditions:**
+If $r$ and $s$ are statements:
+$r$ is a sufficient condition for $s$ means "if $r$ then $s$" or that the occurrence of $r$ is sufficient to guarantee the occurrence of $s$.
+$r$ is a necessary condition for $s$ means "if not $r$ then not $s$" or that if $r$ does not occur, then $s$ cannot occur either.
+
+**Order of Operations for Logical Operators:**
+1. $\sim$ is performed is performed first
+2. Then $\land$ and $\lor$
+3. And finally $\rightarrow$ and $\leftrightarrow$
+
+**Summary of Symbolical Representation for Conditional Statements:**
+1. Conditional Statement: $p \rightarrow q \equiv \sim p \lor q$
+2. Negation: $\sim ( p \rightarrow q ) \equiv p\ \land \sim q$
+3. Contrapositive: $p \rightarrow q \equiv \sim q \rightarrow \sim p$
+4. Converse: $p \rightarrow q \not\equiv q \rightarrow p$
+5. Inverse: $p \rightarrow q \not\equiv \sim p \rightarrow \sim q$
+
+
+#### 2.3: Valid and Invalid Arguments:
+
+**Arguments:**
+An argument is a sequence of statements, and an argument form is a sequence of statement forms. All statements in an argument and all statement forms in an argument form, except for the final one, are called premises (or assumptions or hypotheses). The final statement or statement form is called the conclusion. The symbol $\therefore$, which is read "therefore," is normally placed just before the conclusion. To say an argument form is valid means that no matter what particular statements are substituted for the statement variables in its premises, if the resulting premises are all true, then the conclusion is also true. To say that an argument is valid means that its form is valid. When an argument is valid and its premises are true, the truth of the conclusion is said to be inferred or deduced from the truth of the premises. A truth table can be used to determine validity or invalidity of an argument. We can only be sure that an argument is true when we know that the argument is sound. An argument is called sound if, and only if, it is valid and all its premises are true. An argument that is not sound is called unsound.
+
+**Rules of Inference:**
+A rule of inference is a form of argument that is valid. Here are some examples:
+1. Modus Ponens
+2. Modus Tollens
+3. Generalization
+4. Specialization
+5. Elimination
+6. Transitivity
+7. Proof by Division into Cases
+
+**Modus Ponens:**
+An argument form consisting of two premises and a conclusion is called a syllogism. The first and second premises are called the major premise and minor premise.The most famous form of syllogism in logic is called modus ponens (latin meaning "method of affirming"). It has the following form:
+	If Socrates is a man, then Socrates is mortal.
+	Socrates is a man.
+	$\therefore$ Socrates is mortal.
+Or in abstract form:
+	If $p$ then $q$
+	$p$
+	$\therefore q$
+
+**Modus Tollens:**
+Modus tollens is Lating meaning "method of denying".
+It has the following form:
+	If Zeus is human, then Zeus is mortal.
+	Zeus is not mortal.
+	$\therefore$ Zeus is not human
+Or in abstract form:
+	If $p$ then $q$.
+	$\sim q$
+	$\therefore\ \sim p$
+
+**Generalization:**
+	$p$
+	$\therefore\ p \lor q$
+
+**Specialization:**
+	$p \land q$
+	$\therefore\ p$
+
+**Elimination:**
+	$p \lor q$
+	$\sim q$
+	$\therefore\ p$
+
+**Transitivity:**
+	$p \rightarrow q$
+	$q \rightarrow r$
+	$\therefore\ p \rightarrow r$
+
+**Proof by Division into Cases:**
+	$p \lor q$
+	$p \rightarrow r$
+	$q \rightarrow r$
+	$\therefore\ r$
+
+**Fallacies:**
+A fallacy is an error in reasoning that results in an invalid argument. Three common fallacies are:
+1. Using ambiguous premises, and treating them as if they were unambiguous
+2. Circular reasoning (assuming what is to proved without having derived it from the premises)
+3. Jumping to a conclusion (without adequate grounds).
+
+**The Converse Error Fallacy:**
+Converse error is also known as the fallacy of affirming the consequent.
+	$p \rightarrow q$
+	$q$
+	$\therefore\ p$
+
+**The Inverse Error Fallacy:**
+Inverse error is also known as the fallacy of denying the antecedent.
+	$p \rightarrow q$
+	$\sim p$
+	$\therefore\ \sim q$
+
+**A Valid Argument with a False Premise and a False Conclusion:**
+The example argument is valid my modus ponens. But its major premise is false, and so is its conclusion:
+	If Spot is a dog, then Spot is eating yoghurt for breakfast.
+	Spot is a dog.
+	$\therefore$ Spot is eating yoghurt for breakfast.
+
+**An Invalid Argument with True Premises and a True Conclusion:**
+The following argument is invalid by the converse error, but has a true conclusion:
+	If New York is a big city, then New York has tall buildings.
+	New York has tall buildings.
+	$\therefore$ New York is a big city.
+
+**Contradiction rule:**
+If you can show that the supposition that statement $p$ is false leads logically to a contradiction, then you can conclude that $p$ is true.
+	$\sim p \rightarrow c$, where $c$ is a contradiction
+	$\therefore p$
+
+**Summary of Rules of Inference:**
+![[screenshot_2025-09-02-220743.png]]
+
+#### 2.4: (Application) Digital Logic Circuits:
+
+Electrical engineers generally use the symbols 1 and 0 rather than T and F to denote true and false values. 0 and 1 are called bits, short for binary digits.
+
+Any variable, such as a statement variable or an input signal, that can take one of only two values is called a Boolean variable. An expression composed of Boolean variables and the connectives $\sim$, $\land$, and $\lor$ is called a Boolean expression.
+
+**Black box:**
+A black box is a circuit where the detailed implementation is often ignored while attention is focus on the relation between the input and the output.
+
+**Recognizer:**
+A recognizer is a circuit that outputs a 1 for exactly one particular combination of input signals and outputs 0's for all other combinations.
+Ex.: $(P \land Q)\ \land \sim R$
+
+**Types of gates:**
+- NOT
+- AND
+- OR
+- NAND (AND + NOT)
+- NOR (OR + NOT)
+
+- - -
+### Chapter 3 - The Logic of Quantified Statements:
+
+#### 3.1: Predicates and Quantified Statements I:
+
+**Predicate:**
+A predicate is a sentence that contains a finite number of variables and becomes a statement when specific values are substituted for the variables. The domain of a predicate variable is the set of all values that may be substituted in place of the variable.
+
+**Truth Set;**
+If $P(x)$ is a predicate and $x$ has domain $D$, the truth set of $P(x)$ is the set of all elements of $D$ that make $P(x)$ true when they are substituted for $x$. The truth set of $P(x)$ is denoted: $\{ x \in D\ |\ P(x)\}$
+Let $P(x)$ and $Q(x)$ be predicates and suppose the common domain of $x$ is $D$.
+The notation $P(x) \Rightarrow Q(x)$ means that every element in the truth set of $P(x)$ is in the truth set of $Q(x)$, or, equivalently, $\forall x, P(x) \rightarrow Q(x)$.
+The notation $P(x) \Leftrightarrow Q(x)$ means that $P(x)$ and $Q(x)$ have identical truth sets, or, equivalently, $\forall x , P(x) \leftrightarrow Q(x)$.
+
+**The Universal Quantifier $\forall$:**
+Let $Q(x)$ be a predicate and $D$ the domain of $x$. A universal statement is a statement of the form "$\forall x \in D, Q(x)$." It is defined to be true if, and only if, $Q(x)$ is true for each individual $xx$ in $D$. It is defined to be false if, and only if, $Q(x)$ is false for at least one $x$ in $D$. A value for $x$ for which $Q(x)$ is false is called a counterexample to the universal statement.
+
+**The Existential Quantifier $\exists$:**
+Let $Q(x)$ be a predicate and $D$ the domain of $x$. An existential statement is a statement of the form "$\exists x \in D$ such that $Q(x)$." It is defined to be true if, and only if, $Q(x)$ is true for at least one $x$ in $D$. It is false if, and only if, $Q(x)$ is false for all $x$ in $D$.
+
+**Universal Conditional Statement:**
+It is common to omit explicit identification of the domain of predicate variables in universal conditional statements.
+$\forall x$, if $P(x)$ then $Q(x)$.
+$\forall x, P(x) \rightarrow Q(x)$
+
+#### 3.2: Predicates and Quantified Statements II:
+
+#### 3.3: Statements with Multiple Quantifiers:
+
+#### 3.4: Arguments with Quantified Statements:
+- - -
+### Chapter 6 - Set Theory:
+
+#### 6.1: Set Theory - Definitions and the Element Method of Proof
+#### 6.2: Properties of Sets
+#### 6.3: Disproofs and Algebraic Proofs
+- - -
+### Chapter 8 - Properties of Relations:
+#### 8.1: Relations on Sets
+#### 8.2: Reflexivity, Symmetry, and Transitivity
+#### 8.3: Equivalence Relations
+#### 8.5: Partial Order Relations
+- - -
+### Chapter 7 - Properties of Functions:
+#### 7.1: Functions Defined on General Sets
+#### 7.2: One-to-One, Onto, and Inverse Functions
+#### 7.3: Composition of Functions
+- - -
+### Chapter 5 - Sequences, Mathematical Induction, and Recursion:
+#### 5.1: Sequences
+#### 5.2: Mathematical Induction I: Proving Formulas
+#### 5.3: Mathematical Induction II: Applications 
+#### 5.6: Defining Sequences Recursively
+#### 5.9: General Recursive Definitions and Structural Induction
+- - -
+### Chapter 4 - Elementary Number Theory and Methods of Proof:
+#### 4.4: Direct Proof and Counterexample IV: Divisibility
+#### 4.5: Direct Proof and Counterexample V: Division into Cases and the Quotient-Remainder Theorem
+- - -
+#### 2.5: Application: Number Systems and Circuits for Addition
+#### 1.4: The Language of Graphs
+- - -
+### Chapter 10 - Theory of Graphs and Trees:
+#### 10.1: Trails, Paths, and Circuits
+#### 10.2: Matrix Representation of Graphs
+#### 10.3: Isomorphisms of Graphs
+#### 10.4: Trees: Examples and Basic Properties
+#### 10.5: Rooted Trees
+#### 10.6: Spanning Trees and a Shortest Path Algorithm
 
 
 ## Notater fra "Discrete Math (Full Course)" av Trefor Bazett:
@@ -394,18 +791,37 @@ F    F                 usann
 		Hence, $\exists p_3 \in \mathbb{Z}, \exists q_3 \in \mathbb{Z} \setminus\{0\}$ so $m + n = \frac{p_3}{q_3}$
 		Thus $m + n$ is rational. $\blacksquare$
 
+**Proving that divisibility is transitive:**
+	...
 
-## Notater fra "Discrete mathematics with applications":
-- - -
-**Kapittel 1 - ...:**
- 
-...
+**Disproving implications with counterexamples:**
+	...
 
-- - -
+**Proof of division into cases:**
+	...
+**Proof by contradiction:**
+	...
 
-**Kapittel 2 - ...:**
+**Proof by contrapositive:**
+	...
 
-...
+**Quotient-remainder theorem and modular arithmetic:**
+	...
+
+**Proof: There are infinitely many prime numbers:**
+	...
+
+**Introduction to sequences:**
+	...
+
+**The formal definition of a sequence:**
+	...
+
+**The sum and product of infinite sequences:**
+	...
+
+**Intro to Mathematical Induction:**
+	...
 
 
 ## Notater fra forelesninger:

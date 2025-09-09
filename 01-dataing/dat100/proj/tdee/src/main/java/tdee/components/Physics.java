@@ -32,8 +32,8 @@ public class Physics implements Component {
     private float friction;
 
     // Flagg
-    boolean flagGravityField = false;
-    private float gravityField = 2f;
+    //boolean flagGravityField = false;
+    //private float gravityField = 2f;
     
     // Statiske fysikkvariabler
     private static final Vector3 g = new Vector3().y(-9.8f);
@@ -128,7 +128,7 @@ public class Physics implements Component {
     // Oppdatering
     public void update(float dt) {
         // Legg til eksterne krefter fra omgivelsene
-        forceGravity();
+        //forceGravity();
         // Akselerasjon er lik krefter delt på masse (F = ma  ->  a = F / m  ->  a = F * (1 / m))
         acc = Vector3Scale(force, invM);
         // Integrer akselerasjon over tid for å finne endring i fart fart (v = at)
@@ -160,7 +160,8 @@ public class Physics implements Component {
                 }
                 // Sjekk kube / kube kollisjon
                 else if (a.physics.shape == Shape.CUBE && b.physics.shape == Shape.CUBE) {
-                    checkCollisionAABB(a, b);
+                    //checkCollisionAABB(a, b);
+                    checkCollisionPointAABB(a, b);
                 }
             }
         });
@@ -183,7 +184,7 @@ public class Physics implements Component {
         }
     }
     
-    // AABB boks kollisjon
+    // AABB / AABB kollisjon
     private static void checkCollisionAABB(Entity a, Entity b) {
         float size = a.physics.size * 0.5f;
         Vector3[] vertsA = new Vector3[2];
@@ -225,6 +226,66 @@ public class Physics implements Component {
             contactFriction(a, b);
         }
     }
+
+    /*
+    // AABB / punkt kollisjon
+    private static void checkCollisionPointAABB(Entity a, Entity b) {
+        float size = a.physics.size * 0.5f;
+        Vector3[] vertsA = new Vector3[2];
+        vertsA[0] = new Vector3().x(-size).y(-size).z(-size);
+        vertsA[1] = new Vector3().x( size).y( size).z( size);
+        size = b.physics.size * 0.5f;
+        Vector3[] vertsB = new Vector3[8];
+        vertsB[0] = new Vector3().x(-size).y(-size).z(-size);
+        vertsB[1] = new Vector3().x( size).y(-size).z(-size);
+        vertsB[2] = new Vector3().x( size).y( size).z(-size);
+        vertsB[3] = new Vector3().x(-size).y( size).z(-size);
+        //vertsB[4] = new Vector3().x(-size).y( size).z( size);
+        //vertsB[5] = new Vector3().x(-size).y(-size).z( size);
+        //vertsB[6] = new Vector3().x( size).y(-size).z( size);
+        //vertsB[7] = new Vector3().x( size).y( size).z( size);
+        vertsB[4] = new Vector3().x( size).y(-size).z( size);
+        vertsB[5] = new Vector3().x(-size).y(-size).z( size);
+        vertsB[6] = new Vector3().x(-size).y( size).z( size);
+        vertsB[7] = new Vector3().x( size).y( size).z( size);
+        Vector3 vaMin = vertsA[0];
+        Vector3 vaMax = vertsA[1];
+
+        for (int i = 0; i < vertsB.length; i++) {
+            Vector3 vb = a.worldToLocal(b.localToWorld(vertsB[i]));
+            if (
+                vb.x() >= vaMin.x() &&
+                vb.x() <= vaMax.x() &&
+                vb.y() >= vaMin.y() &&
+                vb.y() <= vaMax.y() &&
+                vb.z() >= vaMin.z() &&
+                vb.z() <= vaMax.z()
+            ) {
+            // Finn normalretning for kollisjonen og penetrasjonsdybde
+            Vector3 normal = Vector3Normalize(Vector3Subtract(vertsB[7-i], vertsB[i]));
+            float depth = 0.1f;
+            //Vector3 diff = vb;
+            //float depth = diff.x();
+            //Vector3 normal = new Vector3().x(depth < 0f ? -1f : 1f);
+            //if (Math.abs(diff.y()) > Math.abs(depth)) {
+            //    depth = diff.y(); 
+            //    normal = new Vector3().y(depth < 0f ? -1f : 1f);
+            //}
+            //if (Math.abs(diff.z()) > Math.abs(depth)) {
+            //    depth = diff.z();
+            //    normal = new Vector3().z(depth < 0f ? -1f : 1f);
+            //}
+            //depth = 0.01f;
+            // Løs penetrasjon og kollisjon
+            resolvePenetration(a, b, normal, depth);
+            resolveCollision(a, b, normal);
+            //contactFriction(a, b);
+            System.out.println(GetTime() + ": Collision! Depth: " + depth);
+            }
+        }
+
+    }
+    */
     
     // Løs penetrasjon med forflytting
     private static void resolvePenetration(Entity a, Entity b, Vector3 normal, float depth) {

@@ -34,7 +34,7 @@ public class Program {
         // Entity set up
         player = new Entity(new Vector3().y(0.5f), Physics.Shape.CUBE, 1f, 1f);
         new Entity(new Vector3().y(0.5f).z(-2f), Physics.Shape.CUBE, 1f, 1f);
-        new Entity(new Vector3().y(-10f), Physics.Shape.CUBE, 20f, 0f);
+        //new Entity(new Vector3().y(-10f), Physics.Shape.CUBE, 20f, 0f);
         // Kamera set up
         camera = new Camera(player);
     }

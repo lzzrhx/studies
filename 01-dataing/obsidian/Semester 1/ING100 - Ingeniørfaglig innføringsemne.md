@@ -8,14 +8,28 @@
 >- [x] Se videoforelesninger - [Prosjektteori](https://hvl.instructure.com/courses/31657/pages/prosjektteori)
 >- [x] Se videoforelesninger - [Akademisk skriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
 >- [ ] Se videoforelesninger - [Rapportskriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
->- [ ] Semesteroppgave (4000 tegn)
+>- [ ] ==**[Frist 13. November - Semesteroppgave, Artikkel om teknologi (4000 tegn)](https://hvl.instructure.com/courses/31657/assignments/93557)**==
 
 **Idéer til tema for semesteroppgave:**
 - Fantasy consoles og PICO-8 - Flott undervisningsverktøy for introduksjon til programmering med LUA
 - Arkadekabinett - Med fokus på tidlige 3D spill på 90-tallet
+- GPU programmeringspråk - Typer og bruksområde
 - Playstation 1 - Om Ken Kutaragi, hardware- og utviklingshistorie
 - GPU historie - 90-tallet -> nå
 - Historie av Raspberry Pi og single-board computer (SBC)
+
+**PICO-8:**
+- [(Video) The world of PICO-8: A video essay](https://youtu.be/U1spY0Z-RDg)
+- [(Video) PRACTICE 2018: Joseph White](https://youtu.be/87jfTIWosBw)
+- [PICO-8 Manual](https://www.lexaloffle.com/dl/docs/pico-8_manual.html)
+- [x] Les manualen:
+	- [x] 1. Getting Started
+	- [x] 2. Editing Tools
+	- [x] 3. Exporters / Importers
+	- [x] 4. Lua Syntax Primer
+	- [x] 5. PICO-8 Program Structure
+	- [x] 6. API Reference
+	- [x] 7. Appendix
 
 ## Notater:
 - - -

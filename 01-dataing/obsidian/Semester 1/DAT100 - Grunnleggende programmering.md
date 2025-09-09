@@ -15,18 +15,18 @@
 >- [x] Uke 36 - Lese kapittel 5
 >- [x] Uke 36 - JP3
 >- [x] Uke 38 - Lese kapittel 6
->- [ ] Uke 38 - JP4
->- [ ] Uke 39 - JP5
->- [ ] Uke 40 - JP6
->- [ ] Uke 41 - **Levere oppgave 2**
+>- [ ] Uke 38 - JP5
+>- [ ] Uke 39 - JP6
+>- [ ] Uke 40 - JP7
+>- [ ] Uke 41 - **==Levere oppgave 2==**
 >- [x] Uke 41 - Lese kapittel 7
->- [ ] Uke 42 - **Levere prosjekt**
+>- [ ] Uke 42 - **==Levere prosjekt==**
 >- [x] Uke 42 - Lese kapittel 9
->- [ ] Uke 43 - JP7
->- [ ] Uke 44 - **Levere oppgave 3**
->- [ ] Uke 44 - JP8
->- [ ] Uke 46 - JP9
->- [ ] Uke 47 - JP10
+>- [ ] Uke 43 - JP8
+>- [ ] Uke 44 - **==Levere oppgave 3==**
+>- [ ] Uke 44 - JP9
+>- [ ] Uke 46 - JP10
+>- [ ] Uke 47 - JP11
 
 | Uke | Undervisning #1      | Undervisning #2      | Lab                | Hovedfrister  |
 | --- | -------------------- | -------------------- | ------------------ | ------------- |
@@ -60,10 +60,12 @@
 - [JavaFX nettside](https://openjfx.io/)
 - [JavaFX dokumentasjon](https://openjfx.io/javadoc/11/)
 - [Dokumentasjon for Java-biblioteket](https://docs.oracle.com/en/java/javase/24/docs/api)
+- [jaylib](github.com/electronstudio/jaylib)
+- [raylib package contents](https://electronstudio.github.io/jaylib/com/raylib/package-summary.html)
+- [raylib cheat sheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
 
 **Arch pakker:**
-`sudo pacman -S jdk-openjdk intellij-idea-community-edition`
-
+`sudo pacman -S jdk-openjdk maven intellij-idea-community-edition`
 
 
 ## Notater fra "Forstå programmering med Java":

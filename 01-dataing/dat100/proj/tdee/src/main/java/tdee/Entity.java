@@ -28,6 +28,7 @@ public class Entity {
         this.num++;
         this.id = this.num;
         entities.add(this);
+        if (this.id == 1) {rot.y((float)Math.PI * 0.25f);}
         pos(pos);
     }
 
@@ -48,6 +49,10 @@ public class Entity {
 
     public Vector3 localToWorld(Vector3 pos) {
         return Vector3Transform(pos, matrix);
+    }
+
+    public Vector3 worldToLocal(Vector3 pos) {
+        return Vector3Transform(pos, MatrixInvert(matrix));
     }
 
     // Getter for id
