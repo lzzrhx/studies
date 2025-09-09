@@ -1,7 +1,5 @@
 package tdee;
 
-import tdee.components.*;
-
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
@@ -15,8 +13,8 @@ public class Program {
     // Entity variabler
     private static Entity player;
     private static Entity box;
-    private static Entity ball;
-    private static Entity ground;
+    //private static Entity ball;
+    //private static Entity ground;
 
     // Kamera
     private static Camera camera;
@@ -38,10 +36,10 @@ public class Program {
         player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
         box = new Entity(new Vector3().x(1f).y(0.5f).z(-2f));
         box.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
-        ball = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
-        ball.addSpherePhysics(0.5f, 1f);
-        ground = new Entity(new Vector3().y(-10f));
-        ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
+        //ball = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
+        //ball.addSpherePhysics(0.5f, 1f);
+        //ground = new Entity(new Vector3().y(-10f));
+        //ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
         // Kamera set up
         camera = new Camera(player);
     }
@@ -88,8 +86,8 @@ public class Program {
         if (IsKeyDown(KEY_A)) { player.physics.addForceRel(new Vector3().x(-0.75f)); }
         else if (IsKeyDown(KEY_D)) { player.physics.addForceRel(new Vector3().x(0.75f)); }
         if (IsKeyDown(KEY_SPACE)) { player.physics.addForceRel(new Vector3().y(12f)); }
-        //if (IsKeyDown(KEY_Q)) { player.physics.addTorqueRel(new Vector3().y(0.2f)); }
-        //else if (IsKeyDown(KEY_E)) { player.physics.addTorqueRel(new Vector3().y(-0.2f)); }
+        if (IsKeyDown(KEY_Q)) { player.physics.addTorqueRel(new Vector3().y(0.2f)); }
+        else if (IsKeyDown(KEY_E)) { player.physics.addTorqueRel(new Vector3().y(-0.2f)); }
     }
 
     // Hovedløkke for oppdatering

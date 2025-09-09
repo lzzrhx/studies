@@ -1,13 +1,16 @@
-package tdee.components;
+package tdee.components.physics;
 
 import tdee.Entity;
+import tdee.components.Component;
+import tdee.Logger;
+
 import tdee.Draw3;
 
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
 public class Physics implements Component {
-    
+
     // Objektvariabler
     Entity parent;
 
@@ -155,7 +158,7 @@ public class Physics implements Component {
                 }
                 // Sjekk kube / kube kollisjon
                 else if (a.physics.shape instanceof Cube && b.physics.shape instanceof Cube) {
-                    checkCollisionAABB(a, b);
+                    checkCollisionCubeCube(a, b);
                 }
             }
         });
@@ -179,108 +182,50 @@ public class Physics implements Component {
             resolveCollision(a, b, normal);
         }
     }
-    
-    // AABB / AABB kollisjon - Enkel, virker kun når alle sider er like lange
-    private static void checkCollisionAABB(Entity a, Entity b) {
+
+    private static void checkCollisionCubeCube(Entity a, Entity b) {
         Cube aCube = (Cube)a.physics.shape;
         Cube bCube = (Cube)b.physics.shape;
-        Vector3 vaMin = aCube.vertsWorld()[0];
-        Vector3 vaMax = aCube.vertsWorld()[7];
-        Vector3 vbMin = bCube.vertsWorld()[0];
-        Vector3 vbMax = bCube.vertsWorld()[7];
-        // Sjekk om kube B er inni A
-        if (
-            vbMin.x() <= vaMax.x() &&
-            vbMax.x() >= vaMin.x() &&
-            vbMin.y() <= vaMax.y() &&
-            vbMax.y() >= vaMin.y() &&
-            vbMin.z() <= vaMax.z() &&
-            vbMax.z() >= vaMin.z()
-        ) {
-            // Finn normalretning for kollisjonen og penetrasjonsdybde
-            Vector3 diff = Vector3Subtract(b.pos(), a.pos());
-            float dist = diff.x();
-            Vector3 normal = new Vector3().x(dist < 0f ? -1f : 1f);
-            
-            float depth = (aCube.size().x() * 0.5f + bCube.size().x() * 0.5f) - (float)Math.abs(dist);
-
-            if (Math.abs(diff.y()) > Math.abs(dist)) {
-                dist = diff.y(); 
-                normal = new Vector3().y(dist < 0f ? -1f : 1f);
-                depth = (aCube.size().y() * 0.5f + bCube.size().y() * 0.5f) - (float)Math.abs(dist);
+        Matrix aMatrix = MatrixRotateXYZ(a.rot());
+        Matrix bMatrix = MatrixRotateXYZ(b.rot());
+        Vector3[] axes = new Vector3[15];
+        axes[0]  = Vector3Transform(Vector3UnitX(), aMatrix);
+        axes[1]  = Vector3Transform(Vector3UnitY(), aMatrix);
+        axes[2]  = Vector3Transform(Vector3UnitZ(), aMatrix);
+        axes[3]  = Vector3Transform(Vector3UnitX(), bMatrix);
+        axes[4]  = Vector3Transform(Vector3UnitY(), bMatrix);
+        axes[5]  = Vector3Transform(Vector3UnitZ(), bMatrix);
+        axes[6]  = Vector3CrossProduct(axes[0], axes[3]);
+        axes[7]  = Vector3CrossProduct(axes[0], axes[4]);
+        axes[8]  = Vector3CrossProduct(axes[0], axes[5]);
+        axes[9]  = Vector3CrossProduct(axes[1], axes[3]);
+        axes[10] = Vector3CrossProduct(axes[1], axes[4]);
+        axes[11] = Vector3CrossProduct(axes[1], axes[5]);
+        axes[12] = Vector3CrossProduct(axes[2], axes[3]);
+        axes[13] = Vector3CrossProduct(axes[2], axes[4]);
+        axes[14] = Vector3CrossProduct(axes[2], axes[5]);
+        boolean collision = true;
+        for (int i = 0; i < 15; i++) {
+            if (axes[i] == Vector3Zero()) { break; }
+            float aMin = Float.MAX_VALUE;
+            float aMax = Float.MIN_VALUE;
+            float bMin = Float.MAX_VALUE;
+            float bMax = Float.MIN_VALUE;
+            for (int j = 0; j < 8; j++) {
+                float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axes[i]);
+                if (aProj < aMin) { aMin = aProj; }
+                if (aProj > aMax) { aMax = aProj; }
+                float bProj = Vector3DotProduct(bCube.vertsWorld()[j], axes[i]);
+                if (bProj < bMin) { bMin = bProj; }
+                if (bProj > bMax) { bMax = bProj; }
             }
-            if (Math.abs(diff.z()) > Math.abs(dist)) {
-                dist = diff.z();
-                normal = new Vector3().z(dist < 0f ? -1f : 1f);
-                depth = (aCube.size().z() * 0.5f + bCube.size().z() * 0.5f) - (float)Math.abs(dist);
-            }
-
-            // Løs penetrasjon og kollisjon
-            resolvePenetration(a, b, normal, depth);
-            resolveCollision(a, b, normal);
-            contactFriction(a, b);
+            float lon = (float)Math.max(aMax, bMax) - (float)Math.min(aMin, bMin);
+            float sum = aMax - aMin + bMax - bMin;
+            if (lon >= sum) { collision = false; break; }
         }
+        // TODO: lagre normalvektor og dybde + løse kollisjon
+        if (collision == true) { Logger.log( GetTime() + " Collision!"); }
     }
-
-    /*
-    // AABB / punkt kollisjon
-    private static void checkCollisionPointAABB(Entity a, Entity b) {
-        float size = a.physics.size * 0.5f;
-        Vector3[] vertsA = new Vector3[2];
-        vertsA[0] = new Vector3().x(-size).y(-size).z(-size);
-        vertsA[1] = new Vector3().x( size).y( size).z( size);
-        size = b.physics.size * 0.5f;
-        Vector3[] vertsB = new Vector3[8];
-        vertsB[0] = new Vector3().x(-size).y(-size).z(-size);
-        vertsB[1] = new Vector3().x( size).y(-size).z(-size);
-        vertsB[2] = new Vector3().x( size).y( size).z(-size);
-        vertsB[3] = new Vector3().x(-size).y( size).z(-size);
-        //vertsB[4] = new Vector3().x(-size).y( size).z( size);
-        //vertsB[5] = new Vector3().x(-size).y(-size).z( size);
-        //vertsB[6] = new Vector3().x( size).y(-size).z( size);
-        //vertsB[7] = new Vector3().x( size).y( size).z( size);
-        vertsB[4] = new Vector3().x( size).y(-size).z( size);
-        vertsB[5] = new Vector3().x(-size).y(-size).z( size);
-        vertsB[6] = new Vector3().x(-size).y( size).z( size);
-        vertsB[7] = new Vector3().x( size).y( size).z( size);
-        Vector3 vaMin = vertsA[0];
-        Vector3 vaMax = vertsA[1];
-
-        for (int i = 0; i < vertsB.length; i++) {
-            Vector3 vb = a.worldToLocal(b.localToWorld(vertsB[i]));
-            if (
-                vb.x() >= vaMin.x() &&
-                vb.x() <= vaMax.x() &&
-                vb.y() >= vaMin.y() &&
-                vb.y() <= vaMax.y() &&
-                vb.z() >= vaMin.z() &&
-                vb.z() <= vaMax.z()
-            ) {
-            // Finn normalretning for kollisjonen og penetrasjonsdybde
-            Vector3 normal = Vector3Normalize(Vector3Subtract(vertsB[7-i], vertsB[i]));
-            float depth = 0.1f;
-            //Vector3 diff = vb;
-            //float depth = diff.x();
-            //Vector3 normal = new Vector3().x(depth < 0f ? -1f : 1f);
-            //if (Math.abs(diff.y()) > Math.abs(depth)) {
-            //    depth = diff.y(); 
-            //    normal = new Vector3().y(depth < 0f ? -1f : 1f);
-            //}
-            //if (Math.abs(diff.z()) > Math.abs(depth)) {
-            //    depth = diff.z();
-            //    normal = new Vector3().z(depth < 0f ? -1f : 1f);
-            //}
-            //depth = 0.01f;
-            // Løs penetrasjon og kollisjon
-            resolvePenetration(a, b, normal, depth);
-            resolveCollision(a, b, normal);
-            //contactFriction(a, b);
-            System.out.println(GetTime() + ": Collision! Depth: " + depth);
-            }
-        }
-
-    }
-    */
     
     // Løs penetrasjon med forflytting
     private static void resolvePenetration(Entity a, Entity b, Vector3 normal, float depth) {

@@ -1,4 +1,4 @@
-package tdee.components;
+package tdee.components.physics;
 
 public class Sphere implements CollisionShape {
     

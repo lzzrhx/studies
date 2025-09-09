@@ -1,5 +1,7 @@
 package tdee;
+
 import tdee.components.*;
+import tdee.components.physics.*;
 
 import java.util.ArrayList;
 import static com.raylib.Raylib.*;
