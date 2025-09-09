@@ -38,7 +38,6 @@ public class Draw3 {
 
     // Flat sirkel
     public static void circle(float radius, Matrix matrix, Color color) {
-        radius *= 0.5f;
         int points = 20 + (int)(radius * 4f);
         Vector3[] circlePoints = new Vector3[points];
         for (int i = 0; i < points; i++) {
@@ -64,15 +63,15 @@ public class Draw3 {
     }
     
     // Kule
-    public static void sphere(float size, Matrix matrix, Color color) {
-        circle(size, MatrixMultiply(MatrixIdentity(), matrix), color);
+    public static void sphere(float radius, Matrix matrix, Color color) {
+        circle(radius, MatrixMultiply(MatrixIdentity(), matrix), color);
         int slices = 4;
         for (int i = 0; i < slices; i++) {
             float rot = (1f / (float)(slices + 1)) * ((float)i + 1f);
-            circle(size, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * rot).z((float)Math.PI * 0.00f))), matrix), color);
-            circle(size, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * rot).z((float)Math.PI * 0.50f))), matrix), color);
-            circle(size, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * 0.00f).z((float)Math.PI * rot))), matrix), color);
-            circle(size, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * 0.50f).z((float)Math.PI * rot))), matrix), color);
+            circle(radius, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * rot).z((float)Math.PI * 0.00f))), matrix), color);
+            circle(radius, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * rot).z((float)Math.PI * 0.50f))), matrix), color);
+            circle(radius, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * 0.00f).z((float)Math.PI * rot))), matrix), color);
+            circle(radius, MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(new Vector3().x((float)Math.PI * 0.50f).z((float)Math.PI * rot))), matrix), color);
         }
     }
     
@@ -88,32 +87,6 @@ public class Draw3 {
         points[5] = Vector3Transform(new Vector3().x( size).y( size).z( size), matrix);
         points[6] = Vector3Transform(new Vector3().x(-size).y(-size).z( size), matrix);
         points[7] = Vector3Transform(new Vector3().x( size).y(-size).z( size), matrix);
-        DrawLine3D(points[0], points[1], color);
-        DrawLine3D(points[2], points[3], color);
-        DrawLine3D(points[0], points[2], color);
-        DrawLine3D(points[1], points[3], color);
-        DrawLine3D(points[4], points[5], color);
-        DrawLine3D(points[6], points[7], color);
-        DrawLine3D(points[4], points[6], color);
-        DrawLine3D(points[5], points[7], color);
-        DrawLine3D(points[0], points[4], color);
-        DrawLine3D(points[1], points[5], color);
-        DrawLine3D(points[2], points[6], color);
-        DrawLine3D(points[3], points[7], color);
-    }
-    
-    // Skip placeholder
-    public static void ship(float size, Matrix matrix, Color color) {
-        size *= 0.5f;
-        Vector3[] points = new Vector3[8];
-        points[0] = Vector3Transform(new Vector3().x(-size / 2f).y( size / 2f).z(-size), matrix);
-        points[1] = Vector3Transform(new Vector3().x( size / 2f).y( size / 2f).z(-size), matrix);
-        points[2] = Vector3Transform(new Vector3().x(-size / 2f).y(-size / 2f).z(-size), matrix);
-        points[3] = Vector3Transform(new Vector3().x( size / 2f).y(-size / 2f).z(-size), matrix);
-        points[4] = Vector3Transform(new Vector3().x(-size / 2f).y( size / 2f).z( size), matrix);
-        points[5] = Vector3Transform(new Vector3().x( size / 2f).y( size / 2f).z( size), matrix);
-        points[6] = Vector3Transform(new Vector3().x(-size / 2f).y(-size / 2f).z( size), matrix);
-        points[7] = Vector3Transform(new Vector3().x( size / 2f).y(-size / 2f).z( size), matrix);
         DrawLine3D(points[0], points[1], color);
         DrawLine3D(points[2], points[3], color);
         DrawLine3D(points[0], points[2], color);

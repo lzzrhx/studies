@@ -23,23 +23,28 @@ public class Entity {
     private ArrayList<Component> components = new ArrayList<Component>();
     public Physics physics;
 
-    // Konstruktør med fysikk
+    // Konstruktør
     public Entity(Vector3 pos) {
         this.num++;
         this.id = this.num;
         entities.add(this);
-        if (this.id == 1) {rot.y((float)Math.PI * 0.25f);}
         pos(pos);
     }
 
-    public Entity(Vector3 pos, Physics.Shape shape, float size, float mass) {
-        this(pos);
-        addPhysics(shape, size, mass);
+    // Legg til fysikk komponent med kubegeometri
+    public void addCubePhysics(Vector3 size, float mass) {
+        if (physics == null) {
+            physics = new Physics(this, size, mass, 0.5f, 0.5f);
+            components.add(physics);
+        }
     }
-
-    public void addPhysics(Physics.Shape shape, float size, float mass) {
-        physics = new Physics(this, shape, size, mass);
-        components.add(physics);
+    
+    // Legg til fysikk komponent med kulegeometri
+    public void addSpherePhysics(float radius, float mass) {
+        if (physics == null) {
+            physics = new Physics(this, radius, mass, 0.5f, 0.5f);
+            components.add(physics);
+        }
     }
 
     // Statisk getter for entities
@@ -47,10 +52,12 @@ public class Entity {
         return entities;
     }
 
+    // Konverter lokale koordinater til verdenskordinater
     public Vector3 localToWorld(Vector3 pos) {
         return Vector3Transform(pos, matrix);
     }
 
+    // Konverter verdenskordinater til lokale kordinater
     public Vector3 worldToLocal(Vector3 pos) {
         return Vector3Transform(pos, MatrixInvert(matrix));
     }
@@ -65,6 +72,7 @@ public class Entity {
         return this.pos;
     }
 
+    // Oppdater matrisen for legemet
     private void updateMatrix() {
         matrix = MatrixMultiply(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(rot)), MatrixTranslate(pos.x(), pos.y(), pos.z()));
     }

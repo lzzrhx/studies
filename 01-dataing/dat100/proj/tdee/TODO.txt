@@ -7,3 +7,5 @@
  - Joystick-kontroll for kamerazoom?
  - Kule / kube kollisjon
  - Objekter med gravitasjonsfelt
+ - Separating axis theorem kollisjonsalgoritme
+ - "Broad phase" -> "narrow phase"

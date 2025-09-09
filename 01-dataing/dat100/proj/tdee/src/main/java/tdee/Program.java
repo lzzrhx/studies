@@ -1,6 +1,6 @@
 package tdee;
 
-import tdee.components.Physics;
+import tdee.components.*;
 
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
@@ -14,7 +14,9 @@ public class Program {
     
     // Entity variabler
     private static Entity player;
-    //private static Entity circle;
+    private static Entity box;
+    private static Entity ball;
+    private static Entity ground;
 
     // Kamera
     private static Camera camera;
@@ -32,9 +34,14 @@ public class Program {
         InitWindow(screenWidth, screenHeight, "tdee");
         SetTargetFPS(30);
         // Entity set up
-        player = new Entity(new Vector3().y(0.5f), Physics.Shape.CUBE, 1f, 1f);
-        new Entity(new Vector3().y(0.5f).z(-2f), Physics.Shape.CUBE, 1f, 1f);
-        //new Entity(new Vector3().y(-10f), Physics.Shape.CUBE, 20f, 0f);
+        player = new Entity(new Vector3().y(0.5f));
+        player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
+        box = new Entity(new Vector3().x(1f).y(0.5f).z(-2f));
+        box.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
+        ball = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
+        ball.addSpherePhysics(0.5f, 1f);
+        ground = new Entity(new Vector3().y(-10f));
+        ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
         // Kamera set up
         camera = new Camera(player);
     }
@@ -113,8 +120,6 @@ public class Program {
     private static void render2() {
         DrawFPS(2, 2);
         DrawText(("pos x: " + Float.toString(player.pos().x()) + "   y: " + Float.toString(player.pos().y()) + "   z: " + Float.toString(player.pos().z())).toUpperCase(), 2, 20, 10, WHITE);
-        DrawText(("vel x: " + Float.toString(player.physics.velLocal().x()) + "   y: " + Float.toString(player.physics.velLocal().y()) + "   z: " + Float.toString(player.physics.velLocal().z())).toUpperCase(), 2, 30, 10, WHITE);
-        DrawText(("ang vel x: " + Float.toString(player.physics.angVel().x()) + "   y: " + Float.toString(player.physics.angVel().y()) + "   z: " + Float.toString(player.physics.angVel().z())).toUpperCase(), 2, 40, 10, WHITE);
     }
 
 }

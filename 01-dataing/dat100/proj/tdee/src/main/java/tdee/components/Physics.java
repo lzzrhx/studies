@@ -7,19 +7,12 @@ import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
 public class Physics implements Component {
-
-    // Entity typer
-    public enum Shape {
-        CUBE,
-        SPHERE;
-    }
-
+    
     // Objektvariabler
     Entity parent;
 
     // Fysikkvariabler
-    private Shape shape;
-    private float size;
+    private CollisionShape shape;
     private Vector3 force = new Vector3();
     private Vector3 acc = new Vector3();
     private Vector3 vel = new Vector3();
@@ -30,36 +23,36 @@ public class Physics implements Component {
     private Vector3 angVel = new Vector3();
     private float restitution;
     private float friction;
-
-    // Flagg
-    //boolean flagGravityField = false;
-    //private float gravityField = 2f;
     
     // Statiske fysikkvariabler
     private static final Vector3 g = new Vector3().y(-9.8f);
 
-    // Konstruktør
-    public Physics(Entity parent, Shape shape, float size, float mass) {
-        this(parent, shape, size, mass, 0.5f, 0.5f);
-    }
-
-    // Konstruktør
-    public Physics(Entity parent, Shape shape, float size, float mass, float restitution, float friction) {
+    // Konstruktør for kube
+    public Physics(Entity parent, Vector3 size, float mass, float restitution, float friction) {
         this.parent = parent;
-        this.shape = shape;
-        this.size = size;
+        this.shape = new Cube(this, size);
+        this.restitution = restitution;
+        this.friction = friction;
+        mass(mass);
+    }
+    
+    // Konstruktør for kule
+    public Physics(Entity parent, float radius, float mass, float restitution, float friction) {
+        this.parent = parent;
+        this.shape = new Sphere(this, radius);
         this.restitution = restitution;
         this.friction = friction;
         mass(mass);
     }
 
+    // Getter for parent
+    public Entity parent() {
+        return parent;
+    }
+
     // Getter for vel
     public Vector3 vel() {
         return vel;
-    }
-
-    public Vector3 velLocal() {
-        return Vector3Transform(vel, MatrixInvert(MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(parent.rot()))));
     }
     
     // Getter for ang vel
@@ -115,13 +108,13 @@ public class Physics implements Component {
 
     // Tegning av 3D grafikk
     public void render3() {
-        switch (shape) {
-            case CUBE:
-                Draw3.cube(size, parent.matrix(), RED);
-                break;
-            case SPHERE:
-                Draw3.sphere(size, parent.matrix(), RED);
-                break;
+        if (shape instanceof Sphere) {
+            Sphere sphere = (Sphere)shape;
+            Draw3.sphere(sphere.radius() , parent.matrix(), WHITE);
+        }
+        else if (shape instanceof Cube) {
+            Cube cube = (Cube)shape;
+            cube.draw(WHITE);
         }
     }
     
@@ -145,6 +138,8 @@ public class Physics implements Component {
         parent.rot(Vector3Add(parent.rot(), Vector3Scale(angVel, dt)));
         // Nullstill moment
         torque = Vector3Zero();
+        // Oppdatering av kollisjons geometri
+        shape.update();
         // Sjekk kollisjon med andre legemer
         checkCollision();
     }
@@ -155,13 +150,12 @@ public class Physics implements Component {
         Entity.entities().forEach( b -> {
             if (b != a && b.physics != null) {
                 // Sjekk kule / kule kollisjon
-                if (a.physics.shape == Shape.SPHERE && b.physics.shape == Shape.SPHERE) {
+                if (a.physics.shape instanceof Sphere && b.physics.shape instanceof Sphere) {
                     checkCollisionSphereSphere(a, b);
                 }
                 // Sjekk kube / kube kollisjon
-                else if (a.physics.shape == Shape.CUBE && b.physics.shape == Shape.CUBE) {
-                    //checkCollisionAABB(a, b);
-                    checkCollisionPointAABB(a, b);
+                else if (a.physics.shape instanceof Cube && b.physics.shape instanceof Cube) {
+                    checkCollisionAABB(a, b);
                 }
             }
         });
@@ -169,8 +163,10 @@ public class Physics implements Component {
     
     // Kule / Kule kollisjon
     private static void checkCollisionSphereSphere(Entity a, Entity b) {
-        float aRadius = a.physics.size * 0.5f;
-        float bRadius = b.physics.size * 0.5f;
+        Sphere aSphere = (Sphere)a.physics.shape;
+        Sphere bSphere = (Sphere)b.physics.shape;
+        float aRadius = aSphere.radius();
+        float bRadius = bSphere.radius();
         Vector3 normal = Vector3Subtract(b.pos(), a.pos());
         if (Vector3LengthSqr(normal) <= (aRadius + bRadius) * (aRadius + bRadius)) {
             // Kontakt detaljer
@@ -184,20 +180,14 @@ public class Physics implements Component {
         }
     }
     
-    // AABB / AABB kollisjon
+    // AABB / AABB kollisjon - Enkel, virker kun når alle sider er like lange
     private static void checkCollisionAABB(Entity a, Entity b) {
-        float size = a.physics.size * 0.5f;
-        Vector3[] vertsA = new Vector3[2];
-        vertsA[0] = new Vector3().x(-size).y(-size).z(-size);
-        vertsA[1] = new Vector3().x( size).y( size).z( size);
-        size = b.physics.size * 0.5f;
-        Vector3[] vertsB = new Vector3[2];
-        vertsB[0] = new Vector3().x(-size).y(-size).z(-size);
-        vertsB[1] = new Vector3().x( size).y( size).z( size);
-        Vector3 vaMin = a.localToWorld(vertsA[0]);
-        Vector3 vaMax = a.localToWorld(vertsA[1]);
-        Vector3 vbMin = b.localToWorld(vertsB[0]);
-        Vector3 vbMax = b.localToWorld(vertsB[1]);
+        Cube aCube = (Cube)a.physics.shape;
+        Cube bCube = (Cube)b.physics.shape;
+        Vector3 vaMin = aCube.vertsWorld()[0];
+        Vector3 vaMax = aCube.vertsWorld()[7];
+        Vector3 vbMin = bCube.vertsWorld()[0];
+        Vector3 vbMax = bCube.vertsWorld()[7];
         // Sjekk om kube B er inni A
         if (
             vbMin.x() <= vaMax.x() &&
@@ -209,17 +199,22 @@ public class Physics implements Component {
         ) {
             // Finn normalretning for kollisjonen og penetrasjonsdybde
             Vector3 diff = Vector3Subtract(b.pos(), a.pos());
-            float depth = diff.x();
-            Vector3 normal = new Vector3().x(depth < 0f ? -1f : 1f);
-            if (Math.abs(diff.y()) > Math.abs(depth)) {
-                depth = diff.y(); 
-                normal = new Vector3().y(depth < 0f ? -1f : 1f);
+            float dist = diff.x();
+            Vector3 normal = new Vector3().x(dist < 0f ? -1f : 1f);
+            
+            float depth = (aCube.size().x() * 0.5f + bCube.size().x() * 0.5f) - (float)Math.abs(dist);
+
+            if (Math.abs(diff.y()) > Math.abs(dist)) {
+                dist = diff.y(); 
+                normal = new Vector3().y(dist < 0f ? -1f : 1f);
+                depth = (aCube.size().y() * 0.5f + bCube.size().y() * 0.5f) - (float)Math.abs(dist);
             }
-            if (Math.abs(diff.z()) > Math.abs(depth)) {
-                depth = diff.z();
-                normal = new Vector3().z(depth < 0f ? -1f : 1f);
+            if (Math.abs(diff.z()) > Math.abs(dist)) {
+                dist = diff.z();
+                normal = new Vector3().z(dist < 0f ? -1f : 1f);
+                depth = (aCube.size().z() * 0.5f + bCube.size().z() * 0.5f) - (float)Math.abs(dist);
             }
-            depth = ((float)Math.abs(a.physics.size * 0.5f + b.physics.size * 0.5f) - (float)Math.abs(depth));
+
             // Løs penetrasjon og kollisjon
             resolvePenetration(a, b, normal, depth);
             resolveCollision(a, b, normal);
