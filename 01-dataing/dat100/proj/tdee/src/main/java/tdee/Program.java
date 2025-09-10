@@ -34,7 +34,7 @@ public class Program {
         // Entity set up
         player = new Entity(new Vector3().y(0.5f));
         player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
-        box = new Entity(new Vector3().x(1f).y(0.5f).z(-2f));
+        box = new Entity(new Vector3().x(2f).y(0.5f).z(-2f));
         box.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
         //ball = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
         //ball.addSpherePhysics(0.5f, 1f);

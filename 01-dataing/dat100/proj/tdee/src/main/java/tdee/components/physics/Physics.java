@@ -183,18 +183,18 @@ public class Physics implements Component {
         }
     }
 
+    // OBB / OBB kollisjonsjekk ved bruke av Separating Axis Theorem algoritme
     private static void checkCollisionCubeCube(Entity a, Entity b) {
         Cube aCube = (Cube)a.physics.shape;
         Cube bCube = (Cube)b.physics.shape;
-        Matrix aMatrix = MatrixRotateXYZ(a.rot());
-        Matrix bMatrix = MatrixRotateXYZ(b.rot());
+        // Definer 15 akser som skal sjekkes
         Vector3[] axes = new Vector3[15];
-        axes[0]  = Vector3Transform(Vector3UnitX(), aMatrix);
-        axes[1]  = Vector3Transform(Vector3UnitY(), aMatrix);
-        axes[2]  = Vector3Transform(Vector3UnitZ(), aMatrix);
-        axes[3]  = Vector3Transform(Vector3UnitX(), bMatrix);
-        axes[4]  = Vector3Transform(Vector3UnitY(), bMatrix);
-        axes[5]  = Vector3Transform(Vector3UnitZ(), bMatrix);
+        axes[0]  = Vector3Normalize(Vector3Subtract(aCube.vertsWorld()[1], aCube.vertsWorld()[0]));
+        axes[1]  = Vector3Normalize(Vector3Subtract(aCube.vertsWorld()[3], aCube.vertsWorld()[0]));
+        axes[2]  = Vector3Normalize(Vector3Subtract(aCube.vertsWorld()[4], aCube.vertsWorld()[3]));
+        axes[3]  = Vector3Normalize(Vector3Subtract(bCube.vertsWorld()[1], bCube.vertsWorld()[0]));
+        axes[4]  = Vector3Normalize(Vector3Subtract(bCube.vertsWorld()[3], bCube.vertsWorld()[0]));
+        axes[5]  = Vector3Normalize(Vector3Subtract(bCube.vertsWorld()[4], bCube.vertsWorld()[3]));
         axes[6]  = Vector3CrossProduct(axes[0], axes[3]);
         axes[7]  = Vector3CrossProduct(axes[0], axes[4]);
         axes[8]  = Vector3CrossProduct(axes[0], axes[5]);
@@ -204,27 +204,35 @@ public class Physics implements Component {
         axes[12] = Vector3CrossProduct(axes[2], axes[3]);
         axes[13] = Vector3CrossProduct(axes[2], axes[4]);
         axes[14] = Vector3CrossProduct(axes[2], axes[5]);
+        // Anta at kollisjon har sjedd frem til en separert akse er funnet
         boolean collision = true;
+        Vector3 normal = Vector3Zero();
+        float depth = Float.MAX_VALUE;
         for (int i = 0; i < 15; i++) {
-            if (axes[i] == Vector3Zero()) { break; }
-            float aMin = Float.MAX_VALUE;
-            float aMax = Float.MIN_VALUE;
-            float bMin = Float.MAX_VALUE;
-            float bMax = Float.MIN_VALUE;
-            for (int j = 0; j < 8; j++) {
-                float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axes[i]);
-                if (aProj < aMin) { aMin = aProj; }
-                if (aProj > aMax) { aMax = aProj; }
-                float bProj = Vector3DotProduct(bCube.vertsWorld()[j], axes[i]);
-                if (bProj < bMin) { bMin = bProj; }
-                if (bProj > bMax) { bMax = bProj; }
+            if (Vector3Equals(axes[i], Vector3Zero()) == 0) {
+                float aMin = Float.MAX_VALUE;
+                float aMax = Float.MIN_VALUE;
+                float bMin = Float.MAX_VALUE;
+                float bMax = Float.MIN_VALUE;
+                for (int j = 0; j < 8; j++) {
+                    float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axes[i]);
+                    if (aProj < aMin) { aMin = aProj; }
+                    if (aProj > aMax) { aMax = aProj; }
+                    float bProj = Vector3DotProduct(bCube.vertsWorld()[j], axes[i]);
+                    if (bProj < bMin) { bMin = bProj; }
+                    if (bProj > bMax) { bMax = bProj; }
+                }
+                float lon = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
+                float sum = aMax - aMin + bMax - bMin;
+                if (lon >= sum) { collision = false; break; }
+                else if (sum - lon < depth && i != 1) { depth = sum - lon; normal = (aMax - bMin) < (bMax - bMin) ? axes[i] : Vector3Negate(axes[i]);  }
             }
-            float lon = (float)Math.max(aMax, bMax) - (float)Math.min(aMin, bMin);
-            float sum = aMax - aMin + bMax - bMin;
-            if (lon >= sum) { collision = false; break; }
         }
-        // TODO: lagre normalvektor og dybde + løse kollisjon
-        if (collision == true) { Logger.log( GetTime() + " Collision!"); }
+        if (collision == true) {
+            //if (collision == true) { Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z())); }
+            resolvePenetration(a, b, normal, depth);
+            resolveCollision(a, b, normal);
+        }
     }
     
     // Løs penetrasjon med forflytting
