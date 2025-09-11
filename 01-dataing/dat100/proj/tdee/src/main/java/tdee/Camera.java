@@ -8,7 +8,7 @@ public class Camera {
     private static final float CAMERA_SPEED_PAN = 0.05f;
     private static final float CAMERA_SPEED_DISTANCE = 0.1f;
     private Camera3D camera;
-    private Vector2 rot = new Vector2().y((float)Math.PI * 0.25f);
+    private Vector2 rot = new Vector2().x((float)Math.PI * 0.1f).y((float)Math.PI * 0.25f);
     private Vector3 pos = new Vector3();
     private Vector3 up = new Vector3().y(1f);
     private Entity target;

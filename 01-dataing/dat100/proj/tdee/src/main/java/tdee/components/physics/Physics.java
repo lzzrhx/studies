@@ -3,6 +3,7 @@ package tdee.components.physics;
 import tdee.Entity;
 import tdee.components.Component;
 import tdee.Logger;
+import tdee.Program;
 
 import tdee.Draw3;
 
@@ -66,7 +67,7 @@ public class Physics implements Component {
     // Oppdatering av masse
     private void mass(float mass) {
         this.mass = mass;
-        this.invM = mass > 0.001f ? 1f / mass : 0f;
+        this.invM = mass > 0.0001f ? 1f / mass : 0f;
     }
     
     // Legg til kraft på legemet med Vector3 koordinater relativt til legemets rotasjon
@@ -112,14 +113,7 @@ public class Physics implements Component {
 
     // Tegning av 3D grafikk
     public void render3() {
-        if (shape instanceof Sphere) {
-            Sphere sphere = (Sphere)shape;
-            Draw3.sphere(sphere.radius() , parent.matrix(), WHITE);
-        }
-        else if (shape instanceof Cube) {
-            Cube cube = (Cube)shape;
-            cube.draw(WHITE);
-        }
+        shape.render3(WHITE);
     }
     
     // Oppdatering
@@ -145,13 +139,11 @@ public class Physics implements Component {
             torque = Vector3Zero();
             // Oppdatering av kollisjons geometri
             shape.update();
-            // Sjekk kollisjon med andre legemer
-            checkCollision();
         }
     }
     
     // Sjekk kollisjon
-    private void checkCollision() {
+    public void checkCollision() {
         Entity a = parent;
         Entity.entities().forEach( b -> {
             if (b != a && b.physics != null) {
@@ -162,6 +154,14 @@ public class Physics implements Component {
                 // Sjekk kube / kube kollisjon
                 else if (a.physics.shape instanceof Cube && b.physics.shape instanceof Cube) {
                     checkCollisionCubeCube(a, b);
+                }
+                // Sjekk kube / kule kollisjon
+                else if (a.physics.shape instanceof Cube && b.physics.shape instanceof Sphere) {
+                    checkCollisionCubeSphere(a, b);
+                }
+                // Sjekk kule / kube kollisjon
+                else if (a.physics.shape instanceof Sphere && b.physics.shape instanceof Cube) {
+                    checkCollisionCubeSphere(b, a);
                 }
             }
         });
@@ -186,6 +186,7 @@ public class Physics implements Component {
         }
     }
 
+    // TODO: må gjøres bedre:
     // OBB / OBB kollisjonsjekk ved bruk av Separating Axis Theorem algoritme
     private static void checkCollisionCubeCube(Entity a, Entity b) {
         Cube aCube = (Cube)a.physics.shape;
@@ -207,6 +208,7 @@ public class Physics implements Component {
         axes[12] = Vector3CrossProduct(axes[2], axes[3]);
         axes[13] = Vector3CrossProduct(axes[2], axes[4]);
         axes[14] = Vector3CrossProduct(axes[2], axes[5]);
+        int normalIndex = 0;
         // Let etter separasjon mellom a og b på alle 15 akser, anta kollisjon frem til separasjon er funnet
         boolean collision = true;
         Vector3 normal = Vector3Zero();
@@ -221,28 +223,67 @@ public class Physics implements Component {
                 float bMax = -Float.MAX_VALUE;
                 for (int j = 0; j < 8; j++) {
                     float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axes[i]);
-                    if (aProj < aMin) { aMin = aProj;}
-                    if (aProj > aMax) { aMax = aProj;}
+                    if (aProj < aMin) { aMin = aProj; }
+                    if (aProj > aMax) { aMax = aProj; }
                     float bProj = Vector3DotProduct(bCube.vertsWorld()[j], axes[i]);
-                    if (bProj < bMin) { bMin = bProj;}
-                    if (bProj > bMax) { bMax = bProj;}
+                    if (bProj < bMin) { bMin = bProj; }
+                    if (bProj > bMax) { bMax = bProj; }
                 }
                 // Sammenlign a og b projeksjonen og lagre overlapp
                 float abProjLengthMerged = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
                 float abProjLength = aMax - aMin + bMax - bMin;
-                float abProjOverlap = abProjLength - abProjLengthMerged;
+                float abProjOverlap = abProjLength - abProjLengthMerged;                
+                float abDepth = (aMax < bMax) ? ( (aMin > bMin) ? (float)Math.min(aMax - bMin, bMax - aMin) : (abProjOverlap) ) : ( (bMin > aMin) ? (float)Math.min(bMax - aMin, aMax - bMin) : (abProjOverlap) );
                 // Hvis overlapp er negativt er en akse med separasjon funnet og søket kan avsluttes
                 if (abProjOverlap < 0f) { collision = false; break; }
                 // Lagre informasjon om aksen med minst overlapp (aksen der kollisjon har funnet sted)
-                else if (abProjOverlap < depth) { depth = abProjOverlap; normal = (aMax - bMin) < (bMax - bMin) ? axes[i] : Vector3Negate(axes[i]);  }
+                else if (abDepth < depth) {
+                    normalIndex = i; 
+                    depth = abDepth;
+                }
             }
         }
         // Løs kollisjonen
         if (collision == true) {
-            //Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z()));
-            resolvePenetration(a, b, normal, depth);
-            resolveCollision(a, b, normal);
-            //contactFriction(a, b);
+                normal = (Vector3DotProduct(b.pos(), axes[normalIndex]) > Vector3DotProduct(a.pos(), axes[normalIndex])) ? axes[normalIndex] : Vector3Negate(axes[normalIndex]);
+                if (a.id() == 1) { Logger.log( GetTime() + " Collision! index: " + normalIndex + " depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z())); }
+            if (Program.debugCollision) {
+                resolvePenetration(a, b, normal, depth);
+                resolveCollision(a, b, normal);
+                //contactFriction(a, b);
+            }
+        }
+    }
+    
+    // TODO: må gjøres bedre:
+    // OBB / Kule kollisjonsjekk
+    private static void checkCollisionCubeSphere(Entity a, Entity b) {
+        Cube aCube = (Cube)a.physics.shape;
+        Sphere bSphere = (Sphere)b.physics.shape;
+        Vector3 axis = Vector3Subtract(a.pos(), b.pos());
+        float aMin = Float.MAX_VALUE;
+        float aMax = -Float.MAX_VALUE;
+        for (int j = 0; j < 8; j++) {
+            float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axis);
+            if (aProj < aMin) { aMin = aProj; }
+            if (aProj > aMax) { aMax = aProj; }
+        }
+        float bMid = Vector3DotProduct(b.pos(), axis);
+        float bMin = bMid - bSphere.radius();
+        float bMax = bMid + bSphere.radius();
+        // Sammenlign a og b projeksjonen og lagre overlapp
+        float abProjLengthMerged = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
+        float abProjLength = aMax - aMin + bMax - bMin;
+        float abProjOverlap = abProjLength - abProjLengthMerged;                
+        float depth = (aMax < bMax) ? ( (aMin > bMin) ? (float)Math.min(aMax - bMin, bMax - aMin) : (abProjOverlap) ) : ( (bMin > aMin) ? (float)Math.min(bMax - aMin, aMax - bMin) : (abProjOverlap) );
+        if (abProjOverlap > 0f) {
+            Vector3 normal = (Vector3DotProduct(b.pos(), axis) > Vector3DotProduct(a.pos(), axis)) ? axis : Vector3Negate(axis);
+            if (a.id() == 1) { Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z())); }
+            if (Program.debugCollision) {
+                resolvePenetration(a, b, normal, depth);
+                resolveCollision(a, b, normal);
+                //contactFriction(a, b);
+            }
         }
     }
     

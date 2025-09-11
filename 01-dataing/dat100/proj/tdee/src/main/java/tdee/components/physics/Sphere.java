@@ -1,5 +1,8 @@
 package tdee.components.physics;
 
+import tdee.Draw3;
+
+import static com.raylib.Raylib.*;
 public class Sphere implements CollisionShape {
     
     // Objektvariabler
@@ -19,6 +22,11 @@ public class Sphere implements CollisionShape {
 
     // Oppdatering
     public void update() {
+    }
+    
+    // Tegning av 3D grafikk
+    public void render3(Color color) {
+        Draw3.sphere(radius, parent.parent.matrix(), color);
     }
 
 }

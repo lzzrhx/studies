@@ -9,10 +9,13 @@ public class Program {
     // Variabler for programinstillinger
     private static int screenWidth = 1200;
     private static int screenHeight = 900;
-    
+   
+    // Debug variabler
+    public static boolean debugCollision = true;
+
     // Entity variabler
     private static Entity player;
-    private static Entity[] boxes = new Entity[3];
+    private static Entity[] boxes = new Entity[4];
     private static Entity[] balls = new Entity[3];
     //private static Entity ground;
 
@@ -30,7 +33,7 @@ public class Program {
     private static void init() {
         Logger.log("Initializing program");
         InitWindow(screenWidth, screenHeight, "tdee");
-        SetTargetFPS(30);
+        SetTargetFPS(60);
         // Entity set up
         player = new Entity(new Vector3().y(0.5f));
         player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
@@ -39,10 +42,13 @@ public class Program {
         boxes[0].addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
 
         boxes[1] = new Entity(new Vector3().x(1.5f).y(1f).z(-3.5f));
-        boxes[1].addCubePhysics(new Vector3().x(2f).y(2f).z(1f), 1f);
+        boxes[1].addCubePhysics(new Vector3().x(2f).y(2f).z(1f), 2f);
 
         boxes[2] = new Entity(new Vector3().x(2.5f).y(0.25f).z(-2f));
         boxes[2].addCubePhysics(new Vector3().x(1f).y(0.5f).z(1f), 1f);
+        
+        boxes[3] = new Entity(new Vector3().x(0f).y(2f).z(6f));
+        boxes[3].addCubePhysics(new Vector3().x(4f).y(4).z(4f), 4f);
 
         balls[0] = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
         balls[0].addSpherePhysics(0.5f, 1f);
@@ -50,8 +56,10 @@ public class Program {
         balls[1].addSpherePhysics(0.5f, 1f);
         balls[2] = new Entity(new Vector3().x(-2.5f).y(0.5f).z(-2f));
         balls[2].addSpherePhysics(0.5f, 1f);
+        
         //ground = new Entity(new Vector3().y(-10f));
         //ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
+
         // Kamera set up
         camera = new Camera(player);
     }
@@ -94,6 +102,7 @@ public class Program {
         //if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_TRIGGER_1)) { player.physics.addTorqueRel(new Vector3().z(0.15f)); }
         //if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_TRIGGER_1)) { player.physics.addTorqueRel(new Vector3().z(-0.15f)); }
         // Tastatur
+        if (IsKeyPressed(KEY_C)) { debugCollision = !debugCollision; }
         if (IsKeyDown(KEY_W)) { player.physics.addForceRel(new Vector3().z(-0.75f)); }
         else if (IsKeyDown(KEY_S)) { player.physics.addForceRel(new Vector3().z(0.75f)); }
         if (IsKeyDown(KEY_A)) { player.physics.addForceRel(new Vector3().x(-0.75f)); }
@@ -106,7 +115,7 @@ public class Program {
     // Hovedløkke for oppdatering
     private static void update() {
         float dt = GetFrameTime();
-        Entity.updateAll(dt);
+        Entity.update(dt);
         camera.update(dt);
     }
 
@@ -123,7 +132,7 @@ public class Program {
     private static void render3() {
         BeginMode3D(camera.camera());
         Draw3.grid(100, MatrixMultiply(MatrixIdentity(), MatrixTranslate((float)(int)camera.worldPos().x(), 0f, (float)(int)camera.worldPos().z())), GRAY);
-        Entity.render3All();
+        Entity.render3();
         EndMode3D();
     }
     
@@ -131,6 +140,7 @@ public class Program {
     private static void render2() {
         DrawFPS(2, 2);
         DrawText(("pos x: " + Float.toString(player.pos().x()) + "   y: " + Float.toString(player.pos().y()) + "   z: " + Float.toString(player.pos().z())).toUpperCase(), 2, 20, 10, WHITE);
+        DrawText(("collision: " + Boolean.toString(debugCollision)).toUpperCase(), 2, 30, 10, WHITE);
     }
 
 }

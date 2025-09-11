@@ -102,32 +102,25 @@ public class Entity {
     }
 
     // Oppdatering av alle Entity objekter
-    public static void updateAll(float dt) {
+    public static void update(float dt) {
         entities.forEach( entity -> {
-            entity.update(dt);
+            entity.components.forEach( component -> {
+                component.update(dt);
+            });
         });
-    }
-
-    // Oppdatering av enkelt Entity objekt
-    private void update(float dt) {
-        components.forEach( component -> {
-            component.update(dt);
+        entities.forEach( entity -> {
+            if (entity.physics != null) { entity.physics.checkCollision(); }
         });
     }
 
     // Tegning av alle Entity objekter
-    public static void render3All() {
+    public static void render3() {
         entities.forEach( entity -> {
-            entity.render3();
+            entity.components.forEach( component -> {
+                component.render3();
+            });
+            if (entity.renderAxes) { Draw3.axes(1f, entity.matrix); }
         });
     }
 
-    // Tegning av enkelt Entity objekt
-    private void render3() {
-        components.forEach( component -> {
-            component.render3();
-        });
-        if (renderAxes) { Draw3.axes(1f, matrix); }
-    }
-    
 }

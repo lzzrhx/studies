@@ -1,7 +1,6 @@
 package tdee.components.physics;
 
 import static com.raylib.Raylib.*;
-import static com.raylib.Colors.*;
 
 public class Cube implements CollisionShape {
 
@@ -50,7 +49,7 @@ public class Cube implements CollisionShape {
     }
 
     // Tegning av kube
-    public void draw(Color color) {
+    public void render3(Color color) {
         DrawLine3D(vertsWorld[0], vertsWorld[1], color);
         DrawLine3D(vertsWorld[1], vertsWorld[3], color);
         DrawLine3D(vertsWorld[1], vertsWorld[2], color);
