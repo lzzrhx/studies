@@ -31,10 +31,19 @@ public class Camera {
         return camera;
     }
 
+    // Getter for kameraposisjon
+    public Vector3 pos() {
+        return pos;
+    }
+
+    public Vector3 worldPos() {
+        return Vector3Transform(Vector3Scale(pos, (float)CAMERA_MIN_DIST + distanceMultiplier() * ((float)CAMERA_MAX_DIST - (float)CAMERA_MIN_DIST)), target.matrix());
+    }
+
     // Innputt for kamerakontroll
     public void input() {
         // Musekontroll for rotering av kamera
-        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
             Vector2 mouseDelta = Vector2Scale(GetMouseDelta(), 0.004f * speedMultiplier());
             rot.x(rot.x() - mouseDelta.x());
             rot.y(rot.y() + mouseDelta.y());
@@ -71,7 +80,7 @@ public class Camera {
         up.y((float)Math.sin(rot.y() + 0.1f));
         up.z((float)Math.cos(rot.x()) * (float)Math.cos(rot.y() + 0.1f));
         camera.up(Vector3Transform(up, MatrixMultiply(MatrixIdentity(), MatrixRotateXYZ(target.rot()))));
-        camera._position(Vector3Transform(Vector3Scale(pos, (float)CAMERA_MIN_DIST + distanceMultiplier() * ((float)CAMERA_MAX_DIST - (float)CAMERA_MIN_DIST)), target.matrix()));
+        camera._position(worldPos());
     }
 
 }

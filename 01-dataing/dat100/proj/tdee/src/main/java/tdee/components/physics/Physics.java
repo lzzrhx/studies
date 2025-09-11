@@ -105,6 +105,7 @@ public class Physics implements Component {
         angVel = Vector3Add(angVel, Vector3Scale(Vector3CrossProduct(r, j), invM));
     }
 
+    // Legg til gravitasjonskraft
     private void forceGravity() {
         addForce(Vector3Scale(g, mass));
     }
@@ -123,28 +124,30 @@ public class Physics implements Component {
     
     // Oppdatering
     public void update(float dt) {
-        // Legg til eksterne krefter fra omgivelsene
-        //forceGravity();
-        // Akselerasjon er lik krefter delt på masse (F = ma  ->  a = F / m  ->  a = F * (1 / m))
-        acc = Vector3Scale(force, invM);
-        // Integrer akselerasjon over tid for å finne endring i fart fart (v = at)
-        vel = Vector3Add(vel, Vector3Scale(acc, dt));
-        // Integrer fart over tid for å finne endring i posisjon (t = vt)
-        parent.pos(Vector3Add(parent.pos(), Vector3Scale(vel, dt)));
-        // Nullstill krefter som virker på legemet
-        force = Vector3Zero();
-        // Rotasjonsakselerasjon er like moment delt på masse
-        angAcc = Vector3Scale(torque, invM);
-        // Integrer rotasjonsakselerasjon over tid for å finne rotasjonshastighet
-        angVel = Vector3Add(angVel, Vector3Scale(angAcc, dt));
-        // Integrer rotasjonshastighet over tid for å finne endring i rotasjon
-        parent.rot(Vector3Add(parent.rot(), Vector3Scale(angVel, dt)));
-        // Nullstill moment
-        torque = Vector3Zero();
-        // Oppdatering av kollisjons geometri
-        shape.update();
-        // Sjekk kollisjon med andre legemer
-        checkCollision();
+        if (invM > 0f) {
+            // Legg til eksterne krefter fra omgivelsene
+            //forceGravity();
+            // Akselerasjon er lik krefter delt på masse (F = ma  ->  a = F / m  ->  a = F * (1 / m))
+            acc = Vector3Scale(force, invM);
+            // Integrer akselerasjon over tid for å finne endring i fart fart (v = at)
+            vel = Vector3Add(vel, Vector3Scale(acc, dt));
+            // Integrer fart over tid for å finne endring i posisjon (t = vt)
+            parent.pos(Vector3Add(parent.pos(), Vector3Scale(vel, dt)));
+            // Nullstill krefter som virker på legemet
+            force = Vector3Zero();
+            // Rotasjonsakselerasjon er like moment delt på masse
+            angAcc = Vector3Scale(torque, invM);
+            // Integrer rotasjonsakselerasjon over tid for å finne rotasjonshastighet
+            angVel = Vector3Add(angVel, Vector3Scale(angAcc, dt));
+            // Integrer rotasjonshastighet over tid for å finne endring i rotasjon
+            parent.rot(Vector3Add(parent.rot(), Vector3Scale(angVel, dt)));
+            // Nullstill moment
+            torque = Vector3Zero();
+            // Oppdatering av kollisjons geometri
+            shape.update();
+            // Sjekk kollisjon med andre legemer
+            checkCollision();
+        }
     }
     
     // Sjekk kollisjon
@@ -183,7 +186,7 @@ public class Physics implements Component {
         }
     }
 
-    // OBB / OBB kollisjonsjekk ved bruke av Separating Axis Theorem algoritme
+    // OBB / OBB kollisjonsjekk ved bruk av Separating Axis Theorem algoritme
     private static void checkCollisionCubeCube(Entity a, Entity b) {
         Cube aCube = (Cube)a.physics.shape;
         Cube bCube = (Cube)b.physics.shape;
@@ -204,34 +207,56 @@ public class Physics implements Component {
         axes[12] = Vector3CrossProduct(axes[2], axes[3]);
         axes[13] = Vector3CrossProduct(axes[2], axes[4]);
         axes[14] = Vector3CrossProduct(axes[2], axes[5]);
-        // Anta at kollisjon har sjedd frem til en separert akse er funnet
         boolean collision = true;
         Vector3 normal = Vector3Zero();
         float depth = Float.MAX_VALUE;
         for (int i = 0; i < 15; i++) {
             if (Vector3Equals(axes[i], Vector3Zero()) == 0) {
                 float aMin = Float.MAX_VALUE;
-                float aMax = Float.MIN_VALUE;
+                float aMax = -Float.MAX_VALUE;
                 float bMin = Float.MAX_VALUE;
-                float bMax = Float.MIN_VALUE;
+                float bMax = -Float.MAX_VALUE;
                 for (int j = 0; j < 8; j++) {
                     float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axes[i]);
-                    if (aProj < aMin) { aMin = aProj; }
-                    if (aProj > aMax) { aMax = aProj; }
+                    if (aProj < aMin) { aMin = aProj;}
+                    if (aProj > aMax) { aMax = aProj;}
                     float bProj = Vector3DotProduct(bCube.vertsWorld()[j], axes[i]);
-                    if (bProj < bMin) { bMin = bProj; }
-                    if (bProj > bMax) { bMax = bProj; }
+                    if (bProj < bMin) { bMin = bProj;}
+                    if (bProj > bMax) { bMax = bProj;}
                 }
-                float lon = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
-                float sum = aMax - aMin + bMax - bMin;
-                if (lon >= sum) { collision = false; break; }
-                else if (sum - lon < depth && i != 1) { depth = sum - lon; normal = (aMax - bMin) < (bMax - bMin) ? axes[i] : Vector3Negate(axes[i]);  }
+                float abProjLengthMerged = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
+                float abProjLength = aMax - aMin + bMax - bMin;
+                float abProjOverlap = abProjLength - abProjLengthMerged;
+                if (abProjOverlap < 0f) { collision = false; break; }
+                else if (abProjOverlap < depth) { depth = abProjOverlap; normal = (aMax - bMin) < (bMax - bMin) ? axes[i] : Vector3Negate(axes[i]);  }
+                /*
+                float minSep = Float.MAX_VALUE;
+                Vector3 minVert = new Vector3();
+                for (int j = 0; j < 8; j++) {
+                    for (int k = 0; k < 8; k++) {
+                        float proj = Vector3DotProduct(Vector3Subtract(bCube.vertsWorld()[k], aCube.vertsWorld()[j]), axes[i]);
+                        if (proj < minSep) {
+                            minSep = proj;
+                            minVert = bCube.vertsWorld()[k];
+                        }
+                    }
+                }
+                if (minSep > depth) {
+                    depth = minSep;
+                    normal = axes[i];
+                    point = minVert;
+                    index = i;
+                }
+                depth = (float)Math.max(depth, minSep);        
+                if (depth >= 0f) { collision = false; }
+                */
             }
         }
         if (collision == true) {
-            //if (collision == true) { Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z())); }
+            //Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z()));
             resolvePenetration(a, b, normal, depth);
             resolveCollision(a, b, normal);
+            //contactFriction(a, b);
         }
     }
     

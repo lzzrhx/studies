@@ -12,8 +12,8 @@ public class Program {
     
     // Entity variabler
     private static Entity player;
-    private static Entity box;
-    //private static Entity ball;
+    private static Entity[] boxes = new Entity[3];
+    private static Entity[] balls = new Entity[3];
     //private static Entity ground;
 
     // Kamera
@@ -34,10 +34,22 @@ public class Program {
         // Entity set up
         player = new Entity(new Vector3().y(0.5f));
         player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
-        box = new Entity(new Vector3().x(2f).y(0.5f).z(-2f));
-        box.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
-        //ball = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
-        //ball.addSpherePhysics(0.5f, 1f);
+        
+        boxes[0] = new Entity(new Vector3().x(1f).y(0.5f).z(-2f));
+        boxes[0].addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
+
+        boxes[1] = new Entity(new Vector3().x(1.5f).y(1f).z(-3.5f));
+        boxes[1].addCubePhysics(new Vector3().x(2f).y(2f).z(1f), 1f);
+
+        boxes[2] = new Entity(new Vector3().x(2.5f).y(0.25f).z(-2f));
+        boxes[2].addCubePhysics(new Vector3().x(1f).y(0.5f).z(1f), 1f);
+
+        balls[0] = new Entity(new Vector3().x(-1f).y(0.5f).z(-2f));
+        balls[0].addSpherePhysics(0.5f, 1f);
+        balls[1] = new Entity(new Vector3().x(-1f).y(0.5f).z(-3.5f));
+        balls[1].addSpherePhysics(0.5f, 1f);
+        balls[2] = new Entity(new Vector3().x(-2.5f).y(0.5f).z(-2f));
+        balls[2].addSpherePhysics(0.5f, 1f);
         //ground = new Entity(new Vector3().y(-10f));
         //ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
         // Kamera set up
@@ -75,6 +87,7 @@ public class Program {
         //else if (leftTrigger > 0.01f) { player.physics.addTorqueRel(new Vector3().y(0.5f * leftTrigger)); }
         if (Math.abs(leftStickX) > 0.1f) { player.physics.addForceRel(new Vector3().x(0.75f * leftStickX)); }
         if (Math.abs(leftStickY) > 0.1f) { player.physics.addForceRel(new Vector3().z(0.75f * leftStickY)); }
+        //if (Math.abs(rightStickX) > 0.1f) { player.physics.addForceRel(new Vector3().y(-0.2f * rightStickY)); }
         //if (Math.abs(rightStickY) > 0.1f) { player.physics.addForceRel(new Vector3().y(-12f * rightStickY)); }
         //if (Math.abs(leftStickX) > 0.1f) { player.physics.addTorqueRel(new Vector3().y(-0.20f * leftStickX)); }
         //if (Math.abs(leftStickY) > 0.1f) { player.physics.addTorqueRel(new Vector3().x(-0.15f * leftStickY)); }
@@ -85,7 +98,7 @@ public class Program {
         else if (IsKeyDown(KEY_S)) { player.physics.addForceRel(new Vector3().z(0.75f)); }
         if (IsKeyDown(KEY_A)) { player.physics.addForceRel(new Vector3().x(-0.75f)); }
         else if (IsKeyDown(KEY_D)) { player.physics.addForceRel(new Vector3().x(0.75f)); }
-        if (IsKeyDown(KEY_SPACE)) { player.physics.addForceRel(new Vector3().y(12f)); }
+        //if (IsKeyDown(KEY_SPACE)) { player.physics.addForceRel(new Vector3().y(12f)); }
         if (IsKeyDown(KEY_Q)) { player.physics.addTorqueRel(new Vector3().y(0.2f)); }
         else if (IsKeyDown(KEY_E)) { player.physics.addTorqueRel(new Vector3().y(-0.2f)); }
     }
@@ -109,7 +122,7 @@ public class Program {
     // 3D grafikk
     private static void render3() {
         BeginMode3D(camera.camera());
-        Draw3.grid(100, MatrixIdentity(), GRAY);
+        Draw3.grid(100, MatrixMultiply(MatrixIdentity(), MatrixTranslate((float)(int)camera.worldPos().x(), 0f, (float)(int)camera.worldPos().z())), GRAY);
         Entity.render3All();
         EndMode3D();
     }
