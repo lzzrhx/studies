@@ -207,11 +207,14 @@ public class Physics implements Component {
         axes[12] = Vector3CrossProduct(axes[2], axes[3]);
         axes[13] = Vector3CrossProduct(axes[2], axes[4]);
         axes[14] = Vector3CrossProduct(axes[2], axes[5]);
+        // Let etter separasjon mellom a og b på alle 15 akser, anta kollisjon frem til separasjon er funnet
         boolean collision = true;
         Vector3 normal = Vector3Zero();
         float depth = Float.MAX_VALUE;
         for (int i = 0; i < 15; i++) {
+            // Ungå sjekking på {0, 0, 0} aksene (akser med 0 i vektorprodukt mellom a og b normaler)
             if (Vector3Equals(axes[i], Vector3Zero()) == 0) {
+                // Finn projeksjon for a og b på aksen
                 float aMin = Float.MAX_VALUE;
                 float aMax = -Float.MAX_VALUE;
                 float bMin = Float.MAX_VALUE;
@@ -224,34 +227,17 @@ public class Physics implements Component {
                     if (bProj < bMin) { bMin = bProj;}
                     if (bProj > bMax) { bMax = bProj;}
                 }
+                // Sammenlign a og b projeksjonen og lagre overlapp
                 float abProjLengthMerged = (aMax > bMax ? aMax : bMax) - (aMin < bMin ? aMin : bMin);
                 float abProjLength = aMax - aMin + bMax - bMin;
                 float abProjOverlap = abProjLength - abProjLengthMerged;
+                // Hvis overlapp er negativt er en akse med separasjon funnet og søket kan avsluttes
                 if (abProjOverlap < 0f) { collision = false; break; }
+                // Lagre informasjon om aksen med minst overlapp (aksen der kollisjon har funnet sted)
                 else if (abProjOverlap < depth) { depth = abProjOverlap; normal = (aMax - bMin) < (bMax - bMin) ? axes[i] : Vector3Negate(axes[i]);  }
-                /*
-                float minSep = Float.MAX_VALUE;
-                Vector3 minVert = new Vector3();
-                for (int j = 0; j < 8; j++) {
-                    for (int k = 0; k < 8; k++) {
-                        float proj = Vector3DotProduct(Vector3Subtract(bCube.vertsWorld()[k], aCube.vertsWorld()[j]), axes[i]);
-                        if (proj < minSep) {
-                            minSep = proj;
-                            minVert = bCube.vertsWorld()[k];
-                        }
-                    }
-                }
-                if (minSep > depth) {
-                    depth = minSep;
-                    normal = axes[i];
-                    point = minVert;
-                    index = i;
-                }
-                depth = (float)Math.max(depth, minSep);        
-                if (depth >= 0f) { collision = false; }
-                */
             }
         }
+        // Løs kollisjonen
         if (collision == true) {
             //Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z()));
             resolvePenetration(a, b, normal, depth);

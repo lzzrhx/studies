@@ -3,6 +3,10 @@
 //////////////////////////////////////////////////////////////////////////////// 
 
  X Friksjonskraft
- - Separating axis theorem kollisjonsalgoritme
+ X Separating axis theorem kollisjonsalgoritme for å finne kollisjon
+ - Cube / Sphere kollisjon
+ - Bedre løsning av kollisjon
+ - Rotasjon
+ - PreSolve -> Solve -> PostSolve
  - "Broad phase" -> "narrow phase"
  - Objekter med gravitasjonsfelt
