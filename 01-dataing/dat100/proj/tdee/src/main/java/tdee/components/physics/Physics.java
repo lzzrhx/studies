@@ -4,7 +4,6 @@ import tdee.Entity;
 import tdee.components.Component;
 import tdee.Logger;
 import tdee.Program;
-
 import tdee.Draw3;
 
 import static com.raylib.Raylib.*;
@@ -255,20 +254,31 @@ public class Physics implements Component {
         }
     }
     
-    // TODO: må gjøres bedre:
+    // TODO: må gjøres bedre: mangler normal!
     // OBB / Kule kollisjonsjekk
     private static void checkCollisionCubeSphere(Entity a, Entity b) {
         Cube aCube = (Cube)a.physics.shape;
         Sphere bSphere = (Sphere)b.physics.shape;
-        Vector3 axis = Vector3Subtract(a.pos(), b.pos());
+        // Finn punktet på kuben som er nærmest kulen
+        Vector3 abAxis = Vector3Normalize(Vector3Subtract(b.pos(), a.pos()));
+        /*
+        Vector3 aPoint = Vector3Zero();
+        float pMax = -Float.MAX_VALUE;
+        for (int j = 0; j < 8; j++) {
+            float aProj = Vector3DotProduct(aCube.vertsWorld()[j], abAxis);
+            if (aProj > pMax) { pMax = aProj; aPoint = aCube.vertsWorld()[j]; }
+        }
+        // Sjekk etter kollisjon på aksen mellom kulen og nærmeste punkt
+        Vector3 pAxis = Vector3Normalize(Vector3Subtract(b.pos(), aPoint));
+        */
         float aMin = Float.MAX_VALUE;
         float aMax = -Float.MAX_VALUE;
         for (int j = 0; j < 8; j++) {
-            float aProj = Vector3DotProduct(aCube.vertsWorld()[j], axis);
+            float aProj = Vector3DotProduct(aCube.vertsWorld()[j], abAxis);
             if (aProj < aMin) { aMin = aProj; }
             if (aProj > aMax) { aMax = aProj; }
         }
-        float bMid = Vector3DotProduct(b.pos(), axis);
+        float bMid = Vector3DotProduct(b.pos(), abAxis);
         float bMin = bMid - bSphere.radius();
         float bMax = bMid + bSphere.radius();
         // Sammenlign a og b projeksjonen og lagre overlapp
@@ -277,7 +287,7 @@ public class Physics implements Component {
         float abProjOverlap = abProjLength - abProjLengthMerged;                
         float depth = (aMax < bMax) ? ( (aMin > bMin) ? (float)Math.min(aMax - bMin, bMax - aMin) : (abProjOverlap) ) : ( (bMin > aMin) ? (float)Math.min(bMax - aMin, aMax - bMin) : (abProjOverlap) );
         if (abProjOverlap > 0f) {
-            Vector3 normal = (Vector3DotProduct(b.pos(), axis) > Vector3DotProduct(a.pos(), axis)) ? axis : Vector3Negate(axis);
+            Vector3 normal = (Vector3DotProduct(b.pos(), abAxis) > Vector3DotProduct(a.pos(), abAxis)) ? abAxis : Vector3Negate(abAxis);
             if (a.id() == 1) { Logger.log( GetTime() + " Collision! depth: " + depth + " axis x: " + Float.toString(normal.x()) + " y:" + Float.toString(normal.y()) + " z:" + Float.toString(normal.z())); }
             if (Program.debugCollision) {
                 resolvePenetration(a, b, normal, depth);
@@ -296,8 +306,19 @@ public class Physics implements Component {
     }
     
     // Løs kollisjon med impuls
+    /*
     private static void resolveCollision(Entity a, Entity b, Vector3 normal) {
         float e = Math.min(a.physics.restitution, b.physics.restitution);
+        Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
+        float vRelDotNormal = Vector3DotProduct(vRel, normal);
+        float impulseMag = -(1f + e) * vRelDotNormal / (a.physics.invM + b.physics.invM);
+        Vector3 jn = Vector3Scale(normal, impulseMag);
+        a.physics.applyImpulseLinear(jn);
+        b.physics.applyImpulseLinear(Vector3Negate(jn));
+    }
+    */
+    private static void resolveCollision(Entity a, Entity b, Vector3 normal) {
+        float e = (float)Math.min(a.physics.restitution, b.physics.restitution);
         Vector3 vRel = Vector3Subtract(a.physics.vel, b.physics.vel);
         float vRelDotNormal = Vector3DotProduct(vRel, normal);
         float impulseMag = -(1f + e) * vRelDotNormal / (a.physics.invM + b.physics.invM);

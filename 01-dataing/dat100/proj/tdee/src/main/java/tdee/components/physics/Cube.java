@@ -50,6 +50,8 @@ public class Cube implements CollisionShape {
 
     // Tegning av kube
     public void render3(Color color) {
+        DrawCubeWiresV(parent.parent.pos(), size(), color);
+        /*
         DrawLine3D(vertsWorld[0], vertsWorld[1], color);
         DrawLine3D(vertsWorld[1], vertsWorld[3], color);
         DrawLine3D(vertsWorld[1], vertsWorld[2], color);
@@ -69,5 +71,6 @@ public class Cube implements CollisionShape {
         DrawLine3D(vertsWorld[6], vertsWorld[2], color);
         DrawLine3D(vertsWorld[2], vertsWorld[4], color);
         DrawLine3D(vertsWorld[0], vertsWorld[4], color);
+        */
     }
 }

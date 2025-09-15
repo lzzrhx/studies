@@ -27,8 +27,8 @@ public class Entity {
 
     // Konstruktør
     public Entity(Vector3 pos) {
-        this.num++;
-        this.id = this.num;
+        Entity.num++;
+        this.id = Entity.num;
         entities.add(this);
         pos(pos);
     }

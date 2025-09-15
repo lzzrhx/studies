@@ -11,11 +11,11 @@
 >- [x] Uke 34 - JP1
 >- [x] Uke 35 - Lese kapittel 4
 >- [x] Uke 35 - JP2
->- [x] Uke 36 - **Levere oppgave 1**
+>- [x] Uke 36 - **==Levere oppgave 1==**
 >- [x] Uke 36 - Lese kapittel 5
 >- [x] Uke 36 - JP3
 >- [x] Uke 38 - Lese kapittel 6
->- [ ] Uke 38 - JP5
+>- [x] Uke 38 - JP5
 >- [ ] Uke 39 - JP6
 >- [ ] Uke 40 - JP7
 >- [ ] Uke 41 - **==Levere oppgave 2==**

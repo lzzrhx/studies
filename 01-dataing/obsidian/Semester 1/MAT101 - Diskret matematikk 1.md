@@ -10,11 +10,12 @@
 >- [x] Uke 33 - Kap. 1.2, 1.3
 >- [x] Uke 34 - Øvelse 1
 >- [x] Uke 34 - Kap. 2.1, 2.2, 2.3, 2.4
->- [ ] Uke 35 - Kap. 3.1, 3.2, 3.3, 3.4
+>- [x] Uke 35 - Kap. 3.1, 3.2, 3.3, 3.4
 >- [x] Uke 35 - Øvelse 2
 >- [x] Uke 36 - Øvelse 3
->- [ ] ==**Frist 12. September - Obligatorisk oppgave 1**==
->- [ ] Uke 37 - Kap. 6.1, 6.2, 6.3
+>- [x] ==**Frist 12. September - Obligatorisk oppgave 1**==
+>- [x] Uke 37 - Øvelse 4
+>- [x] Uke 37 - Kap. 6.1, 6.2, 6.3
 >- [ ] Obligatorisk oppgave 2
 >- [ ] Uke 38 - Kap. 8.1, 8.2, 8.3
 >- [ ] Uke 39 - Kap. 7.1, 7.2, 7.3
@@ -168,6 +169,7 @@ F    F                 usann
 ∃    \exists           eksistenskvantoren
 ∪    \cup              union
 ∩     \cap             snitt
+\     \setminus        minus
 ∴    \therefore       gyldig argument
 
 ```
@@ -176,6 +178,9 @@ F    F                 usann
 ## Notater fra "Discrete mathematics with applications":
 - - -
 ### Chapter 1 - Speaking Mathematically:
+
+> Therefore O students study mathematics and do not build without foundations.
+> - Leonardo da Vinci (1952-1519)
 
 #### 1.1: Variables:
 
@@ -193,6 +198,9 @@ First part asserts that a certain object exists and second part says that the ob
 
 
 #### 1.2 - The Language of Sets:
+
+"... when we attempt to express in mathematical symbols a condition proposed in words. First, we must understand thoroughly the condition. Second, we must be familiar with the forms of mathematical expression."
+\- George Polyá (1987-1985)
 
 The word set was introduced in 1879 by Georg Cantor. A set is a collection of objects. A set is completely determined by what its elements are - not the order in which they might be listed or the fact that some elements might be listen more than once.
 
@@ -232,6 +240,9 @@ Symbolically: $A_1 \times A_2 \times \dots \times A_n = \{ ( a_1, a_2,\dots, a_n
 
 #### 1.3 - The Language of Relations and Functions:
 
+> Mathematics is a language.
+> - Josiah Willard Gibbs (1839-1903)
+
 **Relations:**
 Let $A$ and $B$ be sets. A relation $R$ from $A$ to $B$ is a subset of $A \times B$. Given an ordered pair $(x,y)$ in $A \times B$, $x$ is related to $y$ by $R$, written $x\ R\ y$, if and only if, $(x,y)$ is in $R$. The set $A$ is called the domain of $R$ and the set $B$ is called its co-domain.
 The notation for a relation $R$ may be written symbolically as follows:
@@ -267,11 +278,15 @@ Given the function $f$ and the function $g$ with the domain $A$, $f = g$, if, an
 - Relations can be defined as subsets of Cartesian products.
 - Functions can be defined as relations.
 
+
 - - -
 
 ### Chapter 2 - The Logic of Compound Statements:
 
 #### 2.1: Logical Form and Logical Equivalence:
+
+> Logic is a science of the necessary laws of thought, without which no employment of the understanding and the reason takes place.
+> - Immanuel Kant, 1785
 
 **Statement:**
 A statement (or proposition) is a sentence that is true or false but not both.
@@ -338,6 +353,9 @@ A contradiction is a statement form that is always false regardless of the truth
 
 #### 2.2: Conditional Statements:
 
+> ... hypotetical reasoning implies the subordination of the real to the realm of the possible ..
+> - Jean Piaget, 1972
+
 **Conditional Statements:**
 If $p$ and $q$ are statement variables, the conditional of $q$ by $p$ is "If $p$ then $q$" or "$p$ implies $q$" and is denoted $p \rightarrow q$. It is false when $p$ is true and $q$ is false; otherwise it is true. $p \rightarrow q \equiv \sim p \lor q$. We call $p$ the hypothesis (or antecedent) of the conditional and $q$ the conclusion (or consequent). A conditional statement with a false hypothesis is considered true. In expressions that include $\rightarrow$ as well as other logical operators such as $\land$, $\lor$, and $\sim$, the order of operations is that $\rightarrow$ is performed last.
 
@@ -380,6 +398,9 @@ $r$ is a necessary condition for $s$ means "if not $r$ then not $s$" or that if 
 
 
 #### 2.3: Valid and Invalid Arguments:
+
+> "Contrariwise," continued Tweedledee, "if it was so, it might be; and if it were so, it would be; but as it isn't, it ain't. That's logic.
+> - Lewis Carroll, *Through the Looking Glass*
 
 **Arguments:**
 An argument is a sequence of statements, and an argument form is a sequence of statement forms. All statements in an argument and all statement forms in an argument form, except for the final one, are called premises (or assumptions or hypotheses). The final statement or statement form is called the conclusion. The symbol $\therefore$, which is read "therefore," is normally placed just before the conclusion. To say an argument form is valid means that no matter what particular statements are substituted for the statement variables in its premises, if the resulting premises are all true, then the conclusion is also true. To say that an argument is valid means that its form is valid. When an argument is valid and its premises are true, the truth of the conclusion is said to be inferred or deduced from the truth of the premises. A truth table can be used to determine validity or invalidity of an argument. We can only be sure that an argument is true when we know that the argument is sound. An argument is called sound if, and only if, it is valid and all its premises are true. An argument that is not sound is called unsound.
@@ -477,7 +498,11 @@ If you can show that the supposition that statement $p$ is false leads logically
 **Summary of Rules of Inference:**
 ![[screenshot_2025-09-02-220743.png]]
 
+
 #### 2.4: (Application) Digital Logic Circuits:
+
+> Only connect!
+> - E.M. Forster, *Howards End*
 
 Electrical engineers generally use the symbols 1 and 0 rather than T and F to denote true and false values. 0 and 1 are called bits, short for binary digits.
 
@@ -497,10 +522,15 @@ Ex.: $(P \land Q)\ \land \sim R$
 - NAND (AND + NOT)
 - NOR (OR + NOT)
 
+
 - - -
+
 ### Chapter 3 - The Logic of Quantified Statements:
 
 #### 3.1: Predicates and Quantified Statements I:
+
+> ... it was not till within the last few years that it has been realized how fundamental any and some are to the very nature of mathematics.
+> - A.N. Whitehead (1861-1947)
 
 **Predicate:**
 A predicate is a sentence that contains a finite number of variables and becomes a statement when specific values are substituted for the variables. The domain of a predicate variable is the set of all values that may be substituted in place of the variable.
@@ -522,39 +552,362 @@ It is common to omit explicit identification of the domain of predicate variable
 $\forall x$, if $P(x)$ then $Q(x)$.
 $\forall x, P(x) \rightarrow Q(x)$
 
+
 #### 3.2: Predicates and Quantified Statements II:
+
+> TOUCHSTONE: Stand you both forth now: stroke your chins, and swear by your beards that I am a knave.
+> CELIA: By our beards - if we had them - thou art.
+> TOUCHSTONE: By my knavery - if I had it - then I were; but if you swear by that that is not, you are not forsworn.
+> - William Shakespeare, *As You Like It*
+
+**Negation of a Universal Statement:**
+The negation of a statement of the form $\forall x$ in $D, Q(x)$ is logically equivalent to a statement of the form $\exists x$ in $D$ such that $\sim Q (x)$.
+Symbolically: $\sim ( \forall x \in D, Q(x) ) \equiv \exists x \in D$ such that $\sim Q(x)$.
+
+**Negation of an Existential Statement:**
+The negation of a statement of the form $\exists x$ in $D$ such that $Q(x)$ is logically equivalent to a statement of the form $\forall x$ in $D, \sim Q(x)$.
+Symbolically: $\sim ( \exists x \in D$ such that $Q(x)) \equiv \forall x \in D, \sim Q(x)$
+
+**Negation of Universal Conditional Statements:**
+$\sim ( \forall x, P(x) \rightarrow Q(x)) \equiv \exists x$ such that $\sim ( P(x) \rightarrow Q(x))$
+
+**Vacuous Truth of Universal Statements:**
+When a universal quantifier is used on an empty set, it is called vacuously true or true by default.
+
+**Variants of Universal Conditional Statements:**
+Consider a statement of the form $\forall x \in D$, if $P(x)$ then $Q(x)$.
+1. Its contrapositive is the statement $\forall x \in D$, if $\sim Q(x)$ then $\sim P(x)$.
+2. Its converse is the statement $\forall x \in D$, if $Q(x)$ then $P(x)$.
+3. Its inverse is the statement $\forall x \in D$, if $\sim P(X)$ then $\sim Q(x)$
+The original statement and its contrapositive are logically equivalent.
+The original statement and its converse form are not logically equivalent.
+The original statement and its inverse form are not logically equivalent.
+The converse and inverse forms of the original statement are logically equivalent.
+
+**Necessary and Sufficient Conditions, Only if:**
+- "$\forall x, r(x)$ is a sufficient condition for $s(x)$" means "$\forall x$, if $r(x)$ then $s(x)$."
+- "$\forall x, r(x)$ is a necessary condition for $s(x)$" means "$\forall x$, if $\sim r(x)$ then $\sim s(x)$" or, equivalently, "$\forall x$, if $s(x)$ then $r(x)$."
+- "$\forall x, r(x)$ only if $s(x)$" means "$\forall x$, if $\sim s(x)$ then $\sim r(x)$" or equivalently, "$\forall x$, if $r(x)$ then $s(x)$."
+
 
 #### 3.3: Statements with Multiple Quantifiers:
 
+> It is not enough to have a good mind. The main thing is to use it well.
+> - René Descartes
+
+**Interpreting Statements with Two Different Quantifiers:**
+In a statement containing both $\forall$ and $\exists$, changing the order of the quantifiers can significantly change the meaning of the statement.
+If you want to establish the truth of a statement of the form $\forall x$ in $D, \exists y$ in $E$, such that $P(x, y)$ your challenge is to allow someone else to pick whatever element $x$ in $D$ they wish and then you must find an element $y$ in $E$ that "works" for that particular $x$.
+If you want to establish the truth of a statement of the form $\exists x$ in $D$ such that $\forall y$ in $E, P(x, y)$ your job is to find one particular $x$ in $D$ that will "work" no matter what $y$ in $E$ anyone might choose to challenge you with.
+
+**Negations of Statements with Two Different Quantifiers:**
+$\sim ( \forall x \in D, \exists y \in E, P(x, y) ) \equiv \exists x \in D, \forall y \in E, \sim P(x, y)$
+$\sim ( \exists x \in D, \forall y \in E, P(x, y) ) \equiv \forall x \in D, \exists y \in E, \sim P(x, y)$
+
+**Language of First-Order Logic:**
+Taken together, the symbols for quantifiers, variables, predicates, and logical connectives makes up what is known as the language of first-order logic.
+
+
 #### 3.4: Arguments with Quantified Statements:
+
+> The only complete safeguard against reasoning ill, is the habit of reasoning well; familiarity with the principles of correct reasoning; and practice in applying those principles.
+> - John Stuart Mill
+
+**Universal Instantiation:**
+If a property is true of everything in a set, then it is true for any particular thing in the set.
+
+**Universal Modus Ponens:**
+$\forall x$, if $P(x)$ then $Q(x)$
+$P(a)$ for a particular $a$.
+$\therefore Q(a)$.
+
+**Universal Modus Tollens:**
+$\forall x$, if $P(x)$ then $Q(x)$.
+$\sim Q(a)$, for a particular $a$.
+$\therefore \sim P(a)$.
+
+**Converse Error (Quantified Form):**
+This is an invalid conclusion:
+$\forall x$, if $P(x)$ then $Q(x)$.
+$Q(a)$ for a particular $a$.
+$\therefore P(a)$.
+
+**Inverse Error (Quantified Form):**
+This is an invalid conclusion:
+$\forall x$, if $P(x)$ then $Q(x)$.
+$\sim P(a)$, for a particular $a$.
+$\therefore \sim Q(a)$.
+
+**Universal Transitivity:**
+$\forall x P(x) \rightarrow Q(x)$
+$\forall x Q(x) \rightarrow R(x)$
+$\therefore \forall x P(x) \rightarrow R(x)$
+
+
 - - -
+
 ### Chapter 6 - Set Theory:
 
 #### 6.1: Set Theory - Definitions and the Element Method of Proof
+
+> The introduction of suitable abstractions is our mental aid to organize and master complexity.
+> - E. W. Dijkstra (1930-2002)
+
+**Subsets:**
+$A \subseteq B \Leftrightarrow \forall x$, if $x \in A$ then $x \in B$.
+$A \not\subseteq B \Leftrightarrow \exists x$, such that $x \in A$ and $x \not\in B$.
+
+**Proper Subsets:**
+$A \subset B \Leftrightarrow A \subseteq B$, and there is at least one element in $B$ that is not in $A$.
+
+**Set Equality:**
+Given sets $A$ and $B$, $A$ equals $B$, written $A = B$, if, and only if, every element of $A$ is in $B$ and every element of $B$ is in $A$.
+Symbolically: $A = B \Leftrightarrow A \subseteq B$ and $B \subseteq A$.
+
+**Universal Set:**
+Most mathematical discussions are carried on within some context. For example, in a certain situation all sets being considered might be sets of real numbers. In such a situation, the set of real numbers would be called a universal set or a universe of discourse for the discussion. The universal set is usually denoted by the letter U.
+
+**Operations on Sets:**
+![[screenshot_2025-09-12-233105.png]]
+Let $A$ and $B$ be subsets of a universal set $U$.
+1. The union of $A$ and $B$, denoted $A \cup B$, is the set of all elements that are in at least one of $A$ or $B$.
+   Symbolically: $A \cup B = \{x \in U\ |\ x \in A$ or $x \in B\}$
+2. The intersection of $A$ and $B$, denoted $A \cap B$, is the set of all elements that are common to both $A$ and $B$.
+   Symbolically: $A \cap B = \{x \in U\ |\ x \in A$ and $x \in B\}$
+3. The difference of $B$ minus $A$ (or relative complement of $A$ in $B$), denoted $B - A$ or $B \setminus A$, is the set of all elements that are in $B$ and not $A$.
+   Symbolically: $B - A = \{x \in U\ |\ x \in B$ and $x \not\in A\}$
+4. The complement of $A$, denoted $A^c$, is the set of all elements in $U$ that are not in $A$.
+   Symbolically: $A^c = \{ x \in U\ |\ x \not\in A \}$
+
+**Interval Notation:**
+Given real numbers $a$ and $b$ with $a \le b$:
+$$\begin{align*}
+&(\ a, b\ ) = { x \in \mathbb{R}\ |\ a < x < b}&&[\ a, b\ ] = { x \in \mathbb{R}\ |\ a \le x \le b}\\
+&(\ a, b\ ] = { x \in \mathbb{R}\ |\ a < x \le b}&&[\ a, b\ ) = { x \in \mathbb{R}\ |\ a \le x < b}
+\end{align*}$$
+The symbols $\infty$ and $-\infty$ are used to indicate intervals that are unbounded either on the right or on the left:
+$$\begin{align*}
+(\ a, \infty\ ) &= { x \in \mathbb{R}\ |\ x > a} &&[\ a, \infty\ ] = { x \in \mathbb{R}\ |\ x \ge b}\\
+(-\infty, b\ ] &= { x \in \mathbb{R}\ |\ x < b} &&[-\infty, b\ ) = { x \in \mathbb{R}\ |\ x \le b}
+\end{align*}$$
+
+**Disjoint Sets:**
+Two sets are called disjoint if, and only if, they have no elements in common.
+Symbolically: $A$ and $B$ are disjoint $\Leftrightarrow A \cap B = \emptyset$.
+
+**Mutually Disjoint:**
+Sets $A_1, A_2, A_3, \dots$ are mutually disjoint (or pairwise disjoint or nonoverlapping) if, and only if, no two sets $A_i$ and $A_j$ with distinct subscripts have any elements in common. More precisely, for all integers $i$ and $j = 1,2,3,\dots$ $A_i \cap A_j = \emptyset$ whenever $i \not = j$.
+
+**Partitions of Sets:**
+![[screenshot_2025-09-12-235835.png|200]]
+A finite or infinite collection of nonempty sets $\{A_1, A_2, A_3,\dots\}$ is a partition of a set $A$ if, and only if, $A$ is the union of all the $A_i$; the sets $A_1, A_2, A_3,\dots$ are mutually disjoint.
+
+**Power Sets:**
+Given a set $A$, the power set of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$.
+
+
 #### 6.2: Properties of Sets
+
+> ... only the last line is a genuine theorem here - everything else is in the fantasy.
+> - Douglas Hofstadter, *Gödel, Escher, Bach*, 1979
+
+**Some Subset Relations:**
+1. Inclusion of Intersection:
+   For all sets $A$ and $B$,
+   $(a)\ \ A \cap B \subseteq A$ and $(b)\ \ A \cap B \subseteq B$.
+2. Inclusion in Union:
+   For all sets $A$ and $B$,
+   $(a)\ \ A \subseteq A \cup B$ and $(b)\ \ B \subseteq A \cup B$.
+3. Transitive Property of Subsets:
+   For all sets $A$, $B$, and $C$,
+   if $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+
+**Set Identities:**
+An identity is an equation that is universally true for all elements in some set. Let all sets referred to below be subsets of a universal set $U$.
+1. Commutative Laws: For all sets $A$ and $B$,
+   $(a)\ \ A \cup B = B \cup A \ \ \text{and} \ \ (b)\ \ A \cap B = B \cap A$.
+2. Associative Laws: For all sets $A$, $B$ and $C$,
+   $(a)\ \ (A \cup B) \cup C = A \cup (B \cup C) \ \ \text{and} \ \ (b)\ \ (A \cap B) \cap C = A \cap (B \cap C)$.
+3. Distributive Laws: For all sets $A$, $B$ and $C$,
+   $(a)\ \ A \cup (B \cap C) = (A \cup B) \cap (A \cup C) \ \ \text{and} \ \ (b)\ \ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+4. Identity Laws: For every set $A$,
+   $(a)\ \ A \cup \emptyset = A \ \ \text{and} \ \ (b)\ \ A \cap U = A$.
+5. Complement Laws: For every set $A$,
+   $(a)\ \ A \cup A^C = U \ \ \text{and} \ \ (b)\ \ A \cap A^C = \emptyset$.
+6. Double Complement Laws: For every set $A$,
+   $(A^C)^C = A$
+7. Idempotent Laws: For every set $A$,
+   $(a)\ \ A \cup A = A \ \ \text{and} \ \ (b)\ \ A \cap A = A$.
+8. Universal Bound Laws: For every set A,
+   $(a)\ \ A \cup U = U \ \ \text{and} \ \ (b)\ \ A \cap \emptyset = \emptyset$.
+9. De Morgan's Laws: For all sets $A$ and $B$,
+   $(a)\ \ (A \cup B)^C = A^C \cap B^C \ \ \text{and} \ \ (b)\ \ (A \cap B)^C = A^C \cup B^C$.
+10. Absorption Laws: For all sets $A$ and $B$,
+    $(a)\ \ A \cup (A \cap B) = A \ \ \text{and} \ \ (b)\ \ A \cap (A \cup B) = A$.
+11. Complements of $U$ and $\emptyset$:
+    $(a)\ \ U^C = \emptyset \ \ \text{and} \ \ (b)\ \ \emptyset^C = U$.
+12. Set Difference Law: For all sets $A$ and $B$,
+    $A - B = A \cap B^C$.
+
+**Basic Method for Proving That Sets Are Equal:**
+Let sets $X$ and $Y$ be given. To prove that $X = Y$:
+1. Prove that $X \subseteq Y$.
+2. Prove that $Y \subseteq X$.
+
+**Element Method for Proving a Set Equals the Empty Set:**
+To prove that a set $A$ is equal to the empty set $\emptyset$, prove that $X$ has no elements. To do this, suppose $A$ has an element and derive a contradiction
+Example:
+	Let $A$ be a set, and define $A =\{\ \}$. Suppose that there is at least one element, say $x$, such that $x \in A$. But this is impossible since $A$ has no elements. By Theorem 6.2.4, $A \subseteq \emptyset$ since $A$ has no elements. Also $\emptyset \subseteq A$ since $\emptyset$ has no elements. Thus $A = \emptyset$ by the definition of set equality.
+
+
 #### 6.3: Disproofs and Algebraic Proofs
+
+> If a fact goes against common sense, and we are nevertheless compelled to accept and deal with this fact, we learn to alter our notion of common sense.
+> - Phillip J. Davis and Reuben Hersh, *The Mathematical Experience*, 1981
+
+
 - - -
+
 ### Chapter 8 - Properties of Relations:
+
 #### 8.1: Relations on Sets
+
+> Strange as it may sound, the power of mathematics rests on its evasion of all unnecessary thought and on its wonderful saving of mental operations.
+> - Ernst Mach (1838-1916)
+
+A more formal way to refer to the kind of relation defined in Section 1.3 is to call it a binary relation because it is a subset of a Cartesian product of two sets. An $n$-ary relation is defined to be a subset of a Cartesian product of $n$ sets, where $n$ is any integer greater than or equal to two. Such a relation is the fundamental structure used in relational databases.
+
+**The Less-than Relation for Real Numbers:**
+	Define a relation $L$ from $\mathbb{R}$ to $\mathbb{R}$ as follows:
+	For all real numbers $x$ and $y$,
+	$x\ L\ y \Leftrightarrow x < y$
+
+**The Congruence Modulo 2 Relation:**
+	Define a relation $E$ from $\mathbb{Z}$ to $\mathbb{Z}$ as follows:
+	For every $(m, n) \in \mathbb{Z} \times \mathbb{Z}$,
+	$m\ E\ n \Leftrightarrow m - n\ \text{is even.}$
+
+**The Inverse of a Relation:**
+Let $R$ be a relation from $A$ to $B$. Define the inverse relation $R^{-1}$ from $A$ to $B$ as follows: $R^{-1} = \{(y,x) \in B \times A\ |\ (x,y) \in R\}$.
+Operationally: For all $x \in A$ and $y \in B$, $(y, x) \in R^{-1} \Leftrightarrow (x,y) \in R$.
+
+**Directed Graph of a Relation:**
+A relation on a set $A$ is a relation from $A$ to $A$. When a relation $R$ is defined on a set $A$, the arrow diagram of the relation can be modified so that it becomes a directed graph. Instead of representing $A$ as two separate sets of points, represent $A$ only once, and draw and arrow from each point of $A$ to each related point. If a point is related to itself, a loop is drawn that extends out from the point and goes back to it. For all points $x$ and $y$ in $A$, there is an arrow from $x$ to $y \Leftrightarrow x\ R\ y \Leftrightarrow (x, y) \in R$.
+Example:
+	Let $A = \{ 3, 4, 5, 6, 7, 8 \}$ and define a relation $R$ on $A$ as follows:
+	For every $x, y \in A$, $x\ R\ y \Leftrightarrow 2\ \ (x,- y)$
+	![[screenshot_2025-09-13-163440.png|200]]
+
+**N-ary Relations:**
+Given sets $A_1 , A_2, \dots, A_n$ an $n$-ary relation $R$ on $A_1 \times A_2 \times \dots \times A_n$ is a subset of $A_1 \times A_2 \times \dots \times A_n$. The special cases of 2-ary, 3-ary, and 4-ary relations are called binary, ternary, and quaternary relations, respectively.
+
+
 #### 8.2: Reflexivity, Symmetry, and Transitivity
+
+> Mathematics is the tool specially suited for dealing with abstract concepts of any kind and there is no limit to its power in this field.
+> - P. A. M. Dirac (1902-1984)
+
+**Reflexive, Symmetric, and Transitive Properties of Relations:**
+Let $R$ be a relation of a set $A$
+1. $R$ is reflexive if, and only if, for every $x \in A, x\ R\ x$.
+	Or written as:
+		For every $x$ in $A, (x, x) \in R$.
+	In informal terms:
+		Each element is related to itself.
+	On a directed graph:
+		Each point of the graph has an arrow looping around from it and going back to it.
+2. $R$ is symmetric if, and only if, for every $x, y \in A$, if $x\ R\ y$ then $y\ R\ x$.
+	Or written as:
+		For every $x$ and $y$ in $A$, if $(x, y) \in R$ then $(y, x) \in R$.
+	In informal terms:
+		If any one element is related to any other element, then the second element is related to the first.
+	On a directed graph:
+		In each case where there is an arrow going from one point to a second, there is an arrow going from the second point back to the first.
+3. $R$ is transitive if, and only if, for every $x, y, z \in A$, if $x\ R\ y$ and $y\ R\ z$ then $x\ R\ z$.
+	Or written as:
+		For every $x$, $y$, and $z$ in $A$, if $(x, y) \in R$ and $(y, z) \in R$ then $(x, z) \in R$.
+	In informal terms:
+		If any one element is related to a second and that second element is related to a third, then the first element is related to the third.
+	On a directed graph:
+		In each case where there is an arrow going from one point to a second and from the second point to a third, there is an arrow going from the first point to the third. That is, there ar no "incomplete directed triangles" in the graph.
+Example of a reflexive, symmetric and transitive relation:
+	Let $A = \{2,3,4,6,7,9\}$ and define a relation $R$ on $A$ as follows:
+	For every $x, y \in A,\ \ x\ R\ y \ \ \Leftrightarrow \ \ 3\ |\ (x - y)$
+	![[screenshot_2025-09-13-170111.png|300]]
+
+
 #### 8.3: Equivalence Relations
+
+...
+
+
 #### 8.5: Partial Order Relations
+
+...
+
+
 - - -
+
 ### Chapter 7 - Properties of Functions:
+
 #### 7.1: Functions Defined on General Sets
+
+...
+
+
 #### 7.2: One-to-One, Onto, and Inverse Functions
+
+...
+
+
 #### 7.3: Composition of Functions
+
+...
+
+
 - - -
+
 ### Chapter 5 - Sequences, Mathematical Induction, and Recursion:
+
 #### 5.1: Sequences
+
+...
+
+
 #### 5.2: Mathematical Induction I: Proving Formulas
+
+...
+
+
 #### 5.3: Mathematical Induction II: Applications 
+
+...
+
+
 #### 5.6: Defining Sequences Recursively
+
+...
+
+
 #### 5.9: General Recursive Definitions and Structural Induction
+
+...
+
+
 - - -
+
 ### Chapter 4 - Elementary Number Theory and Methods of Proof:
+
 #### 4.4: Direct Proof and Counterexample IV: Divisibility
+
+...
+
+
 #### 4.5: Direct Proof and Counterexample V: Division into Cases and the Quotient-Remainder Theorem
+
+...
+
+
 - - -
 #### 2.5: Application: Number Systems and Circuits for Addition
 #### 1.4: The Language of Graphs
@@ -793,371 +1146,3 @@ $\forall x, P(x) \rightarrow Q(x)$
 
 **Proving that divisibility is transitive:**
 	...
-
-**Disproving implications with counterexamples:**
-	...
-
-**Proof of division into cases:**
-	...
-**Proof by contradiction:**
-	...
-
-**Proof by contrapositive:**
-	...
-
-**Quotient-remainder theorem and modular arithmetic:**
-	...
-
-**Proof: There are infinitely many prime numbers:**
-	...
-
-**Introduction to sequences:**
-	...
-
-**The formal definition of a sequence:**
-	...
-
-**The sum and product of infinite sequences:**
-	...
-
-**Intro to Mathematical Induction:**
-	...
-
-
-## Notater fra forelesninger:
-- - -
-
-**Mengde (set):**
-- Introdusert av Georg Kantor i 1879
-- En samling objekter (elementer)
-- Definert av dens elementer. *ikke* med rekkefølge/antall forekomster av elementer.
-- Tom mengde skrives som $\emptyset$ (\emptyset) eller {} og er delmengde av alle mengde
-	
-	Element i: $\in$
-	Element ikke i: $\notin$
-	Delmengde (subset): $\subseteq$
-	Ekte delmengde (proper subset): $\subset$
-	Mengden av naturlige tall: $\mathbb{N} = \{0, 1, 2, 3, \dots\}$
-	Mengden av alle heltall (med negative tall): $\mathbb{Z} = \{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}$
-	Mengden av rasjonale tall (med divisjon (brøk)): $\mathbb{Q}$
-	Mengden av irrasjonale tall (tall som ikke kan skrives som brøk): $\mathbb{I}$
-	Mengden av reelle tall ($\mathbb{Q} \cup \mathbb{I}$): $\mathbb{R}$ 
-	Mengdebygger (set builder):
-		$A = \{x|x\text{ har egenskap }P\}$
-		eks: $C = \{x|\in A \text{ og } x \in B\}$
-	
-	$A = {1, 2, 3}$
-	$B = {3, 2, 1}C = {1, 3, 3, 2, 1, 2, 3, 2, 1}$
-	$C = B = A$
-
-**Tupler:**
-- Tupler ligner mengde, men rekkefølge og antall forekomster av hvert objekt teller.
-- 0-tuppel skrives som ()
-- 2-tuppel kalles et *ordnet par (ordered pair)*
-- To n-tuppler er like hvis de er komponentvis like: $(a, b, c) = (d, e, f)$ hvis a = $d, b = e, c = f$
-
-**Det kartesiske produktet (cartesian product):**
-- Kryssproduktet (cross-produkt) av n mengder
-	$A = \{x, y\}$
-	$B = \{1, 2, 3\}$
-	$A \times B = \{(x,1),(x,2),(x,3),(y,1),(y,2),(y,3)\}$
-	$A \times A = A^2 = \{(x,x),(x,y),(y,x),(y,y)\}$
-
-**Relasjoner:**
-- Relaterer to objekter på en spesiell måte
-- Lik-relasjon på reelle tall: $2 = 2$
-- Delmengderelasjon på mengder: $\{1,2,3,3\} \subseteq \{2,1,3\}$
-- Binær relasjon (binary relation) - relasjon mellom to mengder: $R \subseteq A \times B$
-		R er (binær) relasjon fra mengden A (definisjonsområdet (domain)) til mengden B (verdiområdet (codomain)).
-
-	$A = \{1,2,3\}$
-	$B = \{a,b\}$
-	$R = \{(1,a),(1,b),(2,a)\}$
-
-- Relasjonen $R$ på mengden $A$ er delmengde av $A \times A = A^2$
-- Identitetsrelasjonen relaterer alle elementer til seg selv (refleksiv)
-- Relasjon kan også defineres med funksjon
-- n-ær relasjon (n-ary relasjon)
-
-**Funksjoner:**
-- Delmengde av en binær relasjon
-- $f: A \rightarrow B$
-- Mengden $A$ kalles definisjonsområdet (domain)
-- Mengden $B$ kalles verdiområdet (codomain)
-- Til hvert element $x \in A$ tilordner et entydig element $f(x) \in B$
-
-**Logikk:**
-- Deduktiv resonnement er en psykologisk prosess for å utføre trinn fra premisser til logiske konsekvenser
-- Det første store avhandlingen om logikk ble skrevet av Aristoteles
-- Gottfried Leibniz introduserte logiske symboler på det syttende århundre
-- Logikk ble utvidet bidere på det nittende århundre av George Boole og Augustus De Morgan
-
-**Utsagn (statement / proposition):**
-- En påstand eller ytring som enten er *sann* eller u*sann*
-	- Eksempler:
-		- "Jeg liker is"
-		- 2+2=4
-	- Eksempler på ting som ikke regnes som utsagn:
-		- "Det er kaldt"
-		- 2+2
-		- "2+2 er et stort tall"
-- Om noe er utsagn, i tillegg til sannhetsverdien, kan avhenge av konteksten
-- Sammensatte utsagn kan bygges opp ved å bruke logiske bindeord kalt *konnektiver*.
-	- Eksempler:
-		- "Jorda er rund *OG* jeg liker is"
-		- "2 + 2 = 4 *ELLER* 2 + 2 = 4"
-		- p: jorda er rund, q: jeg liker is. p *OG* q
-		- s: 2 + 2 = 4, t: 2 + 2 = 5. p *eller* t
-- Symboler for de logiske konnektivene:
-		$\land$ *og / konjuksjon*
-		$\lor$ *eller / disjunksjon*
-		$\sim$ *ikke / negasjon* (unær operasjon)
-- En unær operasjon (unary operation) $f: A \rightarrow A$
-- Eksempel:
-		$x \in \mathbb{R}$
-		$p: 0 < x$
-		$q: x < 3$
-		$r: x = 3$
-		$x \le 3$ kan skrives som $g \lor r$
-		$0 < x < 3$ kan skrives som $p \land q$
-		$0 < x \leq 3$ kan skrives som $p \land (q \lor r)$
-
-**Sannhetsverdier:**
-- Utsagn har to mulige verdier, "sann" eller "usann". Vi bruker $T$ (true) og $F$ (false), eller $\top$ (sann) og $\bot$ (usann) eller $1$ (sann) og $0$ (usann).
-- *Utsagnformer* er logisk ekvivalente hvis de har samme sannhetsverdi for hver mulig erstatning av variabel med utsagn.
-	- Eksempel:
-		$P \equiv P$
-		$P \not\equiv \lnot P$
-		$\lnot(P \lor Q) \equiv \lnot P \land \lnot Q$
-		$P \equiv \lnot \lnot P$
-- De Morgans lover: $\sim (p \land q) \equiv \sim p \ \lor \sim q, \sim (p \lor q) \equiv \sim p \ \land \sim q$
-- En utsagnform er en tautologi hvis den alltid er sann
-	- Eksempel:
-			$P \lor \lnot P$
-			$(P \rightarrow Q) \lor \lnot Q$
-- En selvmotsigelse er en utsagnsform som alltid er usann
-	- Eksempel:
-			$P \land \lnot P$
-			$P \oplus P$
-
-**Betinget utsagn:**
-- Implikasjon, kondisjonal
-		$p \rightarrow q$ (hvis p (hypotesen), så q (konklusjon))
-		$p \rightarrow q \equiv \sim p \lor q$
-		Konvers (converse) av $p \rightarrow q$ er $q \rightarrow p$
-		Invers (inverse) av $p \rightarrow q$ er $\sim p \rightarrow \sim q$
-- Bikondisjonal, biimplikasjon
-		$p \leftrightarrow q$ leses ofte som $p$ hvis og bare hvis $q$
-		$p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p)$
-
-**Rekkefølge av operasjoner:**
-(Innholdet i parenteser tolkes først)
-1. $\sim$
-2. $\land$ og $\lor$
-3. $\rightarrow$ og $\leftrightarrow$
-
-**Logisk ekvivalens (logiske regler):**
-Given any statement variables $p$, $q$, and $r$, a tautology $t$ and a contradiction $c$, the following logical equivalences hold:
-
-| Logical Equivalences     |                                                          |                                                         |
-| ------------------------ | -------------------------------------------------------- | ------------------------------------------------------- |
-| Commutative laws:        | $p \land q \equiv q \land p$                             | $p \lor q \equiv q \lor p$                              |
-| Associative laws:        | $(p \land q) \land r \equiv p \land (q \land r)$         | $(p \lor q) \lor r \equiv p \lor (q \lor r)$            |
-| Distributive laws:       | $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$ | $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ |
-| Identity laws:           | $p \land t \equiv p$                                     | $p \lor c \equiv p$                                     |
-| Negation laws:           | $p \lor \sim p \equiv t$                                 | $p \land \sim p \equiv c$                               |
-| Double negative law:     | $\sim (\sim p) \equiv p$                                 |                                                         |
-| Idempotent laws:         | $p \land p \equiv p$                                     | $p \lor p \equiv p$                                     |
-| Universal bound laws:    | $p \lor t \equiv t$                                      | $p \land c \equiv c$                                    |
-| De Morgan's laws:        | $\sim (p \land q) \equiv \sim p \lor \sim q$             | $\sim (p \lor q) \equiv \sim p \land \sim q$            |
-| Absoption laws:          | $p \lor (p \land q) \equiv p$                            | $p \land (p \lor q) \equiv p$                           |
-| Negations of $t$ and $c$ | $\sim t \equiv c$                                        | $\sim c \equiv t$                                       |
-
-- Vi kan bruke logiske lover (ekvivalens) for å bevise andre logiske ekvivalenser.
-
-Eksempel på sannhetstabell (med beregning av en utsagnsvariabel $\land$):
-
-| P   | Q   | $\land$ |
-| --- | --- | ------- |
-| T   | T   | T       |
-| T   | F   | F       |
-| F   | T   | F       |
-| F   | F   | F       |
-
-**Tilstrekkelig og nødvendig betingelse:**
-- $r$ er tilstrekkelig betingelse for $s$ betyr hvis $r$ så $s$ ($r \rightarrow s$)
-- $s$  er en nødvendig betingelse for $r$ betyr hvis ikke $s$ så ikke $r$ ($\sim s \rightarrow \sim r \equiv r \rightarrow s$ fra kontraposisjon)
-- $r \rightarrow s:r$ tilstrekkelig for $s$, $s$ nødvendig for $r$
-	- Eksempel:
-		$x > 5 \rightarrow x > 3$
-		$x > 5$ er tilstrekkelig for at $x > 3$. Det er ikke nødvendig
-		$x > 3$ er nødvendig for $x>5$ det kan ikke være $x >5$ uten at $x > 3$
-
-**Gyldig og ikke gyldig argument:**
-- Et *argument* er rekkefølge av utsagn
-- Et *argument form*, er rekkefølge av utsagnsformer
-- Alle utsagn i et argument og alle utsagnsformer i et argument form er kalt premisser, hypoteser, untatt den siste som er kalt konklusjon. Tegner $\therefore$ brukes.
-- Argument form er *gyldig* når konklusjon er sann alltid premisser er sanne. Hvis det ikke holder sier vi at argument for er *ikke gyldig*.
-- Feilslutning er en feil i rersonnementet som resulterer i et ugyldig argument
-
-**Applikasjon: digitale logiske kretser:**
-- Det er en analogi mellom logiske konnektiver og svitsje enheter
-- Hvis vi vet innganger og utganger for en gitt krets, men ikke vet hva som foregår i selve kretsen kalles det en *black box*.
-- *Disjunktiv normal form* er disjunksjon av konjunksjoner av utsagnsvariabler eller deres negasjoner.
-- En *gjenkjenner* er en krets som gir ut en 1 for nøyaktig en bestemt kombinasjon av inngangssignaler og utganger 0 for alle andre kombinasjoner
-- To logiske kretser er ekvivalente hvis og bare hvis inngang og utgang tabellene er identiske
-
-- Eksempel på bevis av ekvivalens av to utsagnsformer: $( (p \land \sim q) \lor (p \land  q) ) \land q \equiv p \land q$
-		Distributivlov: $(p \land \sim q) \lor (p \land  q) \land q \equiv p \land (\sim q \lor q) \land q$
-		Kommutativlov: $p \land (\sim q \lor q) \land q \equiv p \land (q \lor \sim q) \land q$
-		Negasjonlov: $p \land (q \lor \sim q) \land q \equiv p \land t \land q$
-		Identitetslov: $p \land t \land q \equiv p \land q$
-
-$(p \rightarrow q) \rightarrow r \equiv (\sim p \rightarrow r) \land (q \rightarrow r)$
-
-$\sim (\sim p \lor q) \lor r \equiv (\sim (\sim p \lor r) \lor r) \land (\sim q \lor r)$
-
-**Kvantorer:**
-- *Predikat* er en setning som inneholder endelig mange variabler som blir sann eller usann når spesifikke verdier erstattes med variabler. Domene eller definisjonsområdet av et predikat variabel er mengden av alle verdier som kan erstattes i stedet for variabelen.
-- *Sannheten mengde*. Hvis $P(x)$ er et predikat og $x$ har domenet $D$, sannheten mengden av $P(x)$ er mengden med alle elementer fra $D$ som $P(x)$ er sant for.
-- $\forall$ *allkvantoren*, for alle, for enhver. $\forall x \in D, Q(x)$
-- $\exists$ *eksistenskvantoren*, det finnes, det ekisterer. $\exists x \in D, Q(x)$
-- *Bundet variabel* og *skopet*. Variabelen $x$ er bundet med kvantoren som påvirker den. Variabelen er innen skopet av kvantoren.
-
-**Eksempeler på oppgave med bruk av logiske ekvivalenser (lover):**
-1.
-	$\sim (p \lor \sim q) \lor (\sim p \land \sim q) \lor (p \land q) \equiv \sim p \lor q$
-	$(\sim p \lor \sim (\sim q)) \lor (\sim p \land \sim q) \lor (p \land q) \equiv$ (De Morgans lov)
-	$(\sim p \lor q) \lor (\sim p \land \sim q) \lor (p \land q) \equiv$ (Dobbel nagasjon lov)
-	$\sim p \land (q \lor \sim q) \lor (p \land q) \equiv$ (Distrubitiv lov)
-	$(\sim p \land T) \lor (p \land q) \equiv$ (Negasjon lov)
-	$\sim p \lor (p \land q) \equiv$ (Identitets lov)
-	$(\sim p \lor p) \land (\sim p \lor q) \equiv$ (Distributiv lov)
-	$T \land (\sim p \lor q) \equiv$ (Negasjon lov)
-	$\sim p \lor q \equiv$ (Identitets lov)
-
-2.
-	$p \lor \sim q \rightarrow r \lor q \equiv (r \lor q) \lor (\sim p \land q)$
-	$\sim (p \lor \sim q) \lor (r \lor q) \equiv$ (Implikasjon til disjunksjon)
-	$(\sim p \land \sim (\sim q)) \lor (r \lor q) \equiv$ (De Morgans lov)
-	$(\sim p \land q) \lor (r \lor q) \equiv$ (Dobbel negasjon lov)
-	$(r \lor q) \lor (\sim p \land q) \equiv$ (Kommutativ lov)
-
-Eksempel på Haskell implementasjon av implikasjon:
-$p \rightarrow q \equiv \sim p \lor q$
-`implikasjon :: Bool -> Bool -> Bool`
-`implikasjon p q = (not p) || q`
-
-**Negasjon av kvantifiserte utsagn:**
-- Eksempel:
-	- "Alle studenter liker matematikk"
-	- Negasjon: "Det eksisterer minst en student som ikke liker matematikk"
-- Negasjon av utsagn med formen: $\forall x \in D, Q(x)$ er logisk ekvivalent med utsagnet med formen: $\exists x \in D, \sim Q(x)$
-	$\sim(\forall x \in D, Q(x)) \equiv \exists x \in D, \sim Q(x)$
-- Negasjon av utsagn med formen: $\exists x \in D, Q(x)$  er logisk ekvivalent med utsagnet med formen: $\forall x \in D, \sim Q(x)$
-	$\sim (\exists x \in D, Q(x) \equiv \forall x \in D, \sim Q(x))$
-
-**Negasjon av universale kondisjonale utsagn:**
-	$\sim (\forall x, P(x) \rightarrow Q(x)) \equiv \exists x, \sim (P(x) \rightarrow Q(x))$
-	$P(x) \rightarrow Q(x) \equiv \sim P(x) \lor Q(x)$ så $\sim (P(x) \rightarrow Q(x)) \equiv P(x) \land \sim Q(x)$
-
-**Relasjon av $\forall$, $\exists$, $\land$, $\lor$:
-- Negasjon av $\forall$ *(for all)* er $\exists$ *(det finns en)*
-- Negasjon av $\exists$ *(det finns en)* er $\forall$ *(for all)*
-- De Morgans lover:
-	- Negasjon av $\land$ *(og)* er $\lor$ *(eller)*
-	- Negasjon av $\lor$ *(eller)* er $\land$ *(og)*
-- $\forall x \in D, Q(x)$ betyr at $Q(x_1) \land Q(x_2) \land Q(x_3) \land \dots \land Q(x_n)$, hvor $D = \{x_1, x_2,\dots, x_n\}$
-- $\exists x \in D, Q(x)$ betyr at $Q(x_1) \lor Q(x_2) \lor Q(x_3) \lor \dots \lor Q(x_n)$, hvor $D = \{x_1, x_2,\dots, x_n\}$
-
-**Den tomme sannheten:**
-- $\forall$ i en tom mengde $\emptyset$ er sann
-
-**Varianter av universal kondisjonelle utsagn:**
-- Vurdering av utsagnet med formen $\forall x \in D, P(x) \rightarrow Q(x)$
-	- Kontraposisjon (contraposision): $\forall x \in D, \sim Q(x) \rightarrow \sim P(x)$
-	- Omvendt (converse) utsagn: $\forall x \in D, Q(x) \rightarrow P(x)$
-	- Invers (invers) utsagn: $\forall x \in D, \sim P(x) \rightarrow \sim Q(x)$
-
-**Eksempler på oppgaver:**
-Q2 - I den oppgaven skal du vise at den følgende utsangslogiske formelen er en tautologi: $(\lnot Q \land (P \rightarrow Q)) \rightarrow \lnot P$
-
-a) Vis at formelen er en tautologi ved å benytte sannhetsverditabell:
-
-| $P$ | $Q$ | $\sim P$ | $\lnot Q$ | $P \rightarrow Q$ | $\lnot Q \land (P \rightarrow Q)$ | $(\lnot Q \land (P \rightarrow Q)) \rightarrow \lnot P$ |
-| --- | --- | -------- | --------- | ----------------- | --------------------------------- | ------------------------------------------------------- |
-| T   | T   | F        | F         | T                 | F                                 | T                                                       |
-| T   | F   | F        | T         | F                 | F                                 | T                                                       |
-| F   | T   | T        | F         | T                 | F                                 | T                                                       |
-| F   | F   | T        | T         | T                 | T                                 | T                                                       |
-
-Øvelse 2:
-
-Q1
-h - "john er sunn"
-w - "john er rik"
-s - "john er klok"
-1.a) $\lnot h \land w \land \lnot s$
-1.b) $\lnot w \land h \land s$
-1.c) $\lnot (h \land w \land s)$
-1.d) $\lnot (w \land s) \land h$
-
-Q2
-2.a)
-
-| $P$ | $Q$ | $(P \lor Q)$ | ($\lnot P \lor \lnot Q)$ | $(P \lor Q) \land (\lnot P \lor \lnot Q)$ |
-| --- | --- | ------------ | ------------------------ | ----------------------------------------- |
-| T   | F   | T            | T                        |                                           |
-| F   | T   | T            | T                        |                                           |
-
-a.b)
-
-
-
-## Haskell notater:
-- - -
-- *Rent funksjonelt programmeringsspråk*
-- *Lat programmeringsspråk*
-- *Statisk typet*
-
-**Datatyper:**
-- *Int* - Små heltall
-- *Integer* - Store heltall
-- *Float* - Flytepunkt med single presisjon
-- *Double* - Flytepunkt med dobbel presisjon
-- *Bool* - Boolsk type
-- *Char* - Karakter
-
-**Lister:**
-- Samling av objekter av samme type. Altså en *homogen datastruktur*. Der rekkefølgen av elementene er viktig.
-Følgende tre kodeeksempler gir samme resultat, med en liste av heltall fra 1 til 4:
-`let l = [1,2,3,4]`
-`l = [1,2,3,4]`
-`l = [1..4]`
-
-*Data.List* inneholder nyttige funksjoner for å jobbe med lister.
-`import qualified Data.List as L`
-`L.head [a,b,c] -- Gir det første elementet fra listen`
-`L.last [a,b,c] -- Gir det siste elementet fra listen`
-`L.tail [a,b,c] -- Gir listen med alle elementer untatt det første`
-`L.init [a,b,c] -- Gir listen med alle elementer untatt det siste`
-
-**Tupler:**
-- Ligner litt på lister, men kan inneholde objekter av forskjellige typer, og er altså en *ikke-homogen datastruktur*. Elementene i en tuppel kan ikke endres og tuppel kalles derfor en *uforanderlig datastruktur*.
-
-`let t = (1,a,3,b) -- Tuppel med blanding av tall og bokstaver`
-`t = (1,a,3,b) -- Kan også skrives uten "let"`
-
-Modulen *Data.Tuple* inneholder predefinerte funksjoner for å jobbe med tupler.
-
-**Mengder:**
-- I Haskell er mengder litt annerledes enn i matematikk. En mengde er en samling objekter der alle elementene er unike, men i motsetning til i matematikk tas rekkefølgen av elementene i betraktning.
-
-Modulen *Data.Set* brukes for å håndtere mengder i Haskell.
-
-```
-import qualified Data.Set as S -- Vi importerer modulen Data.Set og gir den navn S
-let a = S.empty                -- På denne måten lager vi en tom mengde som vi kaller a
-let b = S.singleton x          -- På denne måten lager vi en mengde b med bare et element x
-let c = S.fromList [x, y]      -- På denne måten omgjør vi en liste [x, y] til en mengde {x, y})
-```

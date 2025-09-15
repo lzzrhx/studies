@@ -17,7 +17,7 @@ public class Program {
     private static Entity player;
     private static Entity[] boxes = new Entity[4];
     private static Entity[] balls = new Entity[3];
-    //private static Entity ground;
+    // private static Entity ground;
 
     // Kamera
     private static Camera camera;
@@ -37,7 +37,7 @@ public class Program {
         // Entity set up
         player = new Entity(new Vector3().y(0.5f));
         player.addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
-        
+
         boxes[0] = new Entity(new Vector3().x(1f).y(0.5f).z(-2f));
         boxes[0].addCubePhysics(new Vector3().x(1f).y(1f).z(1f), 1f);
 
@@ -46,7 +46,7 @@ public class Program {
 
         boxes[2] = new Entity(new Vector3().x(2.5f).y(0.25f).z(-2f));
         boxes[2].addCubePhysics(new Vector3().x(1f).y(0.5f).z(1f), 1f);
-        
+
         boxes[3] = new Entity(new Vector3().x(0f).y(2f).z(6f));
         boxes[3].addCubePhysics(new Vector3().x(4f).y(4).z(4f), 4f);
 
@@ -57,8 +57,8 @@ public class Program {
         balls[2] = new Entity(new Vector3().x(-2.5f).y(0.5f).z(-2f));
         balls[2].addSpherePhysics(0.5f, 1f);
         
-        //ground = new Entity(new Vector3().y(-10f));
-        //ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
+        // ground = new Entity(new Vector3().y(-10f));
+        // ground.addCubePhysics(new Vector3().x(20f).y(20f).z(20f), 0f);
 
         // Kamera set up
         camera = new Camera(player);
