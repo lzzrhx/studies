@@ -1,7 +1,5 @@
 # Welcome to the world wide web
 
-Live demo here: [dat111.neocities.org](https://dat111.neocities.org/).
-
 Made as an exercise to get familiar with [three.js](https://threejs.org/).
 
 Running the site locally (Arch):
