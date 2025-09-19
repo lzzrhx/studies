@@ -5,5 +5,5 @@ export default defineConfig({
   root: 'src',
   publicDir: 'glb',
   build: { outDir: '../dist', },
-  //server: { host: true, },
+  server: { host: true, },
 })

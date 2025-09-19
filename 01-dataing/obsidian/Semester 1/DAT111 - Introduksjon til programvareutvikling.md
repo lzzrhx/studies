@@ -1,11 +1,12 @@
 > [!info]
-> [Emneplan](https://www.hvl.no/studier/studieprogram/emne/DAT111)
+> **Lenker:** [Emneplan](https://www.hvl.no/studier/studieprogram/emne/DAT111)
 > **Studiepoeng:** 5
 > **Vurdering:** Semesteroppgave
+> **GitHub:** [lzzrhx/studies/01-dataing/dat100](https://github.com/lzzrhx/studies/tree/main/01-dataing/dat111)
 
 >[!todo]
 >- [x] Uke 35 - Forberedelse til Per Christian forelesning - DAT111 videoer
->- [ ] Uke 38 - ==Obligatorisk oppgave #1==
+>- [x] Uke 38 - ==Obligatorisk oppgave #1==
 >- [ ] Uke 41 - ==Obligatorisk oppgave #2==
 >- [ ] Uke 45 - ==Obligatorisk oppgave #3==
 

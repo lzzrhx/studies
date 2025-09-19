@@ -1,15 +1,17 @@
 > [!info]
-> [Emneplan](https://www.hvl.no/studier/studieprogram/emne/ING100)
+> **Lenker:** [Emneplan](https://www.hvl.no/studier/studieprogram/emne/ING100)
 > **Studiepoeng:** 5
-> **Vurdering:** Gruppebasert oppgave
+> **Vurdering:** ~~Gruppebasert oppgave~~ Individuell semesteroppgave
 
 >[!todo]
 >- [x] Se videoforelesninger - [ING100](https://www.youtube.com/playlist?list=PLPtOcIJ3WKju_c3x5c7gVZlzHdJCx-wJw)
 >- [x] Se videoforelesninger - [Prosjektteori](https://hvl.instructure.com/courses/31657/pages/prosjektteori)
 >- [x] Se videoforelesninger - [Akademisk skriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
->- [ ] Se videoforelesninger - [Rapportskriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
 >- [ ] ==**[Frist 13. November - Semesteroppgave, Artikkel om teknologi (4000 tegn)](https://hvl.instructure.com/courses/31657/assignments/93557)**==
 
+
+## Semesteroppgave:
+- - -
 **Idéer til tema for semesteroppgave:**
 - Fantasy consoles og PICO-8 - Flott undervisningsverktøy for introduksjon til programmering med LUA
 - Arkadekabinett - Med fokus på tidlige 3D spill på 90-tallet
@@ -22,14 +24,7 @@
 - [(Video) The world of PICO-8: A video essay](https://youtu.be/U1spY0Z-RDg)
 - [(Video) PRACTICE 2018: Joseph White](https://youtu.be/87jfTIWosBw)
 - [PICO-8 Manual](https://www.lexaloffle.com/dl/docs/pico-8_manual.html)
-- [x] Les manualen:
-	- [x] 1. Getting Started
-	- [x] 2. Editing Tools
-	- [x] 3. Exporters / Importers
-	- [x] 4. Lua Syntax Primer
-	- [x] 5. PICO-8 Program Structure
-	- [x] 6. API Reference
-	- [x] 7. Appendix
+
 
 ## Notater:
 - - -
@@ -49,7 +44,7 @@
 - Cornell system for å ta notater under forelesning
 - Andre metoder: REAP / PQRST
 
-**Dokumentasjon og rapportskriving:**
+### Dokumentasjon og rapportskriving:
 - Pensum: Å skrive fag av Åse Høyvoll Kallestad - Kap. 1, 2, 3, 4 og 8
 - Søk og Skriv: https://www.sokogskriv.no/
 - Kildekompasset: https://www.kildekompasset.no/
@@ -127,7 +122,7 @@
 			- Er det skrivefeil du må rette opp?
 			- Er kildene i orden?
 
-**Prosjektarbeid:**
+### Prosjektarbeid:
 - Bok: Prosjektveilederen av Anne Live Vaagaasar og Torgeir Skyttermoen
 - Prosedyrene og metodeverket for prosjektarbeid vokste frem cirka rundt 1950 i USA
 - I de fleste virksomheter i dag er det prosjektarbeidet i en aller annen form som er rådende arbeidsform

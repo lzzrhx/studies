@@ -1,8 +1,9 @@
 
 > [!info]
-> [Emneplan](https://www.hvl.no/studier/studieprogram/emne/MAT101)
+> **Lenker:** [Emneplan](https://www.hvl.no/studier/studieprogram/emne/MAT101)
 > **Studiepoeng:** 10
 > **Vurdering:** Skoleeksamen, 03.12.2025 kl. 09:00
+> **GitHub:** [lzzrhx/studies/01-dataing/dat100](https://github.com/lzzrhx/studies/tree/main/01-dataing/mat101)
 
 >[!todo]
 >- [x] Se video - Haskell Programming Full Course
@@ -17,7 +18,7 @@
 >- [x] Uke 37 - Øvelse 4
 >- [x] Uke 37 - Kap. 6.1, 6.2, 6.3
 >- [ ] Obligatorisk oppgave 2
->- [ ] Uke 38 - Kap. 8.1, 8.2, 8.3
+>- [x] Uke 38 - Kap. 8.1, 8.2, 8.3
 >- [ ] Uke 39 - Kap. 7.1, 7.2, 7.3
 >- [ ] Uke 41 - Kap. 5.1, 5.2, 5.3
 >- [ ] Obligatorisk oppgave 3
@@ -42,37 +43,25 @@
 | 45     | Grafer                                                            |
 | 46     | Eksamensforberedelse (==prøveeksamen som oblig 4==)               |
 | 47     | Eksamensforberedelse                                              |
-|        |                                                                   |
 
 **Pensumliste:**
 + [Discrete mathematics with applications (5.utg.)](https://bibsys-xc.alma.exlibrisgroup.com/leganto/public/47BIBSYS_HIB/citation/10380570760002221?auth=SAML)
 
-**Andre linker:**
-- [List of logic symbols](https://www.wikiwand.com/en/articles/List_of_logic_symbols)
-- [Haskel installasjon](https://www.haskell.org/ghcup/)
-- [GHCi Documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html)
-- [Haskell Documentation](https://www.haskell.org/documentation/)
+**Lenker:**
 - [(YouTube spilleliste) Trefor Bazett - Discrete Math (Full Course)](https://www.youtube.com/playlist?list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS)
+- [Discrete Structures for Computing, University of Western Ontario](https://www.csd.uwo.ca/~abrandt5/teaching/DiscreteStructures/)
+- [Wikipedia, List of logic symbols](https://www.wikiwand.com/en/articles/List_of_logic_symbols)
+
+**Haskell lenker:**
+- [GHCup Haskell Installation](https://www.haskell.org/ghcup/)
+- [Haskell Documentation](https://www.haskell.org/documentation/)
+- [GHCi Documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html)
 - [(Video) Haskell Programming Full Course 2024](https://youtu.be/TklkNLihQ_A)
 
-**Linux Haskel installasjon:**
-`curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh`
-
-**Kommandoer:**
-Start a simple repl:
-`ghci`
-
-Start a new Haskell project in the current directory:
-`cabal init --interactive`
-
-Kompilere *.hs fil:
-`ghc <filnavn>.hs -o <navn>`
-
-ghci kommandoer:
-`:quit`
-
 ```
-Norsk / Engelsk ordliste:
+--------------------------------------------------------------------------------
+-- Norsk / Engelsk ordliste:
+--------------------------------------------------------------------------------
 heltall                            integer
 boolsk                             boolean
 variabel                           variable
@@ -131,9 +120,10 @@ sannhetsmengde                     truth set
 bundet variabel                    bounded variable
 skopet                             scope
 
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-Symboler:
+--------------------------------------------------------------------------------
+-- Symboler:
+--------------------------------------------------------------------------------
 ∈    \in              element i
 ∉    \nin             element ikke i
 ⊆    \subseteq        delmengde
@@ -171,6 +161,20 @@ F    F                 usann
 ∩     \cap             snitt
 \     \setminus        minus
 ∴    \therefore       gyldig argument
+|     \mid
+mod   \mod
+(mod) \pmod
+≼     \preceq 
+
+--------------------------------------------------------------------------------
+-- Kommandoer:
+--------------------------------------------------------------------------------
+
+-- Start Haskell REPL
+ghci
+
+-- Kompilere .hs fil:
+ghc <filnavn>.hs -o <navn>
 
 ```
 
@@ -838,21 +842,136 @@ Example of a reflexive, symmetric and transitive relation:
 
 #### 8.3: Equivalence Relations
 
-...
+**Relation Induced by the Partition:**
+A partition of a set $A$ is a finite or infinite collection of nonempty, mutually disjoint subsets whose union is $A$. Given a partition of a set $A$, the relation induced by the partition, $R$, is defined on $A$ as follows: For every $x, y \in A, \ \ x\ R\ y \ \ \Leftrightarrow$ there is a subset $A_i$ of the partition such that both $x$ and $y$ are in $A_i$. Relation induced by a partition of a set satisfies all three properties of reflexivity, symmetry, and transitivity.
+Example:
+	Let $A = \{ 0, 1, 2, 3\}$ and consider the following partition of $A: \{0, 3\}, \{1\}, \{2\}.$
+	$R = \{(0,0), (0,3), (3,0), (3,3), (1,1), (2,2)\}$
+
+**Equivalence Relation:**
+A relation on a set that satisfies the three properties of reflexivity, symmetry, and transitivity is called an equivalence relation.
+
+**Equivalent Classes of an Equivalence Relation:**
+Suppose $A$ is a set and $R$ is an equivalence relation on $A$. For each element $a$ in $A$, the equivalence class of $a$, denoted $[a]$ and called the class of $a$ for short, is the set of all elements $x$ in $A$ such that $x$ is related to $a$ by $R$.
+Symbolically: $[a] = \{ x \in A\ |\ x\ R\ a \}$
+
+**Representative:**
+Suppose $R$ is an equivalence relation on a set $A$ and $S$ is an equivalence class of $R$. A representative of the class $S$ is any element $a$ such that $[\ a\ ] = S.$
+
+**Modulo:**
+Let $m$ and $n$ be integers and let $d$ be a positive integer. We say that $m$ is congruent to $n$ modulo $d$ and write $m \equiv n \pmod d$ if, and only if, $d\;|\;(m - n).$
+Symbolically: $m \equiv n \pmod d \ \ \Leftrightarrow \ \ d\ |\ (m - n).$
 
 
 #### 8.5: Partial Order Relations
 
-...
+> There is no branch of mathematics, however abstract, which may not some day be applied to phenomena of the real world.
+> - Nicolai Ivanovitch Lobachevsky (1792 - 1856)
+
+**Antisymmetry:**
+Let $R$ be a relation on a set $A$. $R$ is antisymmetric if, and only if, for every $a$ and $b$ in $A$, if $a\ R\ b$ and $b\ R\ a$ then $a = b.$
+On a directed graph:
+	Saying that a relation is antisymmetric is the same as saying that whenever there is an arrow going from one element to another distinct element, there is not an arrow going back from the second to the first.
+
+**Partial Order Relations:**
+Let $R$ be a relation defined on a set $A$. $R$ is a partial order relation if, and only if, $R$ is reflexive, antisymmetric, and transitive.
+An example of a partial order relation is the "divides" relation on a set of positive integers:
+	Let $|$ be the "divides" relation on a set $A$ of positive integers. That is, for all $a$ and $b$ in $A$, $a \mid b \ \ \Leftrightarrow \ \ ka$ for some integer $k$.
+A fundamental partial order relation is the "subset" relation on a set of sets:
+	 Let $\mathcal{A}$ be any collection of sets and define the "subset" relation, $\subseteq$, on $\mathcal{A}$ as follows: For every $U, V \in \mathcal{A}, \ \ U \subseteq V \ \ \Leftrightarrow$ for each $x,$ if $x$ in $V.$
+Another fundamental partial order relation is the "less than or equal to" relation on a set of real numbers:
+	Let $S$ be a set of real numbers and define the "less than or equal to" relation , $\le$, on $S$ as follows: For all real numbers $x$ and $y$ in $S, x \le y \Leftrightarrow x \lt y$ or $x = y.$
+Because of the special paradigmatic role played by the $\le$ relation in the study of partial order relations, the symbol $\preceq$ is often used to refer to a general partial order relation, and the notation $x \preceq y$ is read "$x$ is less than or equal to $y$" or "$y$ is greater than or equal to $x$."
+
+**Lexicographic Order:**
+Let $A$ be a set with a partial order relation $R$, and let $S$ be a set of strings over $A$. Define a relation $\preceq$ on $S$ as follows:
+Let $s$ and $t$ be any strings in $S$ of lengths $m$ and $n$, respectively, where $m$ and $n$ are positive integers, and let $s_m$ and $t_m$ be the characters in the $m$th position for $s$ and $t$, respectively.
+1. If $m \le n$ and the first $m$ characters of $s$ and $t$ are the same, then $s \preceq t$.
+2. If the first $m - 1$ characters in $s$ and $t$ are the same, $s_m\ R\ t_m$, and $s_m \neq t_m,$ then $s \preceq t.$
+3. If $\lambda$ is the null string then $\lambda \preceq s.$
+If no strings are related by $\preceq$ other than by these three conditions, then $\preceq$ is a partial order relation on $S.$
+
+**Hasse Diagram:**
+For a partial order relation defined on a finite set, a Hasse diagram can be drawn rather than a directed graph. It is somewhat simpler and more readable.
+To obtain a Hasse diagram, proceed as follows: Start with a directed graph of the relation, placing vertices on the page so that all arrows point upward. Then eliminate:
+1. The loops at all the vertices.
+2. All the arrows whose existence is implied by the transitive property.
+3. The direction indicators on the arrows.
+Example:
+	Let $A = \{1, 2, 39, 18\}$ and consider the "divides" relation on $A$: For every $a, b, \in A,\ \ a \mid b \ \ \Leftrightarrow \ \ b = ka$ for some integer $k.$
+	![[screenshot_2025-09-14-171713.png]]
+
+**Comparable and Noncomparable elements:**
+Suppose $\preceq$ is a partial relation on a set $A$. Elements $a$ and $b$ of $A$ are said to be comparable if, and only if, either  $a \preceq b$ or $b \preceq a$. Otherwise, $a$ and $b$ are called noncomparable.
+
+**Total Order Relations:**
+When all the elements of a partial order relation are comparable, the relation is called a total order. If $R$ is a partial order relation on a set $A$, and for any two elements $a$ and $b$ in $A$ either $a\ R\ b$ or $b\ R\ a$, then $R$ is a total order relation on $A.$ A Hasse diagram for a total order relation can be drawn as a single vertical chain. Examples of total order relations: The "less than or equal to" relation on sets of real numbers, and the lexicographic order of a set of words in a dictionary.
+
+**Chains:**
+A set that is partially ordered but not totally ordered may have totally ordered subsets. Such subsets are called chains.
+Let $A$ be a set that is partially ordered with respect to a relation $\preceq$. A subset $B$ of $A$ is called a chain if, and only if, the elements in each pair of elements in $B$ are comparable. In other words, $a \preceq b$ or $b \preceq a$ for every $a$ and $b$ in $B$. the length of a chain is one less that the number of elements in the chain.
+
+**The Maximal Element in Partially Ordered Sets:**
+A maximal element in a partially ordered set is an element that is greater than or equal to every element to which it is comparable. A greatest element in a partially ordered set is an element that is greater than or equal to every element in the set. Minimal and least elements are defined similarly.
+Let a set $A$ be partially ordered with respect to a relation $\preceq$.
+1. An element $a$ in $A$ is called a maximal element of $A$ if, and only if, for each $b$ in $A$, either $b \preceq a$ or $b$ and $a$ are not comparable.
+2. An element $a$ in $A$ is called a greatest element of $A$ if, and only if, for each $b$ in $A, b \preceq a.$
+3. An element $a$ in $A$ is called a minimal element of $A$ if, and only if, for each $b$ in $A$, either $a \preceq b$ or $b$ and $a$ are not comparable.
+4. An element $a$ in $A$ is called a least element of $A$ if, and only if, for each $b$ in $A, a \preceq b.$
+
+**Compatible Partial Order Relations:**
+Given partial order relations $\preceq$ and $\preceq '$ on a set $A$, $\preceq '$ is compatible with $\preceq$ if, and only if, for every $a$ and $b$ in $A$, if $a \preceq b$ then $a \preceq ' b$.
+
+**Topological Sorting:**
+Given partial order relations $\preceq$ and $\preceq '$ on a set $A$, $\preceq '$ is a topological sorting for $\preceq$ if, and only if, $\preceq '$ is a total order that is compatible with $\preceq.$
 
 
 - - -
 
 ### Chapter 7 - Properties of Functions:
 
+Examples of functions: 
+- Sequences - Which are functions defined on sets of integers
+- mod and div - Which are functions defined on Cartesian products of integers
+- Floor and ceiling - Which are functions from $\mathbb{R}$ to $\mathbb{Z}$
+- Truth tables - Which can be regarded as Boolean functions
+
 #### 7.1: Functions Defined on General Sets
 
-...
+> The theory that has had the greatest development in recent times is without any doubt the theory of functions
+> - Vito Volterra, 1888
+
+
+**The Definition of a Function:**
+A function $f$ from a set $X$ to a set $Y$, denoted $f: X \rightarrow Y$, is a relation from $X,$ the domain of $f,$ to $Y,$ the co-domain of $f,$ that satisfies two properties: (1) every element in $X$ is related to some element in $Y,$ and (2) no element in $X$ is related to more than one element in $Y.$ Thus, given any element $x$ in $X,$ there is a unique element in $Y$ that is related to $x$ by $f.$ If we call this element $y,$ then we say that "$f$ sends $x$ to $y$" or "$f$ maps $x$ to $y$" and write $x \xrightarrow{f} y$ or $f: x \rightarrow y.$ The unique element to which $f$ sends $x$ is denoted $f(x)$ and is called $f$ of $x,$ or the output of $f$ for the input $x$, or the value of $f$ at $x,$ or the image of $x$ under $f.$
+The set of all values of $f$ taken together is called the range of $f$ or the image of $X$ under $f.$
+Symbolically:
+	Range of $f =$ image of $X$ under $f = \{y \in Y \mid y = f(x),$ for some $x$ in $X\}.$
+Given an element $y$ in $Y,$ there may exist elements in $X$ with $y$ as their image. When $x$ is an element such that $f(x) = y,$ then $x$ is called a preimage of $y$ or an inverse image of $y.$ The set of all inverse images of $y$ is called the inverse image of $y.$
+Symbolically:
+	The inverse image of $y = \{ x \in X \mid f(x) = y\}.$
+
+**Function Equality:**
+If $F: X \rightarrow Y$ and $G : X \rightarrow Y$ are functions, then $F = G$ if, and only if, $F(x) = G(x)$ for every $x \in X.$
+
+**Identity Function on a Set:**
+Given a set $X,$ define a function $I_X$ from $X$ to $X$ by $I_X(x) = x$ for each $x$ in $X.$
+The function $I_X$ is called the identity function on $X$ because it sends each element of $X$ to the element that is identical to it.
+
+**Logarithms and Logarithmic Functions:**
+Let $b$ be a positive real number with $b \neq 1.$ For each positive real number $x,$ the logarithm with bas $b$ of $x,$ written $\log_b\ x,$ is the exponent to which $b$ must be raised to obtain $x.$
+Symbolically: $\log_b\ x = y \ \ \Leftrightarrow \ \ b^y = x.$
+The logarithm function with base $b$ is the function from $\mathbb{R}^+$ to $\mathbb{R}$ that takes each positive real number $x$ to $\log_b\ x.$
+
+**Boolean Functions:**
+An ($n$-place) Boolean function $f$ is a function whose domain is the set of all ordered $n$-tuples of 0's and 1's and whose co-domain is the set $\{0, 1\}.$ More formally, the domain of a Boolean function can be described as the Cartesian product of $n$ copies of the set $\{0, 1\},$ which is denoted $\{0, 1\}^n.$ Thus $f: \{0, 1\}^n \rightarrow \{0, 1\}.$
+
+**"Functions" That Are Not Well-Defined:**
+In general, we say that a "function" is not well defined if it fails to satisfy at least one of the requirements for being a function.
+
+**Image and Reverse Image:**
+If $f: X \rightarrow Y$ is a function and $A \subseteq X$ and $C \subseteq Y,$ then $f(A) = \{y \in Y \mid y = f(x)$$ for some $x$ in $A\}$ and $f^{-1}(C) = \{ x \in X \mid f(x) \in C\}.$
+$f(A)$ is called the image of $A,$ and $f^{-1}(C)$ is called the inverse image of $C.$
 
 
 #### 7.2: One-to-One, Onto, and Inverse Functions
@@ -923,29 +1042,51 @@ Example of a reflexive, symmetric and transitive relation:
 
 ## Notater fra "Discrete Math (Full Course)" av Trefor Bazett:
 - - - 
+
+Video: [Intro to Sets | Examples, Notation & Properties](https://youtu.be/B1v2-nGXNzs)
+Video: [Set-Roster vs Set-Builder notation](https://youtu.be/aTlR03t1dTQ)
+Video: [The Empty Set & Vacuous Truth](https://youtu.be/GqvX4Fi0jbM)
+
 **Set-Roster Notation:**
 	{0,2,4,5,...}
 
 **Set-Builder Notation:**
 	{x | P(x)}
 
-**Cartesion Product of two sets:**
+Video: [Cartesian Product of Two Sets A x B](https://youtu.be/ufjEv-5nmcA)
+
+**Cartesian Product of two sets:**
 	The Cartesian Product $A \times B$ is the set of all ordered pairs $(a, b)$ where $a \in A$ and $b \in B$
+
+Video: [Relations between two sets | Definition + First Examples](https://youtu.be/0dzNlrNJYdc)
 
 **Relations:**
 	A relation R between $A$ and $B$ is a subset of $A \times B$
+
+Video: [The intuitive idea of a function](https://youtu.be/G8qvOZ9DE3c)
+Video: [Formal Definition of a Function using the Cartesian Product](https://youtu.be/-a5FaFp87N4)
+Video: [Example: Is this relation a function?](https://youtu.be/b_sxTCjruJE)
 
 **Functions:**
 	A function $F$ between $A$ and $B$ is a relation between $A$ and $B$ such that:
 	1. For every element $x \in A$ there is an element $y \in B$ such that $(x,y) \in F$
 	2. If $(x, y) \in F$ and $(x,z) \in F$ then $y = z$
 
+Video: [Intro to Logical Statements](https://youtu.be/q2eyZZK-OIk)
+Video: [Intro to Truth Tables | Negation, Conjunction, and Disjunction](https://youtu.be/7mulE-zramc)
+Video: [Truth Table Example: ~p V ~q](https://youtu.be/LNSfM86I8is)
+Video: [Logical Equivalence of Two Statements](https://youtu.be/U2zPxuj8mnI)
+
 **Logical equivalence of two statements:**
 	Two statements are logically equivalent if they have the same truth table
+
+Video: [Tautologies and Contradictions](https://youtu.be/Ji2vr-9duPI)
 
 **Tautologies and contradictions:**
 	A tautology $t$ is a statement that is always true
 	A contradiction $c$ is a statement that is always false
+
+Video: [3 Ways to Show a Logical Equivalence | Ex: DeMorgan's Laws](https://youtu.be/93CxSLi89Ok)
 
 **DeMorgan's laws:**
 	$\sim (p \lor q) \equiv (\sim p) \land (\sim q)$
@@ -962,26 +1103,40 @@ Example of a reflexive, symmetric and transitive relation:
 	$p \lor t \equiv t$
 	$p \land c \equiv c$
 
+Video: [Vacuously True Statements](https://youtu.be/AQ0f4rsbsrQ)
+
 **Vacuously true statements:**
 	When the hypothesis is false, the statement is vacuously true
+
+Video: [Conditional Statements: if p then q](https://youtu.be/F3544ZyO-eU)
 
 **Conditional statements:**
 	$p \rightarrow q$ means: "if $p$ is TRUE then $q$ is TRUE
 	$p \rightarrow q \equiv \sim p \lor q$
 
+Video: [Negating a Conditional Statement](https://youtu.be/j7qVcc6X8g4)
+
 **Negating a conditional statement:**
 	$\sim (p \rightarrow q) \equiv p \land \sim q$
+
+Video: [Contrapositive of a Conditional Statement](https://youtu.be/h83bzYAfgrM
 
 **Contrapositive of a conditional statement:**
 	$p \rightarrow q \equiv \sim q \rightarrow \sim p$
 
-**Biconditional statements:**
-	The biconditional $p \leftrightarrow q$ means that both $p \rightarrow q$ and $q \rightarrow p$.
+Video: [The converse and inverse of a conditional statement](https://youtu.be/BNhp6LXncI0)
 
 **The converse and inverse of a conditional statement:**
 	The converse of the statement $p \rightarrow q$ is the statement $q \rightarrow p$.
 	The inverse of the statement $p \rightarrow q$ is the statement $\sim p \rightarrow \sim q$.
 	The converse and inverse are logically equivalent to each other but NOT logically equivalent to the original statement.
+
+Video: [Biconditional Statements | "if and only if"](https://youtu.be/oHijygNdx_8)
+
+**Biconditional statements:**
+	The biconditional $p \leftrightarrow q$ means that both $p \rightarrow q$ and $q \rightarrow p$.
+
+Video: [Logical Arguments - Modus Ponens & Modus Tollens](https://youtu.be/NTSZMdGlo4g)
 
 **Logical arguments:**
 	A valid argument is a list of premises from which the conclusion follows.
@@ -996,6 +1151,8 @@ Example of a reflexive, symmetric and transitive relation:
 	$\sim q$.
 	Therefore, $\sim p$.
 
+Video: [Logical Argument Forms: Generalizations, Specialization, Contradiction](https://youtu.be/pHWaxuyfK2s)
+
 **Generalization is an argument of the form:**
 	$p$.
 	Therefore, $p \lor q$.
@@ -1007,6 +1164,9 @@ Example of a reflexive, symmetric and transitive relation:
 **Contradiction is an argument of the form:**
 	$\sim p \rightarrow c$.
 	Therefore, $p$.
+
+Video: [Analyzing an argument for validity](https://youtu.be/ON7yAw6W9VY)
+Video: [Predicates and their Truth Sets]()
 
 **Statements:**
 	A statement is either TRUE or FALSE.
@@ -1021,6 +1181,8 @@ Example of a reflexive, symmetric and transitive relation:
 		$P(\frac{1}{3})$ is nonsense! since $\frac{1}{3} \not \in \mathbb{Z}^{+}$
 		The truth set of $P(x)$ is $TS = \{1,2,3,4,6,12\}$
 		$TS \subseteq \mathbb{Z}^{+}$
+
+Video: [Universal and Existential Quantifiers, ∀ "For All" and ∃ "There Exists"](https://youtu.be/GJpezCUMOxA)
 
 **The Universal Quantifier $\forall$ means "for all":**
 	Main use: "quantifying" predicates.
@@ -1038,18 +1200,26 @@ Example of a reflexive, symmetric and transitive relation:
 	Predicate: $P(x):$ "$x$ is a mammal"
 	Statement: $Q: \forall x \in D, P(x):$ "Every dog is a mammal
 
+Video: [Negating Universal and Existential Quantifiers](https://youtu.be/q1rKFGSiZE8)
+
 **Negating the Universal Quantifier:**
 	$\sim ( \forall x \in D, P(x) ) \equiv \exists x \in D, \sim P(x)$
 
 **Negating the Existential Quantifier:**
 	$\sim ( \exists x \in D, P(x) ) \equiv \forall x \in D, \sim P(x)$
 
+Video: [Negating Logical Statements with Multiple Quantifiers](Negating Logical Statements with Multiple Quantifiers)
+
 **Negating Logical Statements with Multiple Quantifiers:**
 	$\sim (\forall x \in D, \exists y \in D, y > x ) \equiv \exists x \in D, \forall y \in D, y \le x$
 	$\sim ( \exists x \in D, \forall y \in D, x \ge y ) \equiv \forall x \in D, \exists y \in D, x < y$ 
 
+Video: [Universal Conditionals P(x) implies Q(x)](https://youtu.be/4XrfeNIGUKM)
+
 **Universal-Conditionals $P(x)$ implies $Q(x)$:**
 	$P(x) \Rightarrow Q(x)$ means $\forall x \in D, P(x) \rightarrow Q(x)$
+
+Video: [Necessary and Sufficient Conditions](https://youtu.be/KCMGWRoPuMY)
 
 **Sufficient condition:**
 	$A(x):$ $x$ is a square
@@ -1078,6 +1248,8 @@ Example of a reflexive, symmetric and transitive relation:
 	$A(x)$ is a sufficient condition for $B(x)$
 	$B(x)$ is a necessary condition for $A(x)$
 
+Video: [Formal Definitions in Math | Ex: Even & Odd Integers](https://youtu.be/dlKcfGu-WpI)
+
 **Formal definitions:**
 	Even integers:
 		Informal definition: $n$ is an even integer if $n$ can be written as twice an integer.
@@ -1085,6 +1257,8 @@ Example of a reflexive, symmetric and transitive relation:
 	Odd integers:
 		Informal definition: $n$ is an odd integer if $n$ is an integer that is not even.
 		Formal definition: $n$ is an odd integer if $\exists k \in \mathbb{Z}$ such that $n = 2k + 1$
+
+Video: [How to Prove Math Theorems | 1st Ex: Even + Odd = Odd](https://youtu.be/L74bnJWdHDo)
 
 **Proving math theorems, "Even + odd = odd" direct proof example:**
 	Theorem: 
@@ -1102,6 +1276,8 @@ Example of a reflexive, symmetric and transitive relation:
 		3) Manipulate
 		4) Arrive at definition of conclusion
 		5) State the conclusion
+
+Video: [Step-By-Step Guide to Proofs | Ex: product of two evens is even](https://youtu.be/oqTg3D_jZWo)
 
 **Proving math theorems, "Product of two evens is even" example:**
 	Formal definition of an even number:
@@ -1127,6 +1303,8 @@ Example of a reflexive, symmetric and transitive relation:
 			3) Manipulate
 			4) Deduce conclusion
 
+Video: [Rational Numbers | Definition + First Proof](https://youtu.be/JL2DXGFO8S8)
+
 **Rational numbers definition:**
 	Informal definition:
 		$n$ is a rational number if it is a fraction. Ex: $\frac{3}{7}$
@@ -1143,6 +1321,8 @@ Example of a reflexive, symmetric and transitive relation:
 		Let $p_3 = p_1 q_2 + p_2 q_1$ and $q_3 = q_1 q_2$
 		Hence, $\exists p_3 \in \mathbb{Z}, \exists q_3 \in \mathbb{Z} \setminus\{0\}$ so $m + n = \frac{p_3}{q_3}$
 		Thus $m + n$ is rational. $\blacksquare$
+
+Video: [Proving that divisibility is transitive](https://youtu.be/F78_7Lv-7vM)
 
 **Proving that divisibility is transitive:**
 	...
