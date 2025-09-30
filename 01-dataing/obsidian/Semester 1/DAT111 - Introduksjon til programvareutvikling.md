@@ -6,9 +6,9 @@
 
 >[!todo]
 >- [x] Uke 35 - Forberedelse til Per Christian forelesning - DAT111 videoer
->- [x] Uke 38 - ==Obligatorisk oppgave #1==
->- [ ] Uke 41 - ==Obligatorisk oppgave #2==
->- [ ] Uke 45 - ==Obligatorisk oppgave #3==
+>- [x] Uke 38 - ==Obligatorisk oppgave, del 1==
+>- [ ] Uke 45 - ==Obligatorisk oppgave, del 2 (frist 7.10)==
+>- [ ] Uke ?? - ==Obligatorisk oppgave, del 3==
 
 **Andre linker:**
 - [three.js manual](https://threejs.org/manual/)

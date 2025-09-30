@@ -17,14 +17,14 @@
 >- [x] Uke 36 - JP3
 >- [x] Uke 38 - Lese kapittel 6
 >- [x] Uke 38 - JP5
->- [ ] Uke 39 - [JP6](https://github.com/dat100hib/dat100public/blob/master/programmering/jplab6/JP6.md)
+>- [x] Uke 39 - [JP6](https://github.com/dat100hib/dat100public/blob/master/programmering/jplab6/JP6.md)
 >- [ ] Uke 41 - [Obligatorisk oppgave 2](https://github.com/dat100hib/dat100-javainnlevering2)
 >- [ ] Uke 40 - JP7
 >- [x] Uke 41 - Lese kapittel 7
 >- [ ] Uke 42 - **==Levere prosjekt==**
 >- [x] Uke 42 - Lese kapittel 9
 >- [ ] Uke 43 - JP8
->- [ ] Uke 44 - **==Levere oppgave 3==**
+>- [ ] Uke 44 - **==Levere oppgave 2 (frist 3.10)==**
 >- [ ] Uke 44 - JP9
 >- [ ] Uke 46 - JP10
 >- [ ] Uke 47 - JP11

@@ -1,7 +1,7 @@
-package tdee;
+package sat;
 
-import tdee.components.*;
-import tdee.components.physics.*;
+import sat.components.*;
+import sat.components.physics.*;
 
 import java.util.ArrayList;
 import static com.raylib.Raylib.*;

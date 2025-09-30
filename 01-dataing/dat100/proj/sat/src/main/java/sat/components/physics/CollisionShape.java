@@ -1,4 +1,4 @@
-package tdee.components.physics;
+package sat.components.physics;
 
 import com.raylib.Raylib.*; 
 

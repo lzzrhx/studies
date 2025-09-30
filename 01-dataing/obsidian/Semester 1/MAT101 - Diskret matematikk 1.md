@@ -17,12 +17,14 @@
 >- [x] ==**Frist 12. September - Obligatorisk oppgave 1**==
 >- [x] Uke 37 - Øvelse 4
 >- [x] Uke 37 - Kap. 6.1, 6.2, 6.3
->- [ ] Obligatorisk oppgave 2
 >- [x] Uke 38 - Kap. 8.1, 8.2, 8.3
->- [ ] Uke 39 - Kap. 7.1, 7.2, 7.3
->- [ ] Uke 41 - Kap. 5.1, 5.2, 5.3
+>- [ ] Uke 37 - Øvelse 5
+>- [ ] Uke 38 - Øvelse 6
+>- [x] Uke 39 - Kap. 7.1, 7.2, 7.3
+>- [ ] Uke 41 - ==Obligatorisk oppgave 2 (frist 10.10)==
+>- [x] Uke 41 - Kap. 5.1, 5.2, 5.3
 >- [ ] Obligatorisk oppgave 3
->- [ ] Uke 42 - Kap. 5.6, 5.9
+>- [x] Uke 42 - Kap. 5.6, 5.9
 >- [ ] Uke 43 - Kap. 4.4, 4.5, 8.1, 8.3, 2.5
 >- [ ] Uke 44 - Kap. 1.4, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
 
@@ -181,12 +183,68 @@ ghc <filnavn>.hs -o <navn>
 
 ## Notater fra "Discrete mathematics with applications":
 - - -
+[[#Chapter 1 - Speaking Mathematically]]
+	[[#1.1 - Variables]]
+	[[#1.2 - The Language of Sets]]
+	[[#1.3 - The Language of Relations and Functions]]
+
+[[#Chapter 2 - The Logic of Compound Statements]]
+	[[#2.1 - Logical Form and Logical Equivalence]]
+	[[#2.2 - Conditional Statements]]
+	[[#2.3 - Valid and Invalid Arguments]]
+	[[#2.4 - (Application) Digital Logic Circuits]]
+	[[#2.5 - Application Number Systems and Circuits for Addition]]
+
+[[#Chapter 3 - The Logic of Quantified Statements]]
+	[[#3.1 - Predicates and Quantified Statements I]]
+	[[#3.2 - Predicates and Quantified Statements II]]
+	[[#3.3 - Statements with Multiple Quantifiers]]
+	[[#3.4 - Arguments with Quantified Statements]]
+
+[[#Chapter 4 - Elementary Number Theory and Methods of Proof]]
+	[[#4.4 - Direct Proof and Counterexample IV Divisibility]]
+	[[#4.5 - Direct Proof and Counterexample V Division into Cases and the Quotient-Remainder Theorem]]
+
+[[#Chapter 5 - Sequences, Mathematical Induction, and Recursion]]
+	[[#5.1 - Sequences]]
+	[[#5.2 - Mathematical Induction I Proving Formulas]]
+	[[#5.3 - Mathematical Induction II Applications]]
+	[[#5.6 - Defining Sequences Recursively]]
+	[[#5.9 - General Recursive Definitions and Structural Induction]]
+
+[[#Chapter 6 - Set Theory]]
+	[[#6.1 - Set Theory - Definitions and the Element Method of Proof]]
+	[[#6.2 - Properties of Sets]]
+	[[#6.3 - Disproofs and Algebraic Proofs]]
+
+[[#Chapter 7 - Properties of Functions]]
+	[[#7.1 - Functions Defined on General Sets]]
+	[[#7.2 - One-to-One, Onto, and Inverse Functions]]
+	[[#7.3 - Composition of Functions]]
+
+[[#Chapter 8 - Properties of Relations]]
+	[[#8.1 - Relations on Sets]]
+	[[#8.2 - Reflexivity, Symmetry, and Transitivity]]
+	[[#8.3 - Equivalence Relations]]
+	[[#8.5 - Partial Order Relations]]
+
+[[#Chapter 10 - Theory of Graphs and Trees]]
+	[[#10.1 - Trails, Paths, and Circuits]]
+	[[#10.2 - Matrix Representation of Graphs]]
+	[[#10.3 - Isomorphisms of Graphs]]
+	[[#10.4 - Trees Examples and Basic Properties]]
+	[[#10.5 - Rooted Trees]]
+	[[#10.6 - Spanning Trees and a Shortest Path Algorithm]]
+
+
+- - -
+
 ### Chapter 1 - Speaking Mathematically:
 
 > Therefore O students study mathematics and do not build without foundations.
 > - Leonardo da Vinci (1952-1519)
 
-#### 1.1: Variables:
+#### 1.1 - Variables:
 
 **Universal Conditional Statements:**
 Universal statements contain some variation of the words "for every" and conditional statements contain versions of the words "if-then". A universal conditional statement is a statement that is both universal and conditional.
@@ -287,7 +345,7 @@ Given the function $f$ and the function $g$ with the domain $A$, $f = g$, if, an
 
 ### Chapter 2 - The Logic of Compound Statements:
 
-#### 2.1: Logical Form and Logical Equivalence:
+#### 2.1 - Logical Form and Logical Equivalence:
 
 > Logic is a science of the necessary laws of thought, without which no employment of the understanding and the reason takes place.
 > - Immanuel Kant, 1785
@@ -355,7 +413,7 @@ A contradiction is a statement form that is always false regardless of the truth
 ![[screenshot_2025-09-02-184606.png]]
 
 
-#### 2.2: Conditional Statements:
+#### 2.2 - Conditional Statements:
 
 > ... hypotetical reasoning implies the subordination of the real to the realm of the possible ..
 > - Jean Piaget, 1972
@@ -401,7 +459,7 @@ $r$ is a necessary condition for $s$ means "if not $r$ then not $s$" or that if 
 5. Inverse: $p \rightarrow q \not\equiv \sim p \rightarrow \sim q$
 
 
-#### 2.3: Valid and Invalid Arguments:
+#### 2.3 - Valid and Invalid Arguments:
 
 > "Contrariwise," continued Tweedledee, "if it was so, it might be; and if it were so, it would be; but as it isn't, it ain't. That's logic.
 > - Lewis Carroll, *Through the Looking Glass*
@@ -503,7 +561,7 @@ If you can show that the supposition that statement $p$ is false leads logically
 ![[screenshot_2025-09-02-220743.png]]
 
 
-#### 2.4: (Application) Digital Logic Circuits:
+#### 2.4 - (Application) Digital Logic Circuits:
 
 > Only connect!
 > - E.M. Forster, *Howards End*
@@ -531,7 +589,7 @@ Ex.: $(P \land Q)\ \land \sim R$
 
 ### Chapter 3 - The Logic of Quantified Statements:
 
-#### 3.1: Predicates and Quantified Statements I:
+#### 3.1 - Predicates and Quantified Statements I:
 
 > ... it was not till within the last few years that it has been realized how fundamental any and some are to the very nature of mathematics.
 > - A.N. Whitehead (1861-1947)
@@ -557,7 +615,7 @@ $\forall x$, if $P(x)$ then $Q(x)$.
 $\forall x, P(x) \rightarrow Q(x)$
 
 
-#### 3.2: Predicates and Quantified Statements II:
+#### 3.2 - Predicates and Quantified Statements II:
 
 > TOUCHSTONE: Stand you both forth now: stroke your chins, and swear by your beards that I am a knave.
 > CELIA: By our beards - if we had them - thou art.
@@ -594,7 +652,7 @@ The converse and inverse forms of the original statement are logically equivalen
 - "$\forall x, r(x)$ only if $s(x)$" means "$\forall x$, if $\sim s(x)$ then $\sim r(x)$" or equivalently, "$\forall x$, if $r(x)$ then $s(x)$."
 
 
-#### 3.3: Statements with Multiple Quantifiers:
+#### 3.3 - Statements with Multiple Quantifiers:
 
 > It is not enough to have a good mind. The main thing is to use it well.
 > - René Descartes
@@ -612,7 +670,7 @@ $\sim ( \exists x \in D, \forall y \in E, P(x, y) ) \equiv \forall x \in D, \exi
 Taken together, the symbols for quantifiers, variables, predicates, and logical connectives makes up what is known as the language of first-order logic.
 
 
-#### 3.4: Arguments with Quantified Statements:
+#### 3.4 - Arguments with Quantified Statements:
 
 > The only complete safeguard against reasoning ill, is the habit of reasoning well; familiarity with the principles of correct reasoning; and practice in applying those principles.
 > - John Stuart Mill
@@ -650,9 +708,214 @@ $\therefore \forall x P(x) \rightarrow R(x)$
 
 - - -
 
+### Chapter 4 - Elementary Number Theory and Methods of Proof:
+
+#### 4.4 - Direct Proof and Counterexample IV: Divisibility
+
+> The essential quality of a proof is to compel belief.
+> - Pierre de Fermat
+
+Number theory is the study of properties of integers.
+
+**Definition of Divisibility:**
+If $n$ and $d$ are integers then $n$ is divisible by $d$ if, and only if, $n$ equals $d$ times some integer and $d \neq 0.$
+Instead of "$n$ is divisible by $d$," we can say that
+	$n$ is a multiple of $d$, or
+	$d$ is a factor of $n$, or
+	$d$ is a divisor of $n$, or
+	$d$ divides $n$.
+The notation $d \mid n$ is read "$d$ divides $n$."
+Symbolically, if $n$ and $d$ are integers:
+	$d \mid n \ \ \Leftrightarrow \ \ \exists$ an integer, say $k$, such that $n = dk$ and $d \neq 0.$
+
+**Nondivisibility:**
+The notation $d \nmid n$ is read "$d$ does not divide $n.$"
+	For all integers $n$ and $d, \ \ d \nmid n \ \ \Leftrightarrow \frac{n}{d}$ is not an integer.
+Since the negation of an existential statement is universal, the definition of nondivisibility can be written formally using the universal quantifier:
+	$d \nmid n$ if, and only if, $\forall$ integer $k, n \neq dk$ or $d = 0.$
+Example of checking nondivisibility:
+	Does $4 \mid 15$?
+	No, $\frac{15}{4} = 3,75,$ which is not an integer.
+
+**Properties of Divisibility:**
+- If one positive integer divides a second positive integer, then the first is less than or equal to the second
+- The only divisors of $1$ are $1$ and $-1.$
+- Divisibility is transitive. If one number divides a second and the second number divides a third, then the first number divides the third.
+
+**Prime Numbers and Divisibility:**
+An alternative way to define a prime number is to say that an integer  $n > 1$ is prime if, and only if, its only positive integer divisors are $1$ and itself.
+
+**Example of proof: Transitivity of Divisibility:**
+For all integers $a, b,$ and $c$, if $a$ divides $b$ and $b$ divides $c,$ then $a$ divides $c.$
+Proof:
+Suppose $a, b,$ and $c$ are any \[particular but arbitrarily chosen\] integers such that $a$ divides $b$ and $b$ divides $c.$ \[We must show that $a$ divides $c.$\]
+By definition of divisibility, $b = ar$ and $c = bs$ for some integers $r$ and $s.$
+By substitution $c = bs = (ar)s = a(rs)$
+Let $k = rs.$ Then $k$ is an integer since it is a product of integers, and therefore $c = ak$ where $k$ is an integer.
+Thus $a$ divides $c$ by definition of divisibility. \[This is what was to be shown.\]
+
+**The Unique Factorization of Integers Theorem:**
+Given any integer $n > 1,$ there exist a positive integer $k,$ distinct prime numbers $p_1,\ p_2,\ \dots,\ p_k,$ and positive integers $e_1,\ e_2,\ \dots,\ e_k$ such that $n = p_1^{e_1}\ p_2^{e_2}\ p_3^{e_3}\ \dots\ p_k^{e_k},$ and any other expression for $n$ as a product of prime numbers is identical to this except, perhaps, for the order in which the factors are written.
+
+**Standard Factored Form:**
+Given any integer $n > 1$, the standard factored form of $n$ is an expression of the form $n = p_1^{e_1}\ p_2^{e_2}\ p_3^{e_3}\ \dots\ p_k^{e_k},$ where $k$ is a positive integer, $p_1,\ p_2,\ \dots,\ p_k$ are prime numbers, $e_1,\ e_2,\ \dots,\ e_k$ are positive integers, and $p_1 < p_2 < \dots < p_k.$
+Example:
+	$3300 = 100 \cdot 33 = 4 \cdot 25 \cdot 3 \cdot 11 = 2 \cdot 2 \cdot 5 \cdot 5 \cdot 3 \cdot 11 = 2^2 \cdot 3^1 \cdot 5^2 \cdot 11^1.$
+
+
+#### 4.5 - Direct Proof and Counterexample V: Division into Cases and the Quotient-Remainder Theorem
+
+> Be especially critical of any statement following the word "obviously."
+> - Anna Pell Wheeler, 1883 - 1966
+
+**The Quotient-Remainder Theorem:**
+Given any integer $n$ and positive integer $d,$ there exists unique integers $q$ and $r$ such that $n = dq + r$ and $0 \leq r > d.$
+
+**div and mod:**
+Given an integer $n$ and a positive integer $d,$
+$n \text{ div } d =$ the integer quotient obtained when $n$ is divided by $d.$
+$n \text{ mod } d =$ the nonnegative integer remainder obtained when $n$ is divided by $d.$
+Symbolically, if $n$ and $d$ are integers and $d > 0,$ then $n \text{ div } d = q$ and $n \text{ mod } d = r \ \ \Leftrightarrow \ \ n = dq + r,$ where $q$ and $r$ are integers and $0 \leq r < d.$
+Example:
+	Finding $32 \text{ div }9$ and $32 \text{ mod } 9$
+	$9 \cdot 1 = 9$
+	$9 \cdot 2 = 18$
+	$9 \cdot 3 = 27$
+	$\cancel{9 \cdot 4 = 36}$ \[The result is over 32.\]
+	$32 - 27 = 5$
+	$32 = 9 \cdot 3 + 5$
+	$32 \text{ div }9 = 3$
+	$32 \text{ mod } 9 = 5$
+
+
+- - -
+
+### Chapter 5 - Sequences, Mathematical Induction, and Recursion:
+
+The main mathematical structure used in the study of repeated processes is the sequence, and the main mathematical tool used to verify conjectures about sequences is mathematical induction.
+
+#### 5.1 - Sequences
+
+> A mathematician, like a painter or poet, is a maker of patterns.
+> - G. H. Hardy, *A Mathematician's Apology*, 1940
+
+**Sequences:**
+A sequence is a function whose domain us either all the integers between two given integers or all the integers greater than or equal to a given integer.
+Finite sequence:
+	In the sequence denoted $a_m,\ a_{m+1},\ a_{m+2},\ \dots,\ a_n,$ each individual element $a_k$ (read "$a$ sub $k$") is called a term. The $k$ in $a_k$ is called a subscript or index, $m$ (which may be any integer) is the subscript of the initial term, and $n$ (which must be an integer that is greater than or equal to $m$) is the subscript of the final term.
+Infinite sequence:
+	The notation $a_m,\ a_{m+1},\ a_{m+2},\ \dots$ denotes and infinite sequence. An explicit formula or general formula for a sequence is a rule that shows how the values of $a_k$ depend on $k.$
+
+**Summation Notation:**
+In 1977 the French mathematician Joseph Louis Lagrange introduced the capital Greek letter sigma, $\Sigma,$ to denote the word sum (or summation), and defined the summation notation as follows: If $m$ and $n$ are integers and $m \leq n,$ the symbol $\sum\limits_{k = m}^{n} a_k,$ read the summation from $k$ equals $m$ to $n$ of $a$-sub-$k,$ is the sum of all the terms $a_m,\ a_{m+1},\ a_{m+2}, \dots, a_n.$ We say that $a_m + a_{m+1} + a_{m+2} + \dots + a_n$ is the expanded form of the sum, and we write $\sum\limits_{k = m}^{n} a_k = a_m + a_{m+1} + a_{m+2} + \dots + a_n.$ We call the $k$ the index of the summation, $m$ the lower limit of the summation, and $n$ the upper limit of the summation.
+
+**Product Notation:**
+The Greek capital letter pi, $\Pi,$ denotes a product.
+If $m$ and $n$ are integers and $m \leq n,$ the symbol $\prod\limits_{k = m}^{n}a_k,$ read the product from $k$ equals $m$ to $n$ of $a$-sub-$k,$ is the product of all the terms $a_m,\ a_{m+1},\ a_{m+2},\ \dots ,\ a_n.$ We write $\prod\limits_{k = m}^{n}a_k = a_m \cdot a_{m+1} \cdot a_{m+2}\ \dots\ a_n.$
+
+**Properties of Summations and Products:**
+If $a_m,\ a_{m+1},\ a_{m+2},\ \dots$ and $b_m,\ b_{m+1},\ b_{m+2},\ \dots$ are sequences of real numbers and $c$ is any real number, then the following equations hold for any integer $n \geq m$:
+1. $\sum\limits_{k = m}^{n}a_k + \sum\limits_{k=m}^{n}b_k = \sum\limits_{k=m}^{n}(a_k + b_k)$
+2. $c\ \cdot\ \sum\limits_{k=m}^{n}a_k = \sum\limits_{k=m}^{n}c\ \cdot\ a_k$
+3. $\left( \prod\limits_{k=m}^{n}a_k \right) \ \cdot \ \left( \prod\limits_{k=m}^{n}b_k \right) = \prod\limits_{k=m}^{n}(a_k \ \cdot \ b_k).$
+
+**Factorial Notation:**
+The product of all consecutive integers up to a given integer is given a special notation - factorial notation.
+For each positive integer $n,$ the quantity $n$ factorial denoted $n!,$ is defined to be the product of all the integers from $1$ to $n: n! = n\ \cdot (n-1)\ \dots\ 3\ \cdot 2\ \cdot 1.$
+Zero factorial, denoted $0!,$ is defined to be $a: 0! = 1.$
+
+**$n$ choose $r$:**
+Let $n$ and $r$ be integers with $0\leq r\leq n.$ The symbol $\binom{n}{r}$ is read "$n$ choose $r$" and represents the number of subsets of size $r$ that can be chosen from a set with $n$ elements. For all integers $n$ and $r$ with $0 \leq r \leq n, \binom{n}{r} = \frac{n!}{r!(n-r)!}$ 
+
+#### 5.2 - Mathematical Induction I: Proving Formulas
+
+> A good proof is one which makes us wiser.
+> - I. Manin, *A Course in Mathematical Logic*, 1977
+
+In natural science courses, deduction and induction are presented as alternative modes of thought - deduction being to infer a conclusion from general principles using the laws of logical reasoning, and induction being to enunciate a general principle after observing it to hold in a large number of specific instances. Mathematical induction as a proof technique is not inductive but deductive. Once proved by mathematical induction, a theorem is known just as certainly as if were proved by any other mathematical method. Thus, in mathematics, inductive reasoning is used in the natural sciences sense, but only to make conjectures, not to prove them.
+
+**Principle of Mathematical Induction:**
+Let $P(n)$ be a property that is defined for integers $n,$ and let $a$ be a fixed integer. Suppose the following two statements are true:
+1. $P(a)$ is true.
+2. For every integer $k \geq a,$ if $P(k)$ is true then $P(k+1)$ is true.
+Then the statement, for every integer $n \geq a, P(n)$ is true.
+
+**Method of Proof by Mathematical Induction:**
+Consider a statement of the form, "For every integer $n \geq a,$ a property $P(n)$ is true." To prove such a statement, perform the following two steps:
+1. (basis step): Show that $P(a)$ is true.
+2. (inductive step): Show that for every integer $k \geq a,$ if $P(k)$ is true then $P(k+1)$ is true. To perform this step, suppose that $P(k)$ is true, where $k$ is any particular but arbitrarily chosen integer with $k \geq a.$
+   \[This supposition is called the inductive hypothesis.\]
+   Then show that $P(k+1)$ is true.
+
+**Sum of the First $n$ integers:**
+For every integer $n \geq 1 , 1 + 2 + \dots + n = \frac{n(n+1)}{2}$
+
+**Closed Form:**
+If a sum with a variable number of terms is shown to equal an expression that does not contain either an ellipsis or a summation symbol, we say that the sum is written in closed form.
+
+**Sum of a Geometric Sequence:**
+For any real number $r$ except 1, and any integer $n \geq 0,\ \sum\limits_{i=0}^{n}r^i = \frac{r^{n+1} - 1}{r - 1}$
+
+#### 5.3 - Mathematical Induction II: Applications 
+
+> \[Mathematical induction is\] the standard proof technique in computer science.
+> - Anthony Ralston, 1984
+
+#### 5.6 - Defining Sequences Recursively
+
+> So, Nat'ralists observe, a Flea/Hath smaller Fleas that on hom prey,/And these have smaller Fleas to bite 'em,/And so proceed ad infinitum.
+> - Jonathan Swift, 1733
+
+**Defining Sequences Recursively:**
+A recurrence relation for a sequence $a_0,\ a_1,\ a_2,\ \dots$ is a formula that relates each term $a_k$ to certain of its predecessors $a_{k-1},\ a_{k-2},\ \dots,\ a_{k-i},$ where $i$ is an integer with $k - i \geq 0.$ If $i$ is a fixed integer, the initial conditions for such a recurrence relation specify the values of $a_0,\ a_1,\ 1_2,\ \dots,\ a_{i-1}.$ If $i$ depends on $k,$ the initial conditions specify the values $a_0,\ a_1,\ \dots,\ a_m,$ where $m$ is an integer with $m \geq 0.$
+
+**Recursive Definitions of Sum and Product:**
+Given numbers $a_1,\ a_2,\ \dots,\ a_n,$ where $n$ is a positive integer, the summation from $i=1$ to $n$ of the $a_i,$ denoted $\sum_{i=1}^{n} a_i,$ is defined as follows:
+$\sum\limits_{i=1}^{1}a_i = a_1$ and $\sum\limits_{i=1}^{n}a_i = \left( \sum\limits_{i=1}^{n-1}a_i \right) + a_n,$ if $n > 1.$
+The product from $i = 1$ to $n$ of the $a_i,$ denoted $\prod_{i=1}^{n} a_i,$ is defined by
+$\prod\limits_{i=1}^{1} a_i = a_i$ and $\prod\limits_{i=1}^{n} a_i = \left( \prod\limits_{i=1}^{n-1}a_i \right) \cdot a_n,$ if $n > 1.$
+
+#### 5.9 - General Recursive Definitions and Structural Induction
+
+> GENIE: Oh, aren't you acquainted with recursive acronyms? I thought everybody knew about them. You see, "GOD" stands for "GOD Over Djinn" - which can be expanded as "GOD Over Djinn, Over Djinn" - and that can, in turn, be expanded to "GOD Over Djinn, Over Djinn, Over Djinn" - which can, in its turn, be further expanded.... You can go as far as you like.
+> ACHILLES: But I'll never finish!
+> GENIE: Of course not. You can never totally expand GOD.
+> - Douglas Hofstadter, *Gödel, Escher, Bach*, 1979
+
+**Recursive Definition for the Set of All Strings over a Finite Set:**
+Let $A$ be any finite set. Call the elements of $A$ characters, and define the set $S$ of all strings over $A$ as follows:
+I.
+	Base: $\lambda$ is a string in $S,$ where $\lambda$ denotes the null string, the "string" with no characters.
+II.
+	Recursion: New strings are formed according to the following rules:
+	II(a)
+	   If $u$ is any string in $S$ and if $c$ is any character in $A,$ then $uc$ is a string in $S,$ where $uc$ is called the concatenation of $u$ and $c,$ and is obtained by appending $c$ on the right of $u.$
+	II(b) 
+	   If $u$ is any string in $S,$ then both the concatenation of $\lambda$ and $u,$ denoted $\lambda u,$ and the concatenation of $u$ and $\lambda ,$ denoted $u \lambda ,$ are defined to equal $u$.
+	   Symbolically: $\lambda u = u \lambda = u.$
+	II(c)
+		If $u$ and $v$ are any strings in $S,$ and if $c$ is any character in $A,$ then the concatenation of $u$ and $vc$ is defined to equal the concatenation of $uv$ and $c.$
+		Symbolically: $u(vc) = (uv)c.$
+III.
+	Restriction: Nothing is a string in $S$ other than objects obtained from the base and the recursion.
+
+**Structural Induction for a Recursively Defined Set:**
+Let $S$ be a set that has been defined recursively, and let $P(x)$ be a property that objects in $S$ may or may not satisfy. To prove that every object in $S$ satisfies $P(x),$ perform the following two steps:
+1. (basis step): Show that $P(a)$ is true for each object $a$ in the base for $S.$
+2. (inductive step): Show that for each $x$ in $S,$ if $P(x)$ is true and if $y$ is obtained from $x$ by applying a rule from the recursion, then $P(y)$ is true. To perform this step, suppose that $x$ is an arbitrarily chosen element of $S$ for which $P(x)$ is true. \[This supposition is the inductive hypothesis.\]
+   Then show that if $y$ is obtained from $x$ by applying a rule from the recursion for $S,$ then $P(y)$ is true.
+Conclusion: Because no objects other than those obtained from the base and recursion are contained in $S,$ steps 1 and 2 prove that $P(x)$ is true for every object $x$ in $S.$
+
+**Length of a String:**
+Given the set of all strings $S$ over a finite set $A,$ the length of $ua$ is one more that the length of $u.$
+Symbolically: $L(ua) = L(u) + 1$ where $u \in S$ and $a \in A.$
+
+
+- - -
+
 ### Chapter 6 - Set Theory:
 
-#### 6.1: Set Theory - Definitions and the Element Method of Proof
+#### 6.1 - Set Theory - Definitions and the Element Method of Proof
 
 > The introduction of suitable abstractions is our mental aid to organize and master complexity.
 > - E. W. Dijkstra (1930-2002)
@@ -710,7 +973,7 @@ A finite or infinite collection of nonempty sets $\{A_1, A_2, A_3,\dots\}$ is a 
 Given a set $A$, the power set of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$.
 
 
-#### 6.2: Properties of Sets
+#### 6.2 - Properties of Sets
 
 > ... only the last line is a genuine theorem here - everything else is in the fantasy.
 > - Douglas Hofstadter, *Gödel, Escher, Bach*, 1979
@@ -764,7 +1027,7 @@ Example:
 	Let $A$ be a set, and define $A =\{\ \}$. Suppose that there is at least one element, say $x$, such that $x \in A$. But this is impossible since $A$ has no elements. By Theorem 6.2.4, $A \subseteq \emptyset$ since $A$ has no elements. Also $\emptyset \subseteq A$ since $\emptyset$ has no elements. Thus $A = \emptyset$ by the definition of set equality.
 
 
-#### 6.3: Disproofs and Algebraic Proofs
+#### 6.3 - Disproofs and Algebraic Proofs
 
 > If a fact goes against common sense, and we are nevertheless compelled to accept and deal with this fact, we learn to alter our notion of common sense.
 > - Phillip J. Davis and Reuben Hersh, *The Mathematical Experience*, 1981
@@ -772,9 +1035,110 @@ Example:
 
 - - -
 
+### Chapter 7 - Properties of Functions:
+
+Examples of functions: 
+- Sequences - Which are functions defined on sets of integers
+- mod and div - Which are functions defined on Cartesian products of integers
+- Floor and ceiling - Which are functions from $\mathbb{R}$ to $\mathbb{Z}$
+- Truth tables - Which can be regarded as Boolean functions
+
+#### 7.1 - Functions Defined on General Sets
+
+> The theory that has had the greatest development in recent times is without any doubt the theory of functions
+> - Vito Volterra, 1888
+
+
+**The Definition of a Function:**
+A function $f$ from a set $X$ to a set $Y$, denoted $f: X \rightarrow Y$, is a relation from $X,$ the domain of $f,$ to $Y,$ the co-domain of $f,$ that satisfies two properties: (1) every element in $X$ is related to some element in $Y,$ and (2) no element in $X$ is related to more than one element in $Y.$ Thus, given any element $x$ in $X,$ there is a unique element in $Y$ that is related to $x$ by $f.$ If we call this element $y,$ then we say that "$f$ sends $x$ to $y$" or "$f$ maps $x$ to $y$" and write $x \xrightarrow{f} y$ or $f: x \rightarrow y.$ The unique element to which $f$ sends $x$ is denoted $f(x)$ and is called $f$ of $x,$ or the output of $f$ for the input $x$, or the value of $f$ at $x,$ or the image of $x$ under $f.$
+The set of all values of $f$ taken together is called the range of $f$ or the image of $X$ under $f.$
+Symbolically:
+	Range of $f =$ image of $X$ under $f = \{y \in Y \mid y = f(x),$ for some $x$ in $X\}.$
+Given an element $y$ in $Y,$ there may exist elements in $X$ with $y$ as their image. When $x$ is an element such that $f(x) = y,$ then $x$ is called a preimage of $y$ or an inverse image of $y.$ The set of all inverse images of $y$ is called the inverse image of $y.$
+Symbolically:
+	The inverse image of $y = \{ x \in X \mid f(x) = y\}.$
+
+**Function Equality:**
+If $F: X \rightarrow Y$ and $G : X \rightarrow Y$ are functions, then $F = G$ if, and only if, $F(x) = G(x)$ for every $x \in X.$
+
+**Identity Function on a Set:**
+Given a set $X,$ define a function $I_X$ from $X$ to $X$ by $I_X(x) = x$ for each $x$ in $X.$
+The function $I_X$ is called the identity function on $X$ because it sends each element of $X$ to the element that is identical to it.
+
+**Logarithms and Logarithmic Functions:**
+Let $b$ be a positive real number with $b \neq 1.$ For each positive real number $x,$ the logarithm with bas $b$ of $x,$ written $\log_b\ x,$ is the exponent to which $b$ must be raised to obtain $x.$
+Symbolically: $\log_b\ x = y \ \ \Leftrightarrow \ \ b^y = x.$
+The logarithm function with base $b$ is the function from $\mathbb{R}^+$ to $\mathbb{R}$ that takes each positive real number $x$ to $\log_b\ x.$
+
+**Boolean Functions:**
+An ($n$-place) Boolean function $f$ is a function whose domain is the set of all ordered $n$-tuples of 0's and 1's and whose co-domain is the set $\{0, 1\}.$ More formally, the domain of a Boolean function can be described as the Cartesian product of $n$ copies of the set $\{0, 1\},$ which is denoted $\{0, 1\}^n.$ Thus $f: \{0, 1\}^n \rightarrow \{0, 1\}.$
+
+**"Functions" That Are Not Well-Defined:**
+In general, we say that a "function" is not well defined if it fails to satisfy at least one of the requirements for being a function.
+
+**Image and Reverse Image:**
+If $f: X \rightarrow Y$ is a function and $A \subseteq X$ and $C \subseteq Y,$ then $f(A) = \{y \in Y \mid y = f(x)$$ for some $x$ in $A\}$ and $f^{-1}(C) = \{ x \in X \mid f(x) \in C\}.$
+$f(A)$ is called the image of $A,$ and $f^{-1}(C)$ is called the inverse image of $C.$
+
+
+#### 7.2 - One-to-One, Onto, and Inverse Functions
+
+> Don't accept a statement just because it is printed.
+> - Anna Pell Wheeler (1883 - 1966)
+
+Functions that satisfy both properties of being one-to-one and onto are called one-to-one correspondences or one-to-one onto functions. When a functions is a one-to-one correspondence, the elements of its domain and co-domain match up perfectly, and we can define an inverse function for the co-domain to the domain that "undoes" the action of the function.
+
+**One-to-one Functions:**
+Let $F$ be a function from a set $X$ to a set $Y.$ $F$ is one-to-one (or injective) if, and only if, for all elements $x_1$ and $x_2$ in $X,$ if $F(x_1) = F(x_2),$ then $x_1 = x_2,$ or equivalently, if $x_1 \neq x_2,$ then $F(x_1) \neq F(x_2).$
+Symbolically:
+$F: X \rightarrow Y$ is one-to-one $\Leftrightarrow \forall x_1, x_2 \in X,$ if $F(x_1) = F(x_2)$ then $x_1 = x_2.$
+
+**Hash Functions:**
+A hash function is an example of a one-to-one function. A hash function is a function defined from a larger, possibly infinite, set of data to a smaller fixed-size set of integers. Most hash functions are modifications of mod functions and are defined using prime numbers to increase the change that their values will be scattered rather than clustered together. In addition, making their co-domains $50\%$ or $100\%$ larger than their domains makes it more likely that they will be one-to-one. Nonetheless, two input values may collide, that is , have the same output value, and various methods are used to avoid such a collision. One of the simplest collision resolution methods is called a linear probe. A special class of hash functions, known as cryptographic hash functions, is used to secure digital data. A cryptographic has function is designed to satisfy the following conditions:
+1. It is a function from bit strings to bit strings of a fixed length
+2. It is close to being one-to-one: the probability of collisions is very small.
+3. It is close to being a one-way function: given any bit string in its range, finding the inverse image of the string is computationally very difficult.
+4. Its values can be quickly computed
+5. A very slight change in an input string results in an extensive change in the output string
+
+**Modulo Formula:**
+$n \text{ mod } m = n - (n \text{ div } m)$
+In other words, divide $n$ by $m,$ multiply the integer part of the result by $m.$
+
+**Onto functions:**
+When a function is onto, its range is equal to its co-domain.
+Let $F$ be a function from a set $X$ to a set $Y.$ $F$ is onto (or surjective) if, and only if, given any element $y$ in $Y,$ it is possible to find an element $x$ in $X$ with the property that $y = F(x).$
+Symbolically:
+$F: X \rightarrow Y$ is onto $\Leftrightarrow$ $\forall y \in Y, \exists x \in X, \text{ such that } \forall x \in X, f(x) = y.$
+
+**One-to-One Correspondences:**
+A one-to-one correspondence (or bijection) from a set $X$ to a set $Y$ is a function $F: X \rightarrow Y$ that is both one-to-one and onto.
+
+**Inverse Functions:**
+If $F$ is a one-to-one correspondence from a set $X$ to a set $Y,$ then there is a function from $Y$ to $X$ that "undoes" the action of $F;$ that is, it sends each element of $Y$ back to the element of $X$ that it came from. This function is called the inverse function of $F.$
+Suppose $F: X \rightarrow Y$ is a one-to-one correspondence; in other words suppose $F$ is one-to-one and onto. Then there is a function $F^{-1} : Y \rightarrow X$ that is defined as follows: Given any element $y$ in $Y, F^{-1}(y) =$ that unique element $x$ in $X$ such that $F(x)$ equals $y.$ Or equivalently, $F^{-1} = x \ \ \Leftrightarrow \ \ y = F(x).$
+
+#### 7.3 - Composition of Functions
+
+> It is no paradox to say that in our most theoretical moods we may be nearest to our most practical applications.
+> - Alfred North Whitehead
+
+**Composition of Functions:**
+Combining two functions by chaining the output from one to the input of another is called composing them. The resulting functions is called the composition of the two functions.
+Let $f: X \rightarrow Y$ and $g: Y' \rightarrow Z$ be functions with the property that the range of $f$ is a subset of the domain of $g.$ Define a new function $g \circ f: X \leftarrow Z$ as follows: $(g \circ f)(x) = g(f(x)$ for each $x \in X,$ where $g \circ f$ is read "$g$ circle $f$" and $g(f(x)$ is read "$g$ of $f$ of $x.$" The function $g \circ f$ is called the composition of $f$ and $g.$
+
+**Composition of One-to-One Function:**
+If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are both one-to-one functions, then $g \circ f$ is one-to-one.
+
+**Composition of Onto Functions:**
+If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are both onto functions, then $g \circ f$ is onto.
+
+
+- - -
+
 ### Chapter 8 - Properties of Relations:
 
-#### 8.1: Relations on Sets
+#### 8.1 - Relations on Sets
 
 > Strange as it may sound, the power of mathematics rests on its evasion of all unnecessary thought and on its wonderful saving of mental operations.
 > - Ernst Mach (1838-1916)
@@ -806,7 +1170,7 @@ Example:
 Given sets $A_1 , A_2, \dots, A_n$ an $n$-ary relation $R$ on $A_1 \times A_2 \times \dots \times A_n$ is a subset of $A_1 \times A_2 \times \dots \times A_n$. The special cases of 2-ary, 3-ary, and 4-ary relations are called binary, ternary, and quaternary relations, respectively.
 
 
-#### 8.2: Reflexivity, Symmetry, and Transitivity
+#### 8.2 - Reflexivity, Symmetry, and Transitivity
 
 > Mathematics is the tool specially suited for dealing with abstract concepts of any kind and there is no limit to its power in this field.
 > - P. A. M. Dirac (1902-1984)
@@ -840,7 +1204,7 @@ Example of a reflexive, symmetric and transitive relation:
 	![[screenshot_2025-09-13-170111.png|300]]
 
 
-#### 8.3: Equivalence Relations
+#### 8.3 - Equivalence Relations
 
 **Relation Induced by the Partition:**
 A partition of a set $A$ is a finite or infinite collection of nonempty, mutually disjoint subsets whose union is $A$. Given a partition of a set $A$, the relation induced by the partition, $R$, is defined on $A$ as follows: For every $x, y \in A, \ \ x\ R\ y \ \ \Leftrightarrow$ there is a subset $A_i$ of the partition such that both $x$ and $y$ are in $A_i$. Relation induced by a partition of a set satisfies all three properties of reflexivity, symmetry, and transitivity.
@@ -863,7 +1227,7 @@ Let $m$ and $n$ be integers and let $d$ be a positive integer. We say that $m$ i
 Symbolically: $m \equiv n \pmod d \ \ \Leftrightarrow \ \ d\ |\ (m - n).$
 
 
-#### 8.5: Partial Order Relations
+#### 8.5 - Partial Order Relations
 
 > There is no branch of mathematics, however abstract, which may not some day be applied to phenomena of the real world.
 > - Nicolai Ivanovitch Lobachevsky (1792 - 1856)
@@ -928,116 +1292,28 @@ Given partial order relations $\preceq$ and $\preceq '$ on a set $A$, $\preceq '
 
 - - -
 
-### Chapter 7 - Properties of Functions:
+#### 2.5 - Application: Number Systems and Circuits for Addition
 
-Examples of functions: 
-- Sequences - Which are functions defined on sets of integers
-- mod and div - Which are functions defined on Cartesian products of integers
-- Floor and ceiling - Which are functions from $\mathbb{R}$ to $\mathbb{Z}$
-- Truth tables - Which can be regarded as Boolean functions
+> Counting in binary is just like counting in decimal if you are all thumbs.
+> - Glaser and Way
 
-#### 7.1: Functions Defined on General Sets
+**Circuits for Computer Addition:**
+![[screenshot_2025-09-28-165126.png]]
+![[screenshot_2025-09-28-165143.png]]
+![[screenshot_2025-09-28-165354.png]]
 
-> The theory that has had the greatest development in recent times is without any doubt the theory of functions
-> - Vito Volterra, 1888
+**8-bit Two's Complement:**
+The 8-bit two's complement for an integer $a$ between $-128$ and $127$ is the 8-bit binary representation for $\begin{cases}a & \text{ if } a \geq 0 \\a^8 - |a| &\text{ if } a < 0.\end{cases}$
 
-
-**The Definition of a Function:**
-A function $f$ from a set $X$ to a set $Y$, denoted $f: X \rightarrow Y$, is a relation from $X,$ the domain of $f,$ to $Y,$ the co-domain of $f,$ that satisfies two properties: (1) every element in $X$ is related to some element in $Y,$ and (2) no element in $X$ is related to more than one element in $Y.$ Thus, given any element $x$ in $X,$ there is a unique element in $Y$ that is related to $x$ by $f.$ If we call this element $y,$ then we say that "$f$ sends $x$ to $y$" or "$f$ maps $x$ to $y$" and write $x \xrightarrow{f} y$ or $f: x \rightarrow y.$ The unique element to which $f$ sends $x$ is denoted $f(x)$ and is called $f$ of $x,$ or the output of $f$ for the input $x$, or the value of $f$ at $x,$ or the image of $x$ under $f.$
-The set of all values of $f$ taken together is called the range of $f$ or the image of $X$ under $f.$
-Symbolically:
-	Range of $f =$ image of $X$ under $f = \{y \in Y \mid y = f(x),$ for some $x$ in $X\}.$
-Given an element $y$ in $Y,$ there may exist elements in $X$ with $y$ as their image. When $x$ is an element such that $f(x) = y,$ then $x$ is called a preimage of $y$ or an inverse image of $y.$ The set of all inverse images of $y$ is called the inverse image of $y.$
-Symbolically:
-	The inverse image of $y = \{ x \in X \mid f(x) = y\}.$
-
-**Function Equality:**
-If $F: X \rightarrow Y$ and $G : X \rightarrow Y$ are functions, then $F = G$ if, and only if, $F(x) = G(x)$ for every $x \in X.$
-
-**Identity Function on a Set:**
-Given a set $X,$ define a function $I_X$ from $X$ to $X$ by $I_X(x) = x$ for each $x$ in $X.$
-The function $I_X$ is called the identity function on $X$ because it sends each element of $X$ to the element that is identical to it.
-
-**Logarithms and Logarithmic Functions:**
-Let $b$ be a positive real number with $b \neq 1.$ For each positive real number $x,$ the logarithm with bas $b$ of $x,$ written $\log_b\ x,$ is the exponent to which $b$ must be raised to obtain $x.$
-Symbolically: $\log_b\ x = y \ \ \Leftrightarrow \ \ b^y = x.$
-The logarithm function with base $b$ is the function from $\mathbb{R}^+$ to $\mathbb{R}$ that takes each positive real number $x$ to $\log_b\ x.$
-
-**Boolean Functions:**
-An ($n$-place) Boolean function $f$ is a function whose domain is the set of all ordered $n$-tuples of 0's and 1's and whose co-domain is the set $\{0, 1\}.$ More formally, the domain of a Boolean function can be described as the Cartesian product of $n$ copies of the set $\{0, 1\},$ which is denoted $\{0, 1\}^n.$ Thus $f: \{0, 1\}^n \rightarrow \{0, 1\}.$
-
-**"Functions" That Are Not Well-Defined:**
-In general, we say that a "function" is not well defined if it fails to satisfy at least one of the requirements for being a function.
-
-**Image and Reverse Image:**
-If $f: X \rightarrow Y$ is a function and $A \subseteq X$ and $C \subseteq Y,$ then $f(A) = \{y \in Y \mid y = f(x)$$ for some $x$ in $A\}$ and $f^{-1}(C) = \{ x \in X \mid f(x) \in C\}.$
-$f(A)$ is called the image of $A,$ and $f^{-1}(C)$ is called the inverse image of $C.$
-
-
-#### 7.2: One-to-One, Onto, and Inverse Functions
-
-...
-
-
-#### 7.3: Composition of Functions
-
-...
-
-
-- - -
-
-### Chapter 5 - Sequences, Mathematical Induction, and Recursion:
-
-#### 5.1: Sequences
-
-...
-
-
-#### 5.2: Mathematical Induction I: Proving Formulas
-
-...
-
-
-#### 5.3: Mathematical Induction II: Applications 
-
-...
-
-
-#### 5.6: Defining Sequences Recursively
-
-...
-
-
-#### 5.9: General Recursive Definitions and Structural Induction
-
-...
-
-
-- - -
-
-### Chapter 4 - Elementary Number Theory and Methods of Proof:
-
-#### 4.4: Direct Proof and Counterexample IV: Divisibility
-
-...
-
-
-#### 4.5: Direct Proof and Counterexample V: Division into Cases and the Quotient-Remainder Theorem
-
-...
-
-
-- - -
-#### 2.5: Application: Number Systems and Circuits for Addition
-#### 1.4: The Language of Graphs
+#### 1.4 - The Language of Graphs
 - - -
 ### Chapter 10 - Theory of Graphs and Trees:
-#### 10.1: Trails, Paths, and Circuits
-#### 10.2: Matrix Representation of Graphs
-#### 10.3: Isomorphisms of Graphs
-#### 10.4: Trees: Examples and Basic Properties
-#### 10.5: Rooted Trees
-#### 10.6: Spanning Trees and a Shortest Path Algorithm
+#### 10.1 - Trails, Paths, and Circuits
+#### 10.2 - Matrix Representation of Graphs
+#### 10.3 - Isomorphisms of Graphs
+#### 10.4 - Trees: Examples and Basic Properties
+#### 10.5 - Rooted Trees
+#### 10.6 - Spanning Trees and a Shortest Path Algorithm
 
 
 ## Notater fra "Discrete Math (Full Course)" av Trefor Bazett:
@@ -1325,4 +1601,64 @@ Video: [Rational Numbers | Definition + First Proof](https://youtu.be/JL2DXGFO8S
 Video: [Proving that divisibility is transitive](https://youtu.be/F78_7Lv-7vM)
 
 **Proving that divisibility is transitive:**
-	...
+	Definition of divides:
+		For $n$ and $d$ integers, $d \neq 0,\ \ d \mid n \ \ \Leftrightarrow \ \ \text{ if } \exists k \in \mathbb{Z} \text{ such that } n = dk$
+		Other ways so say "$d$ divides $n$":
+			$n$ is divisible by $d$
+			$n$ is a multiple of $d$
+			$d$ is a factor of $n$
+	Theorem:
+		If $a$ is divisible by $b,$ and $b$ is divisible by $c,$ then $a$ is divisible by $c.$
+	Proof:
+		Let $b \mid a$ and $c \mid b$
+		$\exists \ s, t \in \mathbb{Z},\ a = st,\ b = tc$
+		Then $a = sb = s(tc) = c(st)$ and $st \in \mathbb{Z}$
+		$\Rightarrow c \mid a \ \ \blacksquare$
+
+Video: [Disproving implications with Counterexamples](https://youtu.be/TcfVpnRRAvk)
+
+**Disproving implications with Counterexamples:**
+	Method of counterexample:
+		Aim: to prove $P(x) \Rightarrow Q(x)$ is false
+		Find one $a \in D$ where $P(a) \land \sim Q(a)$
+	Example:
+		Prove or disprove:
+			For $a, b \in \mathbb{Z}, a^2 > b^2$ implies $a > b.$
+		Proof:
+			$(-4)^2 > 3^2$
+			$16 > 9$
+			$-4 < 3$
+			So false by counterexample.
+
+Video: [Proof by Division Into Cases](https://youtu.be/2A-EaY78bwc)
+
+**Proof by Division Into Cases:**
+	Method of division into cases:
+		To prove $P(x) \lor Q(x) \Rightarrow R(x)$
+		Case 1: $P(x) \Rightarrow R(x)$
+		Case 2: $Q(x) \Rightarrow R(x)$
+	Example:
+		Theorem:
+			The square of an integer has the same parity.
+		Case 1: Assume $n$ is even
+			$\exists k_1 \in \mathbb{Z}, n = 2k_1$
+			So $n^2 = (2k_1)^2 = 2(2k_1^2)$
+			Let $k_2 = 2k_1^2$
+			So $n^2 = 2k_2$
+			Thus $n^2$ is even.
+		Case 2: Assume $n$ is odd
+			$\exists k_1 \in \mathbb{Z}, n = 2k_1 + 1$
+			So $n^2 = (2k_1 + 1)^2 = 2(2k_1^2 + 2k_1) + 1$
+			Let $k_2 = 2k_1^2 + 2k_1$
+			So $n^2 = 2k_2 + 1$
+			Thus $n^2$ is even.
+
+Video: [Proof by Contradiction | Method & First Example](https://youtu.be/huGWXh4l1M0)
+
+**Proof by Contradiction:**
+...
+
+
+Video: [...]()
+Video: [...]()
+Video: [...]()

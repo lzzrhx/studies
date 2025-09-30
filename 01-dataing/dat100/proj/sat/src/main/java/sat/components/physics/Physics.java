@@ -1,10 +1,10 @@
-package tdee.components.physics;
+package sat.components.physics;
 
-import tdee.Entity;
-import tdee.components.Component;
-import tdee.Logger;
-import tdee.Program;
-import tdee.Draw3;
+import sat.Entity;
+import sat.components.Component;
+import sat.Logger;
+import sat.Program;
+import sat.Draw3;
 
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;

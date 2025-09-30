@@ -1,6 +1,6 @@
-package tdee.components.physics;
+package sat.components.physics;
 
-import tdee.Draw3;
+import sat.Draw3;
 
 import static com.raylib.Raylib.*;
 public class Sphere implements CollisionShape {

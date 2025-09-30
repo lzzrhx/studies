@@ -1,4 +1,4 @@
-package tdee;
+package sat;
 
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
