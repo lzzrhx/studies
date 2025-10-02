@@ -59,7 +59,7 @@
 - [Forstå programmering med Java - Nettressurs](https://dbsys.info/programmering/)
 
 **jaylib lenker:**
-- [jaylib](github.com/electronstudio/jaylib)
+- [jaylib](https://github.com/electronstudio/jaylib)
 - [raylib package contents](https://electronstudio.github.io/jaylib/com/raylib/package-summary.html)
 - [raylib cheat sheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
 

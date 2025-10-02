@@ -18,15 +18,16 @@
 >- [x] Uke 37 - Øvelse 4
 >- [x] Uke 37 - Kap. 6.1, 6.2, 6.3
 >- [x] Uke 38 - Kap. 8.1, 8.2, 8.3
->- [ ] Uke 37 - Øvelse 5
->- [ ] Uke 38 - Øvelse 6
+>- [ ] Uke 38 - Øvelse 5
+>- [ ] Uke 39 - Øvelse 6
+>- [ ] Uke 40 - Øvelse 7
 >- [x] Uke 39 - Kap. 7.1, 7.2, 7.3
 >- [ ] Uke 41 - ==Obligatorisk oppgave 2 (frist 10.10)==
 >- [x] Uke 41 - Kap. 5.1, 5.2, 5.3
 >- [ ] Obligatorisk oppgave 3
 >- [x] Uke 42 - Kap. 5.6, 5.9
->- [ ] Uke 43 - Kap. 4.4, 4.5, 8.1, 8.3, 2.5
->- [ ] Uke 44 - Kap. 1.4, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
+>- [x] Uke 43 - Kap. 4.4, 4.5, 8.1, 8.3, 2.5
+>- [x] Uke 44 - Kap. 1.4, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
 
 | Ukenr. | Emne/kapitler i lærebok                                           |
 | ------ | ----------------------------------------------------------------- |
@@ -187,6 +188,7 @@ ghc <filnavn>.hs -o <navn>
 	[[#1.1 - Variables]]
 	[[#1.2 - The Language of Sets]]
 	[[#1.3 - The Language of Relations and Functions]]
+	[[#1.4 - The Language of Graphs]]
 
 [[#Chapter 2 - The Logic of Compound Statements]]
 	[[#2.1 - Logical Form and Logical Equivalence]]
@@ -333,6 +335,20 @@ A less formal phrasing of the properties:
 	2\. No two distinct ordered pairs in $F$ have the same first element.
 If $A$ and $B$ are sets and $F$ is a function from $A$ to $B$, then given any element $x$ in $A$, the unique element in $B$ that is related to $x$ by $F$ is denoted $F(x)$, which is read "$F$ of $x$."
 Given the function $f$ and the function $g$ with the domain $A$, $f = g$, if, and only if, $f(x) = g(x)$ for all $x$ in $A$.
+
+#### 1.4 - The Language of Graphs
+
+> The whole of mathematics consists in the organization of a series of aids to the imagination in the process of reasoning.
+> - Alfred North Whitehead, 1861 - 1947
+
+**Definition of a Graph:**
+A graph $G$ consists of two finite sets: a nonempty set $V(G)$ of vertices and a set $E(G)$ of edges, where each edge is associated with a set consisting of either one or two vertices called its endpoints. The correspondence from edges to endpoints is called the edge-endpoint function. An edge with just one endpoint is called a loop, and two or more distinct edges with the same set of endpoints are said to be parallel. And edge is said to connect its endpoints; two vertices that are connected by an edge are called adjacent; and a vertex that is an endpoint of a loop is said to be adjacent to itself. And edge is said to be incident on each of its endpoints, and two edges incident on the same endpoint are called adjacent. A vertex on which no edges are incident is called isolated.
+
+**Directed Graph:**
+A directed graph, or digraph, consists of two finite sets: a nonempty set $V(G)$ of vertices and a set $D(G)$ of directed edges, where each is associated with an ordered pair of vertices called its endpoints. If edge $e$ is associated with the pair $(v, w)$ of vertices, then $e$ is said to be the (directed) edge from $v$ to $w$.
+
+**Degree of v:**
+Let $G$ be a graph and $v$ a vertex of $G$. The degree of $v$, denoted $deg(v),$ equals the number of edges that are incident on $v,$ with an edge that is a loop counted twice.
 
 **Summary of definitions so far:**
 - Ordered pairs can be defined in terms of sets.
@@ -583,6 +599,20 @@ Ex.: $(P \land Q)\ \land \sim R$
 - OR
 - NAND (AND + NOT)
 - NOR (OR + NOT)
+
+
+#### 2.5 - Application: Number Systems and Circuits for Addition
+
+> Counting in binary is just like counting in decimal if you are all thumbs.
+> - Glaser and Way
+
+**Circuits for Computer Addition:**
+![[screenshot_2025-09-28-165126.png]]
+![[screenshot_2025-09-28-165143.png]]
+![[screenshot_2025-09-28-165354.png]]
+
+**8-bit Two's Complement:**
+The 8-bit two's complement for an integer $a$ between $-128$ and $127$ is the 8-bit binary representation for $\begin{cases}a & \text{ if } a \geq 0 \\a^8 - |a| &\text{ if } a < 0.\end{cases}$
 
 
 - - -
@@ -1292,28 +1322,145 @@ Given partial order relations $\preceq$ and $\preceq '$ on a set $A$, $\preceq '
 
 - - -
 
-#### 2.5 - Application: Number Systems and Circuits for Addition
-
-> Counting in binary is just like counting in decimal if you are all thumbs.
-> - Glaser and Way
-
-**Circuits for Computer Addition:**
-![[screenshot_2025-09-28-165126.png]]
-![[screenshot_2025-09-28-165143.png]]
-![[screenshot_2025-09-28-165354.png]]
-
-**8-bit Two's Complement:**
-The 8-bit two's complement for an integer $a$ between $-128$ and $127$ is the 8-bit binary representation for $\begin{cases}a & \text{ if } a \geq 0 \\a^8 - |a| &\text{ if } a < 0.\end{cases}$
-
-#### 1.4 - The Language of Graphs
-- - -
 ### Chapter 10 - Theory of Graphs and Trees:
+
 #### 10.1 - Trails, Paths, and Circuits
+
+> One can begin to reason only when a clear picture has been formed in the imagination.
+> - W. W. Sawyer, *Mathematician's Delight*, 1943
+
+**Travel in a Graph:**
+![[screenshot_2025-10-02-103954.png]]
+Let $G$ be a graph, and let $v$ and $w$ be vertices in $G.$ A walk from $v$ to $w$ is a finite alternating sequence of adjacent vertices and edges of $G.$ Thus a walk has the form $v_0 e_1 v_1 e_2 \dots v_{n-1} e_n v_n,$ where the $v$'s represent vertices, the $e$'s represent edges, $v_0 = v, v_n = w,$ and for each $i = 1, 2, \dots, n, v_{i-1}$ and $v_i$ are the endpoints of $e_i.$ The trivial walk from $v$ to $v$ consists of the single vertex $v.$
+A trail from $v$ to $w$ is a walk from $v$ to $w$ that does not contain a repeated edge.
+A path from $v$ to $w$ is a trail that does not contain a repeated vertex.
+A closed walk is a walk that starts and ends at the same vertex.
+A circuit is a closed walk that contains at least one edge and does not contain a repeated edge.
+A simple circuit is a circuit that does not have any other repeated vertex except the first and last.
+
+**Subgraphs:**
+A graph $H$ is said to be a subgraph of a graph $G$ if, and only if, every vertex in $H$ is also a vertex in $G,$ every edge in $H$ is also an edge in $G,$ and every edge in $H$ has the same endpoints as it has in $G.$
+
+**Connectedness:**
+Roughly speaking, a graph is connected if it is possible to travel from any vertex to any other vertex along a sequence of adjacent edges of the graph. The formal definition of connectedness is stated in terms of walks.
+Let $G$ be a graph. Two vertices $v$ and $w$ of $G$ are connected if, and only if, there is a walk from $v$ to $w.$ The graph $G$ is connected if, and only if, given any two vertices $v$ and $w$ in $G,$ there is a walk from $v$ to $w.$
+Symbolically:
+	$G$ is connected  $\Leftrightarrow$  $\forall$ vertices $v$ and $w$ in $G,\ \exists$ a walk from $v$ to $w.$
+
+**Connected Components:**
+A graph $H$ is a connected component of a graph $G$ if, and only if,
+1. $H$ is subgraph of $G;$
+2. $H$ is connected; and
+3. no connected subgraph of $G$ has $H$ as a subgraph and contains vertices or edges that are not in $H.$
+
+**Euler Circuits:**
+Let $G$ be a graph. An Euler circuit for $G$ is a circuit that contains every vertex and every edge of $G.$ That is, an Euler circuit for $G$ is a sequence of adjacent vertices and edges in $G$ that has at least one edge, starts and ends at the same vertex, uses every vertex of $G$ at least once, and uses every edge of $G$ exactly once.
+A graph $G$ has an Euler circuit if, and only if, $G$ is connected and every vertex of $G$ has positive even degree.
+
+**Euler Trails:**
+Let $G$ be a graph, and let $v$ and $w$ be two distinct vertices of $G.$ An Euler trail from $v$ to $w$ is a sequence of adjacent edges and vertices that starts at $v,$ ends at $w,$ passes through every vertex of $G$ at least once, and traverses every edge of $G$ exactly once.
+There is an Euler trail from $v$ to $w$ if, and only if, $G$ is connected, $v$ and $w$ have odd degree, and all other vertices of $G$ have positive even degree.
+
+**Hamiltonian Circuit:**
+Given a graph $G,$ a Hamiltonian circuit for $G$ is a simple circuit that includes every vertex of $G.$ That is, a Hamiltonian circuit for $G$ is a sequence of adjacent vertices and distinct edges in which every vertex of $G$ appears exactly once, except for the first and the last, which are the same.
+If a graph $G$ has a Hamiltonian circuit, then $G$ has a subgraph $H$ with the following properties:
+1. $H$ contains every vertex of $G.$
+2. $H$ is connected.
+3. $H$ has the same number of edges as vertices.
+4. Every vertex of $H$ has degree 2.
+
+
 #### 10.2 - Matrix Representation of Graphs
+
+> Order and simplification are the first steps toward the mastery of a subject.
+> - Thomas Mann, *The Magic Mountain*, 1924
+
+**Matrices:**
+![[screenshot_2025-10-02-132455.png|400]]
+Matrices are two-dimensional analogues of sequences. They are also called two-dimensional arrays. An $m \times n$ (red "$m$ by $n$") matrix $A$ over a set $S$ is a rectangular array of elements of $S$ arranged into $m$ rows and $n$ columns. We write $A = (a_{ij}).$ The entry $a_{ij}$ in the $i$th row and $j$th column of $A$ is called the $ij$th entry of $A.$ An $m \times n$ matrix is said to have size $m \times n.$ If $A$ and $B$ are matrices, then $A = B$ if, and only if, $A$ and $B$ have the same size and the corresponding entries of $A$ and $B$ are all equal. A matrix for which the numbers of rows and columns are equal is called a square matrix.
+![[screenshot_2025-10-02-131809.png|400]]
+If $A$ is a square matrix of size $n \times n,$ then the main diagonal of $A$ consists of all the entries $a_{11},\ a_{22},\ \dots,\ a_{nn}.$
+
+**The Adjacency Matrix of a Directed Graph:**
+![[screenshot_2025-10-02-131820.png|400]]
+Let $G$ be a directed graph with ordered vertices $v_1,\ v_2,\ \dots,\ v_n.$ The adjacency matrix of $G$ is the $n \times m$ matrix $A = (a_{ij})$ over the set of nonnegative integers such that $a_{ij} =$ the number of arrows from $v_i$ to $v_j$ for all $i, j = 1,\ 2,\ \dots,\ n.$
+
+**The Adjacency Matrix of a Undirected Graph:**
+Let $G$ be an undirected graph with ordered vertices $v_1,\ v_2,\ \dots,\ v_n.$ The adjacency matrix of $G$ is the $n \times n$ matrix $A = (a_{ij})$ over the set of nonnegative integers such that $a_{ij} =$ the number of edges connecting $v_i$ and $v_j$ for every $i$ and $j = 1,\ 2,\ \dots,\ n.$
+
+**Symmetric Matrices:**
+If the appearance of a matrix remains the same if the entries of the matrix are flipped across its main diagonal the matrix is said to be symmetric. An $n \times n$ square matrix $A = (a_{ij})$ is called symmetric if, and only if, for every $i$ and $j = 1,\ 2,\ \dots,\ n, \ \ a_{ij} = a_{ji}.$
+
+**Matrix Row/Column Dot Product:**
+Suppose that all entries in matrices $A$ and $B$ are real numbers. If the number of element, $n,$ in the $i$th row of $A$ equals the number of elements in the $j$th column of $b,$ then the scalar product or dot product of the $i$th row of $A$ and $j$th column of $B$ is the real number obtained as follows:
+![[screenshot_2025-10-02-140554.png|400]]
+
+**Matrix Multiplication:**
+The product of two matrices is built up of scalar or dot products of their individual rows and columns.
+Let $A = (a_{ij})$ be an $m \times k$ matrix and $B = (a_{ji})$ a $k \times n$ matrix with real entries. The (matrix) product of $A$ times $B,$ denoted $AB,$ is that matrix $(c_{ij})$ defined as follows:
+![[screenshot_2025-10-02-141138.png]]
+where $c_{ij} = a_{i1} \ b_{1j} + a_{i2} \ b_{2j} + \dots + a_{ik} \ b_{kj} = \sum\limits_{r=1}^{k} a_{ir} \ b_{rj},$ for each $i = 1,\ 2,\ \dots,\ m$ and $j = 1,\ 2,\ \dots,\ n.$
+
+**The Identity Matrix:**
+For each positive integer $n,$ the $n \times n$ identity matrix, denoted $I_n = (\delta_{ij})$ or just $I$ (if the size of the matrix is obvious from context), is the $n \times n$ matrix in which all the entries in the main diagonal are $1$'s and all other entries are $0$'s. In other words, $\delta_{ij} = \begin{cases}1 & \text{ if } i = j \\0 &\text{ if } i \neq j \end{cases}$ , for every $i, j = 1,\ 2,\ \dots,\ n.$
+
+**Powers of a Matrix:**
+For any $n \times n$ matrix $A,$ the powers of $A$ are defined as follows:
+$A^0 = I$ where $I$ is the $n \times n$ identity matrix
+$A^n = AA^{n-1}$ for every integer $n \geq 1.$
+
+
 #### 10.3 - Isomorphisms of Graphs
+
+> Thinking is a momentary dismissal of irrelevancies.
+> -R. Buckminster Fuller, 1969
+
+**Graph Isomorphism:**
+Two graphs that are the same except for the labeling of their vertices and edges are called isomorphic. Let $G$ and $G'$ be graphs with vertex sets $V(G)$ and $V(G')$ and edge sets $E(G)$ and $E(G'),$ respectively. $G$ is isomorphic to $G'$ if, and only if, there exist one-to-one correspondences $g: V(G) \rightarrow V(G')$ and $h: E(G) \rightarrow E(G')$ that preserve the edge-endpoint functions of $G$ and $G'$ in the sense that for each $v \in V(G)$ and $e \in E(G),$ $v$ is an endpoint of $e$  $\Leftrightarrow$  $g(v)$ is an endpoint of $h(e).$ In words, $G$ is isomorphic to $G'$ if, and only if, the vertices and edges of $G$ and $G'$ can be matched up by one-to-one, onto functions in such a way that the edges between corresponding vertices correspond to each other.
+
+**Isomorphic Invariant:**
+A property $P$ is called an invariant for graph isomorphism if, and only if, given any graphs $G$ and $G',$ if $G$ has property $P$ and $G'$ is isomorphic to $G,$ then $G'$ has property $P.$
+
+**Graph Isomorphism for Simple Graphs:**
+If $G$ and $G'$ are simple graphs, then $G$ is isomorphic to $G'$ if, and only if, there exists a one-to-one correspondence $g$ from the vertex set $V(G)$ of $G$ to the vertex set $V(G')$ of $G'$ that preserves the edge-endpoint functions of $G$ and $G'$ in the sense that for all vertices $u$ and $v$ of $G,$ $\{ u,v \}$ is an edge in $G$  $\Leftrightarrow$  $\{ g(u),g(v) \}$ is an edge in $G'.$
+
+
 #### 10.4 - Trees: Examples and Basic Properties
+
+> We are not very pleased when we are forced to accept a mathematical truth by virtue of a complicated chain of formal conclusions and computations, which we traverse blindly, link by link, feeling our way by touch. We want first an overview of the aim and of the road; we want to understand the idea of the proof, the deeper context.
+> - Hermann Weyl, 1885-1955
+
+**Trees:**
+A graph is said to be circuit-free if, and only if, it has no circuits. A graph is called a tree if, and only if, it is circuit-free and connected. A trivial tree is a graph that consists of a single vertex. A graph is called a forest if, and only if, it is circuit free and not connected. For any positive integer $n,$ any tree with $n$ vertices has $n - 1$ edges.
+
+**Leaves:**
+Let $T$ be a tree. If $T$ has at least two vertices, then a vertex of degree $1$ in $T$ is called a leaf (or a terminal vertex), and a vertex of degree greater than $1$ in $T$ is called an internal vertex (or a branch vertex). The unique vertex in a trivial tree is also called a leaf or terminal vertex.
+
+
 #### 10.5 - Rooted Trees
+
+> Let us grant that the pursuit of mathematics is a divine madness of the human spirit, a refuge from the goading urgency of contingent happenings.
+> - Alfred North Whitehead, 1861 - 1947
+
+**Rooted Trees:**
+![[screenshot_2025-10-02-190133.png|600]]
+A rooted tree is a tree in which there is one vertex that is distinguished from the others and is called the root. The level of a vertex is the number of edges along the unique path between it and the root. The height of a rooted tree is the maximum level of any vertex of the tree. Given the root or any internal vertex $v$ of a rooted tree, the children of $v$ are all those vertices that are adjacent to $v$ and are one level farther away from the root than $v.$ If $w$ is a child of $v,$ then $v$ is called the parent of $w,$ and two distinct vertices that are both children of the same parent are called siblings. Given two distinct vertices $v$ and $w,$ if $v$ lies on the unique path between $w$ and the root, then $v$ is an ancestor of $w$ and $w$ is a descendant of $v.$
+
+**Binary Trees:**
+![[screenshot_2025-10-02-190143.png|600]]
+A binary tree is a rooted tree in which every parent has at most two children. Each child in a binary tree is designated either a left child or a right child (but not both), and every parent has at most one left child and one right child. A full binary tree is a binary tree in which each parent has exactly two children. Given any parent $v$ in a binary tree $T,$ if $v$ has a left child, then the left subtree of $v$ is the binary tree whose root is the left child of $v,$ whose vertices consist of the left child of $v$ and all its descendants, and whose edges consist of all those edges of $T$ that connect the vertices of the left subtree. The right subtree of $v$ is defined analogously.
+
+
 #### 10.6 - Spanning Trees and a Shortest Path Algorithm
+
+> I contend that each science is a real science insofar as it is mathematics.
+> - Immanuel Kant, 1724 - 1804
+
+**Spanning Trees:**
+A spanning tree for a graph $G$ is a subgraph of $G$ that contains every vertex of $G$ and is a tree.
+
+**Weighted Graphs:**
+A weighted graph is a graph for which each edge has an associated positive real number weight. The sum of the weights of all the edges is the total weight of the graph. A minimum spanning tree for a connected, weighted graph is a spanning tree that has the least possible total weight compared to all other spanning trees for the graph. If $G$ is a weighted graph and $e$ is an edge of $G,$ then $w(e)$ denotes the weight of $e$ and $w(g)$ denotes the total weight of $G.$
 
 
 ## Notater fra "Discrete Math (Full Course)" av Trefor Bazett:
@@ -1656,9 +1803,65 @@ Video: [Proof by Division Into Cases](https://youtu.be/2A-EaY78bwc)
 Video: [Proof by Contradiction | Method & First Example](https://youtu.be/huGWXh4l1M0)
 
 **Proof by Contradiction:**
+	Method of proof by contradiction:
+		1. Suppose $\sim p$ is true.
+		2. Get a contradiction like $0=1.$
+		3. Therefore, $p$ is true.
+	Example:
+		Theorem:
+			No integer is both even and odd.
+		Proof:
+			Theorem statement: $\forall n \in \mathbb{Z}, \sim (n \text{ is even  and } n \text{ is odd})$
+			Negation of theorem: $\exists n \in \mathbb{Z}, n \text{ is even  and } n \text{ is odd}$
+			so $\exists k_1, k_2 \in \mathbb{Z}, n = 2k_1, n=2k_2+1$
+			$2k_1 = 2k_2 + 1 \ \ \Rightarrow \ \ 2(k_1-k_2) = 1$
+			$\Rightarrow k_1 - k_2 = \frac{1}{2}$
+			This is a contradiction, the difference of integers $k_1$ and $k_2$ should result in an integer.
+			So no integer, is both even and odd. $\blacksquare$
+
+
+Video: [Proof by Contrapositive | Method & First Example](https://youtu.be/0YqZIHFmVzg)
+
+**Proof by Contrapositive:**
 ...
 
+Video: [Quotient-Remainder Theorem and Modular Arithmetic](https://youtu.be/jCUOhbk1O_o)
 
-Video: [...]()
-Video: [...]()
-Video: [...]()
+**Quotient-Remainder Theorem:**
+...
+
+Video: [Proof: There are infinitely many primes numbers](https://youtu.be/inUkhh8-h-I)
+
+**Proof: There are infinitely many prime numbers:**
+...
+
+Video: [Introduction to sequences](https://youtu.be/VG9ft4_dK24)
+Video: [The formal definition of a sequence.](https://youtu.be/3kezO88rEvE)
+
+**Sequences:**
+...
+
+Video: [The sum and product of finite sequences](https://youtu.be/q7jHR9ar1Fo)
+
+**Sum and Product:**
+...
+
+Video: [Intro to Mathematical Induction](https://youtu.be/GdM_iA1Zek4)
+Video: [Induction Proofs Involving Inequalities.](https://youtu.be/L5iCGi3dW-Y)
+Video: [Strong Induction // Intro and Full Example](https://youtu.be/rfA0h9udl7E)
+Video: [Recursive Sequences](https://youtu.be/0OcUAjOXmFc)
+Video: [The Miraculous Fibonacci Sequence](https://youtu.be/qmm9GPhA1MY)
+Video: [Prove A is a subset of B with the ELEMENT METHOD](https://youtu.be/3qzykhjtQzU)
+Video: [Proving equalities of sets using the element method](https://youtu.be/oSV4qwO_kNY)
+Video: [The union of two sets](https://youtu.be/EF3m9bSbtdI)
+Video: [The Intersection of Two Sets](https://youtu.be/zEvQTK17xzY)
+Video: [Universes and Complements in Set Theory](https://youtu.be/G4NLidjwbEA)
+Video: [Using the Element Method to prove a Set Containment w/ Modus Tollens](https://youtu.be/CKuV0WxNVUU)
+Video: [Power Sets and the Cardinality of the Continuum](https://youtu.be/-P1zMabaQi8)
+Video: [Relations and their Inverses](https://youtu.be/cQiyDUiIcOQ)
+Video: [Reflexive, Symmetric, and Transitive Relations on a Set](https://youtu.be/q0xN_N7l_Kw)
+Video: [Equivalence Relations - Reflexive, Symmetric, and Transitive](https://youtu.be/T6RUxvJR8i4)
+Video: [Intro to Graph Theory | Definitions & Ex: 7 Bridges of Konigsberg](https://youtu.be/C7YrMRdLkqo)
+Video: [Properties in Graph Theory: Complete, Connected, Subgraph, Induced Subgraph](https://youtu.be/gC0RNpD2P1Y)
+Video: [Degree of Vertices | Definition, Theorem & Example | Graph Theory](https://youtu.be/WTNBNSUhSTY)
+Video: [Euler Paths & the 7 Bridges of Konigsberg | Graph Theory](https://youtu.be/dSK5jTEe-AM)
