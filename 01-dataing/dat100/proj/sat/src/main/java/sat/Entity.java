@@ -103,24 +103,24 @@ public class Entity {
 
     // Oppdatering av alle Entity objekter
     public static void update(float dt) {
-        entities.forEach( entity -> {
-            entity.components.forEach( component -> {
+        for (Entity entity : entities) {
+            for (Component component : entity.components ) {
                 component.update(dt);
-            });
-        });
-        entities.forEach( entity -> {
+            }
+        }
+        for (Entity entity : entities) {
             if (entity.physics != null) { entity.physics.checkCollision(); }
-        });
+        }
     }
 
     // Tegning av alle Entity objekter
     public static void render3() {
-        entities.forEach( entity -> {
-            entity.components.forEach( component -> {
+        for (Entity entity : entities) {
+            for (Component component : entity.components) {
                 component.render3();
-            });
+            }
             if (entity.renderAxes) { Draw3.axes(1f, entity.matrix); }
-        });
+        }
     }
 
 }

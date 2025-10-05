@@ -144,7 +144,7 @@ public class Physics implements Component {
     // Sjekk kollisjon
     public void checkCollision() {
         Entity a = parent;
-        Entity.entities().forEach( b -> {
+        for (Entity b : Entity.entities()) {
             if (b != a && b.physics != null) {
                 // Sjekk kule / kule kollisjon
                 if (a.physics.shape instanceof Sphere && b.physics.shape instanceof Sphere) {
@@ -163,7 +163,7 @@ public class Physics implements Component {
                     checkCollisionCubeSphere(b, a);
                 }
             }
-        });
+        }
     }    
     
     // Kule / Kule kollisjon
