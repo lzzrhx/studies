@@ -206,8 +206,13 @@ $y \sim x$ som tilsier at $2(y-x) \in A$,\\
 men $2(y-x) = -2(x-y)$ som aldri vil holde for $\sim$,\\
 siden det alltid vil gi en negativ verdi, og det er ikke et element i $A$.\\\\
 
-Er relasjonen antisymmetrisk?
-???\\\\
+Er relasjonen antisymmetrisk?\\
+Antisymmetri er definert som:\\
+$\forall a, b: (a\ R\ b \text{ og } b\ R\ A) \Rightarrow a = b$\\
+La oss ta tuppelen $(2,1)$: $(2,1)$ er i $\sim$, men $(1,2)$ er ikke i $\sim$.\\
+Det samme gjelder alle andre tuppler i $\sim$.\\
+Generelt finnes det ingen tuppler $(a,b)$ der $a\neq b$, slik at både $(a,b)$ og $(b,a)$ er i $\sim$.\\
+Derfor er relasjonen antisymmetrisk.\\\\
 
 Er relasjonen transitiv?
 \begin{align*}
@@ -262,7 +267,30 @@ Dette tilsier at $f$ ikke er injektiv, siden to elementer fra domene gir samme e
 Ettersom $f$ ikke er injektiv er $f$ heller ikke bijektiv.
 
 \oppgaveDel{b}
+\ \\
+i)\\
+\begin{align*}
+&f(x) = 2x\\
+&g(x) = \frac{1}{2}x + 1\\
+&g \circ f(x) = g(f(x)) = \frac{1}{2}(2x) + 1 = x + 1\\
+\end{align*}
+
+\ \\
+ii)\\
 \lstinputlisting[language=Haskell]{q5b.hs}
+
+\ \\
+iii)\\
+\begin{align*}
+&g \circ f (x_1) = g \circ f (x_2)\\
+&\Rightarrow x_1 + 1 = x_2 + 1 & | - 1\\
+&\Rightarrow x_1 = x_2\\
+&g \circ f \text{ er injektiv.}\\\\
+&\text{La }y = x + 1\\
+&x = y - 1\\
+&g \circ f \text{ er surjektiv.}\\\\
+&g \circ f \text{ er derfor bijektiv.}
+\end{align*}
 
 \oppgaveDelSlutt
 
@@ -278,9 +306,51 @@ Ettersom $f$ ikke er injektiv er $f$ heller ikke bijektiv.
 
 \oppgave{7}
 \oppgaveDelStart
+\begin{align*}
+&(1) \ \ \mathcal{I}_S [A \cup B] = \{ 1 \} \text{ betyr:}\\
+&\forall x \in S, \mathcal{I}_{A \cup B} (x) = 1\\\\
+&\text{Der: } \mathcal{I}_{A \cup B}(x) = \begin{cases}1 \text{ hvis } x \in A \cup B\\0 \text{ hvis } x \not\in A \cup B\end{cases}\\\\
+&\text{Vi undersøker hva det betyr for hvert element i $S$:}\\
+&\text{Ta } x = 1: \mathcal{I}_{A \cup B}(1) = \{1\} \ \ \text{fra }(1)\\
+&\Rightarrow 1 \in A \cup B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 2: \mathcal{I}_{A \cup B}(1) = \{1\} \ \ \text{fra }(1)\\
+&\Rightarrow 2 \in A \cup B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 3: \mathcal{I}_{A \cup B}(1) = \{1\} \ \ \text{fra }(1)\\
+&\Rightarrow 3 \in A \cup B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 4: \mathcal{I}_{A \cup B}(1) = \{1\} \ \ \text{fra }(1)\\
+&\Rightarrow 4 \in A \cup B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\Rightarrow 1,2,3,4 \in A \cup B \text{, men } S= \{1,2,3,4\}\\\\
+&\text{Derfor er:}\\
+&(2) \ \ A \cup B = S.\\\\
+&\text{Også: }\\
+&(3) \ \ \mathcal{I}_S [A \Delta B] = \{ 0 \} \text{ betyr:}\\
+&\forall x \in S, \mathcal{I}_{A \Delta B} (x) = 0\\\\
+&\text{Der: } \mathcal{I}_{A \Delta B}(x) = \begin{cases}1 \text{ hvis } x \in A \Delta B\\0 \text{ hvis } x \not\in A \Delta B\end{cases}\\\\
+&S = \{1,2,3,4\}\\
+&\text{Vi undersøker hva det betyr for hvert element i $S$:}\\
+&\text{Ta } x = 1: \mathcal{I}_{A \Delta B}(1) = \{0\} \ \ \text{fra }(3)\\
+&\Rightarrow 1 \not\in A \Delta B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 2: \mathcal{I}_{A \Delta B}(2) = \{0\} \ \ \text{fra }(3)\\
+&\Rightarrow 2 \not\in A \Delta B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 3: \mathcal{I}_{A \Delta B}(3) = \{0\} \ \ \text{fra }(3)\\
+&\Rightarrow 3 \not\in A \Delta B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Ta } x = 4: \mathcal{I}_{A \Delta B}(4) = \{0\} \ \ \text{fra }(3)\\
+&\Rightarrow 4 \not\in A \Delta B \ \ (\text{fra indikatorfunksjonen})\\\\
+&\text{Derfor er:}\\
+&(4) \ \ A \Delta B = \emptyset\\
+\end{align*}
+\newpage
+\begin{align*}
+&\Rightarrow A \Delta B = (A - B) \cup (B - A) = \emptyset\\
+&\Rightarrow A - B = \emptyset \text{ og } B - A = \emptyset\\
+&\Rightarrow (5) \ \ A = B\\\\
+&\text{fra } (2) \ \ A \cup B = S\\
+&\Rightarrow A \cup B = A \cup A = A \ \ \text{(fordi $A = B$ fra $(5)$)}\\\\
+&\text{Derfor er } A = S = \{1,2,3,4\}\\
+&\rightarrow B = S = \{1,2,3,4\}
+\end{align*}
 \oppgaveDelSlutt
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \end{document}
-
