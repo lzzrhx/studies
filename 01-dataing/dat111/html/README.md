@@ -2,6 +2,8 @@
 
 Made as an exercise to get familiar with [three.js](https://threejs.org/).
 
+Live demo [here](https://dat111.neocities.org/).
+
 Running the site locally (Arch):
 - `make install`
 - `make`
