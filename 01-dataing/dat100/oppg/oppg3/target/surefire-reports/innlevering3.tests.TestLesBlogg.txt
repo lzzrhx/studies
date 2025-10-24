@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: innlevering3.tests.TestLesBlogg
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in innlevering3.tests.TestLesBlogg

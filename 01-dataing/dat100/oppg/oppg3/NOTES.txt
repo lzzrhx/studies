@@ -1,0 +1,2 @@
+// Kjøre mvn enhetstester:
+mvn -Dtest="klasse#metode" test
