@@ -7,7 +7,7 @@
 >[!todo]
 >- [x] Uke 35 - Forberedelse til Per Christian forelesning - DAT111 videoer
 >- [x] Uke 38 - ==Obligatorisk oppgave, del 1==
->- [ ] Uke 45 - ==Obligatorisk oppgave, del 2 (frist 7.10)==
+>- [x] Uke 45 - ==Obligatorisk oppgave, del 2 (frist 14.10)==
 >- [ ] Uke ?? - ==Obligatorisk oppgave, del 3==
 
 **Andre linker:**

@@ -2,7 +2,7 @@
 > [!info]
 > **Lenker:** [Emneplan](https://www.hvl.no/studier/studieprogram/emne/MAT101)
 > **Studiepoeng:** 10
-> **Vurdering:** Skoleeksamen, 03.12.2025 kl. 09:00
+> **Vurdering:** Skoleeksamen, 3.12.2025 kl. 09:00
 > **GitHub:** [lzzrhx/studies/01-dataing/dat100](https://github.com/lzzrhx/studies/tree/main/01-dataing/mat101)
 
 >[!todo]
@@ -22,12 +22,15 @@
 >- [ ] Uke 39 - Øvelse 6
 >- [ ] Uke 40 - Øvelse 7
 >- [x] Uke 39 - Kap. 7.1, 7.2, 7.3
->- [ ] Uke 41 - ==Obligatorisk oppgave 2 (frist 10.10)==
+>- [x] Uke 41 - ==Obligatorisk oppgave 2 (frist 10.10)==
 >- [x] Uke 41 - Kap. 5.1, 5.2, 5.3
->- [ ] Obligatorisk oppgave 3
 >- [x] Uke 42 - Kap. 5.6, 5.9
+>- [ ] Uke 42 - Øvelse 8
 >- [x] Uke 43 - Kap. 4.4, 4.5, 8.1, 8.3, 2.5
+>- [ ] Uke 43 - Øvelse 9
+>- [ ] Uke 44 - ==Obligatorisk oppgave 3 (frist 05.11)==
 >- [x] Uke 44 - Kap. 1.4, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
+
 
 | Ukenr. | Emne/kapitler i lærebok                                           |
 | ------ | ----------------------------------------------------------------- |

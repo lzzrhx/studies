@@ -14,6 +14,7 @@
 
 **Notater:**
 - Gruppe #16
+- DAT100 Zoom: https://hvl.zoom.us/j/66732221140?pwd=bjFRVitSYTN3NitneEUrTnpjeEU0UT09
 
 **Pensum handleliste:**
 + ~~Discrete mathematics with applications (5.utg.)~~

@@ -2,13 +2,13 @@
 > **Lenker:** [Emneplan](https://www.hvl.no/studier/studieprogram/emne/ING100)
 > **Studiepoeng:** 5
 > **Vurdering:** ~~Gruppebasert oppgave~~ Individuell semesteroppgave
+> **Semesteroppgave:** [PICO-8: Den første fantasikonsollen](https://lzzrhx.github.io/2025/10/17/pico8)
 
 >[!todo]
 >- [x] Se videoforelesninger - [ING100](https://www.youtube.com/playlist?list=PLPtOcIJ3WKju_c3x5c7gVZlzHdJCx-wJw)
 >- [x] Se videoforelesninger - [Prosjektteori](https://hvl.instructure.com/courses/31657/pages/prosjektteori)
 >- [x] Se videoforelesninger - [Akademisk skriving](https://hvl.instructure.com/courses/31657/pages/dokumentasjon-og-rapportskriving)
->- [ ] ==**[Frist 13. November - Semesteroppgave, Artikkel om teknologi (4000 tegn)](https://hvl.instructure.com/courses/31657/assignments/93557)**==
-
+>- [x] ==**[Frist 17. Oktober - Semesteroppgave, Artikkel om teknologi (4000 tegn)](https://hvl.instructure.com/courses/31657/assignments/93557)**==
 
 ## Semesteroppgave:
 - - -
