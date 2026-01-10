@@ -1,0 +1,7 @@
+{
+  "font_folder": "Filer/fonts/",
+  "font": "Px437_NEC_APC3_8x16.ttf",
+  "force_mode": false,
+  "custom_css_mode": false,
+  "custom_css": ":root * {\n\t\t--font-default: Px437_NEC_APC3_8x16;\n\t\t--default-font: Px437_NEC_APC3_8x16;\n\t\t--font-family-editor: Px437_NEC_APC3_8x16;\n\t\t--font-monospace-default: Px437_NEC_APC3_8x16,\n\t\t--font-interface-override: Px437_NEC_APC3_8x16,\n\t\t--font-text-override: Px437_NEC_APC3_8x16,\n\t\t--font-monospace-override: Px437_NEC_APC3_8x16,\t\n\t}\n"
+}
