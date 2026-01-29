@@ -4,25 +4,21 @@ import java.util.Objects;
 
 public class Film {
 
-    // Klassevariabler
-    private static int num = 0;
-
     // Objektvariabler
     private int nr;
-    private String produsent;
     private String tittel;
     private int aar;
     private Sjanger sjanger;
     private String filmselskap;
+    private String produsent;
 
     // Tom konstruktør med standardverdier
     public Film() {
-        this.nr = Film.num++;
     }
 
     // Konstruktør
-    public Film(String tittel, int aar, Sjanger sjanger, String filmselskap, String produsent) {
-        this.nr = Film.num++;
+    public Film(int nr, String tittel, int aar, Sjanger sjanger, String filmselskap, String produsent) {
+        this.nr = nr;
         this.produsent = produsent;
         this.tittel = tittel;
         this.aar = aar;
@@ -102,5 +98,10 @@ public class Film {
     @Override
     public int hashCode() {
         return Objects.hash(nr);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("nr: %d, tittel: %s, år: %d, sjanger: %s, filmselskap: %s, produsent: %s", nr, tittel, aar, sjanger.toString(), filmselskap, produsent);
     }
 }

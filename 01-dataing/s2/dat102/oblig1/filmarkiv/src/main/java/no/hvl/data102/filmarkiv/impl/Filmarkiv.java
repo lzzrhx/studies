@@ -58,11 +58,7 @@ public class Filmarkiv implements FilmarkivADT {
                 res.add(filmer[i]);
             }
         }
-        Film[] arr = new Film[res.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = res.get(i);
-        }
-        return arr;
+        return Utils.filmListToArr(res);
     }
 
     @Override
@@ -73,11 +69,7 @@ public class Filmarkiv implements FilmarkivADT {
                 res.add(filmer[i]);
             }
         }
-        Film[] arr = new Film[res.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = res.get(i);
-        }
-        return arr;
+        return Utils.filmListToArr(res);
     }
 
     @Override
