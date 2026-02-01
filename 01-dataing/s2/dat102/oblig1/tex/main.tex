@@ -108,14 +108,46 @@ iv.  & \ \ 35 + 13 \log_2 n         &&\rightarrow \ O(\log n)
 \end{alignat*}
 
 \oppgaveDel{b}
-\begin{align*}
-&\dots
-\end{align*}
+
+Vi teller antall tilordninger ($=$), antall ganger ($=$) brukes.
+
+1) Utenfor løkken: 1 tilordning \lstinline{sum = 0;}
+
+2) I "for"-løkken: 1 tilordning \lstinline{int i = n;}
+
+3) I "for"-løkken: 1 tilordning \lstinline{i = i/2;}
+
+4) I "for"-løkken: 1 tilordning \lstinline{sum = sum + i;}
+
+$\Rightarrow$ Total antall iterasjoner kan bli beskrivet som "$\log_2 (n)$" ganger.
+
+Inn i løkken "\lstinline{sum = 0}" = 1, "\lstinline{i = n}" = 1 $\rightarrow 2 \cdot log_2 (n)$
+
+$\Rightarrow$ Vi har 2 iterasjoner til, dermed $2 + 2 log_2 (n)$
+
+$\Rightarrow$ Vi fokuserer bare på konstanter, og ser vekk fra det "raskeste", "$\log(n)$", er den minst raske, så $O \log(n)$.
 
 \oppgaveDel{c}
-\begin{align*}
-&\dots
-\end{align*}
+
+Teller hver gang ($=$) brukes.
+
+1) "\lstinline{sum = 0;}" $\rightarrow$ 1. Tilordning.
+
+2) "\lstinline{int i = 1;}" $\rightarrow$ 1. Tilordning.
+
+3) "\lstinline{i++}" $\rightarrow$ Skjer $n$ ganger, pga skjer hele tiden.
+
+4) "\lstinline{int j = 1}" $\rightarrow$ Avhengig av ytre-løkke, så den skjer en gang per ytre iterasjon. $n$ ganger.
+
+5) "\lstinline{j = j * 2}" $\rightarrow$ Avhengig av ytre-løkke, skjer $\log_2 (n)$ ganger per ytre iterasjon pga. multiplikasjon. $n \cdot \log_2 (n)$.
+
+6) "\lstinline{sum = sum + i \cdot j}" $\rightarrow$ $n \cdot \log_2 (n)$ ganger.
+
+$\Rightarrow$ Summerer alle tilordningene.
+
+$1 + 1 + n + n + 2n \cdot \log_2 (n) + n \cdot \log_2 (n) = 2 + 2n + 2n \log_2 (n)$.
+
+Konstanter og lavere ordens ledd fjernes: $O(n \log n)$
 
 \oppgaveDel{d}
 \begin{alignat*}
@@ -128,6 +160,8 @@ Den ytre løkken har en tellevariabel "indeks" som går fra $0$ til $n-2$ og ink
 Den indre løkken har en tellevariabel "igjen" som går fra indeks $+ \ 1$ til $n - 1$. Antall ganger den indre løkken kjøres er derfor avhengig av "indeks" verdien. Ved indeks $= 0$ må verdien som "indeks" refererer til sammenlignes med alle andre verdier i tabellen og den indre løkken kjøres $n - 1$ ganger. Ved indeks $= n-2$ har alle verdier i tabellen allerde blitt sammenlignet, bortsett fra den siste og nest-siste verdien, så den indre løkken kjøres bare $1$ gang for å sammenligne de to siste verdiene.\\
 
 Det verste tilfelle for algoritmen er når tabellen ikke inneholder duplikater som fører til at alle verdier i tabellen må sammenlignes.\\
+
+\newpage
 
 Eksempel ved $n=10$:
 \begin{center}
@@ -144,8 +178,6 @@ $7$ &  $(10-8) = 2$ & $44$\\
 $8$ &  $(10-9) = 1$ & $45$\\
 \end{tabular}
 \end{center}
-
-\newpage
 
 Ved å lage et enkelt Java program kan antall sammenligner beregnes for andre $n$ verdier:\\
 
