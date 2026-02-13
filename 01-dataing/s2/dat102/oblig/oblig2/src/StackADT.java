@@ -1,3 +1,5 @@
+package src;
+
 public interface StackADT<T> {
     public void push(T newEntry);
     public T pop();

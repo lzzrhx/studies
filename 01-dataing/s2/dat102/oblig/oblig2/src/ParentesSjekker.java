@@ -1,10 +1,18 @@
+package src;
+
 public class ParentesSjekker {
     
     public static boolean sjekk(String s) {
-        System.out.println();
-        System.out.println(" KJØRER PARENTES SJEKK");
-        System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-        System.out.printf("Streng:%n%s%n%n", s);
+        return sjekk(s, false);
+    }
+
+    public static boolean sjekk(String s, boolean debug) {
+        if (debug) {
+            System.out.println();
+            System.out.println(" KJØRER PARENTES SJEKK");
+            System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.printf("Streng:%n%s%n%n", s);
+        }
         StackADT<Character> par0 = new Stack<>(false);
         // Fyll stabel "par0" med alle parenteser fra strengen
         for (int i = 0; i < s.length(); i++) {
@@ -14,7 +22,7 @@ public class ParentesSjekker {
             }
         }
         // Lag ny stabel for åpne parenteser
-        StackADT<Character> par1  = new Stack<>(true);
+        StackADT<Character> par1  = new Stack<>(debug);
         while (!par0.isEmpty()) {
             Character c0 = par0.pop();
             Character c1 = par1.peek();
@@ -34,7 +42,9 @@ public class ParentesSjekker {
         }
         // Sjekk om det ble funnet match til alle åpne parenteser (par1 stabelen skal i så fall være tom)
         boolean res = par1.isEmpty();
-        System.out.println("\nParentes sjekk utført: Parenteser er " + (res ? "" : "IKKE ") + "riktig formatert.\n");
+        if (debug) {
+            System.out.println("\nParentes sjekk utført: Parenteser er " + (res ? "" : "IKKE ") + "riktig formatert.\n");
+        }
         return res;
     }
 }
