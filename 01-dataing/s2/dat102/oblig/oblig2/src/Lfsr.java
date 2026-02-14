@@ -1,29 +1,29 @@
 package src;
 
 public class Lfsr {
-    public static void shift32(Seed seed) {
-        boolean result = ((
-        ((seed.val >> 31) & 0b00000000_00000000_00000000_00000001) ^
-        ((seed.val >> 21) & 0b00000000_00000000_00000000_00000001) ^
-        ((seed.val >> 1)  & 0b00000000_00000000_00000000_00000001) ^
-        ((seed.val >> 0)  & 0b00000000_00000000_00000000_00000001)
-        ) == 0b00000000_00000000_00000000_00000001);
-        seed.val <<= 1;
-        if (result) { seed.val |= 0b00000000_00000000_00000000_00000001; }
+    private int seed;
+    public Lfsr(int seed) { this.seed = seed; }
+    public String toString() { return Integer.toString(seed); }
+    public int seed() { return seed; }
+
+    // Shift 32-bit seed ved bruk av tap'er: 31,21,1,0
+    public void shift32() {
+        seed = ((((seed >> 31) & 1) ^ ((seed >> 21) & 1) ^ ((seed >> 1) & 1) ^ ((seed >> 0) & 1)) == 1) ? ((seed << 1) | 1) : (seed << 1);
     }
 
-    public static boolean check32(Seed seed) {
-        shift32(seed);
-        if ((seed.val & 0b00000000_00000000_00000000_00000001) == 0b00000000_00000000_00000000_00000001) { return true; }
-        return false;
+    // Generer boolsk verdi fra 32-bit seed
+    public boolean check32() {
+        shift32();
+        return ((seed & 1) == 1);
     }
 
-    public static int make32(Seed seed) {
-        int result = 0b00000000_00000000_00000000_00000000;
-        int mask   = 0b00000000_00000000_00000000_00000001;
+    // Generer 32-bit int fra 32-bit seed
+    public int make32() {
+        int result = 0;
+        int mask = 1;
         for (int i = 0; i < 32; i++) {
-            shift32(seed);
-            if ((seed.val & 0b00000000_00000000_00000000_00000001) == 0b00000000_00000000_00000000_00000001) { result |= mask; }
+            shift32();
+            if ((seed & 1) == 1) { result |= mask; }
             mask <<= 1;
         }
         return result;

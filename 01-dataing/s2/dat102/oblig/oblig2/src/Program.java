@@ -7,9 +7,9 @@ import static com.raylib.Raylib.*;
 
 public class Program {
     public static void main(String[] args) {
-        oppg6_1();
-        oppg6_2();
-        oppg6_3();
+        //oppg6_1();
+        //oppg6_2();
+        //oppg6_3();
         oppg7_1();
         oppg7_2();
     }
@@ -180,30 +180,41 @@ public class Program {
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println();
 
-        int n = 75000;
-        int s = 123;
-        Seed seed = new Seed(s);
-        Integer[] tab = new Integer[n];
+        int n = 100_000;
+        int s = 1337;
+        Lfsr lfsr = new Lfsr(s);
+        int[] tab_unsorted = new int[n];
         System.out.printf("Lager tabell med %d tilfeldige tall ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
-        for (int i = 0; i < n; i++) {
-            tab[i] = Lfsr.make32(seed);
-        }
+        for (int i = 0; i < n; i++) { tab_unsorted[i] = lfsr.make32(); }
+        int[] tab;
+        long start;
 
-        Integer[] tab0 = Arrays.copyOf(tab, n);
-        System.out.printf("Kjører umodifisert innsettingssortering på tabellen.%n");
-        long start = System.currentTimeMillis();
-        InsertSort.run(tab0);
-        long end = System.currentTimeMillis();
-        long runtime = end - start;
-        System.out.printf("Sortering gjennomført etter %d ms.%n", runtime);
-       
-        Integer[] tab1 = Arrays.copyOf(tab, n);
-        System.out.printf("Kjører modifisert innsettingssortering på tabellen.%n");
+        // Bubble - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
-        InsertSort.run2(tab1);
-        end = System.currentTimeMillis();
-        runtime = end - start;
-        System.out.printf("Sortering gjennomført etter %d ms.%n", runtime);
+        Sort.bubble(tab);
+        System.out.printf("Bubble sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Selection - Best: n^2 / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        Sort.selection(tab);
+        System.out.printf("Selection sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Insertion - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        Sort.bubble(tab);
+        System.out.printf("Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    
+        // Heap - Best: n log n / Avg: n log n / Worst: n log n
+        // Merge - Best: n log n / Avg: n log n / Worst: n log n
+        // Quick - Best: n log n / Avg: n log n / Worst: n^2
+        // Tim - Best: n / Avg: n log n / Worst: n log n
+        // Intro - Best: n log n / Avg: n log n / Worst: n log n
+        // Counting - Best: - / Avg: n+r / Worst: n+r
+        // MSD Radix - Best: n / Avg: n*k/d / Worst: n*k/d
+        
     }
     
     // Uke 7, Oppgave 2
