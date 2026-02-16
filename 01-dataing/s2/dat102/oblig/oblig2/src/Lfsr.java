@@ -1,5 +1,6 @@
 package src;
 
+// Generering av tilfeldige verdier ved bruk av linear-feedback shift register
 public class Lfsr {
     private int seed;
     public Lfsr(int seed) { this.seed = seed; }

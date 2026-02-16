@@ -1,11 +1,13 @@
 MAKEFLAGS += --no-print-directory
-build+run-mvn:
-	make build-mvn
-	make run-mvn
-build-mvn:
+mvn-build+run:
+	make mvn-build
+	make mvn-run
+mvn-build:
 	mvn -quiet clean install
-run-mvn:
+mvn-run:
 	mvn -quiet exec:java
+mvn-clean:
+	mvn -quiet clean
 build+run:
 	make build
 	make run
@@ -14,5 +16,5 @@ build:
 run:
 	java src.Program
 clean:
-	rm ./*.class
+	rm ./src/*.class
 

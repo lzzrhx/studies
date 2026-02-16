@@ -3,8 +3,8 @@ package src;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
-public class Stack<T> implements StackADT<T> {
-    
+// Stabel implementasjon som bruker tabell
+public class Stack<T> implements StackADT<T> {    
     // Klassevariabler
     private static final int DEF_CAP = 10;
 
@@ -29,7 +29,7 @@ public class Stack<T> implements StackADT<T> {
     public Stack(int cap) {
         if (debug) { System.out.printf("New [Stack] object created with capacity %s.%n", cap); }
         this.initial_cap = cap;
-        clear(cap);
+        clear();
     }
     
     // Konstruktør
@@ -37,7 +37,9 @@ public class Stack<T> implements StackADT<T> {
         this.debug = debug;
         this(cap);
     }
-
+    
+    // Push til stabel
+    @Override
     public void push(T item) {
         if (item != null) {
             if (sc + 1 > stack.length) { stack = Arrays.copyOf(stack, (int)(1.5 * stack.length)); }
@@ -46,11 +48,13 @@ public class Stack<T> implements StackADT<T> {
         }
     }
 
+    // Les av øverste verdi fra stabel
     @Override
     public T peek() {
         return isEmpty() ? null : stack[sc-1];
     }
 
+    // Les av og fjern øverste verdi fra stabel
     @Override
     public T pop() {
         if (isEmpty()) {
@@ -63,14 +67,16 @@ public class Stack<T> implements StackADT<T> {
         return item;
     }
 
+    // Sjekk om stabel er tom
     @Override
     public boolean isEmpty() {
         return sc == 0;
     }
 
+    // Tøm stabel
     @Override
     @SuppressWarnings("unchecked")
-    public void clear(int cap) {
-        this.stack = (T[]) new Object[cap];
+    public void clear() {
+        this.stack = (T[]) new Object[initial_cap];
     }
 }

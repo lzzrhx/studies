@@ -5,11 +5,12 @@ import java.util.Arrays;
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
+// Entry-point for programmet
 public class Program {
     public static void main(String[] args) {
-        //oppg6_1();
-        //oppg6_2();
-        //oppg6_3();
+        oppg6_1();
+        oppg6_2();
+        oppg6_3();
         oppg7_1();
         oppg7_2();
     }
@@ -180,41 +181,28 @@ public class Program {
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println();
 
-        int n = 100_000;
+        int n = 80_000;
         int s = 1337;
         Lfsr lfsr = new Lfsr(s);
-        int[] tab_unsorted = new int[n];
-        System.out.printf("Lager tabell med %d tilfeldige tall ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
+        Integer[] tab_unsorted = new Integer[n];
+        System.out.printf("Lager tabell med %,d tilfeldige heltall (Integer klasse) ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
         for (int i = 0; i < n; i++) { tab_unsorted[i] = lfsr.make32(); }
-        int[] tab;
+        Integer[] tab;
         long start;
 
-        // Bubble - Best: n / Avg: n^2 / Worst: n^2
+        // Insertion (fra soh1961 github)
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
-        Sort.bubble(tab);
-        System.out.printf("Bubble sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        System.out.printf("Kjører insertion sort (fra soh1961 github) på tabellen.");
+        Sort.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
         
-        // Selection - Best: n^2 / Avg: n^2 / Worst: n^2
+        // Insertion (modifisert versjon)
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
-        Sort.selection(tab);
-        System.out.printf("Selection sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
-
-        // Insertion - Best: n / Avg: n^2 / Worst: n^2
-        tab = Arrays.copyOf(tab_unsorted, n);
-        start = System.currentTimeMillis();
-        Sort.bubble(tab);
-        System.out.printf("Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
-    
-        // Heap - Best: n log n / Avg: n log n / Worst: n log n
-        // Merge - Best: n log n / Avg: n log n / Worst: n log n
-        // Quick - Best: n log n / Avg: n log n / Worst: n^2
-        // Tim - Best: n / Avg: n log n / Worst: n log n
-        // Intro - Best: n log n / Avg: n log n / Worst: n log n
-        // Counting - Best: - / Avg: n+r / Worst: n+r
-        // MSD Radix - Best: n / Avg: n*k/d / Worst: n*k/d
-        
+        System.out.printf("Kjører insertion sort (modifisert versjon) på tabellen.");
+        Sort.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
     }
     
     // Uke 7, Oppgave 2
@@ -223,6 +211,94 @@ public class Program {
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println(" UKE 7, OPPGAVE 2");
         System.out.println("--------------------------------------------------------------------------------");
-        System.out.println();
+        sort(32_000, true);
+        sort(64_000, true);
+        sort(128_000, true);
+        sort(128_000, false);
+    }
+
+    private static void sort(int n, boolean rand) {
+        int[] tab_unsorted = new int[n];
+        if (rand) {
+            int s = 1312;
+            Lfsr lfsr = new Lfsr(s);
+            System.out.printf("%nLager tabell med %,d tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
+            for (int i = 0; i < n; i++) { tab_unsorted[i] = lfsr.make32(); }
+        } else {
+            System.out.printf("%nLager tabell med %,d heltall satt til den samme verdien.%n", n);
+            for (int i = 0; i < n; i++) { tab_unsorted[i] = 67; }
+        }
+        int[] tab;
+        long start;
+
+        // Bubble - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører bubble sort på tabellen.");
+        SortInt.bubble(tab);
+        System.out.printf(" Bubble sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Selection - Best: n^2 / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører selection sort på tabellen.");
+        SortInt.selection(tab);
+        System.out.printf(" Selection sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Insertion - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører insertion sort på tabellen.");
+        SortInt.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Merge - Best: n log n / Avg: n log n / Worst: n log n
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører merge sort på tabellen.");
+        SortInt.merge(tab);
+        System.out.printf(" Merge sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    
+        // Heap - Best: n log n / Avg: n log n / Worst: n log n
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører heapsort på tabellen.");
+        SortInt.heap(tab);
+        System.out.printf(" Heapsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Hoare) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Hoare) på tabellen.");
+        SortInt.quick_hoare(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Dutch national flag) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Dutch national flag) på tabellen.");
+        SortInt.quick_dutch_flag(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Shell (Shellsortering)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører shellsort (Ciura) på tabellen.");
+        SortInt.shell(tab);
+        System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Shell (Shellsortering)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører shellsort (Rhoads) på tabellen.");
+        SortInt.shell(tab, 1);
+        System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Counting - Best: - / Avg: n+r / Worst: n+r
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører counting sort på tabellen.");
+        SortInt.counting(tab);
+        System.out.printf(" Counting sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
     }
 }

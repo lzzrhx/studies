@@ -1,5 +1,6 @@
 package src;
 
+// Sjekker om åpnende og lukkende parenteser i streng er formatert riktig
 public class ParentesSjekker {
     
     public static boolean sjekk(String s) {
