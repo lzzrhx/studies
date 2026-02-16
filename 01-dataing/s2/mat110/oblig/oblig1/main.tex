@@ -6,6 +6,7 @@
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
+\usepackage{nicematrix}
 \usepackage{tikz}
 \usepackage{babel}               % Support for other languages than english
 \usepackage{setspace}            % Set paragraph spacing
@@ -94,25 +95,40 @@ literate      =        % Support additional characters
 \oppgave{1}
 \oppgaveDelStart
 
-\oppgaveDel{a}
+\oppgaveDel{a} \ \\
 
-\usetikzlibrary {angles}
+\usetikzlibrary {angles,quotes}
+
 
 \begin{center}
 \begin{tikzpicture}[scale=2.00]
 %\draw[step=1cm,gray,very thin] (-5,-5) grid (5,5);
-\draw[thick,->](-2.1,0) -- (2.1,0);
-\draw[thick,->](0,-2.1) -- (0,2.1);
 \draw(2.5,0) node{Re};
 \draw(0,2.5) node{Im};
 %\draw[--] (0,0) -- (2,1) -- (3,3) -- (4,2) -- (5,1.5) -- (7,2) -- (8,2.5);
-\node at (0.7071,0.7071) {$\circ$};
-\draw(0.7071,0.7071+0.5) node{$z_1$};
-\node at (-1,-1) {$\circ$};
-\draw(-1,-1+0.5) node{$z_2$};
-\draw (2,0) coordinate (A) -- (0,0) coordinate (B)
-         -- (1,1) coordinate (C)
-  pic ["$\alpha$", draw, angle eccentricity=1] {angle};
+\draw[black!50](-1,0) coordinate (A) -- (0,0) coordinate (B) -- (-1,-1) coordinate (C) pic [black!50, "$\alpha$", draw, angle eccentricity=1.5] {angle};
+\foreach \x/\xtext in { -2, -1, 0.7071, 2}
+    \draw [ shift={(\x,0)}]
+    (0pt,0pt) -- (0pt, -2pt)
+    node [below] {\tiny$\xtext$};
+\foreach \y/\ytext in {0.7071, 2}
+    \draw [ shift={(0,\y)}]
+    (0pt,0pt) -- (-2pt, 0pt)
+    node [left] {\tiny$\ytext$};
+\foreach \y/\ytext in {-2, -1}
+    \draw [ shift={(0,\y)}]
+    (0pt,0pt) -- (2pt, 0pt)
+    node [right] {\tiny$ \ \ytext$};
+\draw[black!30, dotted] (0.7071,0) -- (0.7071,0.7071);
+\draw[black!30, dotted] (0,0.7071) -- (0.7071,0.7071);
+\draw[black!30, dotted] (0,-1) -- (-1,-1);
+\draw[black!30, dotted] (-1,0) -- (-1,-1);
+\draw[thick,->](-2.1,0) -- (2.1,0);
+\draw[thick,->](0,-2.1) -- (0,2.1);
+\node (z2) at (-1,-1) {$\bullet$};
+\node at (0.7071,0.7071) {$\bullet$};
+\draw(-1,-1+0.25) node{$z_2$};
+\draw(0.7071,0.7071+0.25) node{$z_1$};
 
 \end{tikzpicture}
 \end{center}
@@ -120,17 +136,13 @@ literate      =        % Support additional characters
 \oppgaveDel{b}
 
 \begin{alignat*}\\
-z_1 = & \ e^{i\frac{\pi}{4}} \ \ \text{(eksponentialform)}\\
-& \ e^{i\frac{\pi}{4}} \rightarrow r=1, \ \ \theta = \frac{\pi}{4}\\
+z_1 = & \ e^{i\frac{\pi}{4}} \ \ \text{(eksponentialform)} \rightarrow r=1, \ \ \theta = \frac{\pi}{4}\\
 = & \ 1(\cos \theta + i \cdot \sin \theta)\\
 = & \ cos \frac{\pi}{4} + i \cdot sin \frac{\pi}{4}\\
 = & \ x_1 + i \cdot y_1\\
 \Rightarrow x_1 = &\cos \frac{\pi}{4} = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}\\
 \Rightarrow y_1 = &\sin \frac{\pi}{4} = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}\\
-z_1 = &\frac{\sqrt{2}}{2} + i \cdot \frac{\sqrt{2}}{2} \ \ \text{(standardform)}\\
-\end{alignat*}
-
-\begin{alignat*}\\
+z_1 = &\frac{\sqrt{2}}{2} + i \cdot \frac{\sqrt{2}}{2} \ \ \text{(standardform)}\\\\
 z_{2} &= -1 - i \ \ \text{(standardform)}\\
 &= x_2 + i \cdot y_2 \rightarrow x_2 = -1, \ \ y_2 = -1 \\
 &r = \sqrt{x_2^2 + y_2^2} = \sqrt{(-1)^2 + (-1)^2} = \sqrt{2}\\
@@ -148,16 +160,10 @@ z_2 &= \sqrt{2} \cdot e^{i \frac{5 \pi}{4}} \ \ \text{(eksponentialform)}
 z_1 + z_2 &= (\frac{\sqrt{2}}{2} + \sqrt{2}{2} \cdot i) + (-1 - i)\\
           &= (\frac{\sqrt{2}}{2} - 1) + (\frac{\sqrt{2}}{2} - 1) \cdot i\\
 &=(0.7071 - 1) + (0.7071 - 1) \cdot i\\
-&=-0.29 - 0.29 i\\
-\end{alignat*}
-
-\begin{alignat*}\\
+&=-0.29 - 0.29 i\\ \\ \\
 \frac{z_1}{z_2} &= \frac{e^{i \frac{\pi}{4}}}{\sqrt{2} e^{i \frac{5 \pi}{4}}} = \frac{1}{\sqrt{2}} e^{i \frac{\pi}{4} - i \frac{t \pi}{4}} = \frac{1}{\sqrt{2}} e^{-i \pi}\\
 &= \frac{1}{\sqrt{2}}( \cos (- \pi) + i \sin (- \pi)) = \frac{1}{\sqrt{2}} (-1 + i (0)) = - \frac{1}{\sqrt{2}} + i0\\
-&= - \frac{\sqrt{2}}{2}\\
-\end{alignat*}
-
-\begin{alignat*}\\
+&= - \frac{\sqrt{2}}{2}\\ \\ \\
 {z_1} &= \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2}\\
 \overline{z_1} &= \frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2}\\
 - \overline{z_1} &= -1 ( \frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2} ) = - \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \\
@@ -169,12 +175,12 @@ Først konverterer vi $w$ til eksponentialform.\\
 $r = \sqrt{1^2 + 1^2} = \sqrt{2}$\\
 $\theta = \tan^{-1} (1) = \frac{\pi}{4}$\\
 $w = 1 + i = \sqrt{2} e^{i \frac{\pi}{4}}$\\\\
-Videre tar vi i bruk De Moivres thm for røtter:\\
+Videre tar vi i bruk De Moivres thm. for røtter:\\
 Hvis $z^n = w = r e^{i \theta}$, da er røttene gitt ved $z_k = \sqrt[n]{r} e^{i (\frac{\theta + 2 \pi k}{n})}$, for $k = 0, 1, 2, \dots, n-1$.\\\\
 I dette tilfellet blir $n=6, r=\sqrt{2}$ og $\theta = \frac{\pi}{4}$.\\
 $\sqrt[6]{r} = \sqrt[6]{\sqrt{2}} = \sqrt[6]{2^{\frac{1}{2}}} = 2^{(\frac{1}{2})(\frac{1}{6})} = 2^{\frac{1}{12}} = \sqrt[12]{2}$.\\
 Videre finner vi argumentene for $k = 0,1,2,3,4,5$:\\
-Det generelle argumentet er $\phi_k = \frac{\frac{\pi}{4} + 2 \pi k}{6} = \frac{\pi}{24} + \frac{2 \pi k}{6} = \frac{\pi}{24} + \frac{\pi k}{3}.$\\
+Det generelle argumentet er $\phi_k = \frac{\frac{\pi}{4} + 2 \pi k}{6} = \frac{\pi}{24} + \frac{2 \pi k}{6} = \frac{\pi}{24} + \frac{\pi k}{3}.$
 
 \begin{alignat*}\\
 &k = 0: \phi_0 = \frac{\pi}{24}\\
@@ -182,11 +188,11 @@ Det generelle argumentet er $\phi_k = \frac{\frac{\pi}{4} + 2 \pi k}{6} = \frac{
 &k = 2: \phi_2 = \frac{\pi}{24} + \frac{2 \pi}{3} = \frac{17 \pi}{24}\\
 &k = 3: \phi_3 = \frac{\pi}{24} + \pi = \frac{25 \pi}{24}\\
 &k = 4: \phi_4 = \frac{\pi}{24} + \frac{4 \pi}{3} = \frac{33 \pi}{24}\\
-&k = 5: \phi_5 = \frac{\pi}{24} + \frac{5 \pi}{3} = \frac{41 \pi}{24}\\
+&k = 5: \phi_5 = \frac{\pi}{24} + \frac{5 \pi}{3} = \frac{41 \pi}{24}\\\\
+&\text{Det er seks løsninger:}\\
+&z_k = 2^{\frac{1}{12}} \cdot e^{i \phi_k}\text{, for }k = 0,1, 2, 3, 4, 5.
 \end{alignat*}
 
-Det er seks løsninger:\\
-$z_k = 2^{\frac{1}{12}} \cdot e^{i \phi_k}$, for $k = 0,1, 2, 3, 4, 5.$
 
 \oppgaveDelSlutt
 
@@ -202,9 +208,9 @@ $\begin{bmatrix}
 1  & 1 & (2k-1) & 0 & 1\\
 -2 & 0 &    -4k & k & 5\\
 \end{bmatrix}
-\begin{matrix}
+\sim\begin{matrix}
 \\
--R_1 + R_2\\
+R_2 - R_1\\
 \\ 
 \end{matrix}
 \begin{bmatrix}
@@ -212,35 +218,34 @@ $\begin{bmatrix}
 0  & 1 &  -1 & -k & -1\\
 -2 & 0 & -4k &  k &  5\\
 \end{bmatrix}
-\begin{matrix}
+\sim\begin{matrix}
 \\
 \\
-2 R_1 + R_3\\ 
+R_3 + 2 R_1\\ 
 \end{matrix}
 \begin{bmatrix}
 1 & 0 & 2k &  k &  2\\
 0 & 1 & -1 & -k & -1\\
-0 & 0 &  0 & 3k &  5\\
+0 & 0 &  0 & 3k &  9\\
 \end{bmatrix}$
 
 \begin{alignat*}\\
-& (1) \ \ x_1 + 2k x_3 + k x_4 = 2\\
-& (2) \ \ x_2 - x_3 - k x_4 = -1\\
-& (3) \ \ 3k x_4 = 9
+& (1) \ \ x_1 + 2k x_3 + k x_4 &&= 2\\
+& (2) \ \ x_2 - x_3 - k x_4 &&= -1\\
+& (3) \ \ 3k x_4 &&= 9
 \end{alignat*}
 
 \oppgaveDel{b}
-Fra $(3) \ \ 3k x_4 = 9$\\
+Fra $(3) \ \ 3k x_4 = 9$\\\\
 Case 1:\\
-$k \neq 0 \Rightarrow x_4 = \frac{3}{k}$\\
+$k \neq 0 \Rightarrow x_4 = \frac{3}{k}$\\\\
 Vi setter $x_4 = \frac{4}{k}$ inn i $(2)$:\\
 $x_2 = x_3 + k \frac{3}{k} - 1 = x_3 + 2$\\
 Så vi trenger verdien til $x_3$ for å beregne $x_2$.\\\\
 Vi setter $x_4 = \frac{3}{k}$ inn i $(1)$:\\
 $x_1 + 2k x_3 + k \frac{3}{k} = x_1 + 2k x_3 + 3 = 2$\\
 $\Rightarrow x_1 = -1 - 2k x_3$\\\\
-
-For $x \neq$, $x_1$ og $x_2$ er uttrykt med bruk av den frie variablen $x_3$.\\
+For $x \neq 0$, $x_1$ og $x_2$ er uttrykt med bruk av den frie variablen $x_3$.\\
 Derfor er det uendelig mange løsninger for alle $k \neq 0$.\\\\
 
 Case 2:\\
@@ -248,8 +253,7 @@ $k = 0 \Rightarrow (3)$ blir $0 \cdot x_4 = 9 \Rightarrow 0 = 9$.\\
 
 Dette er umulig og vi kan konkludere at det er ingen løsning for $k = 0$.\\
 
-Utifra dette kan vi konkludere at det kan ikke være akkurat en eller akkurat to løsninger i dette tilfelle.
-
+Utifra dette kan vi slå fast at det kan ikke være akkurat en eller akkurat to løsninger i dette tilfelle, enten uendelig mange løsninger (for $k \neq 0$) eller ingen løsning (for $k = 0$).
 \oppgaveDel{c}
 
 \begin{alignat*}\\
@@ -262,6 +266,7 @@ Utifra dette kan vi konkludere at det kan ikke være akkurat en eller akkurat to
 \oppgaveDelSlutt
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
 \newpage
 \oppgave{3}
 \oppgaveDelStart
@@ -293,7 +298,7 @@ $3A =
 \begin{bmatrix}
 1 & -1 &  2\\
 1 &  1 & -1\\
-\end{bmatrix}$
+\end{bmatrix}$\\
 
 $3A - B^T$ er ikke mulig ettersom matrisene har ulike dimensjoner.\\\\
 
@@ -345,13 +350,6 @@ B^T A =
 
 \oppgaveDel{b}
 
-$A = 
-\begin{bmatrix}
-1 & 1 &  1\\
-1 & 2 & -1\\
-2 & 3 &  3\\
-\end{bmatrix}$\\\\
-
 $\det(A) = 
 1 \cdot
 \begin{vmatrix}
@@ -367,124 +365,204 @@ $\det(A) =
 \begin{vmatrix}
 1 & 2\\
 2 & 3\\
-\end{vmatrix}$\\\\
-$= 1 \cdot (6+3) -1(3+2) + 1(3-4)$\\\\
-$= 9-5-1 = 3$
+\end{vmatrix} = 1 \cdot (6+3) -1(3+2) + 1(3-4) = 9-5-1 = 3$
 
 \oppgaveDel{c}
 
-$\begin{bmatrix}
-1 & 1 &  1 & | & 1 & 0 & 0\\
-1 & 2 & -1 & | & 0 & 1 & 0\\
-2 & 3 &  3 & | & 0 & 0 & 1\\
-\end{bmatrix}
-\sim\begin{matrix}
-\\
--R_1 + R_2\\ 
-\\
-\end{matrix}
-\begin{bmatrix}
-1 & 1 &  1 & | &  1 & 0 & 0\\
-0 & 1 & -2 & | & -1 & 1 & 0\\
-2 & 3 &  3 & | &  0 & 0 & 1\\
-\end{bmatrix}
-\sim\begin{matrix}
+\renewcommand{\arraystretch}{1.4}
+$\sim\begin{NiceArray}{W{c}{2cm}c}
 \\
 \\
--2 R_1 + R_3\\ 
-\end{matrix}
-\begin{bmatrix}
-1 & 1 &  1 & | & 1 & 0 & 0\\
-0 & 1 & -2 & | &-1 & 1 & 0\\
-0 & 1 &  1 & | &-2 & 0 & 1\\
-\end{bmatrix}$\\\\\\
+\\ 
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 1 &  1 & 1 & 0 & 0\\
+1 & 2 & -1 & 0 & 1 & 0\\
+2 & 3 &  3 & 0 & 0 & 1\\
+\end{bNiceArray}
+\sim\begin{NiceArray}{W{c}{2cm}c}
+\\
+R_2 - R_1\\ 
+\\
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 1 &  1 &  1 & 0 & 0\\
+0 & 1 & -2 & -1 & 1 & 0\\
+2 & 3 &  3 &  0 & 0 & 1\\
+\end{bNiceArray}$\\\\
 
-$\sim\begin{matrix}
+$\sim\begin{NiceArray}{W{c}{2cm}c}
 \\
 \\
-- R_2 R_3\\ 
-\end{matrix}
-\begin{bmatrix}
-1 & 1 &  1 & | & 1 &  0 & 0\\
-0 & 1 & -2 & | &-1 &  1 & 0\\
-0 & 0 &  3 & | &-1 & -1 & 1\\
-\end{bmatrix}
-\sim\begin{matrix}
+R_3 - 2 R_1\\ 
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 1 &  1 & 1 & 0 & 0\\
+0 & 1 & -2 &-1 & 1 & 0\\
+0 & 1 &  1 &-2 & 0 & 1\\
+\end{bNiceArray}
+\sim\begin{NiceArray}{W{c}{2cm}c}
+\\
+\\
+R_3 - R_2\\ 
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 1 &  1 & 1 &  0 & 0\\
+0 & 1 & -2 &-1 &  1 & 0\\
+0 & 0 &  3 &-1 & -1 & 1\\
+\end{bNiceArray}$\\\\
+
+$\sim\begin{NiceArray}{W{c}{2cm}c}
 \\
 \\
 \frac{1}{3} R_3\\ 
-\end{matrix}
-\begin{bmatrix}
-1 & 1 &  1 & | & 1 &  0 & 0\\
-0 & 1 & -2 & | &-1 &  1 & 0\\
-0 & 0 &  1 & | &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}
-\sim\begin{matrix}
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 1 &  1 & 1 &  0 & 0\\
+0 & 1 & -2 &-1 &  1 & 0\\
+0 & 0 &  1 &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
+\end{bNiceArray}
+\sim\begin{NiceArray}{W{c}{2cm}c}
 \\
-2 R_3 + R_2\\
+R_2 + 2 R_3\\
 \\
-\end{matrix}
-\begin{bmatrix}
-1 & 1 & 1 & | & 1 &  0 & 0\\
-0 & 1 & 0 & | &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
-0 & 0 & 1 & | &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}$\\\\\\
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=auto]
+1 & 1 & 1 & 1 &  0 & 0\\
+0 & 1 & 0 &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
+0 & 0 & 1 &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
+\end{bNiceArray}$\\\\
 
-$\sim\begin{matrix}
--R_2 + R_1\\
+$\sim\begin{NiceArray}{W{c}{2cm}c}
+R_1 - R_2\\
 \\
 \\
-\end{matrix}
-\begin{bmatrix}
-1 & 0 & 1 & | & \frac{8}{3} & - \frac{1}{3} & - \frac{2}{3}\\
-0 & 1 & 0 & | &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
-0 & 0 & 1 & | &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}
-\sim\begin{matrix}
--R_3 + R_1\\
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 0 & 1 & \frac{8}{3} & - \frac{1}{3} & - \frac{2}{3}\\
+0 & 1 & 0 &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
+0 & 0 & 1 &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
+\end{bNiceArray}
+\sim\begin{NiceArray}{W{c}{2cm}c}
+R_1 - R_3\\
 \\
 \\
-\end{matrix}
-\begin{bmatrix}
-1 & 0 & 0 & | & 3 & 0 & -1\\
-0 & 1 & 0 & | &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
-0 & 0 & 1 & | &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}$\\\\\\
+\end{NiceArray}
+\begin{bNiceArray}{*{3}{c}|*{3}{c}}[columns-width=0.5cm]
+1 & 0 & 0 & 3 & 0 & -1\\
+0 & 1 & 0 &- \frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
+0 & 0 & 1 &- \frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
+\end{bNiceArray}$\\\\
 
+\begin{center}
 A^{-1} = 
-\begin{bmatrix}
+\begin{bNiceArray}{*{3}{c}}[columns-width=0.5cm]
 3 & 0 & -1\\
 -\frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
 -\frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}
+\end{bNiceArray}
+\end{center}
 
 \oppgaveDel{d}
 
-$A \vec{x} = \vec{b}$, der $\vec{b} = \begin{bmatrix}1\\4\\2\end{bmatrix}$
+\begin{equation*}
+\end{equation*}
 
-$\Rightarrow \vec{x} = A^{-1} \vec{b} =
+\begin{alignat*}\\
+&A \vec{x} = \vec{b}\\
+&\vec{b} = \begin{bmatrix}1\\4\\2\end{bmatrix}\\
+&\Rightarrow \vec{x} = A^{-1} \vec{b} =
 \begin{bmatrix}
 3 & 0 & -1\\
 -\frac{5}{3} & \frac{1}{3} & \frac{2}{3}\\
 -\frac{1}{3} & - \frac{1}{3} & \frac{1}{3}\\
-\end{bmatrix}
-\cdot
-\begin{bmatrix}1\\4\\2\end{bmatrix}$
-
-\begin{alignat*}\\
-& 3(1) + 0(4) - 1(2) = 3-2 = 1\\
-& - \frac{5}{3}(1) + \frac{1}{3}(4) + \frac{2}{3}(2) = - \frac{5}{3} + \frac{4}{3} + \frac{4}{3} = 1\\
-& - \frac{1}{3}(1) - \frac{1}{3}(4) + \frac{1}{3}(2) = - \frac{1}{3} - \frac{4}{3} + \frac{2}{3} = -1\\
-& x_1 = 1, x_2 = 1, x_3 = -1
+\end{bmatrix}\cdot\begin{bmatrix}1\\4\\2\end{bmatrix}\\\\
+& 3(1) + 0(4) - 1(2) = 3-2 &&= 1\\\\
+& - \frac{5}{3}(1) + \frac{1}{3}(4) + \frac{2}{3}(2) = - \frac{5}{3} + \frac{4}{3} + \frac{4}{3} &&= 1\\\\
+& - \frac{1}{3}(1) - \frac{1}{3}(4) + \frac{1}{3}(2) = - \frac{1}{3} - \frac{4}{3} + \frac{2}{3} &&= -1\\\\
+&\Rightarrow x_1 = 1, \ \ x_2 = 1, \ \ x_3 = -1
 \end{alignat*}
 
 \oppgaveDel{e}
+
+\lstinputlisting[language=Python]{3e.py}
 
 \oppgaveDelSlutt
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
+\newpage
+\oppgave{4}
+\begin{alignat*}
+&\vec{u} = \left[ \frac{1}{\sqrt{2}}, \ \frac{1}{2}, \ \frac{1}{2} \right], \ \ \vec{v} = \left[ - \frac{1}{\sqrt{2}}, \ \frac{1}{2}, \ \frac{1}{2} \right], \ \ \vec{w} = \left[ - \frac{1}{\sqrt{2}}, \ 0, \ \frac{1}{\sqrt{2}} \right]
+\end{alignat*}
+\oppgaveDelStart
+
 \oppgaveDel{a}
+\begin{alignat*}\\
+& |\vec{u}| = \sqrt{(\nicefrac{1}{\sqrt{2}})^2 + (\nicefrac{1}{2})^2 + (\nicefrac{1}{2})^2 } &&= \sqrt{\nicefrac{1}{2} + \nicefrac{1}{4} + \nicefrac{1}{4}} &&&= \sqrt{1} = 1\\\\
+& |\vec{v}| = \sqrt{(- \nicefrac{1}{\sqrt{2}})^2 + (\nicefrac{1}{2})^2 + (\nicefrac{1}{2})^2 } &&= \sqrt{\nicefrac{1}{2} + \nicefrac{1}{4} + \nicefrac{1}{4}} &&&= \sqrt{1} = 1\\\\
+& |\vec{w}| = \sqrt{(- \nicefrac{1}{\sqrt{2}})^2 + 0^2 + (\nicefrac{1}{sqrt{2}})^2 } &&= \sqrt{\nicefrac{1}{2} + \nicefrac{1}{2}} &&&= \sqrt{1} = 1
+\end{alignat*}
+
+\oppgaveDel{b}
+\begin{alignat*}\\
+&\vec{u} \cdot \vec{v} = \nicefrac{1}{\sqrt{2}} \cdot (\nicefrac{-1}{\sqrt{2}}) + \nicefrac{1}{2} \cdot \nicefrac{1}{2} + \nicefrac{1}{2} \cdot \nicefrac{1}{2} = - \nicefrac{1}{2} + \nicefrac{1}{4} + \nicefrac{1}{4} = 0\\
+&\vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cos \theta = 1 \cdot 1 \cdot \cos \theta = \cos \theta = 0\\
+&\cos \theta = 0 \Rightarrow \theta = 90 \degree \ \ (\vec{u} \ \bot \ \vec{v})
+\end{alignat*}
+
+\begin{alignat*}\\
+&\vec{u} \cdot \vec{w} = \frac{1}{\sqrt{2}} \cdot (\frac{-1}{\sqrt{2}}) + \frac{1}{2} \cdot 0 + \frac{1}{2} \cdot \frac{1}{\sqrt{2}} = - \frac{1}{2} + \frac{1}{2 \sqrt{2}}\\
+&\Rightarrow \cos \theta = \frac{1}{2 \sqrt{2}} - \frac{1}{2}\\
+&\Rightarrow \theta = \cos^{-1} ( \frac{1}{2 \sqrt{2}} - \frac{1}{2} ) \approx 98,4 \degree
+\end{alignat*}
+
+\oppgaveDel{c}
+
+\begin{alignat*}\\
+&\vec{u} \times \vec{v} = 
+\begin{bmatrix}
+i & j & k\\
+\frac{1}{\sqrt{2}} & \frac{1}{2} & \frac{1}{2}\\
+- \frac{1}{\sqrt{2}} & \frac{1}{2} & \frac{1}{2}\\
+\end{bmatrix}\\\\
+&i: \ \frac{1}{2} \cdot \frac{1}{2} - \frac{1}{2} \cdot \frac{1}{2} &&= 0\\\\
+&j: \ -\left(\frac{1}{\sqrt{2}} \cdot \frac{1}{2} - \frac{1}{2} \cdot (-\frac{1}{\sqrt{2}}) \right) &&= - \frac{1}{\sqrt{2}}\\\\
+&k: \ \frac{1}{\sqrt{2}} \cdot \frac{1}{2} - \frac{1}{2} \cdot (- \frac{1}{\sqrt{2}}) &&= \frac{1}{\sqrt{2}}\\\\
+&\vec{u} \times \vec{v} = \left[ 0, \ \ - \frac{1}{\sqrt{2}}, \ \ \frac{1}{\sqrt{2}}\right]
+\end{alignat*}
+
+\oppgaveDel{d}
+$\vec{u} \times \vec{v}$ er vinkelrett til både $\vec{a}$ og $\vec{b}$, så vinkelen mellom $\vec{a}$ og $\vec{u} \times \vec{v}$ er $90 \degree$.
+
+\oppgaveDel{e}
+
+\begin{alignat*}\\
+&\vec{a} \left[ 5\vec{a} + \vec{b} + (\vec{a} \times \vec{b}) \right] = 5 (\vec{a} \cdot \vec{a} + \vec{a} \cdot \vec{b} + \vec{a} \cdot (\vec{a} \times \vec{b}))\\
+&\text{Vi vet at:}\\
+(i) & \ \vec{a} \cdot \vec{a} = |\vec{a}|^2 = 2^2 &= 4\\
+(ii) & \ \vec{a} \cdot \vec{b} = 0 \ \text{(ettersom $\vec{a}$ og $\vec{b}$ står vinkelrett på hverandre)}\\
+(iii) & \ \vec{a} \cdot (\vec{a} \times \vec{b}) = 0 \ \text{(ettersom kryssproduktet til to vektorer står vinkelrett på begge vektorer)}\\
+& \therefore \ \vec{a} \left[ 5\vec{a} + \vec{b} + (\vec{a} \times \vec{b}) \right] = 5(4) + 0 + 0 = 20
+\end{alignat*}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\oppgave{5}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+
+\oppgaveDel{b}
+
+\oppgaveDel{c}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \end{document}
 
