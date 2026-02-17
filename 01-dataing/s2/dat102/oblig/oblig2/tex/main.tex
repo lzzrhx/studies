@@ -28,6 +28,7 @@
 %\setstretch{1.5}
 \setlength{\parindent}{0pt}
 \titlespacing*{\subsection}{0cm}{1.5cm}{0.1cm}
+\titlespacing*{\subsubsection}{0cm}{0cm}{0cm}
 \lstset{
 aboveskip=0.1cm,
 belowskip=1.0cm,
@@ -51,7 +52,7 @@ literate      =        % Support additional characters
 {Â}{{\^A}}1  {Ê}{{\^E}}1  {Î}{{\^I}}1 {Ô}{{\^O}}1  {Û}{{\^U}}1
 {œ}{{\oe}}1  {Œ}{{\OE}}1  {æ}{{\ae}}1 {Æ}{{\AE}}1  {ß}{{\ss}}1
 {ẞ}{{\SS}}1  {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ø}{{\o}}1  {Ø}{{\O}}1
-{å}{{\aa\ }}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
+{å}{{\aa}}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
 {Õ}{{\~O}}1  {ñ}{{\~n}}1  {Ñ}{{\~N}}1  {¿}{{?`}}1  {¡}{{!`}}1
 {„}{\quotedblbase}1 {“}{\textquotedblleft}1 {–}{$-$}1
 {°}{{\textdegree}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
@@ -454,7 +455,7 @@ Dette ga resultatet:
     Kjører insertion sort (modifisert versjon) på tabellen. Insertion sort gjennomført etter 3952 ms.
 */
 
-// Konklusjon: Da vi testet den opprinnelige algoritmen sammenlignet med den modifiserte, observerte vi at kjøretiden ble betydelig raskere etter endring i algoritmen.
+// Konklusjon: Da vi testet den opprinnelige algoritmen sammenlignet med den modifiserte, observerte vi at kjøretiden ble betydelig redusert etter endring i algoritmen.
 
 \end{lstlisting}
 
@@ -468,7 +469,7 @@ Dette ga resultatet:
 public class SortInt {
     private static int tmp;
 
-    // Bubble - Best: n / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: Yes / In-Place: Yes
+    // Bubble
     public static void bubble(int[] arr) {
         boolean swapped;
         do {
@@ -484,7 +485,7 @@ public class SortInt {
         } while (swapped);
     }
 
-    // Selection (utvalgssortering / plukksortering) - Best: n^2 / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: No / In-place: Yes
+    // Selection (utvalgssortering / plukksortering)
     public static void selection(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int min = i;
@@ -501,7 +502,7 @@ public class SortInt {
         }
     }
 
-    // Insertion (Sortering ved innsetting) - Best: n / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: Yes / In-place: Yes
+    // Insertion (Sortering ved innsetting)
     public static void insertion(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int val = arr[i];
@@ -514,7 +515,7 @@ public class SortInt {
         }
     }
 
-    // Shell (Shellsortering) - Best n log n / Avg: omega(n log n) / Worst: n log^2 n / Mem: 1 / Stable: No / In-place: Yes
+    // Shell (Shellsortering)
     private static final int[][] shell_gaps = new int[][] {
         {701, 301, 132, 57, 23, 10, 4, 1}, // Ciura, 2001
         {1049, 347, 113, 37, 11, 3, 1},    // Rhoads, 2010
@@ -535,7 +536,7 @@ public class SortInt {
         }
     }
 
-    // Merge (Flettesortering) - Best: n log n / Avg: n log n / Worst: n log n / Mem: n / Stable: Yes / In-place: No
+    // Merge (Flettesortering)
     public static void merge(int[] arr) {
         int[] aux = Arrays.copyOf(arr, arr.length);
         merge(arr, aux, 0, arr.length - 1);
@@ -559,7 +560,7 @@ public class SortInt {
 \oppgaveDelStart
 \oppgaveDel{a}
 \begin{lstlisting}[language=Java]
-    // Heap (Haugsortering (forbedret versjon av utvalgssortering)) - Best: n log n / Avg: n log n / Worst: n log n / Mem: 1 / Stable: No / In-place: Yes
+    // Heap (Haugsortering (forbedret versjon av utvalgssortering))
     public static void heap (int[] arr) {
         for (int i = (arr.length - 2) / 2; i >= 0; i--) { heapify(arr, i, arr.length); }
         for (int i = arr.length; i > 0; i--) {
@@ -583,7 +584,7 @@ public class SortInt {
         }
     }
 
-    // Quick, Hoare partition scheme (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes
+    // Quick, Hoare partition scheme (Kvikksortering)
     public static void quick_hoare(int[] arr) {
         if (arr.length > 1) { quick_hoare(arr, 0, arr.length - 1); }
     }
@@ -605,7 +606,7 @@ public class SortInt {
         }
     }
 
-    // Quick, Dutch national flag (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes
+    // Quick, Dutch national flag (Kvikksortering)
     public static void quick_dutch_flag(int[] arr) {
         if (arr.length > 1) { quick_dutch_flag(arr, 0, arr.length - 1); }
     }
@@ -637,7 +638,7 @@ public class SortInt {
         }
     }
 
-    // Counting - Best: - / Avg: n+r / Worst: n+r / Mem: n+r / Stable: Yes / In-place: Yes
+    // Counting
     public static void counting(int[] arr) {
         Map<Integer, Integer> freq = new TreeMap<>();
         for (int n : arr) { freq.put(n, freq.getOrDefault(n, 0) + 1); }
@@ -665,70 +666,70 @@ public class Program {
         int[] tab;
         long start;
 
-        // Bubble - Best: n / Avg: n^2 / Worst: n^2
+        // Bubble
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører bubble sort på tabellen.");
         SortInt.bubble(tab);
         System.out.printf(" Bubble sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
         
-        // Selection - Best: n^2 / Avg: n^2 / Worst: n^2
+        // Selection
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører selection sort på tabellen.");
         SortInt.selection(tab);
         System.out.printf(" Selection sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
 
-        // Insertion - Best: n / Avg: n^2 / Worst: n^2
+        // Insertion
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører insertion sort på tabellen.");
         SortInt.insertion(tab);
         System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
 
-        // Merge - Best: n log n / Avg: n log n / Worst: n log n
+        // Merge
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører merge sort på tabellen.");
         SortInt.merge(tab);
         System.out.printf(" Merge sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
     
-        // Heap - Best: n log n / Avg: n log n / Worst: n log n
+        // Heap
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører heapsort på tabellen.");
         SortInt.heap(tab);
         System.out.printf(" Heapsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
         
-        // Quick (Hoare) - Best: n log n / Avg: n log n / Worst: n^2
+        // Quick
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører quicksort (Hoare) på tabellen.");
         SortInt.quick_hoare(tab);
         System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
         
-        // Quick (Dutch national flag) - Best: n log n / Avg: n log n / Worst: n^2
+        // Quick
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører quicksort (Dutch national flag) på tabellen.");
         SortInt.quick_dutch_flag(tab);
         System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
 
-        // Shell (Shellsortering)
+        // Shell
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører shellsort (Ciura) på tabellen.");
         SortInt.shell(tab);
         System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
         
-        // Shell (Shellsortering)
+        // Shell
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører shellsort (Rhoads) på tabellen.");
         SortInt.shell(tab, 1);
         System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
 
-        // Counting - Best: - / Avg: n+r / Worst: n+r
+        // Counting
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører counting sort på tabellen.");
@@ -793,8 +794,11 @@ Dette gir resultatet:
 
 \setlength{\tabcolsep}{18pt}
 \renewcommand{\arraystretch}{1.25}
+\subsection*{Resultater:}
+Målt med tabell med $n$ antall unike 32-bit int verdier.\\
 
 \subsubsection*{Bubble sort (best: $n$ / avg: $n^2$ / worst: $n^2$):}
+Avg $(n^2)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
@@ -809,6 +813,7 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \vspace{1.0cm}
 
 \subsubsection*{Selection sort (best: $n^2$ / avg: $n^2$ / worst: $n^2$):}
+Avg $(n^2)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
@@ -823,6 +828,7 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \vspace{1.0cm}
 
 \subsubsection*{Insertion sort (best: $n$ / avg: $n^2$ / worst: $n^2$):}
+Avg $(n^2)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
@@ -837,42 +843,46 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \vspace{1.0cm}
 
 \subsubsection*{Counting sort (avg: $n+r$ / worst: $n+r$):}
+Avg $(n+r)$ brukt for teoretisk tid.\\
+Alle tilfeldige tall i den unsorterte tabellen var unike, så $r = n$.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &  12 ms & $? \cdot (n+r)$ \\ 
-    64.000 & 10 &  24 ms & $? \cdot (n+r)$ \\ 
-   128.000 & 10 &  54 ms & $? \cdot (n+r)$ \\ 
- 1.024.000 & 10 & 751 ms & $? \cdot (n+r)$ \\ 
+    32.000 & 10 &  12 ms & $1.88 \cdot 10^{-4} \cdot (n+r)$ \\ 
+    64.000 & 10 &  24 ms & $1.88 \cdot 10^{-4} \cdot (n+r)$ \\ 
+   128.000 & 10 &  54 ms & $2.10 \cdot 10^{-4} \cdot (n+r)$ \\ 
+ 1.024.000 & 10 & 751 ms & $3.67 \cdot 10^{-4} \cdot (n+r)$ \\ 
 \hline
 \end{tabular}
 
 \vspace{1.0cm}
 
-\subsubsection*{Shellsort (Ciura) (best $n \log n$ / avg: $\Omega(n \log n)$ / worst: $n \log^2 n$):}
+\subsubsection*{Shellsort (Ciura) (best $n \log n$ / worst: $n \log^2 n$):}
+Worst $(n \log^2 n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &   3 ms & $? \cdot \Omega(n \log n)$ \\ 
-    64.000 & 10 &   6 ms & $? \cdot \Omega(n \log n)$ \\ 
-   128.000 & 10 &  15 ms & $? \cdot \Omega(n \log n)$ \\ 
- 1.024.000 & 10 & 443 ms & $? \cdot \Omega(n \log n)$ \\ 
+    32.000 & 10 &   3 ms & $4.19 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+    64.000 & 10 &   6 ms & $3.68 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+   128.000 & 10 &  15 ms & $4.07 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+ 1.024.000 & 10 & 443 ms & $1.09 \cdot 10^{-6} \cdot n \log^2 n$ \\ 
 \hline
 \end{tabular}
 
 \vspace{1.0cm}
 
-\subsubsection*{Shellsort (Rhoads) (best $n \log n$ / avg: $\Omega(n \log n)$ / worst: $n \log^2 n$):}
+\subsubsection*{Shellsort (Rhoads) (best $n \log n$ / worst: $n \log^2 n$):}
+Worst $(n \log^2 n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &   2 ms & $? \cdot \Omega(n \log n)$ \\ 
-    64.000 & 10 &   5 ms & $? \cdot \Omega(n \log n)$ \\ 
-   128.000 & 10 &  13 ms & $? \cdot \Omega(n \log n)$ \\ 
- 1.024.000 & 10 & 341 ms & $? \cdot \Omega(n \log n)$ \\ 
+    32.000 & 10 &   2 ms & $2.79 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+    64.000 & 10 &   5 ms & $3.06 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+   128.000 & 10 &  13 ms & $3.53 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
+ 1.024.000 & 10 & 341 ms & $8.35 \cdot 10^{-7} \cdot n \log^2 n$ \\ 
 \hline
 \end{tabular}
 
@@ -887,60 +897,64 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \renewcommand{\arraystretch}{1.25}
 
 \subsubsection*{Heapsort (best: $n \log n$ / avg: $n \log n$ / worst: $n \log n$):}
+Avg $(n \log n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
-    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
-   128.000 & 10 &   12 ms & $? \cdot n \log n$ \\ 
- 1.024.000 & 10 &  119 ms & $? \cdot n \log n$ \\ 
-16.384.000 & 10 & 3302 ms & $? \cdot n \log n$ \\ 
+    32.000 & 10 &    2 ms & $4.18 \cdot 10^{-6} \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $4.89 \cdot 10^{-6} \cdot n \log n$ \\ 
+   128.000 & 10 &   12 ms & $5.53 \cdot 10^{-6} \cdot n \log n$ \\ 
+ 1.024.000 & 10 &  119 ms & $5.82 \cdot 10^{-6} \cdot n \log n$ \\ 
+16.384.000 & 10 & 3302 ms & $8.41 \cdot 10^{-6} \cdot n \log n$ \\ 
 \hline
 \end{tabular}
 
 \vspace{1.0cm}
 
 \subsubsection*{Merge sort (best: $n \log n$ / avg: $n \log n$ / worst: $n \log n$):}
+Avg $(n \log n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &    4 ms & $? \cdot n \log n$ \\ 
-    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
-   128.000 & 10 &   10 ms & $? \cdot n \log n$ \\ 
- 1.024.000 & 10 &  104 ms & $? \cdot n \log n$ \\ 
-16.384.000 & 10 & 1973 ms & $? \cdot n \log n$ \\ 
+    32.000 & 10 &    4 ms & $8.35 \cdot 10^{-6} \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $4.89 \cdot 10^{-6} \cdot n \log n$ \\ 
+   128.000 & 10 &   10 ms & $4.60 \cdot 10^{-6} \cdot n \log n$ \\ 
+ 1.024.000 & 10 &  104 ms & $5.09 \cdot 10^{-6} \cdot n \log n$ \\ 
+16.384.000 & 10 & 1973 ms & $5.02 \cdot 10^{-6} \cdot n \log n$ \\ 
 \hline
 \end{tabular}
 
 \vspace{1.0cm}
 
 \subsubsection*{Quicksort (Dutch national flag) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+Avg $(n \log n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
-    64.000 & 10 &    4 ms & $? \cdot n \log n$ \\ 
-   128.000 & 10 &    9 ms & $? \cdot n \log n$ \\ 
- 1.024.000 & 10 &   90 ms & $? \cdot n \log n$ \\ 
-16.384.000 & 10 & 1718 ms & $? \cdot n \log n$ \\ 
+    32.000 & 10 &    2 ms & $4.18 \cdot 10^{-6} \cdot n \log n$ \\ 
+    64.000 & 10 &    4 ms & $3.91 \cdot 10^{-6} \cdot n \log n$ \\ 
+   128.000 & 10 &    9 ms & $4.14 \cdot 10^{-6} \cdot n \log n$ \\ 
+ 1.024.000 & 10 &   90 ms & $4.40 \cdot 10^{-6} \cdot n \log n$ \\ 
+16.384.000 & 10 & 1718 ms & $4.38 \cdot 10^{-6} \cdot n \log n$ \\ 
 \hline
 \end{tabular}
 
 \vspace{1.0cm}
 
 \subsubsection*{Quicksort (Hoare) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+Avg $(n \log n)$ brukt for teoretisk tid.\\
 \begin{tabular}{|c|c|c|c|} 
 \hline
 N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
 \hline
-    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
-    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
-   128.000 & 10 &    9 ms & $? \cdot n \log n$ \\ 
- 1.024.000 & 10 &   85 ms & $? \cdot n \log n$ \\ 
-16.384.000 & 10 & 1559 ms & $? \cdot n \log n$ \\ 
+    32.000 & 10 &    2 ms & $4.18 \cdot 10^{-6} \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $4.89 \cdot 10^{-6} \cdot n \log n$ \\ 
+   128.000 & 10 &    9 ms & $4.14 \cdot 10^{-6} \cdot n \log n$ \\ 
+ 1.024.000 & 10 &   85 ms & $4.16 \cdot 10^{-6} \cdot n \log n$ \\ 
+16.384.000 & 10 & 1559 ms & $3.97 \cdot 10^{-6} \cdot n \log n$ \\ 
 \hline
 \end{tabular}
 
@@ -948,17 +962,143 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \newpage
 \oppgave{7}{2}
 \oppgaveDelStart
-
 \oppgaveDel{b}
+
+Vi legger en ny type kvikksortering (med "Lomuto partition scheme") til i SortInt klassen:
+
 \begin{lstlisting}[language=Java]
-public static void main(String[] args) {
+public class SortInt {
+
+    ...
+
+    // Quick, Lomuto partition scheme (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes / Method: Partitioning / Parallel: ?
+    public static void quick_lomoto(int[] arr) {
+        if (arr.length > 1) { quick_lomoto(arr, 0, arr.length - 1); }
+    }
+
+    private static void quick_lomoto(int[] arr, int lo, int hi) {
+        if (lo < hi) {
+            int p = lo; // Pivot index
+            for (int i = lo; i < hi; i++) {
+                if (arr[i] <= arr[hi]) { // Pivot -> arr[hi]
+                    tmp = arr[i];
+                    arr[i] = arr[p];
+                    arr[p] = tmp;
+                    p += 1;
+                }
+            }
+            tmp = arr[hi];
+            arr[hi] = arr[p];
+            arr[p] = tmp;
+            quick_lomoto(arr, lo, p-1);
+            quick_lomoto(arr, p+1, hi);
+        }
+    }
+
     ...
 }
-/*
-Dette gir resultatet:
-    ....
-*/
+
 \end{lstlisting}
+Så kjører vi tester med en tabell der alle elementer er like:
+\begin{lstlisting}[language=Java]
+public class Program {
+    private static void sort(int n) {
+        int[] tab_unsorted = new int[n];
+        System.out.printf("%nLager tabell med %,d heltall satt til den samme verdien.%n", n);
+        for (int i = 0; i < n; i++) { tab_unsorted[i] = 99; }
+        int[] tab;
+        long start;
+        
+        // Quick (Lomuto) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Lomuto) på tabellen.");
+        SortInt.quick_lomoto(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Hoare) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Hoare) på tabellen.");
+        SortInt.quick_hoare(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Dutch national flag) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Dutch national flag) på tabellen.");
+        SortInt.quick_dutch_flag(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    }
+
+public static void main(String[] args) {
+        sort(32_000);
+        sort(64_000);
+        sort(128_000);
+    }
+}
+\end{lstlisting}
+
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+\oppgaveDel{b}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.25}
+\subsection*{Resultater:}
+Målt med tabell med $n$ antall like 32-bit int verdier.\\
+
+\subsubsection*{Quicksort (Lomuto) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+Alle elmenter i tabellen like.\\
+\begin{tabular}{|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) \\
+\hline
+    16.000 & 10 & 51 ms \\ 
+    32.000 & 10 & ERR! Stack overflow! \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Quicksort (Hoare) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+Alle elmenter i tabellen like.\\
+\begin{tabular}{|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) \\
+\hline
+    16.000 & 10 & 1 ms \\ 
+    32.000 & 10 & 1 ms \\ 
+    64.000 & 10 & 2 ms \\ 
+   128.000 & 10 & 2 ms \\ 
+ 1.024.000 & 10 & 20 ms \\ 
+16.384.000 & 10 & 275 ms \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Quicksort (Dutch national flag) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+Alle elmenter i tabellen like.\\
+\begin{tabular}{|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) \\
+\hline
+    16.000 & 10 & 1 ms \\ 
+    32.000 & 10 & 1 ms \\ 
+    64.000 & 10 & 1 ms \\ 
+   128.000 & 10 & 1 ms \\ 
+ 1.024.000 & 10 & 1 ms \\ 
+16.384.000 & 10 & 10 ms \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Konklusjon:}
+Kvikksorteringsalgoritmen som tok i bruk Lomutos metode ga dårlig ytelse når alle elementene i tabellen var like. I tillegg til at partisjoneringsprosessen førte til høyt antall rekursive kall som ga "Stack Overflow" error ved $n \gtrapprox 20 000$. Hoares metode ga bedre ytelse og færre rekursive kall. Til slutt testet vi "nederlandske flaggets problem"-metoden, som er spesiellt egnet for sortering av repeterende elementer, og ga som forventet laveste kjøretid i våre tester.
+
 
 \oppgaveDelSlutt
 
