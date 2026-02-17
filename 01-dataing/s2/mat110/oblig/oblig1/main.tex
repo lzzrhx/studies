@@ -94,7 +94,6 @@ literate      =        % Support additional characters
 
 \oppgave{1}
 \oppgaveDelStart
-
 \oppgaveDel{a} \ \\
 
 \usetikzlibrary {angles,quotes}
@@ -154,6 +153,11 @@ z_2 &= r (\cos \theta + i \cdot \sin \theta)\\
 z_2 &= \sqrt{2} (\cos \frac{5 \pi}{4} + i \cdot \frac{5 \pi}{4})\\
 z_2 &= \sqrt{2} \cdot e^{i \frac{5 \pi}{4}} \ \ \text{(eksponentialform)}
 \end{alignat*}
+
+\oppgaveDelSlutt
+\newpage
+\oppgave{1}
+\oppgaveDelStart
 
 \oppgaveDel{c}
 \begin{alignat*}\\
@@ -463,6 +467,11 @@ A^{-1} =
 \end{bNiceArray}
 \end{center}
 
+
+\oppgaveDelSlutt
+\newpage
+\oppgave{3}
+\oppgaveDelStart
 \oppgaveDel{d}
 
 \begin{equation*}
@@ -491,7 +500,6 @@ A^{-1} =
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\newpage
 \oppgave{4}
 \begin{alignat*}
 &\vec{u} = \left[ \frac{1}{\sqrt{2}}, \ \frac{1}{2}, \ \frac{1}{2} \right], \ \ \vec{v} = \left[ - \frac{1}{\sqrt{2}}, \ \frac{1}{2}, \ \frac{1}{2} \right], \ \ \vec{w} = \left[ - \frac{1}{\sqrt{2}}, \ 0, \ \frac{1}{\sqrt{2}} \right]
@@ -505,7 +513,12 @@ A^{-1} =
 & |\vec{w}| = \sqrt{(- \nicefrac{1}{\sqrt{2}})^2 + 0^2 + (\nicefrac{1}{sqrt{2}})^2 } &&= \sqrt{\nicefrac{1}{2} + \nicefrac{1}{2}} &&&= \sqrt{1} = 1
 \end{alignat*}
 
+\oppgaveDelSlutt
+\newpage
+\oppgave{4}
+\oppgaveDelStart
 \oppgaveDel{b}
+
 \begin{alignat*}\\
 &\vec{u} \cdot \vec{v} = \nicefrac{1}{\sqrt{2}} \cdot (\nicefrac{-1}{\sqrt{2}}) + \nicefrac{1}{2} \cdot \nicefrac{1}{2} + \nicefrac{1}{2} \cdot \nicefrac{1}{2} = - \nicefrac{1}{2} + \nicefrac{1}{4} + \nicefrac{1}{4} = 0\\
 &\vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cos \theta = 1 \cdot 1 \cdot \cos \theta = \cos \theta = 0\\
@@ -554,11 +567,38 @@ $\vec{u} \times \vec{v}$ er vinkelrett til både $\vec{a}$ og $\vec{b}$, så vin
 \oppgave{5}
 \oppgaveDelStart
 
-\oppgaveDel{a}
+\oppgaveDel{a}\\
+\begin{alignat*}\\
+&50 x_1 +  25 x_2 +  75 x_3 + 100 x_4 = 4200\\
+&75 x_1 + 100 x_2 +  50 x_3 +  25 x_4 = 3800\\
+&75 x_1 +  75 x_2 +  75 x_3 +  50 x_4 = 4400\\
+&50 x_1 +  50 x_2 +  50 x_3 +  75 x_4 = 3600\\\\
+&x_1 \text{ er antall produserte Floral Fusion blandinger.}\\
+&x_2 \text{ er antall produserte Burgundy Bonanza blandinger.}\\
+&x_3 \text{ er antall produserte Morgensol blandinger.}\\
+&x_4 \text{ er antall produserte Ahh Svart! blandinger.}\\
+\end{alignat*}
 
 \oppgaveDel{b}
+$A = 
+\begin{bmatrix}
+ 50 &  25 &  75 & 100\\
+ 75 & 100 &  50 &  25\\
+ 75 &  75 &  75 &  50\\
+ 50 &  50 &  50 &  75\\
+\end{bmatrix}\\\\
+
+\lstinputlisting[language=Python]{5b.py}
+
+Hvis $A$ har en invers $A^{-1}$ kan inversen brukes for å løse likningssystemet ($\vec{b} = A^{-1} \vec{x}$), men $\det(A) = 0$ forteller oss at $A$ ikke har invers.
 
 \oppgaveDel{c}
+
+\lstinputlisting[language=Python]{5c.py}
+
+Løsningen forteller oss at $x_3$ er en fri variabel, at det er uendelig mange løsninger.\\
+I tillegg til at $x_3 >= 8$ for å hindre at $x_2$ blir negativ, og $x_3 <= 26$ for å hindre at $x_1$ blir negativ.\\
+Så, $x_1 = 56 - 2 t, \ \ x_2 = t - 8, \ \ x_3 = t, \ \ x_4 = 16, \ \ t \in \langle 8, 26 \rangle.$
 
 \oppgaveDelSlutt
 
