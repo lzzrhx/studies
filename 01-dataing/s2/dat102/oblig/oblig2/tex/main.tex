@@ -1,0 +1,969 @@
+\documentclass[norsk,8pt,a4paper]{report}
+\usepackage[margin=0.25cm,tmargin=0.25cm,bmargin=0.25cm,rmargin=0.25cm,lmargin=0.25cm,footskip=0.2cm]{geometry}
+\title{DAT102 - Obligatorisk innlevering 2}
+\author{Gruppemedlemmer:\\Stephen Neba Fuh, Tord Johan Melheim,\\Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen }
+\date{}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usepackage{babel}               % Support for other languages than english
+\usepackage{setspace}            % Set paragraph spacing
+\usepackage{nicefrac}            % Nice looking fractals
+\usepackage{graphicx}            % Images
+\usepackage{gensymb}             % Degree symbol
+\usepackage{listings}            % Code
+\usepackage{ulem}                % Double underline
+\usepackage{amssymb}             % ...
+%\usepackage{pdfpages}            % Insert pdf pages
+\usepackage{enumitem}            % Lists
+\usepackage{colortbl}            % Colored tables
+\usepackage[compact]{titlesec}   % ...
+\usepackage[T1]{fontenc}         % ...
+\usepackage[utf8]{inputenc}      % ...
+\usepackage[fleqn]{amsmath}      % ...
+\usepackage[makeroom]{cancel}    % ...
+%\usepackage{empheq}              % ...
+%\setstretch{1.5}
+\setlength{\parindent}{0pt}
+\titlespacing*{\subsection}{0cm}{1.5cm}{0.1cm}
+\lstset{
+aboveskip=0.1cm,
+belowskip=1.0cm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\scriptsize\ttfamily},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=4,
+inputencoding = utf8,  % Input encoding
+extendedchars = true,  % Extended ASCII
+literate      =        % Support additional characters
+{⋆}{{$\star\ $}}1 {∘}{{$\circ\ $}}1
+{á}{{\'a}}1  {é}{{\'e}}1  {í}{{\'i}}1 {ó}{{\'o}}1  {ú}{{\'u}}1
+{Á}{{\'A}}1  {É}{{\'E}}1  {Í}{{\'I}}1 {Ó}{{\'O}}1  {Ú}{{\'U}}1
+{à}{{\`a}}1  {è}{{\`e}}1  {ì}{{\`i}}1 {ò}{{\`o}}1  {ù}{{\`u}}1
+{À}{{\`A}}1  {È}{{\`E}}1  {Ì}{{\`I}}1 {Ò}{{\`O}}1  {Ù}{{\`U}}1
+{ä}{{\"a}}1  {ë}{{\"e}}1  {ï}{{\"i}}1 {ö}{{\"o}}1  {ü}{{\"u}}1
+{Ä}{{\"A}}1  {Ë}{{\"E}}1  {Ï}{{\"I}}1 {Ö}{{\"O}}1  {Ü}{{\"U}}1
+{â}{{\^a}}1  {ê}{{\^e}}1  {î}{{\^i}}1 {ô}{{\^o}}1  {û}{{\^u}}1
+{Â}{{\^A}}1  {Ê}{{\^E}}1  {Î}{{\^I}}1 {Ô}{{\^O}}1  {Û}{{\^U}}1
+{œ}{{\oe}}1  {Œ}{{\OE}}1  {æ}{{\ae}}1 {Æ}{{\AE}}1  {ß}{{\ss}}1
+{ẞ}{{\SS}}1  {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ø}{{\o}}1  {Ø}{{\O}}1
+{å}{{\aa\ }}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
+{Õ}{{\~O}}1  {ñ}{{\~n}}1  {Ñ}{{\~N}}1  {¿}{{?`}}1  {¡}{{!`}}1
+{„}{\quotedblbase}1 {“}{\textquotedblleft}1 {–}{$-$}1
+{°}{{\textdegree}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
+{£}{{\pounds}}1  {©}{{\copyright}}1  {®}{{\textregistered}}1
+{«}{{\guillemotleft}}1  {»}{{\guillemotright}}1  {Ð}{{\DH}}1  {ð}{{\dh}}1
+{Ý}{{\'Y}}1    {ý}{{\'y}}1    {Þ}{{\TH}}1    {þ}{{\th}}1    {Ă}{{\u{A}}}1
+{ă}{{\u{a}}}1  {Ą}{{\k{A}}}1  {ą}{{\k{a}}}1  {Ć}{{\'C}}1    {ć}{{\'c}}1
+{Č}{{\v{C}}}1  {č}{{\v{c}}}1  {Ď}{{\v{D}}}1  {ď}{{\v{d}}}1  {Đ}{{\DJ}}1
+{đ}{{\dj}}1    {Ė}{{\.{E}}}1  {ė}{{\.{e}}}1  {Ę}{{\k{E}}}1  {ę}{{\k{e}}}1
+{Ě}{{\v{E}}}1  {ě}{{\v{e}}}1  {Ğ}{{\u{G}}}1  {ğ}{{\u{g}}}1  {Ĩ}{{\~I}}1
+{ĩ}{{\~\i}}1   {Į}{{\k{I}}}1  {į}{{\k{i}}}1  {İ}{{\.{I}}}1  {ı}{{\i}}1
+{Ĺ}{{\'L}}1    {ĺ}{{\'l}}1    {Ľ}{{\v{L}}}1  {ľ}{{\v{l}}}1  {Ł}{{\L{}}}1
+{ł}{{\l{}}}1   {Ń}{{\'N}}1    {ń}{{\'n}}1    {Ň}{{\v{N}}}1  {ň}{{\v{n}}}1
+{Ő}{{\H{O}}}1  {ő}{{\H{o}}}1  {Ŕ}{{\'{R}}}1  {ŕ}{{\'{r}}}1  {Ř}{{\v{R}}}1
+{ř}{{\v{r}}}1  {Ś}{{\'S}}1    {ś}{{\'s}}1    {Ş}{{\c{S}}}1  {ş}{{\c{s}}}1
+{Š}{{\v{S}}}1  {š}{{\v{s}}}1  {Ť}{{\v{T}}}1  {ť}{{\v{t}}}1  {Ũ}{{\~U}}1
+{ũ}{{\~u}}1    {Ū}{{\={U}}}1  {ū}{{\={u}}}1  {Ů}{{\r{U}}}1  {ů}{{\r{u}}}1
+{Ű}{{\H{U}}}1  {ű}{{\H{u}}}1  {Ų}{{\k{U}}}1  {ų}{{\k{u}}}1  {Ź}{{\'Z}}1
+{ź}{{\'z}}1    {Ż}{{\.Z}}1    {ż}{{\.z}}1    {Ž}{{\v{Z}}}1  {ž}{{\v{z}}}1
+}
+
+\newlength{\myeqskip}  \setlength{\myeqskip}{2pt}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\newcommand{\comment}[1]{}
+\newcommand{\oppgave}[2]{\subsection*{Uke #1 -  Oppgave #2}}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelSlutt}{\end{enumerate}}
+\newcommand{\oppgaveDel}[1]{\item[#1)]}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\begin{document}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\maketitle
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\oppgave{6}{1}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+\lstinputlisting[language=Java]{../src/ParentesSjekker.java}
+
+\oppgaveDel{b}
+\lstinputlisting[language=Java]{../test/ParentesSjekkerTest.java}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{6}{2}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+\begin{lstlisting}[language=Java]
+private static int s(int n) {
+    return n == 1 ? 1 : s(n-1) + n;
+}
+
+private static int sAntKall(int n) {
+    return n == 1 ? 1 : sAntKall(n-1) + 1;
+}
+
+public static void main(String[] args) {
+    System.out.printf("S_n = S_{n-1} + n, S_1 = 1%nS_{100} = %d%nS_{100} gjennomfører %d kall på s(n) funksjonen.%nn = 100 -> 100 funksjonskall.%nDette kan uttrykkes som O(n) i O-notasjon.%n", s(100), sAntKall(100));
+}
+
+/*
+Dette gir resultatet:
+    S_n = S_{n-1} + n, S_1 = 1
+    S_{100} = 5050
+    S_{100} gjennomfører 100 kall på s(n) funksjonen.
+    n = 100 -> 100 funksjonskall.
+    Dette kan uttrykkes som O(n) i O-notasjon.
+*/
+\end{lstlisting}
+
+\oppgaveDel{b}
+\begin{lstlisting}[language=Java]
+private static boolean isPalindrome(String s) {
+    int n = s.length() / 2;
+    for (int i = 0; i < n; i++) {
+        if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+public static void main(String[] args) {
+    System.out.printf("isPalindrome(\"abba\") = %b%n", isPalindrome("abba"));
+    System.out.printf("isPalindrome(\"regninger\") = %b%n", isPalindrome("regninger"));
+    System.out.printf("isPalindrome(\"hoyskole\") = %b%n", isPalindrome("hoyskole"));
+    System.out.printf("isPalindrome(\"katt\") = %b%n", isPalindrome("katt"));
+    System.out.printf("isPalindrome(\"i\") = %b%n", isPalindrome("i"));
+}
+
+/*
+Dette gir resultatet:
+    isPalindrome("abba") = true
+    isPalindrome("regninger") = true
+    isPalindrome("hoyskole") = false
+    isPalindrome("katt") = false
+    isPalindrome("i") = true
+*/
+\end{lstlisting}
+
+\oppgaveDelSlutt
+
+\newpage
+
+\oppgave{6}{2}
+\oppgaveDelStart
+
+\oppgaveDel{c}
+\begin{lstlisting}[language=Java]
+private static int fibonacciRek(int n) {
+    return n <= 1 ? n : fibonacciRek(n-1) + fibonacciRek(n-2);
+}
+
+private static int fibonacciRekAntKall(int n) {
+    return 1 + ((n == 0 || n == 1) ? 0 : fibonacciRekAntKall(n-1) + fibonacciRekAntKall(n-2));
+}
+
+public static void main(String[] args) {
+    for (int n = 0; n <= 20; n++ ) {
+        System.out.printf("fibonacciRek(%d) = %d (antall kall: %d)%n", n, fibonacciRek(n), fibonacciRekAntKall(n));
+    }
+    System.out.printf("%nAntall funksjonskall for fibonacci(n) er lik antall kall for fibonacci(n-1) + antall kall for fibonacci(n-2).%nMed andre ord en (nesten) dobbel økning i kjøretid for hver økning av n. I O-notasjon blir dette O(n^2).%n");
+}
+
+/*
+Dette gir resultatet:
+    fibonacciRek(0) = 0 (antall kall: 1)
+    fibonacciRek(1) = 1 (antall kall: 1)
+    fibonacciRek(2) = 1 (antall kall: 3)
+    fibonacciRek(3) = 2 (antall kall: 5)
+    fibonacciRek(4) = 3 (antall kall: 9)
+    fibonacciRek(5) = 5 (antall kall: 15)
+    fibonacciRek(6) = 8 (antall kall: 25)
+    fibonacciRek(7) = 13 (antall kall: 41)
+    fibonacciRek(8) = 21 (antall kall: 67)
+    fibonacciRek(9) = 34 (antall kall: 109)
+    fibonacciRek(10) = 55 (antall kall: 177)
+    fibonacciRek(11) = 89 (antall kall: 287)
+    fibonacciRek(12) = 144 (antall kall: 465)
+    fibonacciRek(13) = 233 (antall kall: 753)
+    fibonacciRek(14) = 377 (antall kall: 1219)
+    fibonacciRek(15) = 610 (antall kall: 1973)
+    fibonacciRek(16) = 987 (antall kall: 3193)
+    fibonacciRek(17) = 1597 (antall kall: 5167)
+    fibonacciRek(18) = 2584 (antall kall: 8361)
+    fibonacciRek(19) = 4181 (antall kall: 13529)
+    fibonacciRek(20) = 6765 (antall kall: 21891)
+
+    Antall funksjonskall for fibonacci(n) er lik antall kall for fibonacci(n-1) + antall kall for fibonacci(n-2).
+    Med andre ord en (nesten) dobbel økning i kjøretid for hver økning av n. I O-notasjon blir dette O(n^2).
+*/
+\end{lstlisting}
+
+\oppgaveDel{d}
+\begin{lstlisting}[language=Java]
+private static int fibonacci(int n) {
+    int sumOlder = 0;
+    int sumOld = 1;
+    int sum = 0;
+    for (int i = 0; i <= n; i++) {
+        sum = sum + sumOlder;
+        sumOlder = sumOld;
+        sumOld = sum;
+    }
+    return sum;
+}
+
+public static void main(String[] args) {
+    for (int n = 0; n <= 20; n++ ) {
+        System.out.printf("fibonacci(%d) = %d (antall interasjoner i løkke: %d)%n", n, fibonacci(n), n);
+    }
+    System.out.printf("%nAntall ganger løkken kjøres er er n. I O-notasjon blir dette O(n).%n");
+}
+/*
+Dette gir resultatet:
+    fibonacci(0) = 0 (antall interasjoner i løkke: 0)
+    fibonacci(1) = 1 (antall interasjoner i løkke: 1)
+    fibonacci(2) = 1 (antall interasjoner i løkke: 2)
+    fibonacci(3) = 2 (antall interasjoner i løkke: 3)
+    fibonacci(4) = 3 (antall interasjoner i løkke: 4)
+    fibonacci(5) = 5 (antall interasjoner i løkke: 5)
+    fibonacci(6) = 8 (antall interasjoner i løkke: 6)
+    fibonacci(7) = 13 (antall interasjoner i løkke: 7)
+    fibonacci(8) = 21 (antall interasjoner i løkke: 8)
+    fibonacci(9) = 34 (antall interasjoner i løkke: 9)
+    fibonacci(10) = 55 (antall interasjoner i løkke: 10)
+    fibonacci(11) = 89 (antall interasjoner i løkke: 11)
+    fibonacci(12) = 144 (antall interasjoner i løkke: 12)
+    fibonacci(13) = 233 (antall interasjoner i løkke: 13)
+    fibonacci(14) = 377 (antall interasjoner i løkke: 14)
+    fibonacci(15) = 610 (antall interasjoner i løkke: 15)
+    fibonacci(16) = 987 (antall interasjoner i løkke: 16)
+    fibonacci(17) = 1597 (antall interasjoner i løkke: 17)
+    fibonacci(18) = 2584 (antall interasjoner i løkke: 18)
+    fibonacci(19) = 4181 (antall interasjoner i løkke: 19)
+    fibonacci(20) = 6765 (antall interasjoner i løkke: 20)
+
+    Antall ganger løkken kjøres er er n. I O-notasjon blir dette O(n).
+*/
+\end{lstlisting}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{6}{3}
+
+\oppgaveDelStart
+
+\begin{lstlisting}[language=Java]
+private static void fig0(int window_width, int window_height, int level, int size, Color color) {
+    DrawRectangleLines((window_width - size) / 2, (window_height - size) / 2, size, size, color);
+    if (level > 0) {
+        fig0(window_width, window_height, level-1, size + 10, color);
+    }
+}
+
+private static void fig1(int x, int y, int level, int size, Color color) {
+    DrawRectangleLines(x, y, size, size, color);
+    DrawRectangleLines(x, y, size/2, size/2, color);
+    DrawRectangleLines(x+size/2, y+size/2, size/2, size/2, color);
+    if (level > 0) {
+        fig1(x, y, level-1, (int)Math.round(size/2), color);
+        fig1(x+size/2, y+size/2, level-1, size/2, color);
+    }
+}
+
+private static void fig2(int x, int y, int level, int size, Color color) {
+    DrawTriangleLines(new Vector2().x(x).y(y+size), new Vector2().x(x+size/2).y(y+size), new Vector2().x(x+size/4).y(y+size/2), color);
+    DrawTriangleLines(new Vector2().x(x+size/2).y(y+size), new Vector2().x(x+size).y(y+size), new Vector2().x(x+size*3/4).y(y+size/2), color);
+    DrawTriangleLines(new Vector2().x(x+size/4).y(y+size/2), new Vector2().x(x+size*3/4).y(y+size/2), new Vector2().x(x+size/2).y(y), color);
+    if (level > 0) {
+        fig2(x, y+size/2, level-1, size/2, color);
+        fig2(x+size/2, y+size/2, level-1, size/2, color);
+        fig2(x+size/4, y, level-1, size/2, color);
+    }
+}
+
+public static void main(String[] args) {
+    int sel = 0;
+    int window_width = 800;
+    int window_height = 600;
+    String txt = "<- FORRIGE FIGUR / NESTE FIGUR ->";
+    SetTraceLogLevel(4);
+    InitWindow(window_width, window_height, "Uke 6, Oppgave 3");
+    SetTargetFPS(60);
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(DARKGRAY);
+        if (IsKeyPressed(KEY_LEFT)) { sel = (sel - 1) < 0 ? 2 : (sel - 1); }
+        if (IsKeyPressed(KEY_RIGHT)) { sel = (sel + 1) % 3; }
+        switch (sel) {
+            case 0:
+                fig0(window_width, window_height, 20, 200, LIGHTGRAY);
+                break;
+            case 1:
+                fig1((window_width - 400) / 2, (window_height - 400) / 2, 4, 400, LIGHTGRAY);
+                break;
+            case 2:
+                fig2((window_width - 400) / 2, (window_height - 400) / 2, 4, 400, LIGHTGRAY);
+                break;
+        }
+        String fig_txt = "FIGUR " + (sel+1);
+        DrawText(fig_txt, (window_width - MeasureText(fig_txt, 20)) / 2, 40, 20, WHITE);
+        DrawText(txt, (window_width - MeasureText(txt, 20)) / 2, window_height - 50, 20, WHITE);
+        DrawFPS(2, 2);
+        EndDrawing();
+    }
+    CloseWindow();
+}
+
+/*
+Krever følgende i pom.xml:
+  <dependencies>
+    <dependency>
+      <groupId>uk.co.electronstudio.jaylib</groupId>
+      <artifactId>jaylib</artifactId>
+      <version>[5.5.0,5.6)</version>
+    </dependency>
+  </dependencies>
+*/
+\end{lstlisting}
+
+\oppgaveDelSlutt
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\newpage
+\oppgave{7}{1}
+\oppgaveDelStart
+
+%\oppgaveDel{c}
+\begin{lstlisting}[language=Java]
+public class Lfsr {
+    private int seed;
+    public Lfsr(int seed) { this.seed = seed; }
+    public String toString() { return Integer.toString(seed); }
+    public int seed() { return seed; }
+    public void shift32() {
+        seed = ((((seed >> 31) & 1) ^ ((seed >> 21) & 1) ^ ((seed >> 1) & 1) ^ ((seed >> 0) & 1)) == 1) ? ((seed << 1) | 1) : (seed << 1);
+    }
+    public int make32() {
+        int result = 0;
+        int mask = 1;
+        for (int i = 0; i < 32; i++) {
+            shift32();
+            if ((seed & 1) == 1) { result |= mask; }
+            mask <<= 1;
+        }
+        return result;
+    }
+}
+
+public class Sort {
+    public static <T extends Comparable<? super T>> void insertion(T[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            T tmp = arr[i];
+            int j = i;
+            while (j > 0 && tmp.compareTo(arr[j-1]) < 0) {
+                arr[j] = arr[j---1];
+            }
+            arr[j] = tmp;
+        }
+    }
+    
+    public static <T extends Comparable<? super T>> void insertionMod(T[] arr) {
+        T tmp;
+        for (int i = arr.length - 1; i > 0 ; i--) {
+            if (arr[i].compareTo(arr[i-1]) < 0) {
+                tmp = arr[i];
+                arr[i] = arr[i-1];
+                arr[i-1] = tmp;
+            }
+        }
+        for (int i = 1; i < arr.length; i += 1) {
+            T min = arr[i];
+            int j = i - 1;
+            if (i + 1 < arr.length - 1) {
+                T max = arr[i+1];
+                if (max.compareTo(min) < 0) {
+                    max = arr[i];
+                    min = arr[i+1];
+                }
+                while (j > 1 && max.compareTo(arr[j]) < 0) {
+                    arr[j+2] = arr[j];
+                    j -= 1;
+                }
+                arr[j+2] = max;
+                i += 1;
+            }
+            while (j > 0 && min.compareTo(arr[j]) < 0) {
+                arr[j + 1] = arr[j];
+                j -= 1;
+            }
+            arr[j+1] = min;
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        int n = 80_000; int s = 1337;
+        Lfsr lfsr = new Lfsr(s); Integer[] tab_unsorted = new Integer[n];
+        System.out.printf("Lager tabell med %,d tilfeldige heltall (Integer klasse) ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
+        for (int i = 0; i < n; i++) { tab_unsorted[i] = lfsr.make32(); }
+        Integer[] tab; long start;
+
+        // Insertion (fra soh1961 github)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører insertion sort (fra soh1961 github) på tabellen.");
+        Sort.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Insertion (modifisert versjon)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører insertion sort (modifisert versjon) på tabellen.");
+        Sort.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    }
+}
+
+/*
+Dette ga resultatet:
+    Lager tabell med 80,000 tilfeldige heltall (Integer klasse) ved bruk av 32-bit LFSR fra seed-verdi 1337.
+    Kjører insertion sort (fra soh1961 github) på tabellen. Insertion sort gjennomført etter 6781 ms.
+    Kjører insertion sort (modifisert versjon) på tabellen. Insertion sort gjennomført etter 3952 ms.
+*/
+
+// Konklusjon: Da vi testet den opprinnelige algoritmen sammenlignet med den modifiserte, observerte vi at kjøretiden ble betydelig raskere etter endring i algoritmen.
+
+\end{lstlisting}
+
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+
+\oppgaveDel{a}
+\begin{lstlisting}[language=Java]
+public class SortInt {
+    private static int tmp;
+
+    // Bubble - Best: n / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: Yes / In-Place: Yes
+    public static void bubble(int[] arr) {
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] < arr[i-1]) {
+                    tmp = arr[i];
+                    arr[i] = arr[i-1];
+                    arr[i-1] = tmp;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+    // Selection (utvalgssortering / plukksortering) - Best: n^2 / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: No / In-place: Yes
+    public static void selection(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[min]) {
+                    min = j;
+                }
+            }
+            if (min != i) {
+                tmp = arr[i];
+                arr[i] = arr[min];
+                arr[min] = tmp;
+            }
+        }
+    }
+
+    // Insertion (Sortering ved innsetting) - Best: n / Avg: n^2 / Worst: n^2 / Mem: 1 / Stable: Yes / In-place: Yes
+    public static void insertion(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int val = arr[i];
+            int j = i;
+            while (j > 0 && arr[j-1] > val) {
+                arr[j] = arr[j-1];
+                j -= 1;
+            }
+            arr[j] = val;
+        }
+    }
+
+    // Shell (Shellsortering) - Best n log n / Avg: omega(n log n) / Worst: n log^2 n / Mem: 1 / Stable: No / In-place: Yes
+    private static final int[][] shell_gaps = new int[][] {
+        {701, 301, 132, 57, 23, 10, 4, 1}, // Ciura, 2001
+        {1049, 347, 113, 37, 11, 3, 1},    // Rhoads, 2010
+    };
+    public static void shell(int[] arr) {
+        shell(arr, 0);
+    }
+    public static void shell(int[] arr, int seq) {
+        for (int gap : shell_gaps[seq % shell_gaps.length]) {
+            for (int i = gap; i < arr.length; i += 1) {
+                tmp = arr[i];
+                int j = i;
+                for (; (j >= gap) && (arr[j - gap] > tmp); j -= gap) {
+                    arr[j] = arr[j - gap];
+                }
+                arr[j] = tmp;
+            }
+        }
+    }
+
+    // Merge (Flettesortering) - Best: n log n / Avg: n log n / Worst: n log n / Mem: n / Stable: Yes / In-place: No
+    public static void merge(int[] arr) {
+        int[] aux = Arrays.copyOf(arr, arr.length);
+        merge(arr, aux, 0, arr.length - 1);
+    }
+
+    private static void merge(int[] arr, int[] aux, int lo, int hi) {
+        if (hi <= lo) { return; }
+        int mid = lo + ((hi - lo) / 2);
+        merge(arr, aux, lo, mid);
+        merge(arr, aux, mid+1, hi);
+        int i = lo;
+        int k = lo;
+        for (int j = mid+1; i <= mid && j <= hi; k++) { aux[k] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++]; }
+        while(i <= mid) { aux[k++] = arr[i++]; }
+        for (i = lo; i <= hi; i++) { arr[i] = aux[i]; }
+    }
+\end{lstlisting}
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+\oppgaveDel{a}
+\begin{lstlisting}[language=Java]
+    // Heap (Haugsortering (forbedret versjon av utvalgssortering)) - Best: n log n / Avg: n log n / Worst: n log n / Mem: 1 / Stable: No / In-place: Yes
+    public static void heap (int[] arr) {
+        for (int i = (arr.length - 2) / 2; i >= 0; i--) { heapify(arr, i, arr.length); }
+        for (int i = arr.length; i > 0; i--) {
+            tmp = arr[0];
+            arr[0] = arr[i-1];
+            arr[i-1] = tmp;
+            heapify(arr, 0, i-1);
+        }
+    }
+
+    private static void heapify(int[] arr, int i, int size) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int max = (left < size && arr[left] > arr[i]) ? left : i;
+        if (right < size && arr[right] > arr[max]) { max = right; }
+        if (max != i) {
+            tmp = arr[i];
+            arr[i] = arr[max];
+            arr[max] = tmp;
+            heapify(arr, max, size);
+        }
+    }
+
+    // Quick, Hoare partition scheme (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes
+    public static void quick_hoare(int[] arr) {
+        if (arr.length > 1) { quick_hoare(arr, 0, arr.length - 1); }
+    }
+    
+    private static void quick_hoare(int[] arr, int lo, int hi) {
+        if (lo < hi) {
+            int i = lo - 1;
+            int j = hi + 1;
+            while (true) {
+                do { i += 1; } while (arr[i] < arr[lo]); // Pivot -> arr[lo]
+                do { j -= 1; } while (arr[j] > arr[lo]); // Pivot -> arr[lo]
+                if (i >= j) { break; }
+                tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
+            quick_hoare(arr, lo, j);
+            quick_hoare(arr, j+1, hi);
+        }
+    }
+
+    // Quick, Dutch national flag (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes
+    public static void quick_dutch_flag(int[] arr) {
+        if (arr.length > 1) { quick_dutch_flag(arr, 0, arr.length - 1); }
+    }
+    
+    private static void quick_dutch_flag(int[] arr, int lo, int hi) {
+        if (lo < hi) {
+            int pivot = arr[hi];
+            int i = lo;
+            int j = lo;
+            int k = hi;
+            while (j <= k) {
+                if (arr[j] < arr[hi]) { // Pivot -> arr[hi]
+                    tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                    i += 1;
+                    j += 1;
+                }
+                else if (arr[j] > arr[hi]) { // Pivot -> arr[hi]
+                    tmp = arr[k];
+                    arr[k] = arr[j];
+                    arr[j] = tmp;
+                    k -= 1;
+                }
+                else { j += 1; }
+            }
+            quick_dutch_flag(arr, lo, i-1);
+            quick_dutch_flag(arr, j, hi);
+        }
+    }
+
+    // Counting - Best: - / Avg: n+r / Worst: n+r / Mem: n+r / Stable: Yes / In-place: Yes
+    public static void counting(int[] arr) {
+        Map<Integer, Integer> freq = new TreeMap<>();
+        for (int n : arr) { freq.put(n, freq.getOrDefault(n, 0) + 1); }
+        int i = 0;
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            int key = entry.getKey();
+            for (int val = entry.getValue(); val > 0; val--) { arr[i++] = key; }
+        }
+    }
+}
+\end{lstlisting}
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+\oppgaveDel{a}
+\begin{lstlisting}[language=Java]
+public class Program {
+    private static void sort(int n) {
+        int[] tab_unsorted = new int[n];
+        int s = 1312;
+        Lfsr lfsr = new Lfsr(s);
+        System.out.printf("%nLager tabell med %,d tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi %d.%n", n, s);
+        for (int i = 0; i < n; i++) { tab_unsorted[i] = lfsr.make32(); }
+        int[] tab;
+        long start;
+
+        // Bubble - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører bubble sort på tabellen.");
+        SortInt.bubble(tab);
+        System.out.printf(" Bubble sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Selection - Best: n^2 / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører selection sort på tabellen.");
+        SortInt.selection(tab);
+        System.out.printf(" Selection sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Insertion - Best: n / Avg: n^2 / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører insertion sort på tabellen.");
+        SortInt.insertion(tab);
+        System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Merge - Best: n log n / Avg: n log n / Worst: n log n
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører merge sort på tabellen.");
+        SortInt.merge(tab);
+        System.out.printf(" Merge sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    
+        // Heap - Best: n log n / Avg: n log n / Worst: n log n
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører heapsort på tabellen.");
+        SortInt.heap(tab);
+        System.out.printf(" Heapsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Hoare) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Hoare) på tabellen.");
+        SortInt.quick_hoare(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Quick (Dutch national flag) - Best: n log n / Avg: n log n / Worst: n^2
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører quicksort (Dutch national flag) på tabellen.");
+        SortInt.quick_dutch_flag(tab);
+        System.out.printf(" Quicksort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Shell (Shellsortering)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører shellsort (Ciura) på tabellen.");
+        SortInt.shell(tab);
+        System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+        
+        // Shell (Shellsortering)
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører shellsort (Rhoads) på tabellen.");
+        SortInt.shell(tab, 1);
+        System.out.printf(" Shellsort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+
+        // Counting - Best: - / Avg: n+r / Worst: n+r
+        tab = Arrays.copyOf(tab_unsorted, n);
+        start = System.currentTimeMillis();
+        System.out.printf("Kjører counting sort på tabellen.");
+        SortInt.counting(tab);
+        System.out.printf(" Counting sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
+    }
+    
+    public static void main(String[] args) {
+        sort(32_000);
+        sort(64_000);
+        sort(128_000);
+    }
+}
+\end{lstlisting}
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+\oppgaveDel{a}
+\comment{
+\begin{lstlisting}[language=Java]
+/*
+Dette gir resultatet:
+    Lager tabell med 32,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 1471 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 363 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 82 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 7 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 6 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 4 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 6 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 7 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 4 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 22 ms.
+
+    Lager tabell med 64,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 6138 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 1437 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 302 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 16 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 6 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 5 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 4 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 6 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 6 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 28 ms.
+
+    Lager tabell med 128,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 27406 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 3384 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 1121 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 11 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 13 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 9 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 10 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 15 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 13 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 50 ms.
+*/
+\end{lstlisting}
+}
+
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.25}
+
+\subsubsection*{Bubble sort (best: $n$ / avg: $n^2$ / worst: $n^2$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &  1914 ms & $1.87 \cdot 10^{-6} \cdot n^2$ \\ 
+    64.000 & 10 &  6260 ms & $1.53 \cdot 10^{-6} \cdot n^2$ \\ 
+   128.000 & 10 & 25907 ms & $1.58 \cdot 10^{-6} \cdot n^2$ \\ 
+% 1.024.000 & 10 & ? ms & ??? \\ 
+\hline
+\end{tabular}\\
+
+\vspace{1.0cm}
+
+\subsubsection*{Selection sort (best: $n^2$ / avg: $n^2$ / worst: $n^2$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &  270 ms & $2.63 \cdot 10^{-7} \cdot n^2$ \\ 
+    64.000 & 10 &  852 ms & $2.08 \cdot 10^{-7} \cdot n^2$ \\ 
+   128.000 & 10 & 3422 ms & $2.09 \cdot 10^{-7} \cdot n^2$ \\ 
+% 1.024.000 & 10 & ? ms & ??? \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Insertion sort (best: $n$ / avg: $n^2$ / worst: $n^2$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 & 70 ms & $6.84 \cdot 10^{-8} \cdot n^2$ \\ 
+    64.000 & 10 & 269 ms & $6.57 \cdot 10^{-8} \cdot n^2$ \\ 
+   128.000 & 10 & 1102 ms & $6.72 \cdot 10^{-8} \cdot n^2$ \\ 
+% 1.024.000 &  3 & 75869 ms & ??? \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Counting sort (avg: $n+r$ / worst: $n+r$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &  12 ms & $? \cdot (n+r)$ \\ 
+    64.000 & 10 &  24 ms & $? \cdot (n+r)$ \\ 
+   128.000 & 10 &  54 ms & $? \cdot (n+r)$ \\ 
+ 1.024.000 & 10 & 751 ms & $? \cdot (n+r)$ \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Shellsort (Ciura) (best $n \log n$ / avg: $\Omega(n \log n)$ / worst: $n \log^2 n$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &   3 ms & $? \cdot \Omega(n \log n)$ \\ 
+    64.000 & 10 &   6 ms & $? \cdot \Omega(n \log n)$ \\ 
+   128.000 & 10 &  15 ms & $? \cdot \Omega(n \log n)$ \\ 
+ 1.024.000 & 10 & 443 ms & $? \cdot \Omega(n \log n)$ \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Shellsort (Rhoads) (best $n \log n$ / avg: $\Omega(n \log n)$ / worst: $n \log^2 n$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &   2 ms & $? \cdot \Omega(n \log n)$ \\ 
+    64.000 & 10 &   5 ms & $? \cdot \Omega(n \log n)$ \\ 
+   128.000 & 10 &  13 ms & $? \cdot \Omega(n \log n)$ \\ 
+ 1.024.000 & 10 & 341 ms & $? \cdot \Omega(n \log n)$ \\ 
+\hline
+\end{tabular}
+
+%\vspace{1.0cm}
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+\oppgaveDel{a}
+
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.25}
+
+\subsubsection*{Heapsort (best: $n \log n$ / avg: $n \log n$ / worst: $n \log n$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
+   128.000 & 10 &   12 ms & $? \cdot n \log n$ \\ 
+ 1.024.000 & 10 &  119 ms & $? \cdot n \log n$ \\ 
+16.384.000 & 10 & 3302 ms & $? \cdot n \log n$ \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Merge sort (best: $n \log n$ / avg: $n \log n$ / worst: $n \log n$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &    4 ms & $? \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
+   128.000 & 10 &   10 ms & $? \cdot n \log n$ \\ 
+ 1.024.000 & 10 &  104 ms & $? \cdot n \log n$ \\ 
+16.384.000 & 10 & 1973 ms & $? \cdot n \log n$ \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Quicksort (Dutch national flag) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
+    64.000 & 10 &    4 ms & $? \cdot n \log n$ \\ 
+   128.000 & 10 &    9 ms & $? \cdot n \log n$ \\ 
+ 1.024.000 & 10 &   90 ms & $? \cdot n \log n$ \\ 
+16.384.000 & 10 & 1718 ms & $? \cdot n \log n$ \\ 
+\hline
+\end{tabular}
+
+\vspace{1.0cm}
+
+\subsubsection*{Quicksort (Hoare) (best: $n \log n$ / avg: $n \log n$ / worst: $n^2$):}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f(n)\right)$ \\
+\hline
+    32.000 & 10 &    2 ms & $? \cdot n \log n$ \\ 
+    64.000 & 10 &    5 ms & $? \cdot n \log n$ \\ 
+   128.000 & 10 &    9 ms & $? \cdot n \log n$ \\ 
+ 1.024.000 & 10 &   85 ms & $? \cdot n \log n$ \\ 
+16.384.000 & 10 & 1559 ms & $? \cdot n \log n$ \\ 
+\hline
+\end{tabular}
+
+\oppgaveDelSlutt
+\newpage
+\oppgave{7}{2}
+\oppgaveDelStart
+
+\oppgaveDel{b}
+\begin{lstlisting}[language=Java]
+public static void main(String[] args) {
+    ...
+}
+/*
+Dette gir resultatet:
+    ....
+*/
+\end{lstlisting}
+
+\oppgaveDelSlutt
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\end{document}
+

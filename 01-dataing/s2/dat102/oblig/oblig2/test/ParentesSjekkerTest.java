@@ -4,15 +4,6 @@ import src.ParentesSjekker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-//assertTrue();
-//assertFalse();
-//assertEquals(expected, actual);
-//assertArrayEquals(expected, actual);
-//assertNull();
-//assertNotNull();
-//assertSame(a, b);
-//assertNotSame(a, b);
-
 public class ParentesSjekkerTest {
     @Test
     void test() {

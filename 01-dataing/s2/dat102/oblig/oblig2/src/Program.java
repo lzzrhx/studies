@@ -201,7 +201,7 @@ public class Program {
         tab = Arrays.copyOf(tab_unsorted, n);
         start = System.currentTimeMillis();
         System.out.printf("Kjører insertion sort (modifisert versjon) på tabellen.");
-        Sort.insertion(tab);
+        Sort.insertionMod(tab);
         System.out.printf(" Insertion sort gjennomført etter %d ms.%n", System.currentTimeMillis() - start);
     }
     

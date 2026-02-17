@@ -1,6 +1,5 @@
 package src;
 
-// Sjekker om åpnende og lukkende parenteser i streng er formatert riktig
 public class ParentesSjekker {
     
     public static boolean sjekk(String s) {
@@ -33,7 +32,7 @@ public class ParentesSjekker {
                 par1.pop();
             }
             else {
-                // Push parentesen fra "par0" til "par1" vis parentesene ikke matcher
+                // Push parentesen fra "par0" til "par1" hvis parentesene ikke matcher
                 par1.push(c0);
                 // Hvis en åpnende parentes er funnet som ikke har lukkende match kan det konkluderes at parentesene i strengen er feilformatert og søket kan avsluttes tidlig
                 if (c0 == '(' || c0 == '[' || c0 == '{') {
