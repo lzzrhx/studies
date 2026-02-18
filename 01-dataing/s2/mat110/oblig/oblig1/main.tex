@@ -77,6 +77,7 @@ literate      =        % Support additional characters
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
+\newcommand{\idots}{\mathrel{{.}\,{.}}\nobreak}
 \newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
 \newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
@@ -596,9 +597,9 @@ Hvis $A$ har en invers $A^{-1}$ kan inversen brukes for å løse likningssysteme
 
 \lstinputlisting[language=Python]{5c.py}
 
-Løsningen forteller oss at $x_3$ er en fri variabel, at det er uendelig mange løsninger.\\
-I tillegg til at $x_3 >= 8$ for å hindre at $x_2$ blir negativ, og $x_3 <= 26$ for å hindre at $x_1$ blir negativ.\\
-Så, $x_1 = 56 - 2 t, \ \ x_2 = t - 8, \ \ x_3 = t, \ \ x_4 = 16, \ \ t \in \langle 8, 26 \rangle.$
+Ettersom $x_1, x_2, x_3, x_4$ representerer antall produserte blandinger må verdiene være $0$ eller positivt heltall.\\
+Løsningen forteller oss at $x_3$ er en fri variabel, i tillegg til at $x_3 >= 8$ for å hindre at $x_2$ blir negativ, og $x_3 <= 26$ for å hindre at $x_1$ blir negativ.\\
+Dette gir $x_1 = 56 - 2 t, \ \ x_2 = t - 8, \ \ x_3 = t, \ \ x_4 = 16, \ \ t \in \{ 8 \idots 26 \}.$
 
 \oppgaveDelSlutt
 
