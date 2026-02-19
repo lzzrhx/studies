@@ -1,143 +1,97 @@
-%! TeX program = lualatex
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Core setup
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\documentclass[norsk,11t,a4paper]{report}
-\usepackage[tmargin=0.5cm,rmargin=0.5cm,bmargin=0.5cm,lmargin=0.5cm]{geometry}
-\usepackage[norsk]{babel}         % Support for other languages than english
-\usepackage[utf8]{inputenc}       % Input encoding
-\usepackage[T1]{fontenc}          % Font encoding
-\usepackage{microtype}            % Improve text appearance in numerous ways
-\usepackage{textcomp}             % Add extra symbols
-\usepackage{mathtools}            % Improvements for math
-\usepackage{amssymb}              % Extended math symbols
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Font packages
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-%\usepackage[]{newpxtext}          % Main (serif/sans-serif) font
-\usepackage{newpxmath}            % Math font
-\usepackage[scaled]{beramono}     % Monospace font
-\usepackage{iftex}
-\ifLuaTeX
-    \usepackage{fontspec}                % Custom fonts
-    \setmonofont{PxPlus ToshibaSat 8x16} % Override monospace font
-\fi
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Additional packages
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usepackage[T1]{url}              % Clickable URLs
-\usepackage{hyperref}             % Clickable references
-\usepackage{csquotes}             % Support quote marks in various languages
-\usepackage{ulem}                 % Double underline
-\usepackage[makeroom]{cancel}     % Crossing out text
-\usepackage{nicefrac}             % Nice looking fractals
-\usepackage{gensymb}              % Degree symbol
-\usepackage[compact]{titlesec}    % Title style
-\usepackage{setspace}             % Set paragraph spacing
-\usepackage{xcolor}               % Colors
-\usepackage{enumitem}             % Lists
-\usepackage{listings}             % Insert code
-\usepackage{tikz}                 % Drawing of graphics
-\usepackage{graphicx}             % Insert images
-\usepackage{pdfpages}             % Insert pdf pages
-\usepackage{biblatex}             % Bibliography
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Apprentice colorscheme (https://github.com/romainl/Apprentice)
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\definecolor{color0}{HTML}{1C1C1C}
-\definecolor{color1}{HTML}{AF5F5F}
-\definecolor{color2}{HTML}{5F875F}
-\definecolor{color3}{HTML}{87875F}
-\definecolor{color4}{HTML}{5F87AF}
-\definecolor{color5}{HTML}{5F5F87}
-\definecolor{color6}{HTML}{5F8787}
-\definecolor{color7}{HTML}{6C6C6C}
-\definecolor{color8}{HTML}{444444}
-\definecolor{color9}{HTML}{FF8700}
-\definecolor{color10}{HTML}{87AF87}
-\definecolor{color11}{HTML}{FFFFAF}
-\definecolor{color12}{HTML}{87AFD7}
-\definecolor{color13}{HTML}{8787AF}
-\definecolor{color14}{HTML}{5FAFAF}
-\definecolor{color15}{HTML}{FFFFFF}
-\definecolor{colorfg}{HTML}{BCBCBC}
-\definecolor{colorbg}{HTML}{262626}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Habamax colorscheme (https://github.com/habamax/vim-habamax)
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\definecolor{brightCyan}{HTML}{87AFAF}
-\definecolor{darkCyan}{HTML}{5F8787}
-\definecolor{cyan}{HTML}{1F3F5F}
-\definecolor{pink}{HTML}{D75F87}
-\definecolor{red}{HTML}{D75F5F}
-\definecolor{darkRed}{HTML}{AF5F5F}
-\definecolor{brightGreen}{HTML}{5FF75F}
-\definecolor{green}{HTML}{87D787}
-\definecolor{darkGreen}{HTML}{5FAF5F}
-\definecolor{blue}{HTML}{5fafd7}
-\definecolor{darkBlue}{HTML}{5F87AF}
-\definecolor{brightYellow}{HTML}{ffaf5f}
-\definecolor{yellow}{HTML}{d7af87}
-\definecolor{darkYellow}{HTML}{af875f}
-\definecolor{brightMagenta}{HTML}{ff00af}
-\definecolor{magenta}{HTML}{d787d7}
-\definecolor{darkMagenta}{HTML}{af87af}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Custom commands
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\newcommand{\oppgave}[2]{\subsection*{Uke #1 \textendash \ Oppgave #2}}
-\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
-\newcommand{\oppgaveDelSlutt}{\end{enumerate}}
-\newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Package settings
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\color{color0}
-\setlength{\parindent}{0pt}
-\newlength{\myeqskip}\setlength{\myeqskip}{2pt}
-\titlespacing*{\section}{0cm}{1.5cm}{0.1cm}
-\titlespacing*{\subsection}{0cm}{0cm}{0.1cm}
-\titlespacing*{\subsubsection}{0cm}{0cm}{0cm}
-\lstset{literate={æ}{{\ae}}1{Æ}{{\AE}}1{ø}{{\o}}1{Ø}{{\O}}1{å}{{\aa}}1{Å}{{\AA}}1,
-keywordstyle={\bfseries\color{color1}}, 
-commentstyle={\bfseries\color{darkCyan}},
-basicstyle={\scriptsize\ttfamily\color{color0}}, 
-numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
-aboveskip=0.1cm,belowskip=1.0cm,columns=fixed,
-breaklines=true,breakatwhitespace=false,keepspaces=true,
-showspaces=false,showstringspaces=false,tabsize=4,
-captionpos=b,inputencoding=utf8,extendedchars=true}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Set title / author
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\documentclass[norsk,8pt,a4paper]{report}
+\usepackage[margin=0.25cm,tmargin=0.25cm,bmargin=0.25cm,rmargin=0.25cm,lmargin=0.25cm,footskip=0.2cm]{geometry}
 \title{DAT102 - Obligatorisk innlevering 2}
-\author{\normalsize Gruppemedlemmer: \\ Stephen Neba Fuh, Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen}
+\author{Gruppemedlemmer:\\Stephen Neba Fuh, Tord Johan Melheim,\\Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen }
 \date{}
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Document start and title page
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usepackage{babel}               % Support for other languages than english
+\usepackage{setspace}            % Set paragraph spacing
+\usepackage{nicefrac}            % Nice looking fractals
+\usepackage{graphicx}            % Images
+\usepackage{gensymb}             % Degree symbol
+\usepackage{listings}            % Code
+\usepackage{ulem}                % Double underline
+\usepackage{amssymb}             % ...
+%\usepackage{pdfpages}            % Insert pdf pages
+\usepackage{enumitem}            % Lists
+\usepackage{colortbl}            % Colored tables
+\usepackage[compact]{titlesec}   % ...
+\usepackage[T1]{fontenc}         % ...
+\usepackage[utf8]{inputenc}      % ...
+\usepackage[fleqn]{amsmath}      % ...
+\usepackage[makeroom]{cancel}    % ...
+%\usepackage{empheq}              % ...
+%\setstretch{1.5}
+\setlength{\parindent}{0pt}
+\titlespacing*{\subsection}{0cm}{1.5cm}{0.1cm}
+\titlespacing*{\subsubsection}{0cm}{0cm}{0cm}
+\lstset{
+aboveskip=0.1cm,
+belowskip=1.0cm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\scriptsize\ttfamily},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=4,
+inputencoding = utf8,  % Input encoding
+extendedchars = true,  % Extended ASCII
+literate      =        % Support additional characters
+{⋆}{{$\star\ $}}1 {∘}{{$\circ\ $}}1
+{á}{{\'a}}1  {é}{{\'e}}1  {í}{{\'i}}1 {ó}{{\'o}}1  {ú}{{\'u}}1
+{Á}{{\'A}}1  {É}{{\'E}}1  {Í}{{\'I}}1 {Ó}{{\'O}}1  {Ú}{{\'U}}1
+{à}{{\`a}}1  {è}{{\`e}}1  {ì}{{\`i}}1 {ò}{{\`o}}1  {ù}{{\`u}}1
+{À}{{\`A}}1  {È}{{\`E}}1  {Ì}{{\`I}}1 {Ò}{{\`O}}1  {Ù}{{\`U}}1
+{ä}{{\"a}}1  {ë}{{\"e}}1  {ï}{{\"i}}1 {ö}{{\"o}}1  {ü}{{\"u}}1
+{Ä}{{\"A}}1  {Ë}{{\"E}}1  {Ï}{{\"I}}1 {Ö}{{\"O}}1  {Ü}{{\"U}}1
+{â}{{\^a}}1  {ê}{{\^e}}1  {î}{{\^i}}1 {ô}{{\^o}}1  {û}{{\^u}}1
+{Â}{{\^A}}1  {Ê}{{\^E}}1  {Î}{{\^I}}1 {Ô}{{\^O}}1  {Û}{{\^U}}1
+{œ}{{\oe}}1  {Œ}{{\OE}}1  {æ}{{\ae}}1 {Æ}{{\AE}}1  {ß}{{\ss}}1
+{ẞ}{{\SS}}1  {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ø}{{\o}}1  {Ø}{{\O}}1
+{å}{{\aa}}1  {Å}{{\AA}}1  {ã}{{\~a}}1  {õ}{{\~o}}1 {Ã}{{\~A}}1
+{Õ}{{\~O}}1  {ñ}{{\~n}}1  {Ñ}{{\~N}}1  {¿}{{?`}}1  {¡}{{!`}}1
+{„}{\quotedblbase}1 {“}{\textquotedblleft}1 {–}{$-$}1
+{°}{{\textdegree}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
+{£}{{\pounds}}1  {©}{{\copyright}}1  {®}{{\textregistered}}1
+{«}{{\guillemotleft}}1  {»}{{\guillemotright}}1  {Ð}{{\DH}}1  {ð}{{\dh}}1
+{Ý}{{\'Y}}1    {ý}{{\'y}}1    {Þ}{{\TH}}1    {þ}{{\th}}1    {Ă}{{\u{A}}}1
+{ă}{{\u{a}}}1  {Ą}{{\k{A}}}1  {ą}{{\k{a}}}1  {Ć}{{\'C}}1    {ć}{{\'c}}1
+{Č}{{\v{C}}}1  {č}{{\v{c}}}1  {Ď}{{\v{D}}}1  {ď}{{\v{d}}}1  {Đ}{{\DJ}}1
+{đ}{{\dj}}1    {Ė}{{\.{E}}}1  {ė}{{\.{e}}}1  {Ę}{{\k{E}}}1  {ę}{{\k{e}}}1
+{Ě}{{\v{E}}}1  {ě}{{\v{e}}}1  {Ğ}{{\u{G}}}1  {ğ}{{\u{g}}}1  {Ĩ}{{\~I}}1
+{ĩ}{{\~\i}}1   {Į}{{\k{I}}}1  {į}{{\k{i}}}1  {İ}{{\.{I}}}1  {ı}{{\i}}1
+{Ĺ}{{\'L}}1    {ĺ}{{\'l}}1    {Ľ}{{\v{L}}}1  {ľ}{{\v{l}}}1  {Ł}{{\L{}}}1
+{ł}{{\l{}}}1   {Ń}{{\'N}}1    {ń}{{\'n}}1    {Ň}{{\v{N}}}1  {ň}{{\v{n}}}1
+{Ő}{{\H{O}}}1  {ő}{{\H{o}}}1  {Ŕ}{{\'{R}}}1  {ŕ}{{\'{r}}}1  {Ř}{{\v{R}}}1
+{ř}{{\v{r}}}1  {Ś}{{\'S}}1    {ś}{{\'s}}1    {Ş}{{\c{S}}}1  {ş}{{\c{s}}}1
+{Š}{{\v{S}}}1  {š}{{\v{s}}}1  {Ť}{{\v{T}}}1  {ť}{{\v{t}}}1  {Ũ}{{\~U}}1
+{ũ}{{\~u}}1    {Ū}{{\={U}}}1  {ū}{{\={u}}}1  {Ů}{{\r{U}}}1  {ů}{{\r{u}}}1
+{Ű}{{\H{U}}}1  {ű}{{\H{u}}}1  {Ų}{{\k{U}}}1  {ų}{{\k{u}}}1  {Ź}{{\'Z}}1
+{ź}{{\'z}}1    {Ż}{{\.Z}}1    {ż}{{\.z}}1    {Ž}{{\v{Z}}}1  {ž}{{\v{z}}}1
+}
+
+\newlength{\myeqskip}  \setlength{\myeqskip}{2pt}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\newcommand{\comment}[1]{}
+\newcommand{\oppgave}[2]{\subsection*{Uke #1 -  Oppgave #2}}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelSlutt}{\end{enumerate}}
+\newcommand{\oppgaveDel}[1]{\item[#1)]}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
 \begin{document}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
 \maketitle
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Main content
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \oppgave{6}{1}
 \oppgaveDelStart
@@ -413,7 +367,8 @@ public class Lfsr {
         seed = ((((seed >> 31) & 1) ^ ((seed >> 21) & 1) ^ ((seed >> 1) & 1) ^ ((seed >> 0) & 1)) == 1) ? ((seed << 1) | 1) : (seed << 1);
     }
     public int make32() {
-        int result = 0; int mask = 1;
+        int result = 0;
+        int mask = 1;
         for (int i = 0; i < 32; i++) {
             shift32();
             if ((seed & 1) == 1) { result |= mask; }
@@ -493,20 +448,22 @@ public class Program {
     }
 }
 
-//  Dette ga resultatet:
-//      Lager tabell med 80,000 tilfeldige heltall (Integer klasse) ved bruk av 32-bit LFSR fra seed-verdi 1337.
-//      Kjører insertion sort (fra soh1961 github) på tabellen. Insertion sort gjennomført etter 6781 ms.
-//      Kjører insertion sort (modifisert versjon) på tabellen. Insertion sort gjennomført etter 3952 ms.
+/*
+Dette ga resultatet:
+    Lager tabell med 80,000 tilfeldige heltall (Integer klasse) ved bruk av 32-bit LFSR fra seed-verdi 1337.
+    Kjører insertion sort (fra soh1961 github) på tabellen. Insertion sort gjennomført etter 6781 ms.
+    Kjører insertion sort (modifisert versjon) på tabellen. Insertion sort gjennomført etter 3952 ms.
+*/
 
-//  Konklusjon:
-//      Da vi testet den opprinnelige algoritmen sammenlignet med den modifiserte,
-//      observerte vi at kjøretiden ble betydelig redusert etter endring i algoritmen.
+// Konklusjon: Da vi testet den opprinnelige algoritmen sammenlignet med den modifiserte, observerte vi at kjøretiden ble betydelig redusert etter endring i algoritmen.
 
 \end{lstlisting}
+
 \oppgaveDelSlutt
 \newpage
 \oppgave{7}{2}
 \oppgaveDelStart
+
 \oppgaveDel{a}
 \begin{lstlisting}[language=Java]
 public class SortInt {
@@ -792,6 +749,49 @@ public class Program {
 \oppgave{7}{2}
 \oppgaveDelStart
 \oppgaveDel{a}
+\comment{
+\begin{lstlisting}[language=Java]
+/*
+Dette gir resultatet:
+    Lager tabell med 32,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 1471 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 363 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 82 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 7 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 6 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 4 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 6 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 7 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 4 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 22 ms.
+
+    Lager tabell med 64,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 6138 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 1437 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 302 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 16 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 6 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 5 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 4 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 6 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 6 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 28 ms.
+
+    Lager tabell med 128,000 tilfeldige heltall ved bruk av 32-bit LFSR fra seed-verdi 1312.
+    Kjører bubble sort på tabellen. Bubble sort gjennomført etter 27406 ms.
+    Kjører selection sort på tabellen. Selection sort gjennomført etter 3384 ms.
+    Kjører insertion sort på tabellen. Insertion sort gjennomført etter 1121 ms.
+    Kjører merge sort på tabellen. Merge sort gjennomført etter 11 ms.
+    Kjører heapsort på tabellen. Heapsort gjennomført etter 13 ms.
+    Kjører quicksort (Hoare) på tabellen. Quicksort gjennomført etter 9 ms.
+    Kjører quicksort (Dutch national flag) på tabellen. Quicksort gjennomført etter 10 ms.
+    Kjører shellsort (Ciura) på tabellen. Shellsort gjennomført etter 15 ms.
+    Kjører shellsort (Rhoads) på tabellen. Shellsort gjennomført etter 13 ms.
+    Kjører counting sort på tabellen. Counting sort gjennomført etter 50 ms.
+*/
+\end{lstlisting}
+}
+
 \setlength{\tabcolsep}{18pt}
 \renewcommand{\arraystretch}{1.25}
 \subsection*{Resultater:}
@@ -964,14 +964,14 @@ N & Antall målinger & Målt tid (gjennomsnitt) & Teoretisk tid $\left(c \cdot f
 \oppgaveDelStart
 \oppgaveDel{b}
 
-Vi legger en ny type kvikksortering som bruker Lomuto metoden til i SortInt klassen:
+Vi legger en ny type kvikksortering (med "Lomuto partition scheme") til i SortInt klassen:
 
 \begin{lstlisting}[language=Java]
 public class SortInt {
 
-    // ...
+    ...
 
-    // Quick, Lomuto partition scheme (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2
+    // Quick, Lomuto partition scheme (Kvikksortering) - Best: n log n / Avg: n log n / Worst: n^2 / Mem: log n / Stable: No / In-place: Yes / Method: Partitioning / Parallel: ?
     public static void quick_lomoto(int[] arr) {
         if (arr.length > 1) { quick_lomoto(arr, 0, arr.length - 1); }
     }
@@ -995,7 +995,7 @@ public class SortInt {
         }
     }
 
-    // ...
+    ...
 }
 
 \end{lstlisting}
@@ -1103,6 +1103,7 @@ Kvikksorteringsalgoritmen som tok i bruk Lomutos metode ga dårlig ytelse når a
 \oppgaveDelSlutt
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \end{document}
+
