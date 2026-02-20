@@ -1,8 +1,50 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Kråkefot-notasjon
+% ER-digram i kråkefot-notasjon
 % Basert på kode fra: https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usepackage{array}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{er}[2026/21/02 Draw entity-relationship digrams using crow's foot notation with tikz]
+\RequirePackage{array}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.multipart, shadows, positioning, calc}
+
+% Label 
+\tikzset{pics/label near/.style n args={4}{code={
+    \node[at=($(#2)!0.55!(#3)$),label=#4:{\scriptsize\ttfamily{#1}},outer sep=0pt,minimum size=0pt,fill=white]{};
+}}}
+
+% Entity
+\tikzset{pics/entity/.style n args={3}{code={
+    \node[draw,
+    rectangle split,
+    rectangle split parts=2,
+    font=\scriptsize\ttfamily\bfseries,
+    fill=white,
+    drop shadow={opacity=0.25}
+    text height=1.5ex,
+    ] (#1)
+    {\small{#2} \nodepart{second}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
+    #3
+    \end{tabular}};
+}}}
+
+% Weak entity
+\tikzset{pics/weak entity/.style n args={3}{code={
+    \node[draw,
+    rounded corners=4pt, 
+    rectangle split,
+    rectangle split parts=2,
+    font=\scriptsize\ttfamily\bfseries,
+    fill=white,
+    drop shadow={opacity=0.25}
+    text height=1.5ex,
+    ] (#1)
+    {\small{#2} \nodepart{second}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
+    #3
+    \end{tabular}};
+}}}
 \pgfdeclarearrow{
     name = mmany,
     parameters = {}, setup code = {}, defaults = {},
@@ -22,6 +64,8 @@
         \pgfusepathqstroke%
     }
 }
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \pgfdeclarearrow{
     name = omany, 
@@ -77,42 +121,3 @@
         \pgfusepathqfillstroke%
     }
 }
-
-
-% Label 
-\tikzset{pics/label near/.style n args={4}{code={
-    \node[at=($(#2)!0.55!(#3)$),label=#4:{\scriptsize\ttfamily{#1}},outer sep=0pt,minimum size=0pt,fill=white]{};
-}}}
-
-% Entity
-\tikzset{pics/entity/.style n args={3}{code={
-    \node[draw,
-    rectangle split,
-    rectangle split parts=2,
-    font=\scriptsize\ttfamily\bfseries,
-    fill=white,
-    drop shadow={opacity=0.25}
-    text height=1.5ex,
-    ] (#1)
-    {\small{#2} \nodepart{second}
-    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
-    #3
-    \end{tabular}};
-}}}
-
-% Weak entity
-\tikzset{pics/weak entity/.style n args={3}{code={
-    \node[draw,
-    rounded corners=4pt, 
-    rectangle split,
-    rectangle split parts=2,
-    font=\scriptsize\ttfamily\bfseries,
-    fill=white,
-    drop shadow={opacity=0.25}
-    text height=1.5ex,
-    ] (#1)
-    {\small{#2} \nodepart{second}
-    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
-    #3
-    \end{tabular}};
-}}}

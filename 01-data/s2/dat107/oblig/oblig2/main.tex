@@ -32,8 +32,8 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Additional packages
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usepackage{soul}                 % Character spacing
-\usepackage[T1]{url}              % Clickable URLs
+\usepackage{caption}              % Caption customization
+\usepackage[T1]{url}\urlstyle{sf} % Clickable URLs
 \usepackage{hyperref}             % Clickable references
 \usepackage{csquotes}             % Support quote marks in various languages
 \usepackage{ulem}                 % Double underline
@@ -52,9 +52,9 @@
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Include files
+% Local packages
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\include{er}
+\usepackage{er}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -105,6 +105,7 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Custom commands
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+%\usepackage{soul}                 % Character spacing
 %\sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}
 %\sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}
 %\newcommand{\allcaps}[1]{\MakeUppercase{\allcapsspacing{#1}}}%   
@@ -118,17 +119,18 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Package settings
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usetikzlibrary{shapes.multipart,shadows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
+\hypersetup{colorlinks=true, urlcolor=pink, filecolor=pink, linkcolor=color0, citecolor=color0, anchorcolor=color0}
+\captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash, labelformat=empty}
+\captionsetup{width=0.8\textwidth}
+\usetikzlibrary{shapes.multipart, shadows, positioning, calc}
 \color{color0}
 \linespread{1.05}
 \setlength{\parindent}{0pt}
 %\setlength{\tabcolsep}{18pt}
 %\renewcommand{\arraystretch}{1.25}
 \newlength{\myeqskip}\setlength{\myeqskip}{2pt}
-\titlespacing*{\section}{0cm}{1.5cm}{0.25cm}
-\titlespacing*{\subsection}{0cm}{1cm}{0.5cm}
+\titlespacing*{\section}{0cm}{0.8cm}{0.25cm}
+\titlespacing*{\subsection}{0cm}{0.8cm}{0.5cm}
 \titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.75em}{}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
@@ -161,67 +163,50 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Todo-list
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-%\begin{lstlisting}[language=SQL]
-%\end{lstlisting}
-%\lstinputlisting[language=SQL]{file.sql}
-%\oppgave{1}
-%\oppgaveDelStart
-%\oppgaveDel{a}
-%\oppgaveDel{b}
-%\oppgaveDel{c}
-%\oppgaveDelSlutt
-
-% Huskeliste:
-% Primærnøkler
-% Fremmednøkler
-% Datatyper
-% Min/maks kadinalitet
-% Sterke/svake entitetstyper og eksistensavhengighet/uavhengighet (kråkefot-notasjon) eller type aggregering (UML-notasjon)
-% Redegjørelse/forklaring på at ER-modellen tilfredsstiller hver av 1., 2., og 3. normalform. Tabellene skal faktisk være korrekt normaliserte – det holder ikke å hevde at de er normaliserte dersom de ikke er det.
-% Redegjørelse for de valgene som er tatt. Det blir lagt vekt på både praktisk utførelse og teoretisk forståelse
-% Besvarelsen skal være “konsistent”, dvs. skal være for den “samme” databasen, og de valgene man har tatt i en del av besvarelsen skal ikke “motsies” av de valgene man har tatt i en annen del av besvarelsen.
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Main content
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \section{Introduksjon}
-
-En forening har behov for et system for å administrere medlemmer. Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
-Foreningen har flere lokallag, og alle medlemmer er med i nøyaktiv ett lokallag.
-Lokallag har navn, leder (medlem), samt postnummer/sted og gatenavn/husnummer for møtelokale.
-Et medlem har medlemsnummer, fornavn, etternavn, telefonnummer, e-postadresse, postnummer/sted, gatenavn/husnummer, og medlemsstatus (aktiv/utmeldt).
+En forening har behov for et system for å administrere medlemmer.
+Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
+Foreningen har flere lokallag, og alle medlemmer er med i nøyaktig ett lokallag.
+Lokallag har navn, leder (som også er medlem), samt postnummer/poststed og gatenavn/husnummer for møtelokale.
+Et medlem har medlemsnummer, fornavn, etternavn, telefonnummer, e-postadresse, postnummer/poststed, gatenavn/husnummer, og medlemsstatus (aktiv/utmeldt).
 For hvert medlem skal det i tillegg loggføres om medlemsavgift hare blitt betalt for hvert år.\\
 
 Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i kråkefot-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
 Tegningen skal inneholde primærnøkler, fremmednøkler, datatyper, min/maks kardinalitet, sterke/svake entitetstyper og eksistensavhengighet/uavhengighet.
 
-\section{Metode}
 
-Vi starter med en felles diskusjon for hvordan vi ser for oss databasedesignet, for så å tegne en grov skisse av ER-modellen på whiteboard. Denne whiteboard-skissen tar vi bilde av for senere bruk.
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\section{Metode}
+Vi planlegger å starte med en felles diskusjon for hvordan vi ser for oss databasedesignet, 
+for så å tegne en grov skisse av ER-modellen på whiteboard. Denne whiteboard-skissen tar vi bilde av for senere bruk.
 Videre vil vi prøve å ta i bruk LaTeX-pakken TikZ for å utarbeide vår egen måte å tegne ER-diagram i kråkefot-notasjon på som tilfredsstiller alle oppgavekravene.
 Vi ser for oss å bruke kode publisert på LaTeX Stack Exchange av AndréC\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912#463912}} som utganspunkt for vår implementasjon.
 Etter at vi har utarbeidet en egnet metode for ER-diagram tegning, blir neste steg å overføre whiteboard tegningen fra tidligere til LaTeX.
-Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringer i den ferdige oppgaven. SQL spørringene tester vi underveis ved bruk av det konsollbaserte programmet psql og en skybasert PostgreSQL database der vi har fått tildelt en brukerkonto fra HVL.
+Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringene i den ferdige oppgaven.
+SQL spørringene tester vi underveis ved bruk av det konsollbaserte programmet psql og en skybasert PostgreSQL database.
 
-%\vspace{0.5cm}
-%\begin{tabular}{|c|c|c|} 
-%\hline
-%&Fordel&Ulempe \\
-%\hline
-%    a&b&c\\
-%    a&b&c\\
-%    a&b&c\\
-%\hline
-%\end{tabular}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \section{Resultat}
+I designetfasen kom vi frem til å gå for fire tabeller: Poststed, Medlem, Lokallag og Medlemsavgift. 
+Med PostNr som primærnøkkel i Poststed-tabellen, MedlemsNr som som primærnøkkel i Medlemstabellen, og LagNavn som primærnøkkel i Lokallag-tabellen.
+Når det gjelder implementasjon av loggføring av medlemsavgift bestemte vi oss for å ha en egen tabell, der det lagres MedlemsNr og År når det registreres betaling av medlemsavgift. 
+På den måten kan man sjekke om en medlemsavgift er betalt av en gitt medlem for et gitt år ved å sjekke at MedlemsNr og År eksisterer i tabellen.
+Etter å ha tegnet en grov skisse av databasen gikk vi i gang med LaTeX implementasjonen. 
+Vi startet med koden fra LaTeX Stack Exchange og konsulterte PGF/TikZ manualen for å oppnå ønskede endringer.
+Etter at vi hadde oppnådd et ønskelig resultat gikk det fort å gjenskape whiteboard-skissen vi hadde fra tidligere. 
+Videre skrev vi SQL spørringer som vi testet på PostgreSQL serveren, før vi til slutt la inn de endelige spørringene i oppgavedokumentet.
 
-TODO: Beskriv resultatet på deloppgavene etter å ha benyttet metodene
-
+\newpage
 \begin{center}
+
+Den ferdige tegningen av ER-digrammet med tilhørende PostgreSQL spørringer:
+
+\vspace{0.75cm}
 \begin{tikzpicture}
 
 % Medlem
@@ -252,7 +237,7 @@ DATE        & Aar (\textcolor{color1}{PK})
 }};
 
 % Poststed
-\pic[above = 10.5em of $(m)!0.5!(l)$] {entity={p}{Poststed}{
+\pic[above = 10em of $(m)!0.5!(l)$] {entity={p}{Poststed}{
 CHAR(4)     & PostNr (\textcolor{color1}{PK})\\
 VARCHAR(35) & PostSted
 }};
@@ -266,11 +251,8 @@ VARCHAR(35) & PostSted
 % Forklaring
 %\draw (m) -- (l) node [midway, fill=white, font=\scriptsize\ttfamily] {tilhører}
 \end{tikzpicture}
-\end{center}
+\vspace{0.75cm}
 
-\vspace{0.5cm}
-
-\begin{center}
 \begin{tabular}{c}
 \begin{lstlisting}[language=SQL]
 -- Slett tabeller hvis de allerede eksisterer
@@ -310,21 +292,28 @@ CREATE TABLE Medlemsavgift(
     PRIMARY KEY(MedlemsNr, Aar)
 );
 
--- Oppsett av fremmednøkler for tabellen Lokallag
+-- Oppsett av fremmednøkler
 ALTER TABLE Lokallag
-    ADD CONSTRAINT FN_LederNr FOREIGN KEY(LederNr) REFERENCES Medlem(MedlemsNr),
-    ADD CONSTRAINT FN_PostNr FOREIGN KEY(PostNr) REFERENCES poststed(PostNr);
-
--- Oppsett av fremmednøkler for tabellen Medlem 
+    ADD CONSTRAINT FK_LederNr FOREIGN KEY(LederNr) REFERENCES Medlem(MedlemsNr),
+    ADD CONSTRAINT FK_PostNr  FOREIGN KEY(PostNr)  REFERENCES poststed(PostNr);
 ALTER TABLE Medlem
-    ADD CONSTRAINT FN_LagNavn FOREIGN KEY(LagNavn) REFERENCES Lokallag(LagNavn),
-    ADD CONSTRAINT FN_PostNr FOREIGN KEY(PostNr) REFERENCES poststed(PostNr);
+    ADD CONSTRAINT FK_LagNavn FOREIGN KEY(LagNavn) REFERENCES Lokallag(LagNavn),
+    ADD CONSTRAINT FK_PostNr  FOREIGN KEY(PostNr)  REFERENCES poststed(PostNr);
 \end{lstlisting}
 \end{tabular}
 \end{center}
 
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
 \section{Diskusjon}
-TODO: Oppsummer resultatene, funnene og vurderingene
+Tidlig i designfasen støttet vi på flere fallgruver og måtte ta en rekke design-beslutninger, slik som valg av primær- og fremmednøkler, og bestemmelse for hvilke attributter som tillates å være tomme.
+Gjennom prosessen med å jobbe med denne oppgaven har vi fått dypere kjennskap til hvordan et ER-diagram i kråkefot-notasjon kan brukes for å beskrive en database, i tillegg til at vi har fått øvelse i bruk av LaTeX og grafikkpakken TikZ.\\
+
+Som del av oppgaven skal det vises at modellen tilfredsstiller tredje normalform.
+Den er på første normalform ettersom alle tabeller har primærnøkler og kun inneholder atributter som holder atomære verdier.
+Den er på andre normalform siden den ikke inneholder partielle avhengigheter (feilplasserte attributter som ikke tilhører primærnøkkelen).
+Konkluderende kan det konstateres at modellen også er på tredje normalform ettersom den ikke inneholder transitive avhengigheter (feilplasserte attributter som er avhengig av andre attributter enn de som er del av primærnøkkelen).
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
