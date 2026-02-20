@@ -137,7 +137,7 @@ keywordstyle={\bfseries\color{color1}},
 commentstyle={\bfseries\color{cyan}},
 basicstyle={\scriptsize\ttfamily\color{color0}}, 
 numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
-aboveskip=0.1cm,belowskip=1.0cm,columns=fixed,
+aboveskip=1cm,belowskip=1cm,columns=fixed,
 breaklines=true,breakatwhitespace=false,keepspaces=true,
 showspaces=false,showstringspaces=false,tabsize=4,
 captionpos=b,inputencoding=utf8,extendedchars=true}
@@ -187,83 +187,15 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Main content
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\begin{center}
-\begin{tikzpicture}
-
-% EBok
-\pic {entity={A}{EBok}{
-CHAR(5)&BokNr (\textcolor{color1}{PK})\\
-CHAR(5)&ISBN\\
-CHAR(5)&Tittel\\
-CHAR(5)&Forfatter\\
-CHAR(5)&UtgittÅr\\
-CHAR(5)&AntallKopier\\
-CHAR(5)&Navn (\textcolor{color1}{FK})
-}};
-
-% Forlag
-\pic[below=8em of A] {entity={C}{Forlag}{
-CHAR(5)&Navn (\textcolor{color1}{PK})\\
-CHAR(5)&Kontakt\\
-CHAR(5)&Telefon
-}};
-
-
-% Utlån
-\pic[right=10em of A] {entity={B}{Utlån}{
-CHAR(5)&BokNr (\textcolor{color1}{PK, FK})\\
-CHAR(5)&LNr (\textcolor{color1}{PK, FK})\\
-CHAR(5)&UtlånsDato (\textcolor{color1}{PK})\\
-CHAR(5)&ErLevert
-}};
-
-% Låner
-\pic[below=8em of B] {entity={D}{Låner}{
-CHAR(5)&LNr (\textcolor{color1}{PK})\\
-CHAR(5)&Fornavn\\
-CHAR(5)&Etternavn\\
-CHAR(5)&Epost
-}};
-
-% Forhold
-\draw[oone - omany] (A) edge  (B);
-\draw[mone - omany, loosely dashed] (C) edge  (A);
-\draw[mone - omany] (D) edge  (B);
-
-% Forklaring
-\pic {label={utgir}{A}{C}{right}};
-
-\end{tikzpicture}
-\end{center}
-
-\begin{center}
-\begin{tabular}{c}
-\begin{lstlisting}[language=SQL]
--- SQL eksempelkode
-SELECT * FROM ...;
-CREATE TABLE Ordrelinje
-(
-    OrdreNr INTEGER,
-    CNr CHAR(5),
-    PrisPrEnhet DECIMAL(8,2),
-    Antall INTEGER,
-    CONSTRAINT OrdreLinjePN PRIMARY_KEY (OrdreNr, VNr)
-    CONSTRAINT OrfreLinjeOrdreFN FOREIGN_KEY (OrdreNr) REFERENCES Ordre (OrdreNr)
-    CONSTRAINT OrdrelinjeVareFN FOREIGN_KEY (VNr) REFERENCES Vare (VNr)
-);
-\end{lstlisting}
-\end{tabular}
-\end{center}
-
 \section{Introduksjon}
 
-Problemstilling: En forening har behov for et system for å administrere medlemmer. Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
+En forening har behov for et system for å administrere medlemmer. Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
 Foreningen har flere lokallag, og alle medlemmer er med i nøyaktiv ett lokallag.
 Lokallag har navn, leder (medlem), samt postnummer/sted og gatenavn/husnummer for møtelokale.
 Et medlem har medlemsnummer, fornavn, etternavn, telefonnummer, e-postadresse, postnummer/sted, gatenavn/husnummer, og medlemsstatus (aktiv/utmeldt).
 For hvert medlem skal det i tillegg loggføres om medlemsavgift hare blitt betalt for hvert år.\\
 
-Oppgaver: Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i kråkefot-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
+Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i kråkefot-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
 Tegningen skal inneholde primærnøkler, fremmednøkler, datatyper, min/maks kardinalitet, sterke/svake entitetstyper og eksistensavhengighet/uavhengighet.
 
 \section{Metode}
@@ -272,25 +204,124 @@ Vi starter med en felles diskusjon for hvordan vi ser for oss databasedesignet, 
 Videre vil vi prøve å ta i bruk LaTeX-pakken TikZ for å utarbeide vår egen måte å tegne ER-diagram i kråkefot-notasjon på som tilfredsstiller alle oppgavekravene.
 Vi ser for oss å bruke kode publisert på LaTeX Stack Exchange av AndréC\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912#463912}} som utganspunkt for vår implementasjon.
 Etter at vi har utarbeidet en egnet metode for ER-diagram tegning, blir neste steg å overføre whiteboard tegningen fra tidligere til LaTeX.
-Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringer i den ferdige oppgaven. SQL spørringene tester vi underveis ved bruk av programmet DataGrip og en skybasert PostgreSQL database.
+Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringer i den ferdige oppgaven. SQL spørringene tester vi underveis ved bruk av det konsollbaserte programmet psql og en skybasert PostgreSQL database der vi har fått tildelt en brukerkonto fra HVL.
 
-
-
-\vspace{0.5cm}
-\begin{tabular}{|c|c|c|} 
-\hline
-&Fordel&Ulempe \\
-\hline
-    a&b&c\\
-    a&b&c\\
-    a&b&c\\
-\hline
-\end{tabular}
+%\vspace{0.5cm}
+%\begin{tabular}{|c|c|c|} 
+%\hline
+%&Fordel&Ulempe \\
+%\hline
+%    a&b&c\\
+%    a&b&c\\
+%    a&b&c\\
+%\hline
+%\end{tabular}
 
 \section{Resultat}
 
 TODO: Beskriv resultatet på deloppgavene etter å ha benyttet metodene
 
+\begin{center}
+\begin{tikzpicture}
+
+% Medlem
+\pic {entity={m}{Medlem}{
+CHAR(5)     & MedlemsNr (\textcolor{color1}{PK})\\
+VARCHAR(35) & LagNavn (\textcolor{color1}{FK})\\
+BOOLEAN     & Aktiv \\
+VARCHAR(35) & Fornavn \\
+VARCHAR(35) & Etternavn \\
+VARCHAR(25) & Telefonnummer \\
+VARCHAR(50) & Epost \\
+CHAR(4)     & PostNr (\textcolor{color1}{FK})\\
+VARCHAR(50) & Adresse
+}};
+
+% Lag
+\pic[right = 10em of m] {entity={l}{Lokallag}{
+VARCHAR(35) & LagNavn (\textcolor{color1}{PK})\\
+CHAR(5)     & LederNr (\textcolor{color1}{FK})\\
+CHAR(4)     & PostNr (\textcolor{color1}{FK})\\
+VARCHAR(50) & Adresse
+}};
+
+% Medlemsavgift
+\pic[below = 10em of $(m)!0.5!(l)$] {weak entity={a}{Medlemsavgift}{
+CHAR(5)     & MedlemsNr (\textcolor{color1}{PK, FK})\\
+DATE        & Aar (\textcolor{color1}{PK})
+}};
+
+% Poststed
+\pic[above = 10.5em of $(m)!0.5!(l)$] {entity={p}{Poststed}{
+CHAR(4)     & PostNr (\textcolor{color1}{PK})\\
+VARCHAR(35) & PostSted
+}};
+
+% Forhold
+\draw[oone - mone] (m) edge  (l);
+\draw[omany - mone] (a.north) |- ($(a.north) + (0,1)$) -| (m.south);
+\draw[mone - omany, loosely dashed] (p.south) |- ($(p.south) - (0,1)$) -|  (l.north);
+\draw[mone - omany, loosely dashed] (p.south) |- ($(p.south) - (0,1)$) -|  (m.north);
+
+% Forklaring
+%\draw (m) -- (l) node [midway, fill=white, font=\scriptsize\ttfamily] {tilhører}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[language=SQL]
+-- Slett tabeller hvis de allerede eksisterer
+DROP TABLE IF EXISTS Poststed, Lokallag, Medlem, Medlemsavgift;
+
+-- Oppretting av tabellen Poststed
+CREATE TABLE Poststed(
+    PostNr        CHAR(4)     PRIMARY KEY,
+    PostSted      VARCHAR(35) NOT NULL
+);
+
+-- Oppretting av tabellen Lokallag
+CREATE TABLE Lokallag(
+    LagNavn       VARCHAR(35) PRIMARY KEY,
+    LederNr       CHAR(5),
+    PostNr        CHAR(4),
+    Adresse       VARCHAR(50)
+);
+
+-- Oppretting av tabellen Medlem
+CREATE TABLE Medlem(
+    MedlemsNr     CHAR(5)     PRIMARY KEY,
+    LagNavn       VARCHAR(35) NOT NULL,
+    Aktiv         BOOLEAN     NOT NULL,
+    Fornavn       VARCHAR(35) NOT NULL,
+    Etternavn     VARCHAR(35) NOT NULL,
+    Telefonnummer VARCHAR(25),
+    Epost         VARCHAR(50),
+    PostNr        CHAR(4),
+    Adresse       VARCHAR(50)
+);
+
+-- Oppretting av tabellen Medlemsavgift
+CREATE TABLE Medlemsavgift(
+    MedlemsNr     CHAR(5),
+    Aar           DATE,
+    PRIMARY KEY(MedlemsNr, Aar)
+);
+
+-- Oppsett av fremmednøkler for tabellen Lokallag
+ALTER TABLE Lokallag
+    ADD CONSTRAINT FN_LederNr FOREIGN KEY(LederNr) REFERENCES Medlem(MedlemsNr),
+    ADD CONSTRAINT FN_PostNr FOREIGN KEY(PostNr) REFERENCES poststed(PostNr);
+
+-- Oppsett av fremmednøkler for tabellen Medlem 
+ALTER TABLE Medlem
+    ADD CONSTRAINT FN_LagNavn FOREIGN KEY(LagNavn) REFERENCES Lokallag(LagNavn),
+    ADD CONSTRAINT FN_PostNr FOREIGN KEY(PostNr) REFERENCES poststed(PostNr);
+\end{lstlisting}
+\end{tabular}
+\end{center}
 
 \section{Diskusjon}
 TODO: Oppsummer resultatene, funnene og vurderingene

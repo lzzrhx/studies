@@ -12,9 +12,11 @@
         \pgfsetdash{}{+0pt}%
         \pgfsetmiterjoin%
         \advance\arrowsize by .25\pgflinewidth%
-        \pgfpathmoveto{\pgfqpoint{0pt}{-9\arrowsize}}%
+        \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}%
         \pgfpathlineto{\pgfqpoint{-13\arrowsize}{0pt}}%
         \pgfpathlineto{\pgfqpoint{0pt}{9\arrowsize}}%
+        \pgfpathlineto{\pgfqpoint{-13\arrowsize}{0pt}}%
+        \pgfpathlineto{\pgfqpoint{0pt}{-9\arrowsize}}%
         \pgfpathmoveto{\pgfqpoint{-19\arrowsize}{-10\arrowsize}}% 
         \pgfpathlineto{\pgfqpoint{-19\arrowsize}{10\arrowsize}}% 
         \pgfusepathqstroke%
@@ -78,14 +80,13 @@
 
 
 % Label 
-\tikzset{pics/label/.style n args={4}{code={
-    \node[at=($(#2)!0.55!(#3)$),label=#4:{\small\ttfamily{#1}},outer sep=0pt,minimum size=0pt]{};
+\tikzset{pics/label near/.style n args={4}{code={
+    \node[at=($(#2)!0.55!(#3)$),label=#4:{\scriptsize\ttfamily{#1}},outer sep=0pt,minimum size=0pt,fill=white]{};
 }}}
 
 % Entity
 \tikzset{pics/entity/.style n args={3}{code={
     \node[draw,
-    %rounded corners=1pt, 
     rectangle split,
     rectangle split parts=2,
     font=\scriptsize\ttfamily\bfseries,
@@ -94,24 +95,24 @@
     text height=1.5ex,
     ] (#1)
     {\small{#2} \nodepart{second}
-    \begin{tabular}{>{\raggedright\arraybackslash}p{4em}>{\raggedright\arraybackslash}p{8.5em}}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
     #3
     \end{tabular}};
 }}}
 
-%\tikzset{one to one/.style={mone-mone}}
-%\tikzset{one to oone/.style={mone-oone}}
-%\tikzset{one to many/.style={mone-mmany}}
-%\tikzset{one to omany/.style={mone-omany}}
-%\tikzset{pics/entitynoatt/.style n args={2}{code={%
-%        \node[draw,
-%        text height=1.5ex,
-%        ] (#1)
-%        {#2};%
-%    }}
-%\tikzset{
-%    zig zag/.style={
-%        to path={(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)}
-%    },
-%\tikzset{
-%    zig zag/.default=0.5, 
+% Weak entity
+\tikzset{pics/weak entity/.style n args={3}{code={
+    \node[draw,
+    rounded corners=4pt, 
+    rectangle split,
+    rectangle split parts=2,
+    font=\scriptsize\ttfamily\bfseries,
+    fill=white,
+    drop shadow={opacity=0.25}
+    text height=1.5ex,
+    ] (#1)
+    {\small{#2} \nodepart{second}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5em}>{\raggedright\arraybackslash}p{11.5em}}
+    #3
+    \end{tabular}};
+}}}

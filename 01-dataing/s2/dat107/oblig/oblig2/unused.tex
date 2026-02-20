@@ -21,3 +21,73 @@
 \node[attribute] (e2_a1) [left=2em of e2] {att1} edge (e2);
 \node[attribute] (e2_a2) [right=2em of e2] {att2} edge (e2);
 \end{tikzpicture}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+
+% EBok
+\pic {entity={A}{EBok}{
+CHAR(5)&BokNr (\textcolor{color1}{PK})\\
+CHAR(5)&ISBN\\
+CHAR(5)&Tittel\\
+CHAR(5)&Forfatter\\
+CHAR(5)&UtgittÅr\\
+CHAR(5)&AntallKopier\\
+CHAR(5)&Navn (\textcolor{color1}{FK})
+}};
+
+% Forlag
+\pic[below=8em of A] {entity={C}{Forlag}{
+CHAR(5)&Navn (\textcolor{color1}{PK})\\
+CHAR(5)&Kontakt\\
+CHAR(5)&Telefon
+}};
+
+
+% Utlån
+\pic[right=10em of A] {entity={B}{Utlån}{
+CHAR(5)&BokNr (\textcolor{color1}{PK, FK})\\
+CHAR(5)&LNr (\textcolor{color1}{PK, FK})\\
+CHAR(5)&UtlånsDato (\textcolor{color1}{PK})\\
+CHAR(5)&ErLevert
+}};
+
+% Låner
+\pic[below=8em of B] {entity={D}{Låner}{
+CHAR(5)&LNr (\textcolor{color1}{PK})\\
+CHAR(5)&Fornavn\\
+CHAR(5)&Etternavn\\
+CHAR(5)&Epost
+}};
+
+% Forhold
+\draw[oone - omany] (A) edge  (B);
+\draw[mone - omany, loosely dashed] (C) edge  (A);
+\draw[mone - omany] (D) edge  (B);
+
+% Forklaring
+\pic {label={utgir}{A}{C}{right}};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[language=SQL]
+-- SQL eksempelkode
+SELECT * FROM ...;
+CREATE TABLE Ordrelinje
+(
+    OrdreNr INTEGER,
+    CNr CHAR(5),
+    PrisPrEnhet DECIMAL(8,2),
+    Antall INTEGER,
+    CONSTRAINT OrdreLinjePN PRIMARY_KEY (OrdreNr, VNr)
+    CONSTRAINT OrfreLinjeOrdreFN FOREIGN_KEY (OrdreNr) REFERENCES Ordre (OrdreNr)
+    CONSTRAINT OrdrelinjeVareFN FOREIGN_KEY (VNr) REFERENCES Vare (VNr)
+);
+\end{lstlisting}
+\end{tabular}
+\end{center}
