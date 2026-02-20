@@ -50,6 +50,13 @@
 \usepackage{pdfpages}             % Insert pdf pages
 \usepackage{biblatex}             % Bibliography
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Include files
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\include{er}
+
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Apprentice colorscheme (https://github.com/romainl/Apprentice)
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -111,7 +118,9 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Package settings
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usetikzlibrary{er, positioning}
+\usetikzlibrary{shapes.multipart,shadows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
 \color{color0}
 \linespread{1.05}
 \setlength{\parindent}{0pt}
@@ -132,6 +141,8 @@ aboveskip=0.1cm,belowskip=1.0cm,columns=fixed,
 breaklines=true,breakatwhitespace=false,keepspaces=true,
 showspaces=false,showstringspaces=false,tabsize=4,
 captionpos=b,inputencoding=utf8,extendedchars=true}
+\tikzstyle{every pic} = [draw=color8]
+\tikzstyle{every edge} = [semithick, draw=color8]
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -150,7 +161,7 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Main content
+% Todo-list
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 %\begin{lstlisting}[language=SQL]
 %\end{lstlisting}
@@ -172,6 +183,78 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 % Redegjørelse for de valgene som er tatt. Det blir lagt vekt på både praktisk utførelse og teoretisk forståelse
 % Besvarelsen skal være “konsistent”, dvs. skal være for den “samme” databasen, og de valgene man har tatt i en del av besvarelsen skal ikke “motsies” av de valgene man har tatt i en annen del av besvarelsen.
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Main content
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{center}
+\begin{tikzpicture}
+
+% EBok
+\pic {entity={A}{EBok}{
+CHAR(5)&BokNr (\textcolor{color1}{PK})\\
+CHAR(5)&ISBN\\
+CHAR(5)&Tittel\\
+CHAR(5)&Forfatter\\
+CHAR(5)&UtgittÅr\\
+CHAR(5)&AntallKopier\\
+CHAR(5)&Navn (\textcolor{color1}{FK})
+}};
+
+% Forlag
+\pic[below=8em of A] {entity={C}{Forlag}{
+CHAR(5)&Navn (\textcolor{color1}{PK})\\
+CHAR(5)&Kontakt\\
+CHAR(5)&Telefon
+}};
+
+
+% Utlån
+\pic[right=10em of A] {entity={B}{Utlån}{
+CHAR(5)&BokNr (\textcolor{color1}{PK, FK})\\
+CHAR(5)&LNr (\textcolor{color1}{PK, FK})\\
+CHAR(5)&UtlånsDato (\textcolor{color1}{PK})\\
+CHAR(5)&ErLevert
+}};
+
+% Låner
+\pic[below=8em of B] {entity={D}{Låner}{
+CHAR(5)&LNr (\textcolor{color1}{PK})\\
+CHAR(5)&Fornavn\\
+CHAR(5)&Etternavn\\
+CHAR(5)&Epost
+}};
+
+% Forhold
+\draw[oone - omany] (A) edge  (B);
+\draw[mone - omany, loosely dashed] (C) edge  (A);
+\draw[mone - omany] (D) edge  (B);
+
+% Forklaring
+\pic {label={utgir}{A}{C}{right}};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[language=SQL]
+-- SQL eksempelkode
+SELECT * FROM ...;
+CREATE TABLE Ordrelinje
+(
+    OrdreNr INTEGER,
+    CNr CHAR(5),
+    PrisPrEnhet DECIMAL(8,2),
+    Antall INTEGER,
+    CONSTRAINT OrdreLinjePN PRIMARY_KEY (OrdreNr, VNr)
+    CONSTRAINT OrfreLinjeOrdreFN FOREIGN_KEY (OrdreNr) REFERENCES Ordre (OrdreNr)
+    CONSTRAINT OrdrelinjeVareFN FOREIGN_KEY (VNr) REFERENCES Vare (VNr)
+);
+\end{lstlisting}
+\end{tabular}
+\end{center}
+
 \section{Introduksjon}
 
 Problemstilling: En forening har behov for et system for å administrere medlemmer. Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
@@ -180,11 +263,18 @@ Lokallag har navn, leder (medlem), samt postnummer/sted og gatenavn/husnummer fo
 Et medlem har medlemsnummer, fornavn, etternavn, telefonnummer, e-postadresse, postnummer/sted, gatenavn/husnummer, og medlemsstatus (aktiv/utmeldt).
 For hvert medlem skal det i tillegg loggføres om medlemsavgift hare blitt betalt for hvert år.\\
 
-Oppgaver: Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i ???-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
+Oppgaver: Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i kråkefot-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
+Tegningen skal inneholde primærnøkler, fremmednøkler, datatyper, min/maks kardinalitet, sterke/svake entitetstyper og eksistensavhengighet/uavhengighet.
 
 \section{Metode}
 
-TODO: Beskriv metodene som skal brukes for å løse oppgavene
+Vi starter med en felles diskusjon for hvordan vi ser for oss databasedesignet, for så å tegne en grov skisse av ER-modellen på whiteboard. Denne whiteboard-skissen tar vi bilde av for senere bruk.
+Videre vil vi prøve å ta i bruk LaTeX-pakken TikZ for å utarbeide vår egen måte å tegne ER-diagram i kråkefot-notasjon på som tilfredsstiller alle oppgavekravene.
+Vi ser for oss å bruke kode publisert på LaTeX Stack Exchange av AndréC\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912#463912}} som utganspunkt for vår implementasjon.
+Etter at vi har utarbeidet en egnet metode for ER-diagram tegning, blir neste steg å overføre whiteboard tegningen fra tidligere til LaTeX.
+Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringer i den ferdige oppgaven. SQL spørringene tester vi underveis ved bruk av programmet DataGrip og en skybasert PostgreSQL database.
+
+
 
 \vspace{0.5cm}
 \begin{tabular}{|c|c|c|} 
@@ -201,34 +291,6 @@ TODO: Beskriv metodene som skal brukes for å løse oppgavene
 
 TODO: Beskriv resultatet på deloppgavene etter å ha benyttet metodene
 
-\tikzstyle{every entity} = [thick, text = darkRed, draw = red]
-\tikzstyle{every attribute} = [thick, text = darkCyan, draw = cyan]
-\tikzstyle{every relationship} = [thick, text = darkYellow, draw = yellow]
-\tikzstyle{every edge} = [semithick, draw=color8]
-%\tikzset{every relationship/.style={color1}}
-%\tikzset{every edge/.style={color1}}
-
-\begin{tikzpicture}[node distance=6em]
-\node[entity] (e) {entity};
-\node[attribute] (e_a1) [left=2em of e] {att1} edge (e);
-\node[attribute] (e_a2) [right=2em of e] {att2} edge (e);
-\node[attribute] (e_a3) [above=2em of e] {att3} edge (e);
-\node[relationship] (rel) [below of=e] {relationship} edge (e);
-\node[entity] (e2) [below of=rel] {entity #2} edge (rel);
-\node[attribute] (e2_a1) [left=2em of e2] {att1} edge (e2);
-\node[attribute] (e2_a2) [right=2em of e2] {att2} edge (e2);
-\end{tikzpicture}
-
-%\begin{tikzpicture}
-%\node[entity] (e1)  at (0,0)   {e1};
-%\node[entity] (e2) at (2,0)   {e2};
-%\node[relationship] at (1,1.5) {rel} edge (e1) edge (e2);
-%\end{tikzpicture}
-
-\begin{lstlisting}[language=SQL]
-    -- SQL eksempelkode
-    SELECT * FROM ...;
-\end{lstlisting}
 
 \section{Diskusjon}
 TODO: Oppsummer resultatene, funnene og vurderingene

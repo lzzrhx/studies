@@ -1,0 +1,23 @@
+\begin{tikzpicture}[every node/.style={font=\scriptsize}]
+\draw[mmany - mmany,very thin] (0,0) -- node[above]{ mmany}node[below]{very thin} (5,0);
+\draw[omany - omany] (0,-1) -- node[above]{omany}node[below]{normal size} (5,-1);
+\draw[mone - mone,thick] (0,-2) -- node[above]{mone}node[below]{thick} (5,-2);
+\draw[oone - oone,very thick] (0,-3) -- node[above]{ oone}node[below]{very thick} (5,-3);
+\end{tikzpicture}
+
+
+
+\tikzstyle{every entity} = [thick, text = darkRed, draw = red]
+\tikzstyle{every attribute} = [thick, text = darkCyan, draw = cyan]
+\tikzstyle{every relationship} = [thick, text = darkYellow, draw = yellow]
+\tikzstyle{every edge} = [semithick, draw=color8]
+\begin{tikzpicture}[node distance=6em]
+\node[entity] (e) {entity};
+\node[attribute] (e_a1) [left=2em of e] {att1} edge (e);
+\node[attribute] (e_a2) [right=2em of e] {att2} edge (e);
+\node[attribute] (e_a3) [above=2em of e] {att3} edge (e);
+\node[relationship] (rel) [below of=e] {relationship} edge (e);
+\node[entity] (e2) [below of=rel] {entity #2} edge (rel);
+\node[attribute] (e2_a1) [left=2em of e2] {att1} edge (e2);
+\node[attribute] (e2_a2) [right=2em of e2] {att2} edge (e2);
+\end{tikzpicture}
