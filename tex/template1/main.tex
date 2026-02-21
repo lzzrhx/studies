@@ -4,7 +4,7 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 %\documentclass[10pt,a4paper]{article}
 \documentclass[10pt,a4paper,article,oneside]{memoir}
-\usepackage[tmargin=2.5cm,rmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm]{geometry}
+\usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm]{geometry}
 \usepackage[norsk]{babel}         % Support for other languages than english
 \usepackage[utf8]{inputenc}       % Input encoding
 \usepackage[T1]{fontenc}          % Font encoding
@@ -46,12 +46,13 @@
 %\usepackage{graphicx}             % Insert images
 %\usepackage{pdfpages}             % Insert pdf pages
 %\usepackage{biblatex}             % Bibliography
-%\usepackage{booktabs}             % Nicer looking tables
+\usepackage{booktabs}             % Nicer looking tables
 %\usepackage{gensymb}              % Degree symbol
 %\usepackage{verbatim}             % Comments
 %\usepackage{fancyhdr}             % Header / footer
 %\usepackage{units}
 %\usapackage{siunitx}
+%\usepackage{cleverref}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Apprentice colorscheme (https://github.com/romainl/Apprentice)
@@ -110,6 +111,11 @@
 \newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
 \newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -121,6 +127,7 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Package settings
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\geometry{right=5cm,marginparsep=1cm,parginparwidth=4cm}
 \hypersetup{colorlinks=true, urlcolor=pink, filecolor=pink, linkcolor=color0, citecolor=color0, anchorcolor=color0}
 \captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash, labelformat=empty}
 \captionsetup{width=0.8\textwidth}
@@ -133,6 +140,7 @@
 \newlength{\myeqskip}\setlength{\myeqskip}{2pt}
 \titlespacing*{\section}{0cm}{0.8cm}{0.25cm}
 \titlespacing*{\subsection}{0cm}{0.8cm}{0.5cm}
+%\titleformat{\section}{\normalfont\Large\bfseries\scshape\MakeLowercase}{\thesection \ \ \textendash \ \ }{0em}{}
 \titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.75em}{}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
@@ -141,27 +149,35 @@ keywordstyle={\bfseries\color{color1}},
 commentstyle={\bfseries\color{cyan}},
 basicstyle={\scriptsize\ttfamily\color{color0}}, 
 numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
-aboveskip=1cm,belowskip=1cm,columns=fixed,
+aboveskip=0.1cm,belowskip=1cm,columns=fixed,
 breaklines=true,breakatwhitespace=false,keepspaces=true,
 showspaces=false,showstringspaces=false,tabsize=4,
+linewidth=\linewidth,
 captionpos=b,inputencoding=utf8,extendedchars=true}
 \tikzstyle{every pic} = [draw=color8]
 \tikzstyle{every edge} = [semithick, draw=color8]
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Set title / author
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\title{DAT000 \textendash \ Obligatorisk innlevering xxx}
-\author{\normalsize Gruppemedlemmer: \\ Stephen Neba Fuh, Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen}
-\date{}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Document start and title page
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \begin{document}
-\maketitle
+\begin{titlepage}
+\vspace*{0.8cm}
+\LARGE\textbf{DAT123 \textendash \ Obligatorisk innlevering 123}
+\vspace{0.25cm}
+\hrule
+\vspace{0.25cm}
+\normalsize{Gruppemedlemmer:}
+\vspace{0.2cm}
+\par\Large{Stephen Neba Fuh, Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen}
+\vspace*{0.3cm}
+\end{titlepage}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Main content
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \input{dummy.tex}
 
 
