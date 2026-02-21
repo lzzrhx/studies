@@ -1,0 +1,170 @@
+%! TeX program = lualatex
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Core setup
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+%\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,a4paper,article,oneside]{memoir}
+\usepackage[tmargin=2.5cm,rmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm]{geometry}
+\usepackage[norsk]{babel}         % Support for other languages than english
+\usepackage[utf8]{inputenc}       % Input encoding
+\usepackage[T1]{fontenc}          % Font encoding
+\usepackage{microtype}            % Improve text appearance in numerous ways
+\usepackage{textcomp}             % Add extra symbols
+\usepackage{mathtools}            % Improvements for math
+\usepackage{amssymb}              % Extended math symbols
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Font packages
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage[osf]{newpxtext}       % Main (serif/sans-serif) font
+\usepackage{newpxmath}            % Math font
+\usepackage[scaled]{beramono}     % Monospace font
+\usepackage{iftex}
+\ifLuaTeX
+    \usepackage{fontspec}                % Custom fonts
+    \setmonofont{PxPlus ToshibaSat 8x16} % Override monospace font
+\fi
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Additional packages
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage[T1]{url}\urlstyle{sf} % Clickable URLs
+\usepackage{hyperref}             % Clickable references
+\usepackage{csquotes}             % Support quote marks in various languages
+\usepackage{caption}              % Caption customization
+\usepackage{ulem}                 % Double underline
+\usepackage[makeroom]{cancel}     % Crossing out text
+\usepackage{nicefrac}             % Nice looking fractals
+\usepackage[compact]{titlesec}    % Title style
+\usepackage{setspace}             % Set paragraph spacing
+\usepackage{xcolor}               % Colors
+\usepackage{enumitem}             % Lists
+\usepackage{listings}             % Insert code
+\usepackage{tikz}                 % Drawing of graphics
+%\usepackage{graphicx}             % Insert images
+%\usepackage{pdfpages}             % Insert pdf pages
+%\usepackage{biblatex}             % Bibliography
+%\usepackage{booktabs}             % Nicer looking tables
+%\usepackage{gensymb}              % Degree symbol
+%\usepackage{verbatim}             % Comments
+%\usepackage{fancyhdr}             % Header / footer
+%\usepackage{units}
+%\usapackage{siunitx}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Apprentice colorscheme (https://github.com/romainl/Apprentice)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\definecolor{color0}{HTML}{1C1C1C}
+\definecolor{color1}{HTML}{AF5F5F}
+\definecolor{color2}{HTML}{5F875F}
+\definecolor{color3}{HTML}{87875F}
+\definecolor{color4}{HTML}{5F87AF}
+\definecolor{color5}{HTML}{5F5F87}
+\definecolor{color6}{HTML}{5F8787}
+\definecolor{color7}{HTML}{6C6C6C}
+\definecolor{color8}{HTML}{444444}
+\definecolor{color9}{HTML}{FF8700}
+\definecolor{color10}{HTML}{87AF87}
+\definecolor{color11}{HTML}{FFFFAF}
+\definecolor{color12}{HTML}{87AFD7}
+\definecolor{color13}{HTML}{8787AF}
+\definecolor{color14}{HTML}{5FAFAF}
+\definecolor{color15}{HTML}{FFFFFF}
+\definecolor{colorfg}{HTML}{BCBCBC}
+\definecolor{colorbg}{HTML}{262626}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Habamax colorscheme (https://github.com/habamax/vim-habamax)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\definecolor{brightCyan}{HTML}{87AFAF}
+\definecolor{cyan}{HTML}{5F8787}
+\definecolor{darkCyan}{HTML}{1F3F5F}
+\definecolor{pink}{HTML}{D75F87}
+\definecolor{red}{HTML}{D75F5F}
+\definecolor{darkRed}{HTML}{AF5F5F}
+\definecolor{brightGreen}{HTML}{5FF75F}
+\definecolor{green}{HTML}{87D787}
+\definecolor{darkGreen}{HTML}{5FAF5F}
+\definecolor{blue}{HTML}{5fafd7}
+\definecolor{darkBlue}{HTML}{5F87AF}
+\definecolor{brightYellow}{HTML}{ffaf5f}
+\definecolor{yellow}{HTML}{d7af87}
+\definecolor{darkYellow}{HTML}{af875f}
+\definecolor{brightMagenta}{HTML}{ff00af}
+\definecolor{magenta}{HTML}{d787d7}
+\definecolor{darkMagenta}{HTML}{af87af}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Custom commands
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+%\usepackage{soul}                 % Character spacing
+%\sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}
+%\sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}
+%\newcommand{\allcaps}[1]{\MakeUppercase{\allcapsspacing{#1}}}%   
+%\newcommand{\smallcaps}[1]{\MakeLowercase{\textsc{\lowsmallcapsspacing{#1}}}}
+\newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelSlutt}{\end{enumerate}}
+\newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Memoir specific settings
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\counterwithout{section}{chapter}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Package settings
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\hypersetup{colorlinks=true, urlcolor=pink, filecolor=pink, linkcolor=color0, citecolor=color0, anchorcolor=color0}
+\captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash, labelformat=empty}
+\captionsetup{width=0.8\textwidth}
+\usetikzlibrary{shapes.multipart, shadows, positioning, calc}
+\color{color0}
+\linespread{1.05}
+\setlength{\parindent}{0pt}
+%\setlength{\tabcolsep}{18pt}
+%\renewcommand{\arraystretch}{1.25}
+\newlength{\myeqskip}\setlength{\myeqskip}{2pt}
+\titlespacing*{\section}{0cm}{0.8cm}{0.25cm}
+\titlespacing*{\subsection}{0cm}{0.8cm}{0.5cm}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
+\lstset{literate={æ}{{\ae}}1{Æ}{{\AE}}1{ø}{{\o}}1{Ø}{{\O}}1{å}{{\aa}}1{Å}{{\AA}}1,
+keywordstyle={\bfseries\color{color1}}, 
+commentstyle={\bfseries\color{cyan}},
+basicstyle={\scriptsize\ttfamily\color{color0}}, 
+numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
+aboveskip=1cm,belowskip=1cm,columns=fixed,
+breaklines=true,breakatwhitespace=false,keepspaces=true,
+showspaces=false,showstringspaces=false,tabsize=4,
+captionpos=b,inputencoding=utf8,extendedchars=true}
+\tikzstyle{every pic} = [draw=color8]
+\tikzstyle{every edge} = [semithick, draw=color8]
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Set title / author
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\title{DAT000 \textendash \ Obligatorisk innlevering xxx}
+\author{\normalsize Gruppemedlemmer: \\ Stephen Neba Fuh, Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen}
+\date{}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Document start and title page
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{document}
+\maketitle
+\input{dummy.tex}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+\end{document}
