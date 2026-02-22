@@ -2,38 +2,111 @@
 
 \section{Lorem ipsum dolor sit amet}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices.  Phasellus eu tellus sit amet tortor gravida placerat. Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. %Curabitur auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissim rutrum.
+Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912#463912}}. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices.  Phasellus eu tellus sit amet tortor gravida placerat.
+\marginnote{
+    \begin{tikzpicture}[scale=0.5]
+  \node {A}
+    child { node {1} }
+    child { node {2} }
+    child { node {3} }
+    child { node {4} }
+    child { node {5} }
+  ;
+\end{tikzpicture}
+\vspace{0.1cm}
+\par \scshape\MakeLowercase{Note:} \normalfont Mauris pulvinar placerat varius. Ut eu semper nulla, eu pharetra ex.
+}
+Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. %Curabitur auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissim rutrum.
 
 \vspace{1cm}
 
+\begin{center}
 \begin{tabular}{lcccccl}\toprule
 & \multicolumn{3}{c}{$abc$} & \multicolumn{3}{c}{$def$}
 \\\cmidrule(lr){2-4}\cmidrule(lr){5-7}
          & $mv$   & Rel.~err & Time  & $mv$    & Rel.~err & Time\\\midrule
 a        & 11034  & 1.3e-7   & 3.9   & 15846   & 2.7e-11  & 5.6 \\
 b        & 21952  & 1.3e-7   & 6.2   & 31516   & 2.7e-11  & 8.8 \\
-c        & 15883  & 5.2e-8   & 7.1   & 32023   & 1.1e-11  & 1.4e1\\
-d        & 11180  & 8.0e-9   & 4.3   & 17348   & 1.5e-11  & 6.6 \\\bottomrule
+c        & 15883  & 5.2e-8   & 7.1   & 32023   & 1.1e-11  & 1.4e1\\\bottomrule
 \end{tabular}
+\end{center}
 
 \vspace{1cm}
 
 \subsection{Morbi vel justo vitae lacus tincidunt ultrices}
 
 Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus:
+\marginnote{\scshape\MakeLowercase{Note:} \normalfont Maecenas semper, magna in suscipit maximus, diam libero ultricies neque, eget placerat elit ante ut diam. Aenean a lacus at elit venenatis iaculis sit amet non est. Nam vel ullamcorper nisi. Vivamus lacinia quis quam quis posuere. Proin vel posuere lacus, eu rhoncus tortor. Nullam vel felis quis massa lacinia laoreet. Sed eget lacinia tellus.}
 
 \begin{enumerate}
+\item In hac habitasse platea dictumst;
 \item In hac habitasse platea dictumst;
 \item Nunc elementum fermentum wisi.
 \end{enumerate}
 
 \noindent\textit{Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.} % Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.}
 
-\begin{quote}
-\textcolor{gray}{\textsf{Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia.}}
-\end{quote}
+\newpage
 
+\section{Sample page of source code}
 
+\begin{lstlisting}[language=Java]
+private static int s(int n) {
+    return n == 1 ? 1 : s(n-1) + n;
+}
+
+private static int sAntKall(int n) {
+    return n == 1 ? 1 : sAntKall(n-1) + 1;
+}
+
+public static void main(String[] args) {
+    System.out.printf("S_n = S_{n-1} + n, S_1 = 1%nS_{100} = %d%nS_{100} gjennomfører %d kall på s(n) funksjonen.%nn = 100 -> 100 funksjonskall.%nDette kan uttrykkes som O(n) i O-notasjon.%n", s(100), sAntKall(100));
+}
+
+/*
+Dette gir resultatet:
+    S_n = S_{n-1} + n, S_1 = 1
+    S_{100} = 5050
+    S_{100} gjennomfører 100 kall på s(n) funksjonen.
+    n = 100 -> 100 funksjonskall.
+    Dette kan uttrykkes som O(n) i O-notasjon.
+*/
+\end{lstlisting}
+
+\vspace*{20pt}
+
+\newcommand{\abc}{abcdefghijklmnopqrstuvwxyz}
+\newcommand{\ABC}{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+\newcommand{\alphabeta}{\alpha\beta\gamma\delta\epsilon\varepsilon\zeta\eta\theta\vartheta\iota\kappa\varkappa\lambda\mu\nu\xi o\pi\varpi\rho\varrho\sigma\varsigma\tau\upsilon\phi\varphi\chi\psi\omega}
+\newcommand{\AlphaBeta}{\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
+
+\small
+
+\noindent$01234567890$
+
+\noindent$\abc$
+
+\noindent$\ABC$
+
+\noindent$\alphabeta$
+
+\noindent$\AlphaBeta$
+
+\noindent$\ell\wp\aleph\infty\propto\emptyset\nabla\partial\mho\imath\jmath\hslash\eth$
+
+\noindent$\mathrm{A} \Lambda \Delta \nabla \mathrm{B C D} \Sigma \mathrm{E F} \Gamma \mathrm{G H I J K L M N O} \Theta \Omega \mho \mathrm{P} \Phi \Pi \Xi \mathrm{Q R S T U V W X Y} \Upsilon \Psi \mathrm{Z} $ % $ \quad 1234567890 $
+
+\noindent$\mathit{A \Lambda \Delta B C D E F \Gamma G H I J K L M N O \Theta \Omega P \Phi \Pi \Xi Q R S T U V W X Y \Upsilon \Psi Z }$
+
+% don't allow overfull boxes
+% {\par \tolerance=0 \emergencystretch=100em $a\alpha b \beta c \partial d \delta e \epsilon \varepsilon f \zeta \xi g \gamma h \hbar \hslash \iota i \imath j \jmath k \kappa \varkappa l \ell \lambda m n \eta \theta \vartheta o \sigma \varsigma \phi \varphi \wp p \rho \varrho q r s t \tau \pi u \mu \nu v \upsilon w \omega \varpi x \chi y \psi z$ \linebreak[3] $\infty \propto \emptyset \varnothing \mathrm{d}\eth \backepsilon$\par}
+
+\noindent$\mathbb{\ABC}$
+
+\noindent$\mathcal{\ABC}$
+
+\noindent$\bm{\ABC}$
 
 \newpage
 
@@ -92,38 +165,4 @@ Let $f$ be analytic in the region $G$ except for the isolated singularities $a_1
 \[
 \max\{|f(z)|:z\in G^-\}=\max \{|f(z)|:z\in \partial G \}.
 \]
-
-\vspace*{20pt}
-
-\newcommand{\abc}{abcdefghijklmnopqrstuvwxyz}
-\newcommand{\ABC}{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
-\newcommand{\alphabeta}{\alpha\beta\gamma\delta\epsilon\varepsilon\zeta\eta\theta\vartheta\iota\kappa\varkappa\lambda\mu\nu\xi o\pi\varpi\rho\varrho\sigma\varsigma\tau\upsilon\phi\varphi\chi\psi\omega}
-\newcommand{\AlphaBeta}{\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
-
-\small
-
-\noindent$01234567890$
-
-\noindent$\abc$
-
-\noindent$\ABC$
-
-\noindent$\alphabeta$
-
-\noindent$\AlphaBeta$
-
-\noindent$\ell\wp\aleph\infty\propto\emptyset\nabla\partial\mho\imath\jmath\hslash\eth$
-
-\noindent$\mathrm{A} \Lambda \Delta \nabla \mathrm{B C D} \Sigma \mathrm{E F} \Gamma \mathrm{G H I J K L M N O} \Theta \Omega \mho \mathrm{P} \Phi \Pi \Xi \mathrm{Q R S T U V W X Y} \Upsilon \Psi \mathrm{Z} $ % $ \quad 1234567890 $
-
-\noindent$\mathit{A \Lambda \Delta B C D E F \Gamma G H I J K L M N O \Theta \Omega P \Phi \Pi \Xi Q R S T U V W X Y \Upsilon \Psi Z }$
-
-% don't allow overfull boxes
-% {\par \tolerance=0 \emergencystretch=100em $a\alpha b \beta c \partial d \delta e \epsilon \varepsilon f \zeta \xi g \gamma h \hbar \hslash \iota i \imath j \jmath k \kappa \varkappa l \ell \lambda m n \eta \theta \vartheta o \sigma \varsigma \phi \varphi \wp p \rho \varrho q r s t \tau \pi u \mu \nu v \upsilon w \omega \varpi x \chi y \psi z$ \linebreak[3] $\infty \propto \emptyset \varnothing \mathrm{d}\eth \backepsilon$\par}
-
-% \noindent$\mathbb{\ABC}$
-
-% \noindent$\mathcal{\ABC}$
-
-% \noindent$\bm{\ABC}$
 

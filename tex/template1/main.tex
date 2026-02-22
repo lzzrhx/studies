@@ -2,9 +2,10 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Core setup
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-%\documentclass[10pt,a4paper]{article}
-\documentclass[10pt,a4paper,article,oneside]{memoir}
-\usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm]{geometry}
+\documentclass[10pt,a4paper]{article}
+%\documentclass[10pt,a4paper,article,oneside]{memoir}
+\usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm,footnotesep=1cm]{geometry}
+\usepackage{etoolbox}             % If statements and boolean values
 \usepackage[norsk]{babel}         % Support for other languages than english
 \usepackage[utf8]{inputenc}       % Input encoding
 \usepackage[T1]{fontenc}          % Font encoding
@@ -17,7 +18,8 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Font packages
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\usepackage[osf]{newpxtext}       % Main (serif/sans-serif) font
+%\usepackage[osf]{newpxtext}       % Main (serif/sans-serif) font
+\usepackage[nomath,nott,noamsmath,notextcomp,oldstylenums,light]{kpfonts} % Main (serif/sans-serif) font
 \usepackage{newpxmath}            % Math font
 \usepackage[scaled]{beramono}     % Monospace font
 \usepackage{iftex}
@@ -43,13 +45,15 @@
 \usepackage{enumitem}             % Lists
 \usepackage{listings}             % Insert code
 \usepackage{tikz}                 % Drawing of graphics
-%\usepackage{graphicx}             % Insert images
+\usepackage{graphicx}             % Insert images
+\usepackage{booktabs}             % Nicer looking tables
+\usepackage{fancyhdr}             % Header / footer
+\usepackage{lastpage}             % Last page number
+\usepackage{marginnote}           % Margin notes
 %\usepackage{pdfpages}             % Insert pdf pages
 %\usepackage{biblatex}             % Bibliography
-\usepackage{booktabs}             % Nicer looking tables
 %\usepackage{gensymb}              % Degree symbol
 %\usepackage{verbatim}             % Comments
-%\usepackage{fancyhdr}             % Header / footer
 %\usepackage{units}
 %\usapackage{siunitx}
 %\usepackage{cleverref}
@@ -116,18 +120,23 @@
 \newcommand\Z{\ensuremath{\mathbb{Z}}}
 \newcommand\Q{\ensuremath{\mathbb{Q}}}
 \newcommand\C{\ensuremath{\mathbb{C}}}
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Memoir specific settings
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\counterwithout{section}{chapter}
+\newcommand{\threestars}{\begin{center}\par * * * \end{center}}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Package settings
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\geometry{right=5cm,marginparsep=1cm,parginparwidth=4cm}
+\providetoggle{margin}
+\settoggle{margin}{true}
+\iftoggle{margin}{
+    \geometry{right=5cm, marginparsep=0.8cm, marginparwidth=3.4cm}
+    \lstset{xrightmargin=-2.5cm}
+}{}
+\renewcommand*{\marginfont}{\footnotesize}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\normalsize\scshape\MakeLowercase{\emne \ \ \textendash \ \ \tittel}}
+\fancyfoot[C]{\normalsize{\thepage} \scriptsize{/} \normalsize{\pageref{LastPage}}}
+\fancypagestyle{first}{\fancyhead[L,C,R]{}\renewcommand{\headrulewidth}{0pt}}
 \hypersetup{colorlinks=true, urlcolor=pink, filecolor=pink, linkcolor=color0, citecolor=color0, anchorcolor=color0}
 \captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash, labelformat=empty}
 \captionsetup{width=0.8\textwidth}
@@ -138,10 +147,8 @@
 %\setlength{\tabcolsep}{18pt}
 %\renewcommand{\arraystretch}{1.25}
 \newlength{\myeqskip}\setlength{\myeqskip}{2pt}
-\titlespacing*{\section}{0cm}{0.8cm}{0.25cm}
-\titlespacing*{\subsection}{0cm}{0.8cm}{0.5cm}
-%\titleformat{\section}{\normalfont\Large\bfseries\scshape\MakeLowercase}{\thesection \ \ \textendash \ \ }{0em}{}
-\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.75em}{}
+\titlespacing*{\section}{0cm}{0.8ex}{1.2ex}
+\titleformat{\section}{\normalfont\large\bfseries\scshape\MakeLowercase}{\thesection \ \ \textendash \ \ }{0em}{}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
 \lstset{literate={æ}{{\ae}}1{Æ}{{\AE}}1{ø}{{\o}}1{Ø}{{\O}}1{å}{{\aa}}1{Å}{{\AA}}1,
@@ -152,27 +159,41 @@ numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
 aboveskip=0.1cm,belowskip=1cm,columns=fixed,
 breaklines=true,breakatwhitespace=false,keepspaces=true,
 showspaces=false,showstringspaces=false,tabsize=4,
-linewidth=\linewidth,
 captionpos=b,inputencoding=utf8,extendedchars=true}
-\tikzstyle{every pic} = [draw=color8]
-\tikzstyle{every edge} = [semithick, draw=color8]
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Set course / title / author
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newcommand{\emne}{DAT102}
+\newcommand{\tittel}{Obligatorisk innlevering 1}
+\newcommand{\gruppemedlemmer}{Stephen Neba Fuh, \ Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, \ Casper Eide Özdemir-Børretzen}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Document start and title page
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \begin{document}
-\begin{titlepage}
+%\begin{titlepage}
+\thispagestyle{first}
 \vspace*{0.8cm}
-\LARGE\textbf{DAT123 \textendash \ Obligatorisk innlevering 123}
+\par\includegraphics[scale=0.035]{hvl.png}
+\vspace{0.15cm}
+\par\normalsize{Institutt for datateknologi, elektroteknologi og realfag}
+\vspace{0.30cm}
+\hrule
+\vspace{0.30cm}
+\par\Large\textbf{\emne \ \ $\mid$ \ \ \tittel}
 \vspace{0.25cm}
 \hrule
-\vspace{0.25cm}
-\normalsize{Gruppemedlemmer:}
-\vspace{0.2cm}
-\par\Large{Stephen Neba Fuh, Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, Casper Eide Özdemir-Børretzen}
-\vspace*{0.3cm}
-\end{titlepage}
+\vspace{0.35cm}
+%\par\footnotesize{Gruppemedlemmer:}
+%\vspace{0.1cm}
+\par\normalsize\textbf{\gruppemedlemmer}
+\par\footnotesize{22. februar 2026}
+\vspace*{2cm}
+%\end{titlepage}
+\normalsize
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
