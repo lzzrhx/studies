@@ -3,20 +3,20 @@
 \section{Lorem ipsum dolor sit amet}
 
 Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912#463912}}. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices.  Phasellus eu tellus sit amet tortor gravida placerat.
-\marginnote{
-    \begin{tikzpicture}[scale=0.5]
-  \node {A}
-    child { node {1} }
-    child { node {2} }
-    child { node {3} }
-    child { node {4} }
-    child { node {5} }
-  ;
-\end{tikzpicture}
-\vspace{0.1cm}
-\par \scshape\MakeLowercase{Note:} \normalfont Mauris pulvinar placerat varius. Ut eu semper nulla, eu pharetra ex.
-}
+consectetuer adipiscing elit
+\footnote{Aliquam tempus ipsum urna, sit amet hendrerit neque tempor vel. Integer eu urna euismod, euismod odio sit amet, fermentum dolor. \url{https://ctan.org/pkg/lipsum}}
+\mnFig{\begin{tikzpicture}[scale=0.5]
+\node {A}
+child { node {1} }
+child { node {2} }
+child { node {3} }
+child { node {4} }
+child { node {5} }
+;
+\end{tikzpicture}}
+{Mauris pulvinar placerat varius. Ut eu semper nulla, eu pharetra ex.}
+. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices.  Phasellus eu tellus sit amet tortor gravida placerat.
 Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. %Curabitur auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissim rutrum.
 
 \vspace{1cm}
@@ -37,7 +37,7 @@ c        & 15883  & 5.2e-8   & 7.1   & 32023   & 1.1e-11  & 1.4e1\\\bottomrule
 \subsection{Morbi vel justo vitae lacus tincidunt ultrices}
 
 Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus:
-\marginnote{\scshape\MakeLowercase{Note:} \normalfont Maecenas semper, magna in suscipit maximus, diam libero ultricies neque, eget placerat elit ante ut diam. Aenean a lacus at elit venenatis iaculis sit amet non est. Nam vel ullamcorper nisi. Vivamus lacinia quis quam quis posuere. Proin vel posuere lacus, eu rhoncus tortor. Nullam vel felis quis massa lacinia laoreet. Sed eget lacinia tellus.}
+\mn{Maecenas semper, magna in suscipit maximus, diam libero ultricies neque, eget placerat elit ante ut diam. Aenean a lacus at elit venenatis iaculis sit amet non est. Nam vel ullamcorper nisi. Vivamus lacinia quis quam quis posuere. Proin vel posuere lacus, eu rhoncus tortor. Nullam vel felis quis massa lacinia laoreet. Sed eget lacinia tellus.}
 
 \begin{enumerate}
 \item In hac habitasse platea dictumst;
@@ -51,6 +51,7 @@ Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auct
 
 \section{Sample page of source code}
 
+%\begin{fullwidth}
 \begin{lstlisting}[language=Java]
 private static int s(int n) {
     return n == 1 ? 1 : s(n-1) + n;
@@ -73,6 +74,7 @@ Dette gir resultatet:
     Dette kan uttrykkes som O(n) i O-notasjon.
 */
 \end{lstlisting}
+%\end{fullwidth}
 
 \vspace*{20pt}
 
@@ -101,12 +103,9 @@ Dette gir resultatet:
 
 % don't allow overfull boxes
 % {\par \tolerance=0 \emergencystretch=100em $a\alpha b \beta c \partial d \delta e \epsilon \varepsilon f \zeta \xi g \gamma h \hbar \hslash \iota i \imath j \jmath k \kappa \varkappa l \ell \lambda m n \eta \theta \vartheta o \sigma \varsigma \phi \varphi \wp p \rho \varrho q r s t \tau \pi u \mu \nu v \upsilon w \omega \varpi x \chi y \psi z$ \linebreak[3] $\infty \propto \emptyset \varnothing \mathrm{d}\eth \backepsilon$\par}
-
-\noindent$\mathbb{\ABC}$
-
-\noindent$\mathcal{\ABC}$
-
-\noindent$\bm{\ABC}$
+%\noindent$\mathbb{\ABC}$
+%\noindent$\mathcal{\ABC}$
+%\noindent$\bm{\ABC}$
 
 \newpage
 
@@ -119,26 +118,6 @@ both in text: \( \iiint\limits_{\mathcal{Q}}
 f(x,y,z)\,dx\,dy\,dz \) and
 \(\prod_{\gamma\in\Gamma_{\widetilde{C}}}
 \partial(\widetilde{X}_\gamma)\); and also on display:
-
-\begin{equation}
-\begin{split}
-%%     This line is deliberately long so as to show
-%%     differences in widths; it is a little over the measure
-%%     in article/cmr.
-\iiiint\limits_{\bm{Q}} f(w,x,y,z)\,dw\,dx\,dy\,dz  &\leq
-\oint_{\bm{\partial Q}} f' \left( \max \left\lbrace
-\frac{\lVert w \rVert}{\lvert w^2 + x^2 \rvert} ;
-\frac{\lVert z \rVert}{\lvert y^2 + z^2 \rvert} ;
-\frac{\lVert w \oplus z \rVert}{\lVert x \oplus y \rVert}
-\right\rbrace\right)
-\\
-&\precapprox \biguplus_{\mathbb{Q} \Subset \bar{\bm{Q}}}
-\left[ f^{\ast} \left(
-    \frac{\left\lmoustache\mathbb{Q}(t)\right\rmoustache}
-         {\sqrt {1 - t^2}}
-    \right)\right]_{t=\alpha}^{t=\vartheta}
-\end{split}
-\end{equation}
 
 For $x$ in the open interval \( \left] -1, 1 \right[ \)
 the infinite sum in Equation~\eqref{eq:binom1} is convergent;
