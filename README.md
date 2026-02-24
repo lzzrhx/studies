@@ -1,4 +1,4 @@
-# Studies
+# Computer science studies
 
 Folders:
 - obsidian: Obsidian vault with notes (.md)

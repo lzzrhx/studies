@@ -2,23 +2,18 @@
 // NOTES:
 ////////////////////////////////////////////////////////////////////////////////
 
-MISC.:
+COURSES:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Search and replace in files                | find ./ -type f -exec sed -i "s/old_string/new_string/g" {} \;
-Vim, Show highlight group of current word  | set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}
-
-
-FONTS:
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-PxPlus_ToshibaSat_8x16.ttf
-PxPlus_IBM_VGA_8x16.ttf
-Px437_NEC_APC3_8x16.ttf
-Px437_FMTowns_re_8x16.ttf
-Px437_EverexME_8x16.ttf
-Px437_DOS-V_re_JPN16.ttf
-Px437_DOS-V_re_ANK16.ttf
-Px437_Compis.ttf
-Px437_Robotron_A7100.ttf
+NES Programming with 6502 Assembly             | https://pikuma.com/courses/nes-game-programming-tutorial
+3D Computer Graphics Programming               | https://pikuma.com/courses/learn-3d-computer-graphics-programming
+PS1 Programming with MIPS Assembly & C         | https://pikuma.com/courses/ps1-programming-mips-assembly-language
+Compilers, Interpreters & Formal Languages     | https://pikuma.com/courses/create-a-programming-language-compiler
+Atari 2600 Programming with 6502 Assembly      | https://pikuma.com/courses/learn-assembly-language-programming-atari-2600-games
+Raycasting Engine Programming                  | https://pikuma.com/courses/raycasting-engine-tutorial-algorithm-javascript
+2D Game Physics Programming                    | https://pikuma.com/courses/game-physics-engine-programming
+C++ Game Engine Programming                    | https://pikuma.com/courses/cpp-2d-game-engine-development
+Master the Lua Scripting Language              | https://pikuma.com/courses/learn-lua-scripting-language-roblox
+Master the Linux Command-Line & Bash Scripting | https://pikuma.com/courses/linux-unix-command-line-bash-shell
 
 
 LINKS:
@@ -64,3 +59,22 @@ Odin, Demo file                         https://odin-lang.org/docs/demo/
 Odin, Overview                          https://odin-lang.org/docs/overview/
 Odin, Library                           https://pkg.odin-lang.org/core/
 Playstation 1                           https://problemkaputt.de/psx-spx.htm
+
+
+FONTS:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+PxPlus_ToshibaSat_8x16.ttf
+PxPlus_IBM_VGA_8x16.ttf
+Px437_NEC_APC3_8x16.ttf
+Px437_FMTowns_re_8x16.ttf
+Px437_EverexME_8x16.ttf
+Px437_DOS-V_re_JPN16.ttf
+Px437_DOS-V_re_ANK16.ttf
+Px437_Compis.ttf
+Px437_Robotron_A7100.ttf
+
+
+MISC.:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Search and replace in files                | find ./ -type f -exec sed -i "s/old_string/new_string/g" {} \;
+Vim, Show highlight group of current word  | set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}

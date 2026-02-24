@@ -15,6 +15,7 @@ Understanding the Odin Programming Language (Karl Zylinski)
 COMPUTER SCIENCE:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Computer Systems: A Programmer's Perpective (Randal Bryant, David O'Hallaron)
+Structure and Interpretation of Computer Programs (Harold Abelson, Gerald Jay Sussman, Julie Sussman)
 Crafting Interpreters (Robert Nystrom)
 Design Patterns: Elements of Reusable Object-Oriented Software (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides)
 Game Programming Patterns (Robert Nystrom)
