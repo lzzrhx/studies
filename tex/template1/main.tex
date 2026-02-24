@@ -31,6 +31,7 @@
 \providetoggle{margin}
 \providetoggle{dark}
 \providetoggle{endnotes}
+\providetoggle{colored}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -41,7 +42,7 @@
 \usepackage{newpxmath}            % Math font
 \usepackage[scaled]{beramono}     % Monospace font
 \ifLuaTeX
-    \setmonofont{PxPlus ToshibaSat 8x16} % Override monospace font
+    \setmonofont{PxPlusToshibaSat8x16.ttf}[AutoFakeBold,AutoFakeSlant]
 \fi
 
 
@@ -85,6 +86,7 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Sett institutt, emne, tittel og forfatter(e)
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newcommand{\fakultet}{Fakultet for teknologi, miljø- og samfunnsvitskap}
 \newcommand{\institutt}{Institutt for datateknologi, elektroteknologi og realfag}
 \newcommand{\emne}{DAT102}
 \newcommand{\tittel}{Obligatorisk innlevering 1}
@@ -97,6 +99,7 @@
 \settoggle{margin}{true}
 \settoggle{dark}{false}
 \settoggle{endnotes}{true}
+\settoggle{colored}{true}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -146,17 +149,29 @@
 \newcommand{\hvlPath}{hvl-black.png}
 \iftoggle{dark}{
     \colorlet{fgColor}{colorfg}
-    \colorlet{bgColor}{colorbg}
+    \colorlet{bgColor}{color0}
     \renewcommand{\hvlPath}{hvl-white.png}
 }{}
 \colorlet{linkColor}{fgColor}
 \pagecolor{bgColor}
 \color{fgColor}
+\newcommand{\colorIgnore}[1]{}
+\newcommand{\textcolorIgnore}[2]{#2}
+\iftoggle{colored}{}{
+    \let\textcolor=\textcolorIgnore
+    \let\color=\colorIgnore
+}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Egendefinerte kommandoer
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newcommand{\acshape}{\lsstyle\scshape\MakeLowercase}
+\newcommand{\textac}[1]{\textls{\textsc{\MakeLowercase{#1}}}}
+\newcommand{\mn}[1]{\marginnote{\mnText{#1}}}
+\newcommand{\mnFig}[2]{\marginnote{#1\vspace{0.1cm}\par\mnText{#2}}}
+\newcommand{\mnText}[1]{\textac{\textbf{\textcolor{color1}{Note:}}} #1}
+\newcommand{\threestars}{\begin{center}\par * * * \end{center}}
 \newcommand\N{\ensuremath{\mathbb{N}}}
 \newcommand\R{\ensuremath{\mathbb{R}}}
 \newcommand\Z{\ensuremath{\mathbb{Z}}}
@@ -166,41 +181,40 @@
 \newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
 \newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
-\newcommand{\threestars}{\begin{center}\par * * * \end{center}}
-\newcommand{\mn}[1]{\marginnote{\mnText{#1}}}
-\newcommand{\mnFig}[2]{\marginnote{#1\vspace{0.1cm}\par\mnText{#2}}}
-\newcommand{\mnText}[1]{\bfseries\scshape\MakeLowercase{\textcolor{color1}{Note:}} \normalfont{#1}}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Oppsett av pakker/instillinger
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Sluttnote-oppsett
-\microtypesetup{nopatch=footnote}
-\setenotez{list-name=Sluttnoter,backref=true,mark-format=\bfseries,}
+\microtypesetup{nopatch=footnote,letterspace=50}
+\setenotez{list-name=Sluttnoter,backref=true,mark-format=\bfseries,list-heading={\section*{#1}}}
 \iftoggle{endnotes}{ \let\footnote=\endnote }{}
 % Marginoppsett
 \iftoggle{margin}{
     \geometry{right=5cm, marginparsep=0.8cm, marginparwidth=3.4cm}
-    %\lstset{xrightmargin=-2.5cm}
     \fullwidthsetup{width=\linewidth+2.5cm}
 }{}
 \renewcommand*{\marginfont}{\footnotesize}
 % Oppsett av topptekst og bunntekst
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\normalsize\scshape\MakeLowercase{\emne \ \ \textendash \ \ \tittel}}
+\fancyhead[L]{\normalsize\textac{\emne \ \ \textendash \ \ \tittel}}
 \fancyfoot[C]{\footnotesize\textbf{\thepage} \tiny\textbf{ / } \footnotesize\textbf{\pageref*{LastPage}}}
-%\fancyfoot[C]{\nicefrac{\thepage \ }{\pageref*{LastPage}}}
 \fancypagestyle{first}{\fancyhead[L,C,R]{}\renewcommand{\headrulewidth}{0pt}}
 % Titteloppsett
 \titlespacing*{\section}{0cm}{0.8ex}{1.2ex}
-\titleformat{\section}{\normalfont\large\bfseries\scshape\MakeLowercase}{\thesection \ \ \textendash \ \ }{0em}{}
+%\titlespacing*{\section} {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+%\titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+%\titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+\titleformat{\section}{\normalfont\large\bfseries\acshape}{\thesection \ \ \textendash \ \ }{0em}{}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
 % Oppsett av listings (visning av kildekode)
 \lstset{literate={æ}{{\ae}}1{Æ}{{\AE}}1{ø}{{\o}}1{Ø}{{\O}}1{å}{{\aa}}1{Å}{{\AA}}1,
-keywordstyle={\bfseries\color{color1}}, 
-commentstyle={\bfseries\color{cyan}},
+keywordstyle={\color{color1}}, 
+commentstyle={\color{cyan}},
 basicstyle={\scriptsize\ttfamily}, 
 numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
 aboveskip=0.1cm,belowskip=1cm,columns=fixed,
@@ -210,10 +224,11 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 % Annet oppsett
 \linespread{1.05}
 \setlength{\parindent}{0pt}
-\hypersetup{colorlinks=true, urlcolor=urlColor, filecolor=urlColor, linkcolor=linkColor, citecolor=linkColor, anchorcolor=linkColor
-            pdfauthor={Your Name},
-            pdftitle={\emne - \tittel}}
+\hypersetup{colorlinks=true, urlcolor=urlColor, filecolor=urlColor, linkcolor=linkColor, citecolor=linkColor, anchorcolor=linkColor, pdfauthor={\forfatter}, pdftitle={\emne - \tittel}}
 \captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash}
+%\pretolerance = 3000
+%\tolerance = 6000   \hbadness = \tolerance
+%\setlength{\parskip}{0cm plus 1mm}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -228,18 +243,19 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 \vspace*{0.8cm}
 \par\includegraphics[scale=0.035]{\hvlPath}
 \vspace{0.15cm}
-\par\normalsize{\institutt}
+%\par\normalsize \fakultet
+\par\normalsize \institutt
 \vspace{0.30cm}
 \hrule
 \vspace{0.30cm}
-\par\Large\textbf{\emne \ \ $\mid$ \ \ \tittel}
+\par\Large \textbf{\emne \ \ $\mid$ \ \ \tittel}
 \vspace{0.25cm}
 \hrule
 \vspace{0.35cm}
 %\par\footnotesize{Gruppemedlemmer:}
 %\vspace{0.1cm}
-\par\normalsize\textbf{\forfatter}
-\par\footnotesize{22. februar 2026}
+\par\normalsize \textbf{\forfatter}
+\par\footnotesize 22. februar 2026
 \vspace*{2cm}
 \normalsize
 
