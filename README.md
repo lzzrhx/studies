@@ -1,6 +1,8 @@
 # Studies
 
 Folders:
-- 00-forkurs: Forkurs for ingeniørutdanning
-- 01-dataing: Dataingeniør (Bachelor)
-- obsidian: Obsidian vault with notes
+- obsidian: Obsidian vault with notes (.md)
+- p0-forkurs: Forkurs for ingeniørutdanning
+- p1-dataing: Dataingeniør (Bachelor)
+- tex: $\LaTeX$ templates
+- txt: Notes (.txt)

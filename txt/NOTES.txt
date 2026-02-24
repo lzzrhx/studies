@@ -1,0 +1,66 @@
+////////////////////////////////////////////////////////////////////////////////
+// NOTES:
+////////////////////////////////////////////////////////////////////////////////
+
+MISC.:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Search and replace in files                | find ./ -type f -exec sed -i "s/old_string/new_string/g" {} \;
+Vim, Show highlight group of current word  | set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}
+
+
+FONTS:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+PxPlus_ToshibaSat_8x16.ttf
+PxPlus_IBM_VGA_8x16.ttf
+Px437_NEC_APC3_8x16.ttf
+Px437_FMTowns_re_8x16.ttf
+Px437_EverexME_8x16.ttf
+Px437_DOS-V_re_JPN16.ttf
+Px437_DOS-V_re_ANK16.ttf
+Px437_Compis.ttf
+Px437_Robotron_A7100.ttf
+
+
+LINKS:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+https://shadowlibraries.github.io/
+https://open-slum.org/
+https://annas-archive.org/
+https://academictorrents.com/
+http://matrixmultiplication.xyz/
+https://immersivemath.com/
+https://int10h.org/oldschool-pc-fonts/
+https://filiplivancic.com/projects/2025-03-15-arch-nvidia-drivers/
+https://マリウス.com/command-line/
+https://www.uclahealth.org/programs/marc/free-guided-meditations/guided-meditations
+https://discuss.32bit.cafe/wiki/resources
+https://goatcounter.com
+https://www.quantamagazine.org/
+https://techwontsave.us/
+
+
+VIM:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Vimcasts                                            http://vimcasts.org/
+VimTricks, Vim Spell Check                          https://vimtricks.com/p/vim-spell-check/
+Vim Tutorial for Beginners                          https://youtu.be/RZ4p-saaQkc
+Take math notes using LaTeX and Vim                 https://castel.dev/post/lecture-notes-1/
+Getting started with the VimTeX plugin              https://ejmastnak.com/tutorials/vim-latex/vimtex/
+Vim help files                                      https://vimhelp.org/
+nvim, lsp-config server list                        https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+The Only Video You Need to Get Started with Neovim  https://youtu.be/m8C0Cq9Uv9o
+Neovim Tips to Accelerate Your Productivity         https://youtu.be/LaIa1tQFOSY
+
+
+DOCUMENTATION:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+PEP 8: Style Guide for Python Code      https://peps.python.org/pep-0008/
+C Reference Card (ANSI)                 https://users.ece.utexas.edu/~adnan/c-refcard.pdf
+PICO-8 Manual                           https://www.lexaloffle.com/dl/docs/pico-8_manual.html
+PICO-8 Cheat Sheet                      https://f000.backblazeb2.com/file/bbs-media/13822/47_PICO-8%20Cheat%20Sheet%20(4k).png
+Picotron Manual                         https://www.lexaloffle.com/dl/docs/picotron_manual.html
+raylib cheatsheet                       https://www.raylib.com/cheatsheet/cheatsheet.html
+Odin, Demo file                         https://odin-lang.org/docs/demo/
+Odin, Overview                          https://odin-lang.org/docs/overview/
+Odin, Library                           https://pkg.odin-lang.org/core/
+Playstation 1                           https://problemkaputt.de/psx-spx.htm
