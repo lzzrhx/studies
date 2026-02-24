@@ -1,0 +1,149 @@
+\section*{Introduksjon}
+En forening har behov for et system for å administrere medlemmer.
+Det er tenkt å ta i bruk en SQL database for å bygge dette systemet.
+Foreningen har flere lokallag, og alle medlemmer er med i nøyaktig ett lokallag.
+Lokallag har navn, leder (som også er medlem), samt postnummer/poststed og gatenavn/husnummer for møtelokale.
+Et medlem har medlemsnummer, fornavn, etternavn, telefonnummer, e-postadresse, postnummer/poststed, gatenavn/husnummer, og medlemsstatus (aktiv/utmeldt).
+For hvert medlem skal det i tillegg loggføres om medlemsavgift hare blitt betalt for hvert år.\\
+
+Oppgaven vi skal ta for oss er å tegne en logisk (fullstendig) ER-modell i kråkefot-notasjon for en SQL database som fyller kravene spesifisert i problemstillingen, samt å vise at modellen tilfredsstiller 3. normalform.
+Tegningen skal inneholde primærnøkler, fremmednøkler, datatyper, min/maks kardinalitet, sterke/svake entitetstyper og eksistensavhengighet/uavhengighet.
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\section*{Metode}
+Vi planlegger å starte med en felles diskusjon for hvordan vi ser for oss databasedesignet, 
+for så å tegne en grov skisse av ER-modellen på whiteboard. Denne whiteboard-skissen tar vi bilde av for senere bruk.
+Videre vil vi prøve å ta i bruk LaTeX-pakken TikZ for å utarbeide vår egen måte å tegne ER-diagram i kråkefot-notasjon på som tilfredsstiller alle oppgavekravene.
+Vi ser for oss å bruke kode publisert på LaTeX Stack Exchange av AndréC\footnote{AndréC. (2018, 9. desember). \textit{How to create an ER diagram using tikzpicture environment}. LaTex Stack Exchange. \url{https://tex.stackexchange.com/questions/462914/how-to-create-an-er-diagram-using-tikzpicture-environment/463912}} som utganspunkt for vår implementasjon.
+Etter at vi har utarbeidet en egnet metode for ER-diagram tegning, blir neste steg å overføre whiteboard tegningen fra tidligere til LaTeX.
+Når den endelige tegningen er ferdigstilt blir siste steg å skrive SQL spørringer for oppretting av databasen, samt å ta i bruk LaTeX-pakken listings for å legge ved SQL spørringene i den ferdige oppgaven.
+SQL spørringene tester vi underveis ved bruk av det konsollbaserte programmet psql og en skybasert PostgreSQL database.
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\section*{Resultat}
+I designetfasen kom vi frem til å gå for fire tabeller: Poststed, Medlem, Lokallag og Medlemsavgift. 
+Med PostNr som primærnøkkel i Poststed-tabellen, MedlemsNr som som primærnøkkel i Medlemstabellen, og LagNavn som primærnøkkel i Lokallag-tabellen.
+Når det gjelder implementasjon av loggføring av medlemsavgift bestemte vi oss for å ha en egen tabell, der det lagres MedlemsNr og År når det registreres betaling av medlemsavgift. 
+På den måten kan man sjekke om en medlemsavgift er betalt av en gitt medlem for et gitt år ved å sjekke at MedlemsNr og År eksisterer i tabellen.
+Etter å ha tegnet en grov skisse av databasen gikk vi i gang med LaTeX implementasjonen. 
+Vi startet med koden fra LaTeX Stack Exchange og konsulterte PGF/TikZ manualen for å oppnå ønskede endringer.
+Etter at vi hadde oppnådd et ønskelig resultat gikk det fort å gjenskape whiteboard-skissen vi hadde fra tidligere. 
+Videre skrev vi SQL spørringer som vi testet på PostgreSQL serveren, før vi til slutt la inn de endelige spørringene i oppgavedokumentet.
+
+\newpage
+\begin{center}
+
+Den ferdige tegningen av ER-digrammet med tilhørende PostgreSQL spørringer:
+
+\vspace{0.75cm}
+\begin{tikzpicture}
+
+% Medlem
+\pic {entity={m}{Medlem}{
+CHAR(5)     & MedlemsNr (\textcolor{color1}{PK})\\
+VARCHAR(35) & LagNavn (\textcolor{color1}{FK})\\
+BOOLEAN     & Aktiv \\
+VARCHAR(35) & Fornavn \\
+VARCHAR(35) & Etternavn \\
+VARCHAR(25) & Telefonnummer \\
+VARCHAR(50) & Epost \\
+CHAR(4)     & PostNr (\textcolor{color1}{FK})\\
+VARCHAR(50) & Adresse
+}};
+
+% Lag
+\pic[right = 10em of m] {entity={l}{Lokallag}{
+VARCHAR(35) & LagNavn (\textcolor{color1}{PK})\\
+CHAR(5)     & LederNr (\textcolor{color1}{FK})\\
+CHAR(4)     & PostNr (\textcolor{color1}{FK})\\
+VARCHAR(50) & Adresse
+}};
+
+% Medlemsavgift
+\pic[below = 10em of $(m)!0.5!(l)$] {weak entity={a}{Medlemsavgift}{
+CHAR(5)     & MedlemsNr (\textcolor{color1}{PK, FK})\\
+DATE        & Aar (\textcolor{color1}{PK})
+}};
+
+% Poststed
+\pic[above = 10em of $(m)!0.5!(l)$] {entity={p}{Poststed}{
+CHAR(4)     & PostNr (\textcolor{color1}{PK})\\
+VARCHAR(35) & PostSted
+}};
+
+% Forhold
+\draw[oone - mone] (m) edge  (l);
+\draw[omany - mone] (a.north) |- ($(a.north) + (0,1)$) -| (m.south);
+\draw[mone - omany, loosely dashed] (p.south) |- ($(p.south) - (0,1)$) -|  (l.north);
+\draw[mone - omany, loosely dashed] (p.south) |- ($(p.south) - (0,1)$) -|  (m.north);
+
+% Forklaring
+%\draw (m) -- (l) node [midway, fill=white, font=\scriptsize\ttfamily] {tilhører}
+\end{tikzpicture}
+\vspace{0.75cm}
+
+\begin{tabular}{c}
+\begin{lstlisting}[language=SQL]
+-- Slett tabeller hvis de allerede eksisterer
+DROP TABLE IF EXISTS Poststed, Lokallag, Medlem, Medlemsavgift;
+
+-- Oppretting av tabellen Poststed
+CREATE TABLE Poststed(
+    PostNr        CHAR(4)     PRIMARY KEY,
+    PostSted      VARCHAR(35) NOT NULL
+);
+
+-- Oppretting av tabellen Lokallag
+CREATE TABLE Lokallag(
+    LagNavn       VARCHAR(35) PRIMARY KEY,
+    LederNr       CHAR(5),
+    PostNr        CHAR(4),
+    Adresse       VARCHAR(50)
+);
+
+-- Oppretting av tabellen Medlem
+CREATE TABLE Medlem(
+    MedlemsNr     CHAR(5)     PRIMARY KEY,
+    LagNavn       VARCHAR(35) NOT NULL,
+    Aktiv         BOOLEAN     NOT NULL,
+    Fornavn       VARCHAR(35) NOT NULL,
+    Etternavn     VARCHAR(35) NOT NULL,
+    Telefonnummer VARCHAR(25),
+    Epost         VARCHAR(50),
+    PostNr        CHAR(4),
+    Adresse       VARCHAR(50)
+);
+
+-- Oppretting av tabellen Medlemsavgift
+CREATE TABLE Medlemsavgift(
+    MedlemsNr     CHAR(5),
+    Aar           DATE,
+    PRIMARY KEY(MedlemsNr, Aar)
+);
+
+-- Oppsett av fremmednøkler
+ALTER TABLE Lokallag
+    ADD CONSTRAINT FK_LederNr FOREIGN KEY(LederNr) REFERENCES Medlem(MedlemsNr),
+    ADD CONSTRAINT FK_PostNr  FOREIGN KEY(PostNr)  REFERENCES poststed(PostNr);
+ALTER TABLE Medlem
+    ADD CONSTRAINT FK_LagNavn FOREIGN KEY(LagNavn) REFERENCES Lokallag(LagNavn),
+    ADD CONSTRAINT FK_PostNr  FOREIGN KEY(PostNr)  REFERENCES poststed(PostNr);
+\end{lstlisting}
+\end{tabular}
+\end{center}
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\section*{Diskusjon}
+Tidlig i designfasen støttet vi på flere fallgruver og måtte ta en rekke design-beslutninger, slik som valg av primær- og fremmednøkler, og bestemmelse for hvilke attributter som tillates å være tomme.
+Gjennom prosessen med å jobbe med denne oppgaven har vi fått dypere kjennskap til hvordan et ER-diagram i kråkefot-notasjon kan brukes for å beskrive en database, i tillegg til at vi har fått øvelse i bruk av LaTeX og grafikkpakken TikZ.\\
+
+Som del av oppgaven skal det vises at modellen tilfredsstiller tredje normalform.
+Den er på første normalform ettersom alle tabeller har primærnøkler og kun inneholder atributter som holder atomære verdier.
+Den er på andre normalform siden den ikke inneholder partielle avhengigheter (feilplasserte attributter som ikke tilhører primærnøkkelen).
+Konkluderende kan det konstateres at modellen også er på tredje normalform ettersom den ikke inneholder transitive avhengigheter (feilplasserte attributter som er avhengig av andre attributter enn de som er del av primærnøkkelen).\\

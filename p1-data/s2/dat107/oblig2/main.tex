@@ -3,7 +3,6 @@
 % Dokumentinstillinger og viktige pakker
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \documentclass[10pt,a4paper,norsk]{article}
-%\documentclass[10pt,a4paper,article,oneside]{memoir}
 \usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm,footnotesep=1cm]{geometry}
 \usepackage{etoolbox}             % If statements and boolean values
 \usepackage{iftex}                % Conditional statements based on current latex engine
@@ -13,16 +12,6 @@
 \usepackage{textcomp}             % Add extra symbols
 \usepackage{mathtools}            % Improvements for math
 \usepackage{amssymb}              % Extended math symbols
-
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-% Selektive pakker for luatex / pdftex
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\ifLuaTeX
-    \usepackage{fontspec}         % Custom fonts
-\else
-    \usepackage[utf8]{inputenc}   % Input encoding
-\fi
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -37,13 +26,12 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Font oppsett
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-%\usepackage[osf]{newpxtext}       % Main (serif/sans-serif) font
-\usepackage[nomath,oldstylenums,light]{kpfonts} % Main (serif/sans-serif) font
+\usepackage[nomath, oldstylenums, light]{kpfonts} % Main (serif/sans-serif) font
 \usepackage{newpxmath}            % Math font
 \usepackage[scaled]{beramono}     % Monospace font
-\ifLuaTeX
-    \setmonofont{PxPlusToshibaSat8x16.ttf}[AutoFakeBold,AutoFakeSlant]
-\fi
+% Krever LuaTeX
+\usepackage{fontspec}             % Custom fonts
+\setmonofont{PxPlus ToshibaSat 8x16}[AutoFakeBold,AutoFakeSlant] % Override monospace font
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -88,19 +76,25 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \newcommand{\fakultet}{Fakultet for teknologi, miljø- og samfunnsvitskap}
 \newcommand{\institutt}{Institutt for datateknologi, elektroteknologi og realfag}
-\newcommand{\emne}{DAT102}
-\newcommand{\tittel}{Obligatorisk innlevering 1}
+\newcommand{\emne}{DAT107}
+\newcommand{\tittel}{Obligatorisk innlevering 2}
 \newcommand{\forfatter}{Stephen Neba Fuh, \ Tord Johan Melheim, \\ Ebubekir Siddik Yuksel, \ Casper Eide Özdemir-Børretzen}
-\newcommand{\dato}{21. februar 2026}
+\newcommand{\dato}{22. februar 2026}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Sett boolske verdier
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\settoggle{margin}  {true}  % Stor høyremargin med plass til notater
-\settoggle{endnotes}{true}  % Konverter fotnoter til endenoter
+\settoggle{margin}  {false} % Stor høyremargin med plass til notater
+\settoggle{endnotes}{false} % Konverter fotnoter til endenoter
 \settoggle{dark}    {false} % Dark mode
-\settoggle{colored} {true}  % Bruk farget tekst (i kildekode/lenker/etc.)
+\settoggle{colored}  {true} % Bruk farget tekst (i kildekode/lenker/etc.)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Import av filer
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\input{er}
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -241,7 +235,7 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 % Tittelside
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \thispagestyle{first}
-%\vspace*{0.8cm}
+%\vspace*{0.5cm}
 \par\includegraphics[scale=0.035]{\hvlPath}
 \vspace{0.15cm}
 %\par\normalsize \fakultet
@@ -264,7 +258,7 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 % Hovedinnhold
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-\input{dummy.tex}
+\input{content.tex}
 
 
 % Sluttnoter
