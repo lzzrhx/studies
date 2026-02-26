@@ -2,8 +2,8 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Dokumentinstillinger og viktige pakker
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\documentclass[10pt,a4paper,norsk]{article}
-%\documentclass[10pt,a4paper,article,oneside]{memoir}
+%\documentclass[10pt,a4paper,norsk]{book}
+\documentclass[10pt,a4paper,oneside]{memoir}
 \usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm,footnotesep=1cm]{geometry}
 \usepackage{etoolbox}             % If statements and boolean values
 \usepackage{iftex}                % Conditional statements based on current latex engine
@@ -201,7 +201,7 @@
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\normalsize\textac{\emne \ \ \textendash \ \ \tittel}}
 \fancyfoot[C]{\footnotesize\textbf{\thepage} \tiny\textbf{ / } \footnotesize\textbf{\pageref*{LastPage}}}
-\fancypagestyle{first}{\fancyhead[L,C,R]{}\renewcommand{\headrulewidth}{0pt}}
+%\fancypagestyle{first}{\fancyhead[L,C,R]{}\renewcommand{\headrulewidth}{0pt}}
 % Titteloppsett
 %\titlespacing*{\section}{0cm}{0.8ex}{1.2ex}
 \titlespacing*{\section} {0pt}{4ex plus 1ex minus .2ex}{0.8ex}
@@ -217,7 +217,8 @@
 keywordstyle={\color{color1}}, 
 commentstyle={\color{cyan}},
 basicstyle={\scriptsize\ttfamily}, 
-numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
+frame=none,rulecolor=\color{color7},
+numbers=none,numberstyle={\scriptsize\ttfamily\color{color8}},
 aboveskip=0.1cm,belowskip=1cm,columns=fixed,
 breaklines=true,breakatwhitespace=false,keepspaces=true,
 showspaces=false,showstringspaces=false,tabsize=4,
@@ -232,15 +233,18 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 %\setlength{\parskip}{0cm plus 1mm}
 
 
+\usepackage{lipsum}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 % Dokumentstart
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \begin{document}
-
+\frontmatter
 
 % Tittelside
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-\thispagestyle{first}
+\thispagestyle{plain}
+
+\begin{titlingpage}
 %\vspace*{0.8cm}
 \par\includegraphics[scale=0.035]{\hvlPath}
 \vspace{0.15cm}
@@ -259,12 +263,58 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 \par\footnotesize \dato
 \vspace*{0.5cm}
 \normalsize
+\end{titlingpage}
 
+%forfatter
+%tittel
+%bacheloroppgave i ...
+%veileder: ...
+%dato
+
+
+% frontmatter
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\thispagestyle{plain}
+\begin{abstract}
+The abstract should be an extremely condensed version of the thesis.
+Think one sentence with the main message from each of the chapters of the body matter as a starting point.
+\end{abstract}
+
+\subsection*{Abstract}
+A thesis from a Norwegian University should contain abstracts in both Norwegian and English irrespectively of the thesis language
+
+%\chapter*{Dedication}
+%If you wish to dedicate the thesis to someone you may add a separate page with a dedication here.
+
+%\chapter*{Acknowledgements}
+%If there is someone who deserves a 'thank you', you may add acknowledgements here.
+
+\tableofcontents
+
+% \listoffigures
+% \listoftables
+% \lstlistoflistings
+% list of definitions/theorems/nomenclature/abbrevations/glossary/etc
+% \chapter*{\acronymname}
+% \printglossary[type=\acronymtype]
+% \chapter*{\glossaryname}
+% \printglossary
+
+\chapter*{Forord}
+A preface or foreword is a goof place to make other personal statements that do not fit whitin the body matter.
+This could be information about the circumstances of the thesis, your motivation for choosing it, or possibly information about an employer or an external company for which it has been written.
 
 % Hovedinnhold
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\mainmatter
 
-\input{dummy.tex}
+\chapter{Introduction}
+The introduction of the thesis should take the reader all the way
+from the big picture and context of the project to the concrete task that has
+been solved in the thesis.
+
+%\appendix
+%\backmmatter
 
 
 % Sluttnoter

@@ -22,16 +22,53 @@ https://shadowlibraries.github.io/
 https://open-slum.org/
 https://annas-archive.org/
 https://academictorrents.com/
-http://matrixmultiplication.xyz/
+https://www.wolframalpha.com/
+https://www.geogebra.org/classic
 https://immersivemath.com/
+http://matrixmultiplication.xyz/
 https://int10h.org/oldschool-pc-fonts/
-https://filiplivancic.com/projects/2025-03-15-arch-nvidia-drivers/
 https://マリウス.com/command-line/
+https://filiplivancic.com/projects/2025-03-15-arch-nvidia-drivers/
 https://www.uclahealth.org/programs/marc/free-guided-meditations/guided-meditations
 https://discuss.32bit.cafe/wiki/resources
 https://goatcounter.com
 https://www.quantamagazine.org/
 https://techwontsave.us/
+https://www.lexaloffle.com/pico-8.php
+https://www.lexaloffle.com/picotron.php
+
+
+ARCH PACKAGES:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Calc                            | calc
+Neovim                          | neovim xclip ripgrep tree-sitter-cli (https://github.com/lzzrhx/lzzrhx/tree/master/dotfiles/.config/nvim)
+pdf                             | okular pdfarranger
+LaTeX                           | texlive texlive-binextra texlive-langeuropean
+GeoGebra                        | geogebra
+Mathpix Snip                    | (yay) mathpix-snipping-tool
+Xournal++                       | xournalpp
+LibreOffice                     | libreoffice
+Misc. dev                       | git github-cli cmake gdb nodejs npm
+Raylib                          | raylib
+SDL3                            | sdl3 sdl2-compat
+Python                          | python python-numpy python-matplotlib python-sympy
+Lua                             | lua
+Odin                            | odin
+Rust                            | rust
+Zig                             | zig
+Go                              | go
+C#                              | dotnet-runtime dotnet-sdk
+Java                            | jdk-openjdk maven
+PostgreSQL                      | postgresql
+
+
+ANDROID APPS:
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Obsidian                        | https://play.google.com/store/apps/details?id=md.obsidian
+Scientific calculator plus 991  | https://play.google.com/store/apps/details?id=advanced.scientific.calculator.calc991.plus
+Mathpix Snip                    | https://play.google.com/store/apps/details?id=com.mathpix.snip
+Photomath                       | https://play.google.com/store/apps/details?id=com.microblink.photomath
+WolframAlpha                    | https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro
 
 
 VIM:
