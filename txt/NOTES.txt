@@ -40,6 +40,7 @@ https://www.lexaloffle.com/picotron.php
 
 ARCH PACKAGES:
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Obsidian                        | obsidian
 Calc                            | calc
 Neovim                          | neovim xclip ripgrep tree-sitter-cli (https://github.com/lzzrhx/lzzrhx/tree/master/dotfiles/.config/nvim)
 pdf                             | okular pdfarranger
