@@ -1,6 +1,6 @@
 # Computer science studies
 
-| folder | content |
+| Folder | Content |
 | :--- | :--- |
 | obsidian | Obsidian vault with notes (.md) |
 | p0-forkurs | Forkurs for ingeniørutdanning |
