@@ -2,7 +2,14 @@ package src;
 
 import java.util.Arrays;
 
+// TODO:
+// Javas innebygde Set klasse bruker en HashMap, og det kunne nok
+// vært fordelaktig å bytte til en hashmap i denne klassen også,
+// ettersom inneholder(...) er en metode som kalles veldig ofte
+// og i den nåværende implementasjonen er den svært treig
+
 public class TabellMengde<T> implements MengdeADT<T> {
+    
     // Klassevariabler
     private static final int DEF_CAP = 10;
 
@@ -93,12 +100,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
     // Returnerer denne mengden minus gitt mengde (alle elementene som er med i denne mengden og ikke er med i den gitte mengden)
     public MengdeADT<T> minus(MengdeADT<T> mengde) {
         MengdeADT<T> res = this.kopi();
-        if (mengde.antallElementer() > 0) {
-            T[] mengdeTab = (mengde instanceof TabellMengde ? ((TabellMengde<T>) mengde).tab: mengde.tilTabell());
-            for (int i = 0; i < mengdeTab.length; i++) {
-                res.fjern(mengdeTab[i]);
-            }
-        }
+        res.fjernAlleFra(mengde);
         return res;
     }
     
@@ -117,9 +119,18 @@ public class TabellMengde<T> implements MengdeADT<T> {
     // Legg til alle elementer fra en gitt mengde
     public void leggTilAlleFra(MengdeADT<T> mengde) {
         if (mengde.antallElementer() > 0) {
-            T[] mengdeTab = (mengde instanceof TabellMengde ? ((TabellMengde<T>) mengde).tab: mengde.tilTabell());
-            for (int i = 0; i < mengdeTab.length; i++) {
-                this.leggTil(mengdeTab[i]);
+            if (mengde instanceof LenketMengde) {
+                LenketMengde<T> lenketMengde = (LenketMengde<T>) mengde;
+                Node<T> node = lenketMengde.forste();
+                while (node != null) {
+                    this.leggTil(node.data);
+                    node = node.neste;
+                }
+            } else {
+                T[] mengdeTab = (mengde instanceof TabellMengde ? ((TabellMengde<T>) mengde).tab(): mengde.tilTabell());
+                for (int i = 0; i < mengdeTab.length; i++) {
+                    this.leggTil(mengdeTab[i]);
+                }
             }
         }
     }
@@ -136,6 +147,24 @@ public class TabellMengde<T> implements MengdeADT<T> {
             }
         }
         return res;
+    }
+    
+    public void fjernAlleFra(MengdeADT<T> mengde) {
+        if (mengde.antallElementer() > 0) {
+            if (mengde instanceof LenketMengde) {
+                LenketMengde<T> lenketMengde = (LenketMengde<T>) mengde;
+                Node<T> node = lenketMengde.forste();
+                while (node != null) {
+                    this.fjern(node.data);
+                    node = node.neste;
+                }
+            } else {
+                T[] mengdeTab = (mengde instanceof TabellMengde ? ((TabellMengde<T>) mengde).tab(): mengde.tilTabell());
+                for (int i = 0; i < mengdeTab.length; i++) {
+                    this.fjern(mengdeTab[i]);
+                }
+            }
+        }
     }
 
     // Tabellrepresentasjon av mengden

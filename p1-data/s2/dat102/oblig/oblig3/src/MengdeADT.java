@@ -12,6 +12,7 @@ public interface MengdeADT<T> {
     void leggTil(T element);
     void leggTilAlleFra(MengdeADT<T> mengde);
     T fjern(T element);
+    void fjernAlleFra(MengdeADT<T> mengde);
     T[] tilTabell();
     int antallElementer();
 }
