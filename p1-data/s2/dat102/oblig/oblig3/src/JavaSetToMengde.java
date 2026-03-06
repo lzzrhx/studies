@@ -69,8 +69,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     public MengdeADT<T> minus(MengdeADT<T> mengde) {
-        MengdeADT<T> res = this.kopi();
-        res.fjernAlleFra(mengde);
+        MengdeADT<T> res = new JavaSetToMengde<T>();
+        Iterator<T> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            T item = iterator.next();
+            if (!mengde.inneholder(item)) {
+                res.leggTil(item);
+            }
+        }
         return res;
     }
 

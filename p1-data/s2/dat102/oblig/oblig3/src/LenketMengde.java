@@ -78,8 +78,14 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     // Returnerer denne mengden minus gitt mengde (alle elementene som er med i denne mengden og ikke er med i den gitte mengden)
     public MengdeADT<T> minus(MengdeADT<T> mengde) {
-        MengdeADT<T> res = this.kopi();
-        res.fjernAlleFra(mengde);
+        MengdeADT<T> res = new LenketMengde<T>();
+        Node<T> node  = forste;
+        while(node != null) {
+            if (!mengde.inneholder(node.data)) {
+                res.leggTil(node.data);
+            }
+            node = node.neste;
+        }
         return res;
     }
     
