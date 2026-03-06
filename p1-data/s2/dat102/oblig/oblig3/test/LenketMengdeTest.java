@@ -1,85 +1,11 @@
 package test;
 
-import src.LenketMengde;
 import src.MengdeADT;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import src.LenketMengde;
 
-public class LenketMengdeTest {
-    @Test
-    void test() {
-        MengdeADT<Integer> a = new LenketMengde<Integer>();
-        assertTrue(a.erTom());
-        a.leggTil(1);
-        a.leggTil(1);
-        a.leggTil(2);
-        a.leggTil(3);
-        a.leggTil(3);
-        assertFalse(a.erTom());
-        assertArrayEquals(new Integer[] {1, 2, 3}, a.tilTabell());
-        assertEquals(3, a.antallElementer());
-        MengdeADT<Integer> b = new LenketMengde<Integer>();
-        b.leggTil(3);
-        b.leggTil(4);
-        b.leggTil(5);
-        b.leggTil(5);
-        b.leggTil(6);
-        b.leggTil(6);
-        b.leggTil(5);
-        b.leggTil(3);
-        assertFalse(b.erTom());
-        assertArrayEquals(new Integer[] {3, 4, 5, 6}, b.tilTabell());
-        assertTrue(a.inneholder(1));
-        assertTrue(a.inneholder(2));
-        assertTrue(a.inneholder(3));
-        assertTrue(b.inneholder(3));
-        assertTrue(b.inneholder(4));
-        assertTrue(b.inneholder(5));
-        assertTrue(b.inneholder(6));
-        assertArrayEquals(new Integer[] {3}, a.snitt(b).tilTabell());
-        assertArrayEquals(new Integer[] {1, 2, 3, 4, 5, 6}, a.union(b).tilTabell());
-        assertArrayEquals(new Integer[] {1, 2}, a.minus(b).tilTabell());
-        assertEquals(4, b.antallElementer());
-        MengdeADT<Integer> c = new LenketMengde<Integer>();
-        c.leggTilAlleFra(a);
-        c.fjern(3);
-        assertArrayEquals(new Integer[] {1, 2}, c.tilTabell());
-        assertTrue(c.erDelmengdeAv(a));
-        assertFalse(c.erDelmengdeAv(b));
-        assertTrue(c.erDisjunkt(b));
-        assertFalse(c.erDisjunkt(a));
-        assertArrayEquals(new Integer[] {1, 2}, a.snitt(c).tilTabell());
-        assertArrayEquals(new Integer[] {1, 2, 3}, a.union(c).tilTabell());
-        assertArrayEquals(new Integer[] {}, b.snitt(c).tilTabell());
-        assertArrayEquals(new Integer[] {1, 2, 3, 4, 5, 6}, c.union(b).tilTabell());
-        assertArrayEquals(new Integer[] {3}, a.minus(c).tilTabell());
-        assertEquals(2, c.antallElementer());
-        MengdeADT<Integer> d = new LenketMengde<Integer>();
-        d.leggTilAlleFra(c);
-        assertArrayEquals(new Integer[] {1, 2}, d.tilTabell());
-        assertTrue(d.erLik(c));
-        assertFalse(d.erLik(b));
-        assertFalse(d.erLik(a));
-        assertArrayEquals(new Integer[] {1, 2}, c.snitt(d).tilTabell());
-        assertArrayEquals(new Integer[] {1, 2}, c.union(d).tilTabell());
-        assertArrayEquals(new Integer[] {}, c.minus(d).tilTabell());
-        assertEquals(2, c.antallElementer());
-        a.fjern(1);
-        a.fjern(2);
-        a.fjern(3);
-        assertTrue(a.erTom());
-        b.fjern(3);
-        b.fjern(4);
-        b.fjern(5);
-        b.fjern(6);
-        assertTrue(b.erTom());
-        assertTrue(c.snitt(a).erTom());
-        c.fjern(1);
-        c.fjern(2);
-        assertTrue(c.erTom());
-        assertFalse(c.erLik(d));
-        d.fjern(2);
-        d.fjern(1);
-        assertTrue(c.erLik(d));
+public class LenketMengdeTest extends AbstraktMengdeTest {
+    @Override
+    MengdeADT<Integer> opprettNyMengde() {
+        return new LenketMengde<Integer>(); 
     }
 }

@@ -5,8 +5,11 @@ import java.util.Arrays;
 // TODO:
 // Javas innebygde Set klasse bruker en HashMap, og det kunne nok
 // vært fordelaktig å bytte til en hashmap i denne klassen også,
-// ettersom inneholder(...) er en metode som kalles veldig ofte
-// og i den nåværende implementasjonen er den svært treig
+// ettersom inneholder(...) er en metode som kalles veldig, veldig
+// ofte og i den nåværende implementasjonen er den svært treig.
+// Et annet alternativ kunne vært å ha tabellen t[]T tab sortert,
+// da ville det gå mye fortere å sjekke tabellen inneholder et gitt
+// element eller ikke.
 
 public class TabellMengde<T> implements MengdeADT<T> {
     
@@ -42,7 +45,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
     // Sjekk om mengden inneholder et gitt element
     public boolean inneholder(T element) {
         for (int i = 0; i < antall; i++) {
-            if (element.equals(tab[i])) { return true; }
+            if (element.equals(tab[i])) {
+                return true;
+            }
         }
         return false;
     }
@@ -51,7 +56,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public boolean erDelmengdeAv(MengdeADT<T> mengde) {
         if (this.antallElementer() > mengde.antallElementer()) {
             return false;
-        } else {
+        } else if (!erTom()) {
             for (int i = 0; i < antall; i++) {
                 if (!mengde.inneholder(tab[i])) {
                     return false;
@@ -99,8 +104,12 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     // Returnerer denne mengden minus gitt mengde (alle elementene som er med i denne mengden og ikke er med i den gitte mengden)
     public MengdeADT<T> minus(MengdeADT<T> mengde) {
-        MengdeADT<T> res = this.kopi();
-        res.fjernAlleFra(mengde);
+        MengdeADT<T> res = new TabellMengde<T>();
+        for(int i = 0; i < antall; i++) {
+            if (!mengde.inneholder(this.tab[i])) {
+                res.leggTil(this.tab[i]);
+            }
+        }
         return res;
     }
     
@@ -137,16 +146,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
     
     // Fjern gitt element fra denne mengden
     public T fjern(T element) {
-        T res = null;
         for (int i = 0; i < antall; i++) {
             if (this.tab[i].equals(element)) {
                 this.antall -= 1;
-                res = this.tab[i];
-                this.tab[i] = this.tab[this.antall];
+                this.tab[i] = this.tab[antall];
                 this.tab[this.antall] = null;
+                return this.tab[i];
             }
         }
-        return res;
+        return null;
     }
     
     public void fjernAlleFra(MengdeADT<T> mengde) {
