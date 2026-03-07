@@ -166,7 +166,7 @@
 \newcommand\Q{\ensuremath{\mathbb{Q}}}
 \newcommand\C{\ensuremath{\mathbb{C}}}
 \newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
-\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=0.8cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
 \newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
 
@@ -266,24 +266,32 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 \begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\roman*.]
     \item
         \codeHl{boolean inneholder(T element)}
+        \par $x \in A$
         \par For både \code{TabellMengde} og \code{LenketMengde} vil metoden gå gjennom alle elementer frem til det gitte elementet er funnet, eller konkludere med at det ikke finnes i mengden hvis det ikke ble funnet etter gjennomgang av alle elementer. I beste tilfelle er mengden tom og løkken der søket gjennomføres hoppes over, dette gir $O(1)$ i O-notasjon. I verste tilfelle har vi en mengde som inneholder elementer og en det letes etter et element som ikke ekisterer i mengden. Da må alle elementer sjekkes og dette gir $O(n)$ i O-notasjon, der $n$ er antall elementer i mengden.
     \item
         \codeHl{boolean erDelmengdeAv(MengdeADT<T> mengde)}
-        \par tekst her...
+        \par $A \subseteq B \rightarrow \forall x \in A, x \in B$
+        \par Metoden fungerer veldig likt for begge klassene, og i begge tilfeler sammenlignes to mengder. La oss kalle de mengde $A$ og mengde $B$. I metoden undersøkes det om $A$ er delmengde av $B$. Først blir det utført en sjekk for å forsikre at antall elementer i $A$ er like eller mindre enn antall elementer i $B$. Videre itereres det gjennom alle elementene i $A$ og det blir utført kall på \code{B.inneholder(A.element)} for alle elementer i $A$. Videre har vi to mulige utfall av iterasjonen. 1) Hvis \code{inneholder} returner \code{false} for et av elementene kan søket avsluttes tidlig og det kan konkluderes at $A$ \underline{ikke} er delmengde av $B$, så metoden returnerer \code{false}. 2) Hvis alle elementer har blitt sjekket uten funn av element fra $A$ som ikke er med i $B$ kan det konkluderes at $A$ er delmengde av $B$ og metoden returnerer \code{true}.
+        \par I beste tilfelle har $A$ flere elementer enn $B$ og metoden avsluttes tidlig. Dette gir $O(1)$ i O-notasjon. I verste tilfelle er $A$ delmengde av $B$ og for alle elementer i $A$ må det gjøres kall på \code{B.inneholder(A.element)}. Gitt to mengder med $n$ antall elementer får vi da $n \cdot n$ antall ekvivalens operasjoner i \code{inneholder}. Med andre ord en worst case kjøretid uttrykt som $O(n^2)$ i O-notasjon.
     \item
         \codeHl{boolean erLik(MengdeADT<T> mengde)}
-        \par tekst her...
+        \par $A = B$
+        \par Metoden fungerer veldig likt for begge klassene og for to gitte mengder $A$ og $B$ gjennomføres det en binær operasjon som returnerer \code{true} hvis $A = B$ og \code{false} hvis $A \neq B$. Metoden gjennomfører først sjekk for å forsikre at $A$ og $B$ har likt antall elementer. Videre brukes den tidligere definerte metoden \code{A.erDelmengdeAv(B)} for å sjekke om alle elementer i $A$ også finnes i $B$. Dette gir samme O-notasjon for \code{erLik(...)} som for \code{erDelmengdeAv(...)} med best case $O(1)$ i tilfeller der $A$ og $B$ har ulikt antall elementer. Og best case $O(n^2)$ i tilfeller der $A = B$.
     \item
         \codeHl{MengdeADT<T> union(MengdeADT<T> mengde)}
-        \par tekst her...
+        \par $A \cup B$
+        \par Metoden fungerer veldig likt for begge klassene \code{TabellMengde} og \code{LenketMengde}. Det opprettes en ny mengde og alle elementer fra $A$ legges direkte til den nye mengden (uten å gjennomføre sjekk om elementer allerede eksisterer, siden det ikke behøves). Videre prøves det å legge til alle elementer fra $B$ med metoden \code{A.leggTil(B.element)}, med innebygd sjekk \code{!A.inneholder(B.element)} for å unngå duplikater når nye elementer legges til. Dette gir en kjøretid på $n + n \cdot n$ der antall elementer i $A$ er $n$ og antall elementer i $B$ også er $n$ for enkelthets skyld (som tidligere). I O-notasjon blir dette $O(n^2)$ for både worst og best case.
     \item
         \codeHl{T fjern(T element)}
-        \par tekst her...
+        \par $A - \{x\}$
+        \par Denne motoden fungerer også svært likt for begge klassene. Gitt en mengde $A$ og et element $x$ som skal fjernes fra mengden, gjennomføres det en iterasjon gjennom mengden for å finne $x$. Dette kan gi to ulike resultater. 1) Hvis $x$ blir funnet fjernes $x$ fra mengden og $x$ returneres. 2) Hvis alle elementer i $A$ blir sjekket uten at $x$ ble funnet returneres \code{null}. I worst case finnes ikke $x$ i $A$ og alle elementer må sjekkes. Dette gir $O(n)$ i O-notasjon. I best case er $A$ en tom mengde og \code{null} returneres umiddelbart, som gir $O(1)$ i O-notasjon.
 \end{enumerate}
 
-\oppgaveDel{e} tekst her ...
+\oppgaveDel{e}
+    \par HashSet bruker en HashMap (også kalt dictionary i noen språk) datastruktur for å lagre verdier. Gitt en mengde $A$ og en verdi $x$ som vi ønsker å lagre, vil det gjennomføres en hash-funksjon på $x$ som gir en heltallsverdi $x_h$. Gitt at kapasasiteten til $A$ er $n$ gjennomføres det videre en modulus operasjon på $x_h$ slik at vi får en indeksverdi $x_i = x_h \mod n$ som kan brukes for å lagre $x$ i den underliggende tabellen. I noen tilfeller vil vi få verdier med samme indeksverdi, og dette kalles en kollisjon. Kollisjoner må løses slik at verdiene får tildelt unike indeksverdier.
+    \par Dette er en meget simplifisert forklaring på hvordan en HashMap datastruktur fungerer. Men utifra dette ser vi at det blir mye raskere å sjekke om et element eksisterer eller ikke i en gitt mengde, sammenlignet med vår \code{inneholder(...)} metode fra \code{TabellMengde} og \code{LenketMengde}. En \code{inneholder(T element)} funksjon på et sett som bruker en underliggende HashMap datastruktør vil ha en kjøretid på $O(1)$ uttrykt i O-notasjon ettersom vi gjennom hash'ing får direkte tilgang til indeksverdien for verdien (pluss at det må tas hensyn til kollisjoner).
 
-\oppgaveDel{f} tekst her ...
+\oppgaveDel{f} Se vedlagte filer src/Person.java og src/Program.java
 
 \oppgaveDelSlutt
 
