@@ -258,9 +258,9 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 \section*{Uke 10 \textendash \ Oppgave 4}
 \oppgaveDelStart
 
-\oppgaveDel{a} Se vedlagte filer src/TabellMengde.java og test/TabellMengdeTest.java
-\oppgaveDel{b} Se vedlagte filer src/LenketMengde.java og test/LenketMengdeTest.java
-\oppgaveDel{c} Se vedlagte filer src/JavaSetToMengde.java og test/JavaSetToMengdeTest.java
+\oppgaveDel{a} Se vedlagte filer \code{./src/TabellMengde.java} og \code{./test/TabellMengdeTest.java}.
+\oppgaveDel{b} Se vedlagte filer \code{./src/LenketMengde.java} og \code{./test/LenketMengdeTest.java}.
+    \oppgaveDel{c} Se vedlagte filer \code{./src/JavaSetToMengde.java} og \code{./test/JavaSetToMengdeTest.java}.
 \oppgaveDel{d}
 
 \begin{enumerate}[leftmargin=*,itemsep=1cm,labelsep=1.5em,label=\roman*.]
@@ -271,12 +271,12 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
     \item
         \codeHl{boolean erDelmengdeAv(MengdeADT<T> mengde)}
         \par $A \subseteq B \rightarrow \forall x \in A, x \in B$
-        \par Metoden fungerer veldig likt for begge klassene, og i begge tilfeler sammenlignes to mengder. La oss kalle de mengde $A$ og mengde $B$. I metoden undersøkes det om $A$ er delmengde av $B$. Først blir det utført en sjekk for å forsikre at antall elementer i $A$ er like eller mindre enn antall elementer i $B$. Videre itereres det gjennom alle elementene i $A$ og det blir utført kall på \code{B.inneholder(A.element)} for alle elementer i $A$. Videre har vi to mulige utfall av iterasjonen. 1) Hvis \code{inneholder} returner \code{false} for et av elementene kan søket avsluttes tidlig og det kan konkluderes at $A$ \underline{ikke} er delmengde av $B$, så metoden returnerer \code{false}. 2) Hvis alle elementer har blitt sjekket uten funn av element fra $A$ som ikke er med i $B$ kan det konkluderes at $A$ er delmengde av $B$ og metoden returnerer \code{true}.
+        \par Metoden fungerer veldig likt for begge klassene, og i begge tilfeler sammenlignes to mengder. La oss kalle de mengde $A$ og mengde $B$. I metoden undersøkes det om $A$ er delmengde av $B$. Først blir det utført en sjekk for å forsikre at antall elementer i $A$ er like eller mindre enn antall elementer i $B$. Videre itereres det gjennom alle elementene i $A$ og det blir utført kall på \code{B.inneholder(A.element)} for alle elementer i $A$. Videre har vi to mulige utfall av iterasjonen. 1) Hvis \code{inneholder} returner \code{false} for et av elementene kan iterasjonen avsluttes tidlig og det kan konkluderes at $A$ \underline{ikke} er delmengde av $B$, så metoden returnerer \code{false}. 2) Hvis alle elementer har blitt sjekket uten funn av element fra $A$ som ikke er med i $B$ kan det konkluderes at $A$ er delmengde av $B$ og metoden returnerer \code{true}.
         \par I beste tilfelle har $A$ flere elementer enn $B$ og metoden avsluttes tidlig. Dette gir $O(1)$ i O-notasjon. I verste tilfelle er $A$ delmengde av $B$ og for alle elementer i $A$ må det gjøres kall på \code{B.inneholder(A.element)}. Gitt to mengder med $n$ antall elementer får vi da $n \cdot n$ antall ekvivalens operasjoner i \code{inneholder}. Med andre ord en worst case kjøretid uttrykt som $O(n^2)$ i O-notasjon.
     \item
         \codeHl{boolean erLik(MengdeADT<T> mengde)}
         \par $A = B$
-        \par Metoden fungerer veldig likt for begge klassene og for to gitte mengder $A$ og $B$ gjennomføres det en binær operasjon som returnerer \code{true} hvis $A = B$ og \code{false} hvis $A \neq B$. Metoden gjennomfører først sjekk for å forsikre at $A$ og $B$ har likt antall elementer. Videre brukes den tidligere definerte metoden \code{A.erDelmengdeAv(B)} for å sjekke om alle elementer i $A$ også finnes i $B$. Dette gir samme O-notasjon for \code{erLik(...)} som for \code{erDelmengdeAv(...)} med best case $O(1)$ i tilfeller der $A$ og $B$ har ulikt antall elementer. Og best case $O(n^2)$ i tilfeller der $A = B$.
+        \par Metoden fungerer veldig likt for begge klassene og for to gitte mengder $A$ og $B$ gjennomføres det en binær operasjon som returnerer \code{true} hvis $A = B$ og \code{false} hvis $A \neq B$. Metoden gjennomfører først sjekk for å forsikre at $A$ og $B$ har likt antall elementer. Videre brukes den tidligere definerte metoden \code{A.erDelmengdeAv(B)} for å sjekke om alle elementer i $A$ også finnes i $B$. Dette gir samme O-notasjon for \code{erLik(...)} som for \code{erDelmengdeAv(...)} med best case $O(1)$ i tilfeller der $A$ og $B$ har ulikt antall elementer. Og worst case $O(n^2)$ i tilfeller der $A = B$.
     \item
         \codeHl{MengdeADT<T> union(MengdeADT<T> mengde)}
         \par $A \cup B$
@@ -291,8 +291,13 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
     \par HashSet bruker en HashMap (også kalt dictionary i noen språk) datastruktur for å lagre verdier. Gitt en mengde $A$ og en verdi $x$ som vi ønsker å lagre, vil det gjennomføres en hash-funksjon på $x$ som gir en heltallsverdi $x_h$. Gitt at kapasasiteten til $A$ er $n$ gjennomføres det videre en modulus operasjon på $x_h$ slik at vi får en indeksverdi $x_i = x_h \mod n$ som kan brukes for å lagre $x$ i den underliggende tabellen. I noen tilfeller vil vi få verdier med samme indeksverdi, og dette kalles en kollisjon. Kollisjoner må løses slik at verdiene får tildelt unike indeksverdier.
     \par Dette er en meget simplifisert forklaring på hvordan en HashMap datastruktur fungerer. Men utifra dette ser vi at det blir mye raskere å sjekke om et element eksisterer eller ikke i en gitt mengde, sammenlignet med vår \code{inneholder(...)} metode fra \code{TabellMengde} og \code{LenketMengde}. En \code{inneholder(T element)} funksjon på et sett som bruker en underliggende HashMap datastruktør vil ha en kjøretid på $O(1)$ uttrykt i O-notasjon ettersom vi gjennom hash'ing får direkte tilgang til indeksverdien for verdien (pluss at det må tas hensyn til kollisjoner).
 
-\oppgaveDel{f} Se vedlagte filer src/Person.java og src/Program.java
+\oppgaveDel{f} Se vedlagte filer \code{./src/Person.java} og \code{src/Program.java}.
 
+\oppgaveDelSlutt
+
+\section*{Uke xx \textendash \ Oppgave xx}
+\oppgaveDelStart
+\oppgaveDel{a} ...
 \oppgaveDelSlutt
 
 % Sluttnoter
