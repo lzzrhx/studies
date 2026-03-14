@@ -7,7 +7,7 @@
   <class>src.Person</class>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://10.0.0.99:5432/dat107"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://<host>:<port>/dat107"/>
       <property name="jakarta.persistence.jdbc.user" value="gcyww94bfl"/>
       <property name="jakarta.persistence.jdbc.password" value="9ryq2lxpf0"/>
       <property name="eclipselink.logging.level" value="WARNING"/>

@@ -1,31 +1,34 @@
 package src;
 
-//import jakarta.persistence.Persistence;
-//import java.util.List;
-//import java.util.Map;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-//import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
-//import jakarta.persistence.TypedQuery;
-
 public class Program {
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+    private static final PersonCrud personCrud = new PersonCrud();
 
     public static void main(String[] args) {
-        System.out.println("test");
-        Person p = finnPersonMedId(1001);
-        System.out.println(p);
+        System.out.println();
+        System.out.println("EKSEMPEL 2");
+        System.out.println(" - - - - - - - - - - -");
+        
+        printPersoner();
+        System.out.println();
+
+        System.out.println("personCrud.lagrePerson(new Person(1004, \"Mikke\"))");
+        personCrud.lagrePerson(new Person(1004, "Mikke"));
+        printPersoner();
+        System.out.println();
+        
+        System.out.println("personCrud.oppdaterPerson(1004, \"Mikke Mus\")");
+        personCrud.oppdaterPerson(1004, "Mikke Mus");
+        printPersoner();
+        System.out.println();
+        
+        System.out.println("personCrud.slettPerson(1004)");
+        personCrud.slettPerson(1004);
+        printPersoner();
+        System.out.println();
     }
-    private static Person finnPersonMedId(int id) {
 
-		System.out.println("Kobler til database...");
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            return em.find(Person.class, id);
-        } finally {
-            em.close();
-        }
+    private static void printPersoner() {
+        System.out.println("Personer i tabellen:");
+        personCrud.hentAllePersoner().forEach(System.out::println);
     }
 }
