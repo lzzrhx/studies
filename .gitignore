@@ -5,6 +5,8 @@
 # *.eps
 # *.pdf
 
+**/target/
+
 *.classpath
 *.project
 *.log
