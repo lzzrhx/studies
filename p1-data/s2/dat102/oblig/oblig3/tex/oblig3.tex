@@ -166,7 +166,7 @@
 \newcommand\Q{\ensuremath{\mathbb{Q}}}
 \newcommand\C{\ensuremath{\mathbb{C}}}
 \newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
-\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=0.8cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=0.7cm,labelsep=1.5em,label=\alph*)]}
 \newcommand{\oppgaveDelSlutt}{\end{enumerate}}
 \newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
 
@@ -267,10 +267,10 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
     \item
         \codeHl{boolean inneholder(T element)}
         \par $x \in A$
-        \par For både \code{TabellMengde} og \code{LenketMengde} vil metoden gå gjennom alle elementer frem til det gitte elementet er funnet, eller konkludere med at det ikke finnes i mengden hvis det ikke ble funnet etter gjennomgang av alle elementer. I beste tilfelle er mengden tom og løkken der søket gjennomføres hoppes over, dette gir $O(1)$ i O-notasjon. I verste tilfelle har vi en mengde som inneholder elementer og en det letes etter et element som ikke ekisterer i mengden. Da må alle elementer sjekkes og dette gir $O(n)$ i O-notasjon, der $n$ er antall elementer i mengden.
+        \par For både \code{TabellMengde} og \code{LenketMengde} vil metoden gå gjennom alle elementer frem til det gitte elementet er funnet, eller konkludere med at det ikke finnes i mengden hvis det ikke ble funnet etter gjennomgang av alle elementer. I beste tilfelle er mengden tom og løkken der søket gjennomføres hoppes over, dette gir $O(1)$ i O-notasjon. I verste tilfelle har vi en mengde som inneholder elementer og det letes etter et element som ikke ekisterer i mengden. Da må alle elementer sjekkes og dette gir $O(n)$ i O-notasjon, der $n$ er antall elementer i mengden.
     \item
         \codeHl{boolean erDelmengdeAv(MengdeADT<T> mengde)}
-        \par $A \subseteq B \rightarrow \forall x \in A, x \in B$
+        \par $A \subseteq B$
         \par Metoden fungerer veldig likt for begge klassene, og i begge tilfeler sammenlignes to mengder. La oss kalle de mengde $A$ og mengde $B$. I metoden undersøkes det om $A$ er delmengde av $B$. Først blir det utført en sjekk for å forsikre at antall elementer i $A$ er like eller mindre enn antall elementer i $B$. Videre itereres det gjennom alle elementene i $A$ og det blir utført kall på \code{B.inneholder(A.element)} for alle elementer i $A$. Videre har vi to mulige utfall av iterasjonen. 1) Hvis \code{inneholder} returner \code{false} for et av elementene kan iterasjonen avsluttes tidlig og det kan konkluderes at $A$ \underline{ikke} er delmengde av $B$, så metoden returnerer \code{false}. 2) Hvis alle elementer har blitt sjekket uten funn av element fra $A$ som ikke er med i $B$ kan det konkluderes at $A$ er delmengde av $B$ og metoden returnerer \code{true}.
         \par I beste tilfelle har $A$ flere elementer enn $B$ og metoden avsluttes tidlig. Dette gir $O(1)$ i O-notasjon. I verste tilfelle er $A$ delmengde av $B$ og for alle elementer i $A$ må det gjøres kall på \code{B.inneholder(A.element)}. Gitt to mengder med $n$ antall elementer får vi da $n \cdot n$ antall ekvivalens operasjoner i \code{inneholder}. Med andre ord en worst case kjøretid uttrykt som $O(n^2)$ i O-notasjon.
     \item
@@ -288,23 +288,29 @@ captionpos=b,inputencoding=utf8,extendedchars=true}
 \end{enumerate}
 
 \oppgaveDel{e}
-    \par HashSet bruker en HashMap (også kalt dictionary i noen språk) datastruktur for å lagre verdier. Gitt en mengde $A$ og en verdi $x$ som vi ønsker å lagre, vil det gjennomføres en hash-funksjon på $x$ som gir en heltallsverdi $x_h$. Gitt at kapasasiteten til $A$ er $n$ gjennomføres det videre en modulus operasjon på $x_h$ slik at vi får en indeksverdi $x_i = x_h \mod n$ som kan brukes for å lagre $x$ i den underliggende tabellen. I noen tilfeller vil vi få verdier med samme indeksverdi, og dette kalles en kollisjon. Kollisjoner må løses slik at verdiene får tildelt unike indeksverdier.
-    \par Dette er en meget simplifisert forklaring på hvordan en HashMap datastruktur fungerer. Men utifra dette ser vi at det blir mye raskere å sjekke om et element eksisterer eller ikke i en gitt mengde, sammenlignet med vår \code{inneholder(...)} metode fra \code{TabellMengde} og \code{LenketMengde}. En \code{inneholder(T element)} funksjon på et sett som bruker en underliggende HashMap datastruktør vil ha en kjøretid på $O(1)$ uttrykt i O-notasjon ettersom vi gjennom hash'ing får direkte tilgang til indeksverdien for verdien (pluss at det må tas hensyn til kollisjoner).
+    \par HashSet bruker en HashMap (også kalt dictionary i noen språk) datastruktur for å lagre verdier i en tabell.
+    Gitt en mengde med en underliggende tabell med kapasiteten $n$ og en verdi $x$ som vi ønsker å lagre, vil det gjennomføres en hash-metode på $x$ som gir heltallsverdien $x_h$.
+    Indeksverdien $x_i = x_h \mod n$ brukes for å direkte referere til posisjonen i den underliggende tabellen hvor $x$ skal lagres.
+    I noen tilfeller vil vi få flere verdier med samme indeksverdi, og dette kalles kollisjon.
+    Kollisjoner må løses slik at verdiene får tildelt unike indeksverdier.
+    Dette er en forenklet forklaring på hvordan en HashMap datastruktur fungerer (uten å beskrive hvordan kollisjoner løses).
+    Likevel ser vi utifra dette at det blir mye raskere å sjekke om et element eksisterer eller ikke i en gitt mengde sammenlignet med vår naive \code{inneholder(...)} metode fra \code{TabellMengde} og \code{LenketMengde}.
+    En \code{inneholder(T element)} metode på et sett som bruker en HashMap datastruktur vil ha en kjøretid på $O(1)$ uttrykt i O-notasjon.
 
-\oppgaveDel{f} Se vedlagte filer \code{./src/Person.java} og \code{./src/Program.java}.
+\oppgaveDel{f} Se vedlagte filer \code{./src/Person.java} og \code{./src/Program.java} (match resultat går på skala fra 0.0 (dårlig match) til 1.0 (perfekt match)).
 
 \oppgaveDelSlutt
 
 \section*{Uke 11 \textendash \ Oppgave 4}
 \par Vi opprettet en \code{HashSet<Integer>} mengde med 100.000 unike, tilfeldig valgte heltall fra domenet $\{0 \ .. \ 999999\}$, og en sortert \code{Integer[]} tabell med 100.000 tilfeldig valgte heltall fra samme domenet, der duplikate verdier i tabellen var tillatt.
-Videre gjennomførte vi kjøretidsmåling på å finne antall forekomster av 10.000 tilfeldig valgte heltall i \code{HashSet} mengden og i \code{Integer} tabellen.
+Videre gjennomførte vi kjøretidsmåling for å finne antall forekomster av 10.000 tilfeldig valgte heltall i \code{HashSet} mengden og i \code{Integer} tabellen.
 For generering av tilfeldige heltallsverdier implementerte vi en linear-feedback shift register (LFSR) klasse.
 
 \subsubsection*{Fremgangsmåte i \code{HashSet<Integer>} mengden:}
 \code{HashSet} implementerer \code{Set}-grensesnittet, som ikke tillater duplikate verdier og har en innebygd \code{boolean contains(T element)} metode. Så her holdt det å gjøre metodekall for alle de 10.000 verdiene på \code{mengde.contains(verdi)} der \code{true} telles som $1$ forekomst av den gitte verdien i mengden og \code{false} telles som $0$ forekomster.
 
 \subsubsection*{Fremgangsmåte i \code{Integer[]} tabellen:}
-For den sorterte \code{Integer} tabellen gjennomførte vi binærsøk for å finne ut om en gitt verdi eksisterer i tabellen. Hvis verdien ble funnet gjennomførte vi en telling av naboelementer med samme verdi for å finne totalt antall forekomster av den gitte verdien i tabellen.
+For den sorterte \code{Integer} tabellen gjennomførte vi binærsøk for å finne ut om en gitt verdi eksisterte i tabellen. Hvis verdien ble funnet gjennomførte vi en telling av naboelementer med samme verdi for å finne totalt antall forekomster av den gitte verdien i tabellen.
 Vi implementerte en rekursiv- og en iterativ binærsøkemetode og tok målinger fra begge. 
 
 \subsubsection*{Resultat:}
@@ -313,7 +319,7 @@ Rekursivt binærsøk i \code{Integer} tabellen ga kjøretid på $\approx 5,5 \ m
 Den raske kjøretiden for \code{HashSet} stemmer overens med resultatet vi hadde forventet ettersom HashMap datastrukturen har en kjøretid på $O(1)$ for å finne ut om en gitt verdi eksisterer i den underliggende tabellen.
 
 \subsubsection*{Kildekode:}
-Se vedlagte filer \code{./src/BinSok.java}, \code{./src/Lfsr.java}, \code{./src/Program.java} og \code{./test/BinSokTest.java} for implementasjon for gjennomføring av målingene.
+Se vedlagte filer \code{./src/BinSok.java}, \code{./src/Lfsr.java}, \code{./src/Program.java} og \code{./test/BinSokTest.java} for implementasjon brukt til målingene.
 
 
 % Sluttnoter
