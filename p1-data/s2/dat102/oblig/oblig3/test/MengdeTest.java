@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
-public abstract class AbstraktMengdeTest {
+public abstract class MengdeTest {
     MengdeADT<Integer> a = opprettNyMengde();
     MengdeADT<Integer> b = opprettNyMengde();
     MengdeADT<Integer> c = opprettNyMengde();
