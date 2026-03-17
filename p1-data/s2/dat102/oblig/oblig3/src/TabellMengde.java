@@ -2,15 +2,6 @@ package src;
 
 import java.util.Arrays;
 
-// TODO:
-// Javas innebygde Set klasse bruker en HashMap, og det kunne nok
-// vært fordelaktig å bytte til en hashmap i denne klassen også,
-// ettersom inneholder(...) er en metode som kalles veldig, veldig
-// ofte og i den nåværende implementasjonen er den svært treig.
-// Et annet alternativ kunne vært å ha tabellen t[]T tab sortert,
-// da ville det gå mye fortere å sjekke tabellen inneholder et gitt
-// element eller ikke.
-
 public class TabellMengde<T> implements MengdeADT<T> {
     
     // Klassevariabler
