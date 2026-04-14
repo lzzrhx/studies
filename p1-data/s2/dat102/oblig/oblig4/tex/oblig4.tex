@@ -1,0 +1,270 @@
+%! TeX program = lualatex
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Dokumentinstillinger og viktige pakker
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\documentclass[10pt,a4paper,norsk]{article}
+\usepackage[top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm,footnotesep=1cm]{geometry}
+\usepackage{etoolbox}             % If statements and boolean values
+\usepackage{iftex}                % Conditional statements based on current latex engine
+\usepackage[norsk]{babel}         % Support for other languages than english
+\usepackage[T1]{fontenc}          % Font encoding
+\usepackage[babel]{microtype}     % Improve text appearance in numerous ways
+\usepackage{textcomp}             % Add extra symbols
+\usepackage{mathtools}            % Improvements for math
+\usepackage{amssymb}              % Extended math symbols
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Initialisering av boolske verdier
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\providetoggle{margin}
+\providetoggle{dark}
+\providetoggle{endnotes}
+\providetoggle{colored}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Font oppsett
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage[nomath, oldstylenums, light]{kpfonts} % Main (serif/sans-serif) font
+\usepackage{newpxmath}            % Math font
+\usepackage[scaled]{beramono}     % Monospace font
+% Krever LuaTeX
+\usepackage{fontspec}             % Custom fonts
+\setmonofont{PxPlus ToshibaSat 8x16}[AutoFakeBold,AutoFakeSlant] % Override monospace font
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Innlasting av pakker
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage[T1]{url}\urlstyle{sf} % Clickable URLs
+\usepackage{fullwidth}            % Full width content
+\usepackage{hyperref}             % Clickable references
+\usepackage{csquotes}             % Support quote marks in various languages
+\usepackage{caption}              % Caption customization
+\usepackage{ulem}                 % Double underline
+\usepackage[makeroom]{cancel}     % Crossing out text
+\usepackage{nicefrac}             % Nice looking fractals
+\usepackage[compact]{titlesec}    % Title style
+\usepackage{setspace}             % Set paragraph spacing
+\usepackage{xcolor}               % Colors
+\usepackage{enumitem}             % Lists
+\usepackage{listings}             % Insert code
+\usepackage{tikz}                 % Drawing of graphics
+\usepackage{graphicx}             % Insert images
+\usepackage{booktabs}             % Nicer looking tables
+\usepackage{fancyhdr}             % Header / footer
+\usepackage{lastpage}             % Last page number
+\usepackage{marginnote}           % Margin notes
+\usepackage{enotez}               % Endnotes
+%\usepackage{verbatim}             % Comments
+%\usapackage{siunitx}              % Formatting of units
+%\usepackage{biblatex}             % Bibliography
+%\usepackage{pdfpages}             % Insert pdf pages
+%\usepackage{gensymb}              % Degree symbol
+%\usepackage{cleverref}            % Cross-referencing
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Innlasting av TikZ-bibliotek
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+%\usetikzlibrary{}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Sett institutt, emne, tittel og forfatter(e)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newcommand{\fakultet}{Fakultet for teknologi, miljø- og samfunnsvitskap}
+\newcommand{\institutt}{Institutt for datateknologi, elektroteknologi og realfag}
+\newcommand{\emne}{DAT102}
+\newcommand{\tittel}{Obligatorisk innlevering 4}
+\newcommand{\forfatter}{Casper Eide Özdemir-Børretzen}
+\newcommand{\dato}{14. april 2026}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Sett boolske verdier
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\settoggle{margin}  {false} % Stor høyremargin med plass til notater
+\settoggle{endnotes}{false} % Konverter fotnoter til endenoter
+\settoggle{dark}    {false} % Dark mode
+\settoggle{colored}  {true} % Bruk farget tekst (i kildekode/lenker/etc.)
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Oppsett av fargepalett
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Apprentice fargepalett (https://github.com/romainl/Apprentice)
+\definecolor{color0}{HTML}{1C1C1C}
+\definecolor{color1}{HTML}{AF5F5F}
+\definecolor{color2}{HTML}{5F875F}
+\definecolor{color3}{HTML}{87875F}
+\definecolor{color4}{HTML}{5F87AF}
+\definecolor{color5}{HTML}{5F5F87}
+\definecolor{color6}{HTML}{5F8787}
+\definecolor{color7}{HTML}{6C6C6C}
+\definecolor{color8}{HTML}{444444}
+\definecolor{color9}{HTML}{FF8700}
+\definecolor{color10}{HTML}{87AF87}
+\definecolor{color11}{HTML}{FFFFAF}
+\definecolor{color12}{HTML}{87AFD7}
+\definecolor{color13}{HTML}{8787AF}
+\definecolor{color14}{HTML}{5FAFAF}
+\definecolor{color15}{HTML}{FFFFFF}
+\definecolor{colorfg}{HTML}{BCBCBC}
+\definecolor{colorbg}{HTML}{262626}
+% Habamax fargepalett (https://github.com/habamax/vim-habamax)
+\definecolor{brightCyan}{HTML}{87AFAF}
+\definecolor{cyan}{HTML}{5F8787}
+\definecolor{darkCyan}{HTML}{1F3F5F}
+\definecolor{pink}{HTML}{D75F87}
+\definecolor{red}{HTML}{D75F5F}
+\definecolor{darkRed}{HTML}{AF5F5F}
+\definecolor{brightGreen}{HTML}{5FF75F}
+\definecolor{green}{HTML}{87D787}
+\definecolor{darkGreen}{HTML}{5FAF5F}
+\definecolor{blue}{HTML}{5fafd7}
+\definecolor{darkBlue}{HTML}{5F87AF}
+\definecolor{brightYellow}{HTML}{ffaf5f}
+\definecolor{yellow}{HTML}{d7af87}
+\definecolor{darkYellow}{HTML}{af875f}
+\definecolor{brightMagenta}{HTML}{ff00af}
+\definecolor{magenta}{HTML}{d787d7}
+\definecolor{darkMagenta}{HTML}{af87af}
+% Fargeoppsett
+\colorlet{fgColor}{color0}
+\colorlet{bgColor}{color15}
+\colorlet{urlColor}{pink}
+\newcommand{\hvlPath}{hvl-black.png}
+\iftoggle{dark}{
+    \colorlet{fgColor}{colorfg}
+    \colorlet{bgColor}{color0}
+    \renewcommand{\hvlPath}{hvl-white.png}
+}{}
+\colorlet{linkColor}{fgColor}
+\pagecolor{bgColor}
+\color{fgColor}
+\newcommand{\colorIgnore}[1]{}
+\newcommand{\textcolorIgnore}[2]{#2}
+\iftoggle{colored}{}{
+    \let\textcolor=\textcolorIgnore
+    \let\color=\colorIgnore
+}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Egendefinerte kommandoer
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newcommand{\acshape}{\lsstyle\scshape\MakeLowercase}
+\newcommand{\textac}[1]{\textls{\textsc{\MakeLowercase{#1}}}}
+\newcommand{\mn}[1]{\marginnote{\mnText{#1}}}
+\newcommand{\mnFig}[2]{\marginnote{#1\vspace{0.1cm}\par\mnText{#2}}}
+\newcommand{\mnText}[1]{\textac{\textbf{\textcolor{color1}{Note:}}} #1}
+\newcommand{\threestars}{\begin{center}\par * * * \end{center}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\newcommand{\oppgave}[1]{\subsection*{Oppgave #1}}
+\newcommand{\oppgaveDelStart}{\begin{enumerate}[leftmargin=*,itemsep=1.5cm,labelsep=1.5em,label=\alph*)]}
+\newcommand{\oppgaveDelSlutt}{\end{enumerate}}
+\newcommand{\oppgaveDel}[1]{\item[\textbf{#1})]}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Oppsett av pakker/instillinger
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Sluttnote-oppsett
+\microtypesetup{nopatch=footnote,letterspace=50}
+\setenotez{list-name=Kilder,backref=true,mark-format=\bfseries,list-heading={\section*{#1}}}
+\iftoggle{endnotes}{ \let\footnote=\endnote }{}
+% Marginoppsett
+\iftoggle{margin}{
+    \geometry{right=5cm, marginparsep=0.8cm, marginparwidth=3.4cm}
+    \fullwidthsetup{width=\linewidth+2.5cm}
+}{}
+\renewcommand*{\marginfont}{\footnotesize}
+% Oppsett av topptekst og bunntekst
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\normalsize\textac{\emne \ \ \textendash \ \ \tittel}}
+\fancyfoot[C]{\footnotesize\textbf{\thepage} \tiny\textbf{ / } \footnotesize\textbf{\pageref*{LastPage}}}
+\fancypagestyle{first}{\fancyhead[L,C,R]{}\renewcommand{\headrulewidth}{0pt}}
+% Titteloppsett
+%\titlespacing*{\section}{0cm}{0.8ex}{1.2ex}
+\titlespacing*{\section} {0pt}{4ex plus 1ex minus .2ex}{0.8ex}
+\titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+\titleformat{\section}{\normalfont\large\bfseries\acshape}{\thesection \ \ \textendash \ \ }{0em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.75em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection.}{0.75em}{}
+% Oppsett av listings (visning av kildekode)
+\lstset{literate={æ}{{\ae}}1{Æ}{{\AE}}1{ø}{{\o}}1{Ø}{{\O}}1{å}{{\aa}}1{Å}{{\AA}}1,
+keywordstyle={\color{color1}}, 
+commentstyle={\color{cyan}},
+basicstyle={\scriptsize\ttfamily}, 
+numbers=none,numberstyle={\scriptsize\ttfamily\color{color7}},
+aboveskip=0.1cm,belowskip=1cm,columns=fixed,
+breaklines=true,breakatwhitespace=false,keepspaces=true,
+showspaces=false,showstringspaces=false,tabsize=4,
+captionpos=b,inputencoding=utf8,extendedchars=true}
+% Annet oppsett
+\linespread{1.05}
+\setlength{\parindent}{0pt}
+\hypersetup{colorlinks=true, urlcolor=urlColor, filecolor=urlColor, linkcolor=linkColor, citecolor=linkColor, anchorcolor=linkColor, pdfauthor={\forfatter}, pdftitle={\emne - \tittel}}
+\captionsetup{format=hang, font=footnotesize, labelfont=bf, labelsep=endash}
+%\pretolerance = 3000
+%\tolerance = 6000   \hbadness = \tolerance
+%\setlength{\parskip}{0cm plus 1mm}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Dokumentstart
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{document}
+
+
+% Tittelside
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\thispagestyle{first}
+%\vspace*{0.5cm}
+\par\includegraphics[scale=0.035]{\hvlPath}
+\vspace{0.15cm}
+%\par\normalsize \fakultet
+\par\normalsize \institutt
+\vspace{0.30cm}
+\hrule
+\vspace{0.30cm}
+\par\Large \textbf{\emne \ \ $\mid$ \ \ \tittel}
+\vspace{0.25cm}
+\hrule
+\vspace{0.35cm}
+%\par\footnotesize{Gruppemedlemmer:}
+%\vspace{0.1cm}
+\par\normalsize \textbf{\forfatter}
+\par\footnotesize \dato
+\vspace*{0.5cm}
+\normalsize
+
+
+% Hovedinnhold
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+\input{content.tex}
+
+
+% Sluttnoter
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\iftoggle{endnotes}{ 
+    \newpage
+    \printendnotes
+}{}
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% Dokumentslutt
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\end{document}
+

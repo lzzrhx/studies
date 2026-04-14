@@ -1,7 +1,7 @@
 package src;
 
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -55,15 +55,21 @@ public class AnsattCrud {
         }
     }
     
-    // Oppdater info om person
     /*
-    public void oppdater(int id, String navn) {
+    // Oppdater info om ansatt
+    public void oppdater(int id, String brukernavn, String fornavn, String etternavn, String startdato, String stilling, int lonn, int avdeling) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            Person p = em.find(Person.class, id);
-            p.navn(navn);
+            Ansatt a = em.find(Ansatt.class, id);
+            a.brukernavn(brukernavn);
+            a.fornavn(fornavn);
+            a.etternavn(etternavn);
+            a.startdato(startdato);
+            a.stilling(stilling);
+            a.lonn(lonn);
+            a.avdeling(avdeling);
             tx.commit();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -71,8 +77,7 @@ public class AnsattCrud {
         } finally {
             em.close();
         }
-    }
-    */
+    }*/
 
     // Slett ansatt
     public void slett(int id) {

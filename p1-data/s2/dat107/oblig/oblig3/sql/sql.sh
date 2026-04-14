@@ -1,2 +1,2 @@
 #! /bin/bash
-psql -h hvl.lol -p 21337 -U gcyww94bfl -d dat107 --file 02-tbl.sql
+psql -h <host> -p <port> -U vrqtcpdsga -d dat107 --file 02-setup.sql

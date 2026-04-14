@@ -37,6 +37,11 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>uk.co.electronstudio.jaylib</groupId>
+      <artifactId>jaylib</artifactId>
+      <version>[5.5.0,5.6)</version>
+    </dependency>
   </dependencies>
 
   <build>
