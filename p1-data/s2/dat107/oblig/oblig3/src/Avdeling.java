@@ -2,7 +2,9 @@ package src;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 import java.util.List;
 import jakarta.persistence.EntityManager;
@@ -17,8 +19,14 @@ public class Avdeling {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
 
     // Objektvariabler
-    @Id private Integer id;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(length = 50)
     private String navn;
+    
+    @Column(nullable = false)
     private int sjef;
     
     // Konstruktører
@@ -35,7 +43,7 @@ public class Avdeling {
     int sjef()             { return sjef; }
     void sjef(int sjef)    { this.sjef = sjef; }
 
-    // Stringrepresentasjon av objektet
+    // Strengrepresentasjon av objektet
     public String toString() {
         return String.format(
             "[Avdeling] id=%d, navn=%s, sjef=%d",
@@ -55,15 +63,8 @@ public class Avdeling {
         }
     }
     
-    // Hent liste av alle avdelinger
+    // Hent liste av alle ansatte i avdelingen
     public List<Ansatt> hentAnsatte() {
         return Ansatt.hentAlleFraAvdeling(this);
     }
-    
-    /*
-    public static void printAlle() {
-        System.out.println("Avdelinger:");
-        Avdeling.hentAlle().forEach(System.out::println);
-    }
-    */
 }
