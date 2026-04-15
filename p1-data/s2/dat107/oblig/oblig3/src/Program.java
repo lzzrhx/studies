@@ -98,7 +98,7 @@ public class Program {
         SetTargetFPS(60);
         changeTab(0);
         changeWindow(Window.NONE);
-        font = LoadFontEx("PxPlusToshibaSat8x16.ttf", 16, (int[])null, 250);
+        font = LoadFontEx("./assets/PxPlusToshibaSat8x16.ttf", 16, (int[])null, 250);
         margin_float_x = margin_l+font_size*7;
         margin_float_y = margin_top+(int)(9.5*font_size);
         txt_ansatte_w = (int)MeasureTextEx(font, txt_ansatte, font_size, font_spacing).x();
