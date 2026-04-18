@@ -1,12 +1,11 @@
-package src;
+package no.hvl.dat107;
 
-import java.util.Locale;
-import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Program {
+public class ProgramOld {
+
     // "Flytende" vindu
     private enum Window {
         NONE,
@@ -25,6 +24,34 @@ public class Program {
         INTEGER
     }
 
+    /*
+    private class WindowLine() {
+        public Datatype datatype;
+        public Integer max_chars;
+        public String desc;
+        public String content;
+        WindowLine(Datatype datatype, String desc, String content) {
+            this(datatype, desc, content, null);
+        }
+        WindowLine(Datatype datatype, String desc, String content, Integer max_chars) {
+            this.datatype = datatype;
+            this.desc = desc;
+            this.content = content;
+            this.max_chars = max_chars;
+        }
+    }*/
+
+    // Datavariabler
+    private static List<Avdeling> avdelinger;
+    private static List<List<Ansatt>> ansatte;
+    private static List<Datatype> window_lines_type = new ArrayList<>();
+    private static List<Integer> window_lines_max_chars = new ArrayList<>();
+    private static List<String> window_lines = new ArrayList<>();
+    private static List<String> window_lines_desc = new ArrayList<>();
+    private static List<String> window_lines_readonly = new ArrayList<>();
+    private static List<String> window_lines_readonly_desc = new ArrayList<>();
+    //private static List<WindowLine> windowLines = new ArrayList<>();
+
     // Konstanter
     private static final int window_width         = 1280;
     private static final int window_height        = 720;
@@ -42,6 +69,10 @@ public class Program {
     private static final String txt_ansatte       = " [ ANSATTE ] ";
     private static final String txt_prosjekter    = " [ PROSJEKTER ] ";
     private static final int win_line_desc_chars  = 13;
+
+    // JPA objekter
+    private static AnsattDAO ansattDAO = new AnsattDAO();
+    private static AvdelingDAO avdelingDAO = new AvdelingDAO();
 
     // UI-variabler
     private static Color col = new Color().a((byte)0xff);
@@ -74,16 +105,6 @@ public class Program {
     private static boolean win_edit_change;
     private static int win_edit_max_chars;
 
-    // Datavariabler
-    private static List<Avdeling> avdelinger;
-    private static List<List<Ansatt>> ansatte;
-    private static List<Datatype> window_lines_type = new ArrayList<>();
-    private static List<Integer> window_lines_max_chars = new ArrayList<>();
-    private static List<String> window_lines = new ArrayList<>();
-    private static List<String> window_lines_desc = new ArrayList<>();
-    private static List<String> window_lines_readonly = new ArrayList<>();
-    private static List<String> window_lines_readonly_desc = new ArrayList<>();
-   
     // Entry-point for programmet
     public static void main(String[] args) {
         init();
@@ -119,6 +140,8 @@ public class Program {
     // Avslutting av programmet
     private static void exit() {
         CloseWindow();
+        ansattDAO.exit();
+        avdelingDAO.exit();
     }
 
     // Håndter tastatur-innputt
@@ -365,10 +388,10 @@ public class Program {
 
     // Oppdater listen av avdelinger/ansatte
     private static void updateAnsatte() {
-        avdelinger = Avdeling.hentAlle();
+        avdelinger = avdelingDAO.hentAlle();
         ansatte = new ArrayList<>();
         for (Avdeling avdeling : avdelinger) {
-            ansatte.add(avdeling.hentAnsatte());
+            ansatte.add(ansattDAO.hentAlleFraAvdeling(avdeling));
         }
         max_sel_avd = avdelinger.size();
         changeSelAvdeling(max_sel_avd > 0 ? 1 : 0, false);
@@ -416,7 +439,7 @@ public class Program {
                     addWindowLine("MÅNEDSLØNN", ansatt.lonn()+"", Datatype.INTEGER, 9);
                     addWindowLineReadonly("AVDELING", avdeling.navn());
                     win_edit_valid = true;
-                    win_edit_del_allowed = !(avdeling.sjef() == ansatt.id());
+                    win_edit_del_allowed = !(avdeling.sjef().equals(ansatt));
                     txt_bunn = win_edit_del_allowed ? txt_bunn_edit_ans : txt_bunn_edit;
                     break;
                 case Window.LEGG_TIL_ANSATT:
@@ -444,7 +467,7 @@ public class Program {
             win_edit_enable = false;
             win_edit_change = false;
         }
-        Program.window = window;
+        ProgramOld.window = window;
     }
 
     private static void addWindowLine(String desc, String txt, Datatype datatype, int max_chars) {
@@ -583,11 +606,12 @@ public class Program {
     private static void saveEdit() {
         switch(window) {
             case Window.LEGG_TIL_ANSATT:
-                ansatte.get(sel_avd-1).add(new Ansatt(window_lines.get(0), window_lines.get(1), window_lines.get(2), window_lines.get(3), window_lines.get(4), window_lines.get(5), 1));
-                updateAnsMax();
+                ansattDAO.opprett(new Ansatt(window_lines.get(0), window_lines.get(1), window_lines.get(2), window_lines.get(3), window_lines.get(4), window_lines.get(5), avdelinger.get(0)));
+                updateAnsatte();
                 break;
             case Window.REDIGER_ANSATT:
-                ansatte.get(sel_avd-1).get(sel_ans-1).oppdater(window_lines.get(0), window_lines.get(1), window_lines.get(2), window_lines.get(3), window_lines.get(4), window_lines.get(5));
+                ansattDAO.oppdater(ansatte.get(sel_avd-1).get(sel_ans-1), window_lines.get(0), window_lines.get(1), window_lines.get(2), window_lines.get(3), window_lines.get(4), window_lines.get(5));
+                updateAnsatte();
                 break;
         }
     }
@@ -596,9 +620,8 @@ public class Program {
     private static void delEntry() {
         switch(window) {
             case Window.REDIGER_ANSATT:
-                ansatte.get(sel_avd-1).get(sel_ans-1).slett();
-                ansatte.get(sel_avd-1).remove(sel_ans-1);
-                updateAnsMax();
+                ansattDAO.slett(ansatte.get(sel_avd-1).get(sel_ans-1));
+                updateAnsatte();
                 break;
         }
     }
